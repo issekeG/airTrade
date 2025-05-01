@@ -1,0 +1,44 @@
+{{ form_start(resetForm, {
+    'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}
+}) }}
+
+<div class="row">
+    <div class="col-md-6">
+        <!-- Champ pour le nouveau mot de passe -->
+        <div class="form-group mb-4">
+            {{ form_label(resetForm.plainPassword.first, 'Nouveau mot de passe', {
+                'label_attr': {'class': 'form-label'}
+            }) }}
+            {{ form_widget(resetForm.plainPassword.first, {
+                'attr': {
+                    'class': 'form-control',
+                    'placeholder': 'Entrez votre nouveau mot de passe'
+                }
+            }) }}
+            {{ form_errors(resetForm.plainPassword.first) }}
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <!-- Champ pour répéter le mot de passe -->
+        <div class="form-group mb-4">
+            {{ form_label(resetForm.plainPassword.second, 'Répétez le mot de passe', {
+                'label_attr': {'class': 'form-label'}
+            }) }}
+            {{ form_widget(resetForm.plainPassword.second, {
+                'attr': {
+                    'class': 'form-control',
+                    'placeholder': 'Répétez votre nouveau mot de passe'
+                }
+            }) }}
+            {{ form_errors(resetForm.plainPassword.second) }}
+        </div>
+    </div>
+</div>
+
+<!-- Bouton de soumission -->
+<div class="form-group">
+    <button type="submit" class="btn btn-primary">Sauvegarder</button>
+</div>
+
+{{ form_end(resetForm) }}

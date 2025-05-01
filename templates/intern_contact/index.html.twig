@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}InternContact index{% endblock %}
+
+{% block body %}
+    <h1>InternContact index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>IsRead</th>
+                <th>Content</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for intern_contact in intern_contacts %}
+            <tr>
+                <td>{{ intern_contact.id }}</td>
+                <td>{{ intern_contact.isRead ? 'Yes' : 'No' }}</td>
+                <td>{{ intern_contact.content }}</td>
+                <td>
+                    <a href="{{ path('app_intern_contact_show', {'id': intern_contact.id}) }}">show</a>
+                    <a href="{{ path('app_intern_contact_edit', {'id': intern_contact.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_intern_contact_new') }}">Create new</a>
+{% endblock %}

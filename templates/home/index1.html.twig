@@ -1,0 +1,336 @@
+{% extends 'base.html.twig' %}
+
+
+{% block sidebar %}
+
+{% endblock %}
+
+{% block main %}
+    <main id="" class="main">
+
+        <section class="section profile">
+            <div class="row">
+
+                <div class="col-xl-12">
+
+                    <div class="card">
+                        {% block content %}
+                            <div class="card-body pt-3">
+                                <div class="id-bg-primary">
+                                    <div class="overlay">
+                                        <h1>Avions neufs et d'occasion à vendre
+                                        </h1>
+                                        <div class="container">
+
+                                            <div class="row">
+
+                                                <div class="col-md-2 col-4 mb-3">
+                                                    <a href="#" class="text-decoration-none text-center d-block">
+                                                        <img src="{{ asset('images/aircraft_categories/jet_aircraft_edit.png') }}"
+                                                             alt="Jet aircraft"
+                                                             class="img-fluid mx-auto d-block" style="max-height: 50px;">
+                                                        <span class="d-block mt-2">Jet aircraft</span>
+                                                    </a>
+                                                </div>
+
+                                                <div class="col-md-2 col-4 mb-3">
+                                                    <a href="#" class="text-decoration-none text-center d-block">
+                                                        <img src="{{ asset('images/aircraft_categories/turboprop_aircraft_edit.png') }}"
+                                                             alt="Jet aircraft"
+                                                             class="img-fluid mx-auto d-block" style="max-height: 50px;">
+                                                        <span class="d-block mt-2">Turboprop Aircraft</span>
+                                                    </a>
+                                                </div>
+
+                                                <div class="col-md-2 col-4 mb-3">
+                                                    <a href="#" class="text-decoration-none text-center d-block">
+                                                        <img src="{{ asset('images/aircraft_categories/piston_single_aircraft_edit.png') }}"
+                                                             alt="Jet aircraft"
+                                                             class="img-fluid mx-auto d-block" style="max-height: 50px;">
+                                                        <span class="d-block mt-2">Piston single aircraft</span>
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-2 col-4 mb-3">
+                                                    <a href="#" class="text-decoration-none text-center d-block">
+                                                        <img src="{{ asset('images/aircraft_categories/piston_twin_aircraft_edit.png') }}"
+                                                             alt="Piston twin aircraft"
+                                                             class="img-fluid mx-auto d-block" style="max-height: 50px;">
+                                                        <span class="d-block mt-2">Piston twin aircraft</span>
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-2 col-4 mb-3">
+                                                    <a href="#" class="text-decoration-none text-center d-block">
+                                                        <img src="{{ asset('images/aircraft_categories/light_sport_aircraft_edit.png') }}"
+                                                             alt="Light sport aircraft"
+                                                             class="img-fluid mx-auto d-block" style="max-height: 50px;">
+                                                        <span class="d-block mt-2">Light sport aircraft</span>
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-2 col-4 mb-3">
+                                                    <a href="#" class="text-decoration-none text-center d-block">
+                                                        <img src="{{ asset('images/aircraft_categories/experimental_homebuilt_aircraft_edit.png') }}"
+                                                             alt="Experimental homebuilt aircraft"
+                                                             class="img-fluid mx-auto d-block" style="max-height: 50px;">
+                                                        <span class="d-block mt-2">Experimental homebuilt aircraft</span>
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-2 col-4 mb-3">
+                                                    <a href="#" class="text-decoration-none text-center d-block">
+                                                        <img src="{{ asset('images/aircraft_categories/piston_agricultural_aircraft_edit.png') }}"
+                                                             alt="piston Agricultural aircraft"
+                                                             class="img-fluid mx-auto d-block" style="max-height: 50px;">
+                                                        <span class="d-block mt-2">Piston agricultural aircraft</span>
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-2 col-4 mb-3">
+                                                    <a href="#" class="text-decoration-none text-center d-block">
+                                                        <img src="{{ asset('images/aircraft_categories/turbine_agricultural_aircraft_edit.png') }}"
+                                                             alt="Turbine Agricultural aircraft"
+                                                             class="img-fluid mx-auto d-block" style="max-height: 50px;">
+                                                        <span class="d-block mt-2">Turbine agricultural aircraft</span>
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-2 col-4 mb-3">
+                                                    <a href="#" class="text-decoration-none text-center d-block">
+                                                        <img src="{{ asset('images/aircraft_categories/piston_military_aircraft_edit.png') }}"
+                                                             alt="Piston Military aircraft"
+                                                             class="img-fluid mx-auto d-block" style="max-height: 50px;">
+                                                        <span class="d-block mt-2">Piston Military aircraft</span>
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-2 col-4 mb-3">
+                                                    <a href="#" class="text-decoration-none text-center d-block">
+                                                        <img src="{{ asset('images/aircraft_categories/turbine_military_aircraft_edit.png') }}"
+                                                             alt="Turbine Military aircraft"
+                                                             class="img-fluid mx-auto d-block" style="max-height: 50px;">
+                                                        <span class="d-block mt-2">Turbine Military aircraft</span>
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-2 col-4 mb-3">
+                                                    <a href="#" class="text-decoration-none text-center d-block">
+                                                        <img src="{{ asset('images/aircraft_categories/piston_amphibious_floatplanes_edit.png') }}"
+                                                             alt="Piston amphibious floatplanes"
+                                                             class="img-fluid mx-auto d-block" style="max-height: 50px;">
+                                                        <span class="d-block mt-2">Piston amphibious floatplanes</span>
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-2 col-4 mb-3">
+                                                    <a href="#" class="text-decoration-none text-center d-block">
+                                                        <img src="{{ asset('images/aircraft_categories/turbine_amphibious_floatplanes_edit.png') }}"
+                                                             alt="Turbine amphibious floatplanes"
+                                                             class="img-fluid mx-auto d-block" style="max-height: 50px;">
+                                                        <span class="d-block mt-2">Turbine amphibious floatplanes</span>
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-2 col-4 mb-3">
+                                                    <a href="#" class="text-decoration-none text-center d-block">
+                                                        <img src="{{ asset('images/aircraft_categories/piston_helicopters_edit.png') }}"
+                                                             alt="Piston Helicopters"
+                                                             class="img-fluid mx-auto d-block" style="max-height: 50px;">
+                                                        <span class="d-block mt-2">Piston Helicopters</span>
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-2 col-4 mb-3">
+                                                    <a href="#" class="text-decoration-none text-center d-block">
+                                                        <img src="{{ asset('images/aircraft_categories/turbine_helicopters_edit.png') }}"
+                                                             alt="Turbine Helicopters"
+                                                             class="img-fluid mx-auto d-block" style="max-height: 50px;">
+                                                        <span class="d-block mt-2">Turbine Helicopters</span>
+                                                    </a>
+                                                </div>
+
+
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div>
+                                    <div class="container mt-5">
+                                        <div class="row">
+                                            <!-- Carte Beechcraft Baron -->
+                                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <a href="#" class="text-decoration-none">
+                                                    <div class="card h-100 shadow-sm border">
+                                                        <!-- Image -->
+                                                        <div class="position-relative overflow-hidden" style="height: 220px;">
+                                                            <img src="https://media.sandhills.com/img.axd?id=9048567525&wid=4326165471&rwl=False&p=&ext=&w=350&h=220&t=&lp=&c=True&wt=False&sz=Max&rt=0&checksum=V9uexhz4dSY%2btPosLc7%2bnfA%2f7MUFucToIj8iInBt4XqZWI7SQ3zzR2rbDwNGpVe0ixi7aWTWpXP%2fnvAjQ9mym2s3i0UCUaTs4vl8YINAvZeG%2b6mwyJX8yWEWejQjMa6ZHocn4%2bDpPjv00nB%2b4ivQZQ%3d%3d"
+                                                                 class="card-img-top h-100 object-fit-cover"
+                                                                 alt="Beechcraft Baron">
+                                                            <span class="position-absolute top-0 start-0 bg-danger text-white p-2 small">FEATURED</span>
+                                                        </div>
+
+                                                        <!-- Card Body -->
+                                                        <div class="card-body">
+                                                            <!-- Title and Category -->
+                                                            <div class="mb-2">
+                                                                <h5 class="card-title mb-1">
+                                                                    <span class="text-muted">1976</span>
+                                                                    BEECHCRAFT B55 BARON
+                                                                </h5>
+                                                                <span class="badge bg-secondary">Piston Twin Aircraft</span>
+                                                            </div>
+
+                                                            <!-- Price -->
+                                                            <div class="d-flex justify-content-between align-items-center">
+                                                                <div class="h5 text-primary mb-0">
+                                                                    USD $249,500
+                                                                </div>
+                                                                <small class="text-muted">Florida, USA</small>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Footer -->
+                                                        <div class="card-footer bg-white border-top-0">
+                                                            <div class="d-grid">
+                                                                <button class="btn btn-outline-primary">View Details</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+
+                                            <!-- Carte Cessna 172 -->
+                                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <a href="#" class="text-decoration-none">
+                                                    <div class="card h-100 shadow-sm">
+                                                        <!-- Image -->
+                                                        <div class="position-relative overflow-hidden" style="height: 220px;">
+                                                            <img src="https://www.avbuyer.com/wp-content/uploads/2023/07/Cessna-172-For-Sale.jpg"
+                                                                 class="card-img-top h-100 object-fit-cover"
+                                                                 alt="Cessna 172">
+                                                        </div>
+
+                                                        <!-- Card Body -->
+                                                        <div class="card-body">
+                                                            <!-- Title and Category -->
+                                                            <div class="mb-2">
+                                                                <h5 class="card-title mb-1">
+                                                                    <span class="text-muted">2018</span>
+                                                                    CESSNA 172 SKYHAWK
+                                                                </h5>
+                                                                <span class="badge bg-secondary">Single Engine Piston</span>
+                                                            </div>
+
+                                                            <!-- Price -->
+                                                            <div class="d-flex justify-content-between align-items-center">
+                                                                <div class="h5 text-primary mb-0">
+                                                                    USD $325,000
+                                                                </div>
+                                                                <small class="text-muted">Texas, USA</small>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Footer -->
+                                                        <div class="card-footer bg-white border-top-0">
+                                                            <div class="d-grid">
+                                                                <button class="btn btn-outline-primary">View Details</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+
+                                            <!-- Carte Piper PA-28 -->
+                                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <a href="#" class="text-decoration-none">
+                                                    <div class="card h-100 shadow-sm">
+                                                        <!-- Image -->
+                                                        <div class="position-relative overflow-hidden" style="height: 220px;">
+                                                            <img src="https://www.globalplanesearch.com/images/listing/2023/10/piper-pa-28-181-archer-tx-usa-651f0d8a9e4a3.jpg"
+                                                                 class="card-img-top h-100 object-fit-cover"
+                                                                 alt="Piper PA-28">
+                                                        </div>
+
+                                                        <!-- Card Body -->
+                                                        <div class="card-body">
+                                                            <!-- Title and Category -->
+                                                            <div class="mb-2">
+                                                                <h5 class="card-title mb-1">
+                                                                    <span class="text-muted">2020</span>
+                                                                    PIPER PA-28 ARCHER
+                                                                </h5>
+                                                                <span class="badge bg-secondary">Single Engine Piston</span>
+                                                            </div>
+
+                                                            <!-- Price -->
+                                                            <div class="d-flex justify-content-between align-items-center">
+                                                                <div class="h5 text-primary mb-0">
+                                                                    USD $289,900
+                                                                </div>
+                                                                <small class="text-muted">Arizona, USA</small>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Footer -->
+                                                        <div class="card-footer bg-white border-top-0">
+                                                            <div class="d-grid">
+                                                                <button class="btn btn-outline-primary">View Details</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+
+                                            <!-- Carte Cirrus SR22 -->
+                                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <a href="#" class="text-decoration-none">
+                                                    <div class="card h-100 shadow-sm">
+                                                        <!-- Image -->
+                                                        <div class="position-relative overflow-hidden" style="height: 220px;">
+                                                            <img src="https://www.controller.com/uploads/plane/5/3/0/7/5307217/cirrus-sr22-g5-turbo-2020-1_large.jpg"
+                                                                 class="card-img-top h-100 object-fit-cover"
+                                                                 alt="Cirrus SR22">
+                                                            <span class="position-absolute top-0 start-0 bg-success text-white p-2 small">NEW</span>
+                                                        </div>
+
+                                                        <!-- Card Body -->
+                                                        <div class="card-body">
+                                                            <!-- Title and Category -->
+                                                            <div class="mb-2">
+                                                                <h5 class="card-title mb-1">
+                                                                    <span class="text-muted">2023</span>
+                                                                    CIRRUS SR22 G6
+                                                                </h5>
+                                                                <span class="badge bg-secondary">Single Engine Turbo</span>
+                                                            </div>
+
+                                                            <!-- Price -->
+                                                            <div class="d-flex justify-content-between align-items-center">
+                                                                <div class="h5 text-primary mb-0">
+                                                                    USD $789,000
+                                                                </div>
+                                                                <small class="text-muted">California, USA</small>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Footer -->
+                                                        <div class="card-footer bg-white border-top-0">
+                                                            <div class="d-grid">
+                                                                <button class="btn btn-outline-primary">View Details</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        {% endblock %}
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

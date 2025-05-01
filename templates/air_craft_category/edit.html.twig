@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit AirCraftCategory{% endblock %}
+
+{% block body %}
+    <h1>Edit AirCraftCategory</h1>
+
+    {{ include('air_craft_category/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_air_craft_category_index') }}">back to list</a>
+
+    {{ include('air_craft_category/_delete_form.html.twig') }}
+{% endblock %}

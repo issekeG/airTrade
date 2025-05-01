@@ -1,0 +1,62 @@
+
+
+<aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#">
+                    <i class="bi bi-funnel"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ path('app_air_craft_category_index') }}">
+                    <i class="bi bi-tags"></i><span>Catégories</span><i class="bi bi-chevron-contract ms-auto"></i>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ path('app_aircraft_manufacturer_index') }}" >
+                    <i class="bi bi-building-gear"></i><span>Constructeur</span><i class="bi bi-chevron-contract ms-auto"></i>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ path('app_user_admin_index') }}">
+                    <i class="bi bi-shield-lock"></i><span>Admin</span><i class="bi bi-chevron-contract ms-auto"></i>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ path('app_user_index_verify') }}">
+                    <i class="bi bi-people"></i><span>Utilisateurs V</span><i class="bi bi-chevron-contract ms-auto"></i>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ path('app_user_index_non_verify') }}">
+                    <i class="bi bi-people"></i><span>Utilisateurs NV</span><i class="bi bi-chevron-contract ms-auto"></i>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#number-seats-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-file-earmark-text"></i><span>Blog Article</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="number-seats-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a>
+                            Ajouter un article
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            Lister les articles
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+
+</aside>

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AircraftManufacturer{% endblock %}
+
+{% block body %}
+    <h1>AircraftManufacturer</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ aircraft_manufacturer.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ aircraft_manufacturer.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_aircraft_manufacturer_index') }}">back to list</a>
+
+    <a href="{{ path('app_aircraft_manufacturer_edit', {'id': aircraft_manufacturer.id}) }}">edit</a>
+
+    {{ include('aircraft_manufacturer/_delete_form.html.twig') }}
+{% endblock %}

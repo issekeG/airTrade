@@ -1,0 +1,195 @@
+{% extends 'backend/base.html.twig' %}
+
+{% block main %}
+    <main id="main" class="main">
+
+        <section class="section dashboard">
+            {% block main_content %}
+                <div class="row">
+
+                    <!-- Left side columns -->
+
+                    <div class="col-lg-12">
+                        {% block sideColumns %}
+                            <div class="row">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                {% set firstItemNumber = (aircraftManufacturers.currentPageNumber - 1) * aircraftManufacturers.itemNumberPerPage + 1 %}
+                                                {% set lastItemNumber = firstItemNumber + aircraftManufacturers.items|length - 1 %}
+                                                <h5 class="card-title">
+                                                    <small>
+                                                        Liste des constructeurs ({{ firstItemNumber }} - {{ lastItemNumber }} sur {{ aircraftManufacturers.totalItemCount }})
+                                                    </small>
+                                                </h5>
+
+                                            </div>
+                                            <div class=" col-md-4">
+                                                <div class="card-title">
+                                                    <form class="search-form d-flex align-items-center" method="POST" action="{{ path('app_aircraft_manufacturer_index') }}">
+                                                        <div class="input-group input-group-sm mb-3">
+                                                            <input
+                                                                    type="search"
+                                                                    class="form-control"
+                                                                    name="search"
+                                                                    placeholder="Recherche avec nom ...."
+                                                                    aria-label="Entre le code ...."
+                                                                    aria-describedby="admin-school-bouton"
+                                                            >
+                                                            <button class="btn border border-gray-400" type="submit" id="admin-school-bouton">
+                                                                <i class="bi bi-search"></i>
+                                                            </button>
+                                                        </div>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 d-flex justify-content-end">
+                                                <h5 class="card-title"><a href="" data-bs-toggle="modal" data-bs-target="#creeManufacturerModal"><i class="bi bi-patch-plus-fill"></i> Créer</a></h5>
+                                            </div>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="creeManufacturerModal" tabindex="-1" aria-labelledby="creeManufacturerModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="creeManufacturerModalLabel">Ajouter une catégorie</h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        {{ form_start(aircraftManufacturerForm, {'attr': {'class': 'container mt-4', 'action': path('app_aircraft_manufacturer_new')}}) }}
+                                                        <div class="modal-body">
+                                                            <div class="mb-3">
+                                                                {{ form_label(aircraftManufacturerForm.name, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
+                                                                {{ form_widget(aircraftManufacturerForm.name, {'attr': {'class': 'form-control'}}) }}
+                                                                {{ form_errors(aircraftManufacturerForm.name, {'attr': {'class': 'invalid-feedback'}}) }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                                        </div>
+                                                        {{ form_end(aircraftManufacturerForm) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Table with stripped rows -->
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">Action</th>
+                                                <th scope="col">Nom</th>
+                                                <th scope="col">Nombre d'annonces</th>
+
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for aircraftManufacturer in aircraftManufacturers %}
+                                                <tr>
+                                                    <td class="gap-2">
+                                                        <a href="#"
+                                                           class="mx-2 edit-manufacturer-btn"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#editManufacturerModal"
+                                                           data-id="{{ aircraftManufacturer.id }}"
+                                                           data-name="{{ aircraftManufacturer.name }}">
+                                                            <i class="bi bi-pencil-square"></i>
+                                                        </a>
+                                                        <a href="{{ path('app_aircraft_manufacturer_delete',{'id':aircraftManufacturer.id}) }}" class="ms-2"><i class="bi bi-trash-fill"></i></a>
+
+                                                    </td>
+                                                    <td>{{ aircraftManufacturer.name }}</td>
+                                                    <td>{{ aircraftManufacturer.aircraft | length }}</td>
+                                                </tr>
+                                            {% endfor %}
+
+                                            </tbody>
+                                        </table>
+                                        <div class="pagination">
+                                            {{ knp_pagination_render(aircraftManufacturers) }}
+                                        </div>
+                                        <!-- End Table with stripped rows -->
+                                        <div class="modal fade" id="editManufacturerModal" tabindex="-1" aria-labelledby="editManufacturerModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="editManufacturerModalLabel">Modifier la catégorie</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                                                    </div>
+
+                                                    {# Formulaire Symfony avec un placeholder dans l'URL #}
+                                                    {{ form_start(editAircraftManufacturerForm, {
+                                                        'attr': {
+                                                            'id': 'editAircraftManufacturerForm',
+                                                            'class': 'container'
+                                                        },
+                                                        'action': path('app_aircraft_manufacturer_edit', {'id': 'PLACEHOLDER'})
+                                                    }) }}
+
+                                                    <div class="modal-body">
+                                                        {{ form_row(editAircraftManufacturerForm.name, {'attr':{
+                                                            'class':'form-control'
+                                                        }}) }}
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                                    </div>
+
+                                                    {{ form_end(editAircraftManufacturerForm) }}
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        {% endblock %}
+                    </div><!-- End Left side columns -->
+
+
+                </div>
+            {% endblock %}
+        </section>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const editButtons = document.querySelectorAll('.edit-manufacturer-btn');
+                const editForm = document.getElementById('editAircraftManufacturerForm');
+                const nameInput = document.querySelector('#editAircraftManufacturerForm input[name="aircraft_manufacturer[name]"]');
+                const formActionTemplate = "{{ path('app_aircraft_manufacturer_edit', {'id': 'PLACEHOLDER'}) }}";
+
+                editButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        const manufacturerId = this.getAttribute('data-id');
+
+                        // Injecter les données dans le formulaire
+                        nameInput.value = this.getAttribute('data-name');
+
+                        // Mettre à jour dynamiquement l'action du formulaire
+                        editForm.action = formActionTemplate.replace('PLACEHOLDER', manufacturerId);
+                    });
+                });
+            });
+        </script>
+
+
+
+
+    </main>
+{% endblock %}
+
+
+
+
+

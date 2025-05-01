@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+{% endblock %}
+{% block sidebar %}
+{% endblock %}
+{% block main %}
+    <main>
+        <div class="container">
+
+            <section class="section register d-flex flex-column justify-content-center py-4">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-5 col-md-6 d-flex flex-column justify-content-center">
+
+                            <div class="d-flex justify-content-center py-4">
+                                <a href="" class="logo d-flex align-items-center w-auto">
+                                    <span class="d-none d-lg-block">AirTradeLogoIci</span>
+                                </a>
+                            </div><!-- End Logo -->
+
+                            <div class="d-flex justify-content-center py-2">
+                                <h3>Mot de passe oublié ?</h3>
+                            </div>
+
+                            <div class="card mb-3">
+
+                                <div class="card-body">
+                                    {{ form_errors(requestForm) }}
+
+                                    {{ form_start(requestForm) }}
+
+                                        <div class="row">
+                                            <div class="my-3">
+                                                <div>
+                                                    <small>
+                                                        Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.
+                                                    </small>
+                                                </div>
+                                                <div class="form-floating mt-3">
+                                                    {{ form_widget(requestForm.email, {'attr': {'class': 'form-control'}}) }}
+                                                    <label for="reset_password_request_form_email">Adresse mail</label>
+                                                </div>
+
+                                            </div>
+                                            <div class="my-3">
+                                                <div class="col-12">
+                                                    <div class="row gap-2">
+                                                        <button class="btn btn-primary w-100 border-0" type="submit" style="background-color: #07182e;">Réinitialiser le mot de passe
+                                                        </button>
+                                                        <hr>
+                                                        <a href="{{ path('app_login') }}" class="btn btn-primary w-100 border-0" style="background-color: #07182e;">retourner à la page de connexion
+                                                        </a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    {{ form_end(requestForm) }}
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+    </main><!-- End #main -->
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+

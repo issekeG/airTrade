@@ -1,0 +1,61 @@
+
+{% extends 'base.html.twig' %}
+
+{% block main_content %}
+    <div class="pagetitle">
+        <h1>{{ allAirCrafts | length}} annonces</h1>
+        <nav>
+            <ol class="breadcrumb">
+                {% for item in itemsFilters %}
+                <li class="breadcrumb-item"><a href="">{{ item }}</a></li>
+                {% endfor %}
+            </ol>
+        </nav>
+    </div>
+    <!-- Button trigger modal -->
+
+
+    <!-- Modal -->
+    {% include 'filter/modal/manufacturer-modal.html.twig' %}
+
+    <section class="listings-section py-2 bg-light">
+        <div class="container">
+            <div class="row g-4">
+
+                <!-- Listing 1 - Beechcraft Baron -->
+                {% for aircraft in allAirCrafts %}
+                <div class="col-md-4 col-lg-4">
+                    <div class="aircraft-card" style="border: 2px solid #0d6efd;">
+                        <div class="aircraft-image">
+                            {% if aircraft.airCraftImages|length > 0 %}
+                            <img src="{{ asset('uploads/images/aircraft/' ~ aircraft.airCraftImages[0].image) }}"
+                                 alt="{{ aircraft.aircraftManufacturer.name }} {{ aircraft.model }}">
+                            {% endif %}
+                        </div>
+                        <div class="aircraft-details">
+
+                            <div>
+                                <span class="aircraft-type">{{ aircraft.aircraftCategory.name }}</span>
+                            </div>
+                            <small class="text-primary bold"><span>{{ aircraft.yearOfManufacture }}</span>{{ aircraft.aircraftManufacturer.name }} {{ aircraft.model }}</small>
+                            <p class="aircraft-location">Location : {{ aircraft.city }},  {{ aircraft.country }}</p>
+                            <div class="aircraft-price">€{{ aircraft.price }}</div>
+                            <div class=" bg-white border-top-0 py-0">
+                                <div class="d-grid">
+                                    <a href="{{ path('app_aircraft_show', {'slug':aircraft.slug}) }}" class="btn btn-outline-primary">Voir les details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends 'base.html.twig' %}
+
+
+{% block sidebar %}
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+      {% block ads_block %}
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ path('admin_view_user_profile',{'id':user.id, 'page':'ads'}) }}">
+          <i class="bi bi-megaphone"></i><span>Les annonces</span>
+        </a>
+      </li>
+      {% endblock %}
+      {% block ads_favoris %}
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ path('admin_view_user_profile',{'id':user.id, 'page':'ads'}) }}">
+            <i class="bi bi-heart"></i><span>Les favoris</span>
+          </a>
+        </li>
+      {% endblock %}
+      {% block ads_details %}
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ path('admin_view_user_profile',{'id':user.id, 'page':'details'}) }}">
+          <i class="bi bi-person-circle"></i><span>Détails du compte</span>
+        </a>
+      </li>
+      {% endblock %}
+      {% block ads_infos %}
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ path('admin_view_user_profile',{'id':user.id, 'page':'infos'}) }}">
+          <i class="bi bi-pencil-square"></i><span>Modifier les infos</span>
+        </a>
+      </li>
+      {% endblock %}
+
+      {% block app_messages %}
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ path('admin_view_user_profile',{'id':user.id, 'page':'password'}) }}">
+            <i class="bi bi-messenger"></i><span>Messagerie</span>
+          </a>
+        </li>
+      {% endblock %}
+
+    </ul>
+
+  </aside>
+{% endblock %}
+
+{% block main %}
+  <main id="main" class="main">
+
+    <section class="section profile">
+      <div class="row">
+
+        <div class="col-xl-12">
+
+          <div class="card">
+            {% block content %}
+            <div class="card-body pt-3">
+              <!-- Bordered Tabs -->
+              <ul class="nav nav-tabs nav-tabs-bordered">
+
+                <li class="nav-item">
+                  <button class="nav-link active" data-bs-toggle="tab">Mes annonces</button>
+                </li>
+
+              </ul>
+              <div class="tab-content pt-2">
+
+                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+
+                  <h5 class="card-title">Mes informations</h5>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">Pseudo</div>
+                    <div class="col-lg-9 col-md-8">{{ user.pseudo }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Prénom</div>
+                    <div class="col-lg-9 col-md-8">{{ user.firstname }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Nom</div>
+                    <div class="col-lg-9 col-md-8">{{ user.lastname }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Email</div>
+                    <div class="col-lg-9 col-md-8">{{ user.email }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Pays</div>
+                    <div class="col-lg-9 col-md-8">{{ user.country }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Mot de passe</div>
+                    <div class="col-lg-9 col-md-8">************</div>
+                  </div>
+
+                </div>
+
+              </div><!-- End Bordered Tabs -->
+
+            </div>
+            {% endblock %}
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

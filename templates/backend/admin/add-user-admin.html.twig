@@ -1,0 +1,138 @@
+
+
+
+{% extends 'backend/base.html.twig' %}
+
+{% block main %}
+    <main id="main" class="main">
+
+        <section class="section dashboard">
+            {% block main_content %}
+                <div class="row">
+
+                    <!-- Left side columns -->
+
+                    <div class="col-lg-12">
+                        {% block sideColumns %}
+                            <div class="row">
+                                <div class="card">
+                                    <div class="card-body mt-4">
+                                        {% for flash_error in app.flashes('verify_email_error') %}
+                                            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                                        {% endfor %}
+
+
+                                        {{ form_errors(registrationForm) }}
+
+                                        {{ form_start(registrationForm) }}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="form-floating mb-3">
+                                                        {{ form_widget(registrationForm.pseudo, {
+                                                            'attr': {
+                                                                'class': 'form-control',
+                                                            }
+                                                        }) }}
+                                                        <label for="registration_form_pseudo">Votre pseudo</label>
+                                                    </div>
+
+                                                    {{ form_errors(registrationForm.pseudo) }}
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="form-floating mb-3">
+                                                        {{ form_widget(registrationForm.firstname, {
+                                                            'attr': {
+                                                                'class': 'form-control',
+                                                            }
+                                                        }) }}
+                                                        <label for="registration_form_firstname">Nom & Prénom</label>
+                                                    </div>
+
+                                                    {{ form_errors(registrationForm.firstname) }}
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="form-floating mb-3">
+                                                        {{ form_widget(registrationForm.email, {
+                                                            'attr': {
+                                                                'class': 'form-control',
+                                                            }
+                                                        }) }}
+                                                        <label for="registration_form_email">Votre email</label>
+                                                    </div>
+
+                                                    {{ form_errors(registrationForm.email) }}
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="form-floating mb-3">
+                                                        {{ form_widget(registrationForm.telephone, {
+                                                            'attr': {
+                                                                'class': 'form-control',
+                                                            }
+                                                        }) }}
+                                                        <label for="registration_form_country">Le numéro de téléphone</label>
+                                                    </div>
+
+                                                    {{ form_errors(registrationForm.telephone) }}
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="form-floating mb-3">
+                                                        {{ form_widget(registrationForm.country, {
+                                                            'attr': {
+                                                                'class': 'form-select',
+                                                            }
+                                                        }) }}
+                                                        <label for="registration_form_country">Votre pays</label>
+                                                    </div>
+
+                                                    {{ form_errors(registrationForm.country) }}
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="form-floating mb-3">
+                                                        {{ form_widget(registrationForm.plainPassword, {
+                                                            'attr': {
+                                                                'class': 'form-control',
+                                                            }
+                                                        }) }}
+                                                        <label for="registration_form_country">Votre mot de passe</label>
+                                                    </div>
+
+                                                    {{ form_errors(registrationForm.plainPassword) }}
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <hr>
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <button class="btn btn-primary w-100 border-0" type="submit" style="background-color: #07182e;">Enregistrer</button>
+                                            </div>
+                                        </div>
+
+
+                                        {{ form_end(registrationForm) }}
+
+                                    </div>
+                                </div>
+                            </div>
+                        {% endblock %}
+                    </div><!-- End Left side columns -->
+
+
+                </div>
+            {% endblock %}
+        </section>
+
+
+
+
+
+
+    </main>
+{% endblock %}

@@ -1,0 +1,244 @@
+
+
+<aside id="sidebar" class="sidebar">
+
+    <form id="sidebar-filter-form" method="get" action="{{ path('app_aircraft_filter') }}">
+        <input type="hidden" name="aircraftCategories" id="hiddenAircraftCategories" value="">
+        <input type="hidden" name="aircraftManufacturers" id="hiddenAircraftManufacturers" value="">
+        <ul class="sidebar-nav" id="sidebar-nav">
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" onclick="submitSidebarFilter();">
+                    <i class="bi bi-funnel"></i>
+                    <span>Appliquer les filtres</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-bs-toggle="modal" data-bs-target="#categoryFilterModal">
+                    <i class="bi bi-tags"></i><span>Catégories</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-bs-toggle="modal" data-bs-target="#manufacturerFilterModal">
+                    <i class="bi bi-building"></i><span>Constructeur</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#year-built-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-calendar3"></i><span>Année de construction</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="year-built-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a>
+                            <div class="form-floating col-12">
+                                <select class="form-select form-select-sm" id="sidebarMinYear" name="aircraft_min_year" aria-label="Année min">
+                                    <option selected disabled>Année min</option>
+                                    {% set currentYear = "now"|date("Y") %}
+                                    {% for year in 1950..currentYear %}
+                                        <option value="{{ year }}">{{ year }}</option>
+                                    {% endfor %}
+                                </select>
+                                <label for="sidebarMinYear" class="text-muted fw-normal">Année min</label>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <div class="form-floating col-12">
+                                <select class="form-select form-select-sm" id="sidebarMaxYear" name="aircraft_max_year" aria-label="Année max">
+                                    <option selected disabled>Année max</option>
+                                    {% set currentYear = "now"|date("Y") %}
+                                    {% for year in 1950..currentYear %}
+                                        <option value="{{ year }}">{{ year }}</option>
+                                    {% endfor %}
+                                </select>
+                                <label for="sidebarMaxYear" class="text-muted fw-normal">Année max</label>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#price-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-cash-coin"></i><span>Prix</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="price-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a>
+                            <div class="form-floating col-12">
+                                <input type="number" class="form-control form-control-sm" id="sidebarMinPrice" name="aircraft_min_price" placeholder="Prix min" min="0">
+                                <label for="sidebarMinPrice" class="text-muted fw-normal">Prix min</label>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <div class="form-floating col-12">
+                                <input type="number" class="form-control form-control-sm" id="sidebarMaxPrice" name="aircraft_max_price" placeholder="Prix max" min="0">
+                                <label for="sidebarMaxPrice" class="text-muted fw-normal">Prix max</label>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+
+                <a class="nav-link collapsed" data-bs-target="#hours-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-clock-history"></i><span>Heures totales</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="hours-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a>
+                            <div class="form-floating col-12">
+                                <input type="number" class="form-control form-control-sm" id="sidebarMinHour" name="aircraft_min_hour" placeholder="nombre d'heure min" min="0">
+                                <label for="sidebarMinHour" class="text-muted fw-normal">Nombre d'heure min</label>
+                            </div>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <div class="form-floating col-12">
+                                <input type="number" class="form-control form-control-sm" id="sidebarMaxHour" name="aircraft_max_hour" placeholder="nombre d'heure max" min="0">
+                                <label for="sidebarMaxHour" class="text-muted fw-normal">Nombre d'heure max</label>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#number-seats-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-person-bounding-box"></i><span>Nombre de sièges</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="number-seats-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a>
+                            <div class="form-floating col-12">
+                                <input type="number" class="form-control form-control-sm" id="sidebarMinSeat" name="aircraft_min_seat" placeholder="Nombre de sièges min" min="0">
+                                <label for="sidebarMinSeat" class="text-muted fw-normal">Nombre de sièges min</label>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <div class="form-floating col-12">
+                                <input type="number" class="form-control form-control-sm" id="sidebarMaxSeat" name="aircraft_max_seat" placeholder="Nombre de sièges max" min="0">
+                                <label for="sidebarMaxSeat" class="text-muted fw-normal">Nombre de sièges max</label>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#date-published-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-calendar3"></i><span>Date de publication</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="date-published-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a>
+                            <div class="form-floating col-12">
+                                <input type="date" class="form-control form-control-sm" id="sidebarMinDate" name="aircraft_min_date" placeholder="Date de publication min">
+                                <label for="sidebarMinDate" class="text-muted fw-normal">Date de publication min</label>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <div class="form-floating col-12">
+                                <input type="date" class="form-control form-control-sm" id="sidebarMaxDate" name="aircraft_max_date" placeholder="Date de publication max">
+                                <label for="sidebarMaxDate" class="text-muted fw-normal">Date de publication max</label>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#status-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-clipboard-check"></i><span>Status</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="status-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="utilise" id="statusUsed" name="aircraft_status[]">
+                                <label class="form-check-label" for="statusUsed">
+                                    Utilisé
+                                </label>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="neuf" id="statusNew" name="aircraft_status[]">
+                                <label class="form-check-label" for="statusNew">
+                                    Neuf
+                                </label>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="occasion" id="statusUsedCondition" name="aircraft_status[]">
+                                <label class="form-check-label" for="statusUsedCondition">
+                                    Occasion
+                                </label>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#registration-number-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-calendar-check"></i><span>Num d'enregistrement</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="registration-number-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a>
+                            <div class="form-floating col-12">
+                                <input type="text" class="form-control form-control-sm" id="sidebarRegistrationNumber" name="aircraft_registration_number" placeholder="Numéro d'enregistrement">
+                                <label for="sidebarRegistrationNumber" class="text-muted fw-normal">Numéro d'enregistrement</label>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+    </form>
+
+</aside>
+
+<script>
+    // Met à jour les catégories sélectionnées
+    function submitSidebarFilter(){
+
+        updateSelection('category-form-check-input', 'hiddenAircraftCategories')
+        updateSelection('manufacturer-form-check-input', 'hiddenAircraftManufacturers')
+
+        const filterForm = document.querySelector('#sidebar-filter-form');
+
+        filterForm.submit();
+
+
+    }
+
+
+    function updateSelection(checkboxClass, hiddenInputId) {
+        const selectedValues = Array.from(document.querySelectorAll(`.${checkboxClass}:checked`))
+            .map(checkbox => checkbox.value);
+
+        const hiddenInput = document.getElementById(hiddenInputId);
+        if (hiddenInput) {
+            hiddenInput.value = selectedValues.join(',');
+            console.log(hiddenInput.value);
+        } else {
+            console.warn(`Element with ID "${hiddenInputId}" not found.`);
+        }
+    }
+
+</script>

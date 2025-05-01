@@ -1,0 +1,47 @@
+
+<div class="modal fade" id="manufacturerFilterModal" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Filtrer par constructeur</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+            </div>
+            <div class="modal-body">
+                <fieldset>
+                    <legend class="visually-hidden">Filtrage par constructeur</legend>
+
+                    {# Champ de recherche (optionnel) #}
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="manufacturerSearch" placeholder="Rechercher un constructeur...">
+                    </div>
+
+                    <div class="all-options-container" style="max-height: 70vh; overflow-y: auto;">
+                        <div class="row">
+                            {% for manufacturer in manufacturers|batch((manufacturers|length/2)|round(0, 'ceil')) %}
+                                <div class="col-md-6">
+                                    {% for item in manufacturer %}
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input manufacturer-form-check-input manufacturer-filter"
+                                                   type="checkbox"
+                                                   id="manufacturer-{{ item.id }}"
+                                                   name="manufacturers[]"
+                                                   value="{{ item.id }}"
+                                                   data-bs-auto-close="outside">
+                                            <label class="form-check-label" for="manufacturer-{{ item.id }}">
+                                                {{ item.name }}
+                                            </label>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" id="applyManufacturerFilters">Appliquer</button>
+            </div>
+        </div>
+    </div>
+</div>

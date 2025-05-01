@@ -1,0 +1,30 @@
+{% extends 'backend/admin/user_profile/users-profile.html.twig' %}
+{% block ads_infos %}
+    <li class="nav-item bx-border-circle">
+        <a class="nav-link collapsed bg-primary text-white" href="{{ path('user_profile',{'id':user.id, 'page':'infos'}) }}">
+            <i class="bi bi-pencil-square text-white"></i><span>Modifier vos infos</span>
+        </a>
+    </li>
+{% endblock %}
+{% block content %}
+    <div class="card-body pt-3">
+        <!-- Bordered Tabs -->
+        <ul class="nav nav-tabs nav-tabs-bordered">
+
+            <li class="nav-item">
+                <button class="nav-link active" data-bs-toggle="tab">Modifier vos informations</button>
+            </li>
+
+        </ul>
+        <div class="tab-content pt-2">
+
+            <div class="tab-pane fade show active profile-overview" id="profile-overview">
+
+                <h5 class="card-title">Mes informations</h5>
+                {% include 'user/edit.html.twig' %}
+            </div>
+
+        </div><!-- End Bordered Tabs -->
+
+    </div>
+{% endblock %}

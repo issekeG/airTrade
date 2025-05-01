@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+{% block head %}
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+        <title>AirTrade</title>
+        <meta content="" name="description">
+        <meta content="" name="keywords">
+
+        <!-- Favicons -->
+        <link href="{{ asset('assets/img/antalaschool.png') }}" rel="icon">
+        <link href="{{ asset('assets/img/antalaschool.png') }}" rel="antalaschool">
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.gstatic.com" rel="preconnect">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+
+        <!-- Vendor CSS Files -->
+        {{ encore_entry_link_tags('vendor') }}
+        {{ encore_entry_link_tags('app') }}
+        {{ encore_entry_link_tags('ckeditor') }}
+
+        <style>
+            .aviation-marketplace {
+                font-family: 'Roboto', sans-serif;
+                color: #333;
+            }
+
+            /* Hero Section */
+            .hero-section {
+                background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+                background-size: cover;
+                background-position: center;
+                height: 100vh;
+                position: relative;
+                display: flex;
+                align-items: center;
+                margin-bottom: 80px;
+            }
+
+            .hero-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, rgba(13, 110, 253, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
+            }
+
+            .hero-title {
+                font-size: 3.5rem;
+                font-weight: 700;
+                color: white;
+                margin-bottom: 1.5rem;
+                text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            }
+
+            .hero-subtitle {
+                font-size: 1.5rem;
+                color: rgba(255,255,255,0.9);
+                margin-bottom: 2.5rem;
+                text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            }
+
+            /* Categories */
+            .categories-section {
+                padding: 80px 0;
+            }
+
+            .section-header {
+                margin-bottom: 60px;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+                font-weight: 700;
+                color: #2c3e50;
+                position: relative;
+                display: inline-block;
+                margin-bottom: 15px;
+            }
+
+            .section-title:after {
+                content: '';
+                position: absolute;
+                bottom: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80px;
+                height: 4px;
+                background: #0d6efd;
+            }
+
+            .section-subtitle {
+                color: #7f8c8d;
+                font-size: 1.1rem;
+            }
+
+            .category-card {
+                display: block;
+                text-align: center;
+                transition: all 0.3s ease;
+                text-decoration: none;
+                color: #333;
+            }
+
+            .category-card:hover {
+                transform: translateY(-10px);
+            }
+
+            .category-icon {
+                width: 100px;
+                height: 100px;
+                margin: 0 auto 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 5px;
+                transition: all 0.3s ease;
+            }
+
+            .category-card:hover .category-icon {
+                transform: scale(1.1);
+            }
+
+            .category-name {
+                font-size: 1.1rem;
+                font-weight: 600;
+                margin: 0;
+            }
+
+            /* Aircraft Listings */
+            .listings-section {
+                padding: 80px 0;
+            }
+
+            .aircraft-card {
+                background: white;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+                transition: all 0.3s ease;
+                position: relative;
+
+            }
+
+            .aircraft-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            }
+
+            .card-badge {
+                position: absolute;
+                top: 15px;
+                left: 15px;
+                padding: 5px 15px;
+                border-radius: 20px;
+                font-size: 0.8rem;
+                font-weight: 600;
+                color: white;
+                z-index: 2;
+            }
+
+            .card-delete-badge {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                padding: 5px 15px;
+                border-radius: 20px;
+                font-size: 0.8rem;
+                font-weight: 600;
+                color: white;
+                z-index: 2;
+            }
+
+            .aircraft-image {
+                height: 220px;
+                overflow: hidden;
+            }
+
+            .aircraft-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.5s ease;
+            }
+
+            .aircraft-card:hover .aircraft-image img {
+                transform: scale(1.05);
+            }
+
+            .aircraft-details {
+                padding: 20px;
+            }
+
+            .aircraft-type {
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: #0d6efd;
+                background: rgba(13, 110, 253, 0.1);
+                padding: 3px 10px;
+                border-radius: 20px;
+            }
+
+            .aircraft-location {
+                font-size: 0.9rem;
+                color: #7f8c8d;
+            }
+
+            .aircraft-model {
+                font-size: 1.2rem;
+                font-weight: 700;
+                margin: 10px 0;
+                color: #2c3e50;
+            }
+
+            .aircraft-model span {
+                color: #7f8c8d;
+                font-weight: 400;
+            }
+
+            .aircraft-price {
+                font-size: 1.3rem;
+                font-weight: 700;
+                color: #2c3e50;
+                margin: 15px 0;
+            }
+
+            .btn-view-details {
+                display: block;
+                width: 100%;
+                padding: 10px;
+                background: transparent;
+                color: #0d6efd;
+                border: 1px solid #0d6efd;
+                border-radius: 5px;
+                text-align: center;
+                font-weight: 600;
+                transition: all 0.3s ease;
+            }
+
+            .btn-view-details:hover {
+                background: #0d6efd;
+                color: white;
+            }
+
+            /* Responsive Adjustments */
+            @media (max-width: 1199.98px) {
+                .hero-title {
+                    font-size: 3rem;
+                }
+            }
+
+            @media (max-width: 991.98px) {
+                .hero-section {
+                    height: 400px;
+                }
+                .hero-title {
+                    font-size: 2.5rem;
+                }
+                .hero-subtitle {
+                    font-size: 1.2rem;
+                }
+            }
+
+            @media (max-width: 767.98px) {
+                .hero-section {
+                    height: 350px;
+                    text-align: center;
+                }
+                .hero-title {
+                    font-size: 2rem;
+                }
+                .hero-cta .btn {
+                    display: block;
+                    width: 100%;
+                    margin-bottom: 15px;
+                }
+                .hero-cta .btn:last-child {
+                    margin-bottom: 0;
+                }
+            }
+
+            @media (max-width: 575.98px) {
+                .section-title {
+                    font-size: 2rem;
+                }
+            }
+             .search-filter .input-group {
+                 box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+                 border-radius: 8px !important;
+             }
+
+            .search-filter .form-select,
+            .search-filter .form-control {
+                border-right: none;
+                border-color: #e0e0e0;
+                transition: all 0.3s ease;
+            }
+
+            .search-filter .form-select:focus,
+            .search-filter .form-control:focus {
+                border-color: #e0e0e0;
+                box-shadow: none;
+                border-right: 1px solid #e0e0e0;
+            }
+
+            .search-filter .input-group > .form-select:not(:first-child),
+            .search-filter .input-group > .form-control:not(:first-child) {
+                border-left: none;
+            }
+
+            .search-filter #search-button {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            /* Responsive */
+            @media (max-width: 992px) {
+                .search-filter .input-group {
+                    flex-wrap: wrap;
+                }
+                .search-filter .input-group > * {
+                    width: 100% !important;
+                    margin-bottom: 5px;
+                    border-radius: 8px !important;
+                }
+                .search-filter #search-button {
+                    margin-top: 5px;
+                }
+            }
+            .gallery-container {
+                position: relative;
+                max-height: 350px; /* adapte selon ta mise en page */
+                background-color: #f8f9fa; /* couleur de fond si l’image ne remplit pas tout */
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .gallery-container img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+
+            .main-image {
+                height: 400px;
+                object-fit: cover;
+                cursor: zoom-in;
+                transition: transform 0.4s ease, opacity 0.4s ease;
+                border-radius: 12px;
+            }
+
+            .main-image:hover {
+                transform: scale(1.02);
+            }
+
+            .thumbnail-container {
+                display: flex;
+                overflow-x: auto;
+                gap: 12px;
+                padding: 15px;
+                background: #ffffff;
+                border-radius: 12px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+                margin-top: 10px;
+                scroll-behavior: smooth;
+            }
+
+            .thumbnail {
+                width: 110px;
+                height: 80px;
+                object-fit: cover;
+                cursor: pointer;
+                border: 2px solid #dee2e6;
+                transition: all 0.3s ease;
+                border-radius: 8px;
+                flex-shrink: 0;
+            }
+
+            .thumbnail:hover {
+                border-color: #0d6efd;
+                transform: translateY(-2px);
+            }
+
+            .thumbnail.active {
+                border-color: #0d6efd;
+                box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+            }
+
+            .premium-badge {
+                background: linear-gradient(135deg, #ff6b00, #e91e63);
+                font-size: 0.95rem;
+                padding: 8px 16px;
+                border-radius: 20px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            }
+
+            .price-tag {
+                font-size: 2rem;
+                font-weight: 700;
+                color: #0d6efd;
+            }
+
+            .detail-section {
+                padding: 1rem 0;
+                border-bottom: 1px solid #eee;
+            }
+
+            .detail-section:last-child {
+                border-bottom: none;
+            }
+
+            .detail-icon {
+                color: #0d6efd;
+                width: 24px;
+                margin-right: 10px;
+            }
+
+            .card {
+                border-radius: 12px;
+                transition: box-shadow 0.3s ease;
+            }
+
+            .card:hover {
+                box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            }
+
+            .btn {
+                border-radius: 50px;
+                padding: 10px 24px;
+            }
+
+            .btn-primary {
+                background: linear-gradient(135deg, #0d6efd, #0062cc);
+                border: none;
+            }
+
+            .btn-primary:hover {
+                background: linear-gradient(135deg, #0b5ed7, #0052b3);
+            }
+
+            .specs-badge {
+                background: #f8f9fa;
+                color: #495057;
+                padding: 6px 12px;
+                border-radius: 6px;
+                margin: 4px;
+            }
+
+            @media (max-width: 768px) {
+                .main-image {
+                    height: 250px;
+                }
+                .thumbnail {
+                    width: 90px;
+                    height: 65px;
+                }
+                .price-tag {
+                    font-size: 1.6rem;
+                }
+            }
+        </style>
+
+    </head>
+{% endblock %}
+
+<body>
+
+<!-- ======= Header ======= -->
+{% block header %}
+    {% include 'composant/nav-bar.html.twig' %}
+{% endblock %}
+<!-- End Header -->
+
+<!-- ======= Sidebar ======= -->
+{% block sidebar %}
+    {% include 'filter/modal/category-modal.html.twig' %}
+
+    {% include 'sidebar/sidebar.html.twig' %}
+{% endblock %}
+<!-- End Sidebar-->
+{% block main %}
+    <main id="main" class="main">
+
+        <section class="section dashboard">
+            {% block main_content %}
+            <div class="row">
+
+                <!-- Left side columns -->
+
+                <div class="col-lg-8">
+                    {% block sideColumns %}
+                    <div class="row">
+
+                        <!-- Sales Card -->
+                        <div class="col-xxl-4 col-md-6">
+                            <div class="card info-card sales-card">
+
+                                <div class="filter">
+                                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                        <li class="dropdown-header text-start">
+                                            <h6>Filter</h6>
+                                        </li>
+
+                                        <li><a class="dropdown-item" href="#">Today</a></li>
+                                        <li><a class="dropdown-item" href="#">This Month</a></li>
+                                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Sales <span>| Today</span></h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-cart"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>145</h6>
+                                            <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div><!-- End Sales Card -->
+
+                        <!-- Revenue Card -->
+                        <div class="col-xxl-4 col-md-6">
+                            <div class="card info-card revenue-card">
+
+                                <div class="filter">
+                                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                        <li class="dropdown-header text-start">
+                                            <h6>Filter</h6>
+                                        </li>
+
+                                        <li><a class="dropdown-item" href="#">Today</a></li>
+                                        <li><a class="dropdown-item" href="#">This Month</a></li>
+                                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Revenue <span>| This Month</span></h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-currency-dollar"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>$3,264</h6>
+                                            <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div><!-- End Revenue Card -->
+
+                        <!-- Customers Card -->
+                        <div class="col-xxl-4 col-xl-12">
+
+                            <div class="card info-card customers-card">
+
+                                <div class="filter">
+                                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                        <li class="dropdown-header text-start">
+                                            <h6>Filter</h6>
+                                        </li>
+
+                                        <li><a class="dropdown-item" href="#">Today</a></li>
+                                        <li><a class="dropdown-item" href="#">This Month</a></li>
+                                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Customers <span>| This Year</span></h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-people"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>1244</h6>
+                                            <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div><!-- End Customers Card -->
+
+                        <!-- Reports -->
+                        <div class="col-12">
+                            <div class="card">
+
+                                <div class="filter">
+                                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                        <li class="dropdown-header text-start">
+                                            <h6>Filter</h6>
+                                        </li>
+
+                                        <li><a class="dropdown-item" href="#">Today</a></li>
+                                        <li><a class="dropdown-item" href="#">This Month</a></li>
+                                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Reports <span>/Today</span></h5>
+
+                                    <!-- Line Chart -->
+                                    <div id="reportsChart"></div>
+
+
+                                    <!-- End Line Chart -->
+
+                                </div>
+
+                            </div>
+                        </div><!-- End Reports -->
+
+                        <!-- Recent Sales -->
+                        <div class="col-12">
+                            <div class="card recent-sales overflow-auto">
+
+                                <div class="filter">
+                                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                        <li class="dropdown-header text-start">
+                                            <h6>Filter</h6>
+                                        </li>
+
+                                        <li><a class="dropdown-item" href="#">Today</a></li>
+                                        <li><a class="dropdown-item" href="#">This Month</a></li>
+                                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Recent Sales <span>| Today</span></h5>
+
+                                    <table class="table table-borderless datatable">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Customer</th>
+                                            <th scope="col">Product</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Status</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row"><a href="#">#2457</a></th>
+                                            <td>Brandon Jacob</td>
+                                            <td><a href="#" class="text-primary">At praesentium minu</a></td>
+                                            <td>$64</td>
+                                            <td><span class="badge bg-success">Approved</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"><a href="#">#2147</a></th>
+                                            <td>Bridie Kessler</td>
+                                            <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
+                                            <td>$47</td>
+                                            <td><span class="badge bg-warning">Pending</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"><a href="#">#2049</a></th>
+                                            <td>Ashleigh Langosh</td>
+                                            <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
+                                            <td>$147</td>
+                                            <td><span class="badge bg-success">Approved</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"><a href="#">#2644</a></th>
+                                            <td>Angus Grady</td>
+                                            <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
+                                            <td>$67</td>
+                                            <td><span class="badge bg-danger">Rejected</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"><a href="#">#2644</a></th>
+                                            <td>Raheem Lehner</td>
+                                            <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
+                                            <td>$165</td>
+                                            <td><span class="badge bg-success">Approved</span></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                            </div>
+                        </div><!-- End Recent Sales -->
+
+                        <!-- Top Selling -->
+                        <div class="col-12">
+                            <div class="card top-selling overflow-auto">
+
+                                <div class="filter">
+                                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                        <li class="dropdown-header text-start">
+                                            <h6>Filter</h6>
+                                        </li>
+
+                                        <li><a class="dropdown-item" href="#">Today</a></li>
+                                        <li><a class="dropdown-item" href="#">This Month</a></li>
+                                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="card-body pb-0">
+                                    <h5 class="card-title">Top Selling <span>| Today</span></h5>
+
+                                    <table class="table table-borderless">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">Preview</th>
+                                            <th scope="col">Product</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Sold</th>
+                                            <th scope="col">Revenue</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row"><a href="#"><img src="assets/img/product-1.jpg" alt=""></a></th>
+                                            <td><a href="#" class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</a></td>
+                                            <td>$64</td>
+                                            <td class="fw-bold">124</td>
+                                            <td>$5,828</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"><a href="#"><img src="assets/img/product-2.jpg" alt=""></a></th>
+                                            <td><a href="#" class="text-primary fw-bold">Exercitationem similique doloremque</a></td>
+                                            <td>$46</td>
+                                            <td class="fw-bold">98</td>
+                                            <td>$4,508</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"><a href="#"><img src="assets/img/product-3.jpg" alt=""></a></th>
+                                            <td><a href="#" class="text-primary fw-bold">Doloribus nisi exercitationem</a></td>
+                                            <td>$59</td>
+                                            <td class="fw-bold">74</td>
+                                            <td>$4,366</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"><a href="#"><img src="assets/img/product-4.jpg" alt=""></a></th>
+                                            <td><a href="#" class="text-primary fw-bold">Officiis quaerat sint rerum error</a></td>
+                                            <td>$32</td>
+                                            <td class="fw-bold">63</td>
+                                            <td>$2,016</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"><a href="#"><img src="assets/img/product-5.jpg" alt=""></a></th>
+                                            <td><a href="#" class="text-primary fw-bold">Sit unde debitis delectus repellendus</a></td>
+                                            <td>$79</td>
+                                            <td class="fw-bold">41</td>
+                                            <td>$3,239</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                            </div>
+                        </div><!-- End Top Selling -->
+
+                    </div>
+                    {% endblock %}
+                </div><!-- End Left side columns -->
+
+
+                <!-- Right side columns -->
+                {% block rightColumns %}
+                <div class="col-lg-4">
+
+                    <!-- Recent Activity -->
+                    <div class="card">
+                        <div class="filter">
+                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                <li class="dropdown-header text-start">
+                                    <h6>Filter</h6>
+                                </li>
+
+                                <li><a class="dropdown-item" href="#">Today</a></li>
+                                <li><a class="dropdown-item" href="#">This Month</a></li>
+                                <li><a class="dropdown-item" href="#">This Year</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="card-body">
+                            <h5 class="card-title">Recent Activity <span>| Today</span></h5>
+
+                            <div class="activity">
+
+                                <div class="activity-item d-flex">
+                                    <div class="activite-label">32 min</div>
+                                    <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+                                    <div class="activity-content">
+                                        Quia quae rerum <a href="#" class="fw-bold text-dark">explicabo officiis</a> beatae
+                                    </div>
+                                </div><!-- End activity item-->
+
+                                <div class="activity-item d-flex">
+                                    <div class="activite-label">56 min</div>
+                                    <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
+                                    <div class="activity-content">
+                                        Voluptatem blanditiis blanditiis eveniet
+                                    </div>
+                                </div><!-- End activity item-->
+
+                                <div class="activity-item d-flex">
+                                    <div class="activite-label">2 hrs</div>
+                                    <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
+                                    <div class="activity-content">
+                                        Voluptates corrupti molestias voluptatem
+                                    </div>
+                                </div><!-- End activity item-->
+
+                                <div class="activity-item d-flex">
+                                    <div class="activite-label">1 day</div>
+                                    <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
+                                    <div class="activity-content">
+                                        Tempore autem saepe <a href="#" class="fw-bold text-dark">occaecati voluptatem</a> tempore
+                                    </div>
+                                </div><!-- End activity item-->
+
+                                <div class="activity-item d-flex">
+                                    <div class="activite-label">2 days</div>
+                                    <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
+                                    <div class="activity-content">
+                                        Est sit eum reiciendis exercitationem
+                                    </div>
+                                </div><!-- End activity item-->
+
+                                <div class="activity-item d-flex">
+                                    <div class="activite-label">4 weeks</div>
+                                    <i class='bi bi-circle-fill activity-badge text-muted align-self-start'></i>
+                                    <div class="activity-content">
+                                        Dicta dolorem harum nulla eius. Ut quidem quidem sit quas
+                                    </div>
+                                </div><!-- End activity item-->
+
+                            </div>
+
+                        </div>
+                    </div><!-- End Recent Activity -->
+
+                    <!-- Budget Report -->
+                    <div class="card">
+                        <div class="filter">
+                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                <li class="dropdown-header text-start">
+                                    <h6>Filter</h6>
+                                </li>
+
+                                <li><a class="dropdown-item" href="#">Today</a></li>
+                                <li><a class="dropdown-item" href="#">This Month</a></li>
+                                <li><a class="dropdown-item" href="#">This Year</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="card-body pb-0">
+                            <h5 class="card-title">Budget Report <span>| This Month</span></h5>
+
+                            <div id="budgetChart" style="min-height: 400px;" class="echart"></div>
+
+
+
+                        </div>
+                    </div><!-- End Budget Report -->
+
+
+                </div>
+                {% endblock %}
+
+            </div>
+            {% endblock %}
+        </section>
+
+    </main>
+{% endblock %}
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+{% block footer %}
+    <footer id="footer" class="footer">
+        <div class="copyright">
+            &copy; Copyright <strong><span>Antalasoft</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+            Designed by <a href="https://antalasoft.com/">Antalasoft</a>
+        </div>
+    </footer>
+{% endblock %}
+<!-- End Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+{% block java_script %}
+    <script src="{{ asset('assets/vendor/jquery/jquery-3.7.1.min.js') }}"></script>
+
+    {{ encore_entry_script_tags('app') }}
+
+    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
+    {{ encore_entry_script_tags('quill') }}
+    {{ encore_entry_script_tags('simple_datatables') }}
+    {{ encore_entry_script_tags('tinymce') }}
+    {{ encore_entry_script_tags('main') }}
+    <script src="{{ asset('assets/vendor/select2/select2.min.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+            popoverTriggerList.map(function (el) {
+                return new bootstrap.Popover(el, {
+                    trigger: 'click',
+                    html: true,
+                    template: `
+                    <div class="popover" role="tooltip">
+                        <div class="popover-arrow"></div>
+                        <h3 class="popover-header bg-success text-white fw-bold border-bottom-0"></h3>
+                        <div class="popover-body"></div>
+                    </div>`
+                });
+            });
+        });
+    </script>
+
+
+
+
+{% endblock %}
+
+</body>
+
+</html>

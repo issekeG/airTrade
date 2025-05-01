@@ -1,0 +1,168 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <main id="main" class="main">
+
+        <section class="section dashboard">
+            <div class="row">
+
+                <!-- Left side columns -->
+
+                <div class="col-lg-8">
+                    {% block sideColumns %}
+                        <div class="card mb-3">
+
+                            <div class="card-body">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                                Saisissez les informations sur l'avion
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="container wizard-container mt-5">
+                                                    {{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': ''}}) }}
+
+                                                    {# Sécurisation du calcul de la progression #}
+                                                    {% if totalSteps > 0 %}
+                                                        {% set progress = (step / totalSteps) * 100 %}
+                                                    {% else %}
+                                                        {% set progress = 0 %}
+                                                    {% endif %}
+
+                                                    {# Barre de progression #}
+                                                    <div class="progress mb-4">
+                                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                                             style="width: {{ progress }}%"
+                                                             aria-valuenow="{{ progress|round(2) }}" aria-valuemin="0" aria-valuemax="100">
+                                                            {{ step }} / {{ totalSteps }}
+                                                        </div>
+                                                    </div>
+
+                                                    <h2 class="mb-4">Étape {{ step }} sur {{ totalSteps }}</h2>
+
+                                                    {% for child in form.children %}
+                                                        {% if child.vars.name != '_token' %}
+                                                            <div class="mb-3">
+                                                                {# Label avec traduction #}
+                                                                <label for="{{ child.vars.id }}" class="form-label fw-bold">
+                                                                    {{ ('aircraftPropertiesLabels.' ~ (child.vars.label|default(child.vars.name)))|trans({}, 'aircraftPropertiesLabels') }}
+                                                                    {% if child.vars.required %}<span class="text-danger">*</span>{% endif %}
+                                                                </label>
+
+                                                                {% if child.vars.block_prefixes.1 == 'checkbox' %}
+                                                                    <div class="form-check">
+                                                                        {{ form_widget(child, {'attr': {'class': 'form-check-input'}}) }}
+                                                                        <label class="form-check-label" for="{{ child.vars.id }}">
+                                                                            {{ ('aircraftPropertiesLabels.' ~ (child.vars.label|default(child.vars.name)))|trans({}, 'aircraftPropertiesLabels') }}
+                                                                        </label>
+                                                                    </div>
+                                                                {% elseif child.vars.block_prefixes.1 == 'radio' %}
+                                                                    <div class="form-check">
+                                                                        {{ form_widget(child, {'attr': {'class': 'form-check-input'}}) }}
+                                                                        <label class="form-check-label" for="{{ child.vars.id }}">
+                                                                            {{ ('aircraftPropertiesLabels.' ~ (child.vars.label|default(child.vars.name)))|trans({}, 'aircraftPropertiesLabels') }}
+                                                                        </label>
+                                                                    </div>
+                                                                {% elseif child.vars.expanded is defined and child.vars.expanded %}
+                                                                    <div class="d-flex flex-wrap gap-3">
+                                                                        {% for option in child.children %}
+                                                                            <div class="form-check">
+                                                                                {{ form_widget(option, {'attr': {'class': 'form-check-input'}}) }}
+                                                                                <label class="form-check-label" for="{{ option.vars.id }}">
+                                                                                    {{ option.vars.label }}
+                                                                                </label>
+                                                                            </div>
+                                                                        {% endfor %}
+                                                                    </div>
+                                                                {% elseif child.vars.block_prefixes|length > 2 and 'textarea' in child.vars.block_prefixes %}
+                                                                    {{ form_widget(child, {'attr': {'class': 'form-control', 'rows': '3'}}) }}
+                                                                {% elseif child.vars.choices is defined and not (child.vars.expanded is defined and child.vars.expanded) %}
+                                                                    {{ form_widget(child, {'attr': {'class': 'form-select select-element'}}) }}
+                                                                {% else %}
+                                                                    {{ form_widget(child, {'attr': {'class': 'form-control'}}) }}
+                                                                {% endif %}
+
+                                                                {% if child.vars.errors|length > 0 %}
+                                                                    <div class="invalid-feedback d-block">
+                                                                        {{ form_errors(child) }}
+                                                                    </div>
+                                                                {% endif %}
+                                                            </div>
+                                                        {% endif %}
+                                                    {% endfor %}
+
+                                                    {# Navigation entre les étapes #}
+                                                    <div class="form-navigation d-flex justify-content-between mt-4">
+                                                        {% if step > 1 %}
+                                                            <a href="{{ path('aircraft_wizard_form', {'step': step - 1}) }}" class="btn btn-secondary">
+                                                                Précédent
+                                                            </a>
+                                                        {% else %}
+                                                            <span></span> {# Placeholder pour alignement #}
+                                                        {% endif %}
+
+                                                        <button type="submit" class="btn btn-primary">
+                                                            {{ step == totalSteps ? 'Terminer' : 'Suivant' }}
+                                                        </button>
+                                                    </div>
+
+                                                    {{ form_end(form) }}
+                                                </div>
+                                            </div>
+                                            <div class="progress mb-4">
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                                     style="width: {{ progress }}%"
+                                                     aria-valuenow="{{ progress|round(2) }}" aria-valuemin="0" aria-valuemax="100">
+                                                    {{ step }} / {{ totalSteps }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endblock %}
+                </div><!-- End Left side columns -->
+
+
+                <!-- Right side columns -->
+                {% block rightColumns %}
+                    <div class="col-lg-4">
+
+                        <!-- Budget Report -->
+                        <div class="card">
+                            <div class="card-body pb-0">
+                                <h5 class="card-title">Publicité</h5>
+
+                                <div id="budgetChart" style="min-height: 400px;" class="echart"></div>
+
+
+
+                            </div>
+                        </div><!-- End Budget Report -->
+
+
+                    </div>
+                {% endblock %}
+
+            </div>
+        </section>
+
+        <script src="{{ asset('assets/vendor/jquery/jquery-3.7.1.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor/select2/select2.min.js') }}"></script>
+        <script>
+            $('.select-element').select2({
+                width: 'resolve',
+                placeholder: function(){
+                    return $(this).attr('placeholder');
+                }
+            });
+        </script>
+
+    </main>
+{% endblock %}
+

@@ -1,0 +1,171 @@
+
+
+{% extends 'base.html.twig' %}
+{% block sidebar %}
+{% endblock %}
+{% block main %}
+    <main>
+        <div class="container" style="margin-top: 30px;">
+
+            <section class="section register d-flex flex-column justify-content-center py-4">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-9 d-flex flex-column justify-content-center">
+
+                            <div class="pt-5">
+                                <h3>Creation de votre compte</h3>
+                            </div>
+
+                            <div class="card mb-3">
+
+                                <div class="card-body mt-4">
+                                    {% for flash_error in app.flashes('verify_email_error') %}
+                                        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                                    {% endfor %}
+
+
+                                    {{ form_errors(registrationForm) }}
+
+                                    {{ form_start(registrationForm) }}
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="form-floating mb-3">
+                                                    {{ form_widget(registrationForm.pseudo, {
+                                                        'attr': {
+                                                            'class': 'form-control',
+                                                        }
+                                                    }) }}
+                                                    <label for="registration_form_pseudo">Votre pseudo</label>
+                                                </div>
+
+                                                {{ form_errors(registrationForm.pseudo) }}
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-floating mb-3">
+                                                    {{ form_widget(registrationForm.firstname, {
+                                                        'attr': {
+                                                            'class': 'form-control',
+                                                        }
+                                                    }) }}
+                                                    <label for="registration_form_firstname">Votre Nom & Prénom</label>
+                                                </div>
+
+                                                {{ form_errors(registrationForm.firstname) }}
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-floating mb-3">
+                                                    {{ form_widget(registrationForm.telephone, {
+                                                        'attr': {
+                                                            'class': 'form-control',
+                                                        }
+                                                    }) }}
+                                                    <label for="registration_form_telephone">Votre téléphone</label>
+                                                </div>
+
+                                                {{ form_errors(registrationForm.telephone) }}
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="form-floating mb-3">
+                                                    {{ form_widget(registrationForm.email, {
+                                                        'attr': {
+                                                            'class': 'form-control',
+                                                        }
+                                                    }) }}
+                                                    <label for="registration_form_email">Votre email</label>
+                                                </div>
+
+                                                {{ form_errors(registrationForm.email) }}
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-floating mb-3">
+                                                    {{ form_widget(registrationForm.country, {
+                                                        'attr': {
+                                                            'class': 'form-select',
+                                                        }
+                                                    }) }}
+                                                    <label for="registration_form_country">Votre pays</label>
+                                                </div>
+
+                                                {{ form_errors(registrationForm.country) }}
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-floating mb-3">
+                                                    {{ form_widget(registrationForm.plainPassword, {
+                                                        'attr': {
+                                                            'class': 'form-control',
+                                                        }
+                                                    }) }}
+                                                    <label for="registration_form_country">Votre mot de passe</label>
+                                                </div>
+
+                                                {{ form_errors(registrationForm.plainPassword) }}
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <hr>
+                                    <div class="form-check">
+                                        {{ form_widget(registrationForm.acceptTerms, {
+                                            'attr': {
+                                                'class': 'form-check-input',
+                                            }
+                                        }) }}
+                                        <label class="form-check-label" for="registration_form_acceptTerms">
+                                            <small>
+                                                En cochant cette case, vous acceptez les conditions générales d'utilisation de notre site. Cela inclut notre politique de confidentialité, nos règles de conduite et nos modalités de service.
+                                            </small>
+                                        </label>
+                                    </div>
+                                    <hr>
+                                    <div class="form-check">
+                                        {{ form_widget(registrationForm.acceptNewsletter, {
+                                            'attr': {
+                                                'class': 'form-check-input',
+                                            }
+                                        }) }}
+                                        <label class="form-check-label" for="registration_form_acceptNewsletter">
+                                            <small>
+                                                En cochant cette case, vous acceptez de recevoir des e-mails de notre part concernant nos nouveaux produits, offres spéciales et actualités. Vous pouvez vous désabonner à tout moment en cliquant sur le lien présent dans chaque e-mail.
+                                            </small>
+                                        </label>
+                                    </div>
+                                    <hr>
+                                    <div class="form-check">
+                                        {{ form_widget(registrationForm.acceptBrokerageContact, {
+                                            'attr': {
+                                                'class': 'form-check-input',
+                                            }
+                                        }) }}
+                                        <label class="form-check-label" for="registration_form_acceptBrokerageContact">
+                                            <small>
+                                                En cochant cette case, vous acceptez que nos services de courtage vous contactent pour vous proposer des offres personnalisées et vous accompagner dans vos démarches.
+                                            </small>
+                                        </label>
+                                    </div>
+
+                                    <hr>
+                                    <button class="btn btn-primary w-100 border-0" type="submit" style="background-color: #07182e;">Enregistrer</button>
+
+                                    {{ form_end(registrationForm) }}
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+    </main><!-- End #main -->
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

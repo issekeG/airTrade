@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Aircraft{% endblock %}
+
+{% block body %}
+    <h1>Aircraft</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ aircraft.id }}</td>
+            </tr>
+            <tr>
+                <th>Manufacturer</th>
+                <td>{{ aircraft.manufacturer }}</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>{{ aircraft.model }}</td>
+            </tr>
+            <tr>
+                <th>YearOfManufacture</th>
+                <td>{{ aircraft.yearOfManufacture }}</td>
+            </tr>
+            <tr>
+                <th>FlightHours</th>
+                <td>{{ aircraft.flightHours }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ aircraft.status }}</td>
+            </tr>
+            <tr>
+                <th>RegistrationCountry</th>
+                <td>{{ aircraft.registrationCountry }}</td>
+            </tr>
+            <tr>
+                <th>AirworthinessCertificate</th>
+                <td>{{ aircraft.airworthinessCertificate }}</td>
+            </tr>
+            <tr>
+                <th>OwnershipHistory</th>
+                <td>{{ aircraft.ownershipHistory }}</td>
+            </tr>
+            <tr>
+                <th>ServiceEntryDate</th>
+                <td>{{ aircraft.serviceEntryDate ? aircraft.serviceEntryDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>SerialNumber</th>
+                <td>{{ aircraft.serialNumber }}</td>
+            </tr>
+            <tr>
+                <th>UsageType</th>
+                <td>{{ aircraft.usageType }}</td>
+            </tr>
+            <tr>
+                <th>Video</th>
+                <td>{{ aircraft.video }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_aircraft_index') }}">back to list</a>
+
+    <a href="{{ path('app_aircraft_edit', {'id': aircraft.id}) }}">edit</a>
+
+    {{ include('aircraft/_delete_form.html.twig') }}
+{% endblock %}

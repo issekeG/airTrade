@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Aircraft index{% endblock %}
+
+{% block body %}
+    <h1>Aircraft index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Manufacturer</th>
+                <th>Model</th>
+                <th>YearOfManufacture</th>
+                <th>FlightHours</th>
+                <th>Status</th>
+                <th>RegistrationCountry</th>
+                <th>AirworthinessCertificate</th>
+                <th>OwnershipHistory</th>
+                <th>ServiceEntryDate</th>
+                <th>SerialNumber</th>
+                <th>UsageType</th>
+                <th>Video</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for aircraft in aircraft %}
+            <tr>
+                <td>{{ aircraft.id }}</td>
+                <td>{{ aircraft.manufacturer }}</td>
+                <td>{{ aircraft.model }}</td>
+                <td>{{ aircraft.yearOfManufacture }}</td>
+                <td>{{ aircraft.flightHours }}</td>
+                <td>{{ aircraft.status }}</td>
+                <td>{{ aircraft.registrationCountry }}</td>
+                <td>{{ aircraft.airworthinessCertificate }}</td>
+                <td>{{ aircraft.ownershipHistory }}</td>
+                <td>{{ aircraft.serviceEntryDate ? aircraft.serviceEntryDate|date('Y-m-d') : '' }}</td>
+                <td>{{ aircraft.serialNumber }}</td>
+                <td>{{ aircraft.usageType }}</td>
+                <td>{{ aircraft.video }}</td>
+                <td>
+                    <a href="{{ path('app_aircraft_show', {'id': aircraft.id}) }}">show</a>
+                    <a href="{{ path('app_aircraft_edit', {'id': aircraft.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_aircraft_new') }}">Create new</a>
+{% endblock %}

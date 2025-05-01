@@ -1,0 +1,293 @@
+{% extends 'backend/base.html.twig' %}
+
+{% block main %}
+    <main id="main" class="main">
+
+        <section class="section dashboard">
+            {% block main_content %}
+                <div class="row">
+
+                    <!-- Left side columns -->
+
+                    <div class="col-lg-12">
+                        {% block sideColumns %}
+                            <div class="row">
+
+                                <!-- nombre d\'annonce -->
+                                <div class="col-xxl-4 col-md-4">
+                                    <div class="card info-card sales-card">
+                                        <div class="filter">
+                                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                <li class="dropdown-header text-start">
+                                                    <h6>Filtrer</h6>
+                                                </li>
+                                                <li><a class="dropdown-item" href="#">Ce mois</a></li>
+                                                <li><a class="dropdown-item" href="#">Cette année</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <h5 class="card-title">Nombre total d'annonces</h5>
+                                            <div class="d-flex align-items-center">
+                                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                    <i class="bi bi-newspaper"></i>
+                                                </div>
+                                                <div class="ps-3">
+                                                    <h6>145</h6>
+                                                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- moyenne d\'annonce par categories-->
+                                <div class="col-xxl-4 col-md-4">
+                                    <div class="card info-card sales-card">
+                                        <div class="filter">
+                                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                <li class="dropdown-header text-start">
+                                                    <h6>Filtrer</h6>
+                                                </li>
+                                                <li><a class="dropdown-item" href="#">Ce mois</a></li>
+                                                <li><a class="dropdown-item" href="#">Cette année</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <h5 class="card-title">Annonces/categories</h5>
+                                            <div class="d-flex align-items-center">
+                                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                    <i class="bi bi-newspaper"></i>
+                                                </div>
+                                                <div class="ps-3">
+                                                    <h6>145</h6>
+                                                    <span class="text-muted small pt-2 ps-1"><a href="#">Voir les stats par categories</a></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- nombre d\annonce signalée  -->
+                                <div class="col-xxl-4 col-md-4">
+                                    <div class="card info-card sales-card">
+                                        <div class="filter">
+                                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                <li class="dropdown-header text-start">
+                                                    <h6>Filtrer</h6>
+                                                </li>
+                                                <li><a class="dropdown-item" href="#">Ce mois</a></li>
+                                                <li><a class="dropdown-item" href="#">Cette année</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <h5 class="card-title">Annonces signalées</h5>
+                                            <div class="d-flex align-items-center">
+                                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                    <i class="bi bi-exclamation-triangle"></i>
+                                                </div>
+                                                <div class="ps-3">
+                                                    <h6>145</h6>
+                                                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- nombre d\annonce masquée  -->
+                                <div class="col-xxl-4 col-md-4">
+                                    <div class="card info-card sales-card">
+                                        <div class="filter">
+                                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                <li class="dropdown-header text-start">
+                                                    <h6>Filtrer</h6>
+                                                </li>
+                                                <li><a class="dropdown-item" href="#">Ce mois</a></li>
+                                                <li><a class="dropdown-item" href="#">Cette année</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <h5 class="card-title">Annonces masquées</h5>
+                                            <div class="d-flex align-items-center">
+                                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                    <i class="bi bi-eye-slash"></i>
+                                                </div>
+                                                <div class="ps-3">
+                                                    <h6>145</h6>
+                                                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- nombre d\'utilisateur  -->
+                                <div class="col-xxl-4 col-md-4">
+                                    <div class="card info-card sales-card">
+                                        <div class="filter">
+                                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                <li class="dropdown-header text-start">
+                                                    <h6>Filtrer</h6>
+                                                </li>
+                                                <li><a class="dropdown-item" href="#">Ce mois</a></li>
+                                                <li><a class="dropdown-item" href="#">Cette année</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <h5 class="card-title">Nombre total d'utilisateurs</h5>
+                                            <div class="d-flex align-items-center">
+                                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                    <i class="bi bi-people"></i>
+                                                </div>
+                                                <div class="ps-3">
+                                                    <h6>145</h6>
+                                                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- pourcentage des utilisateurs verifié  -->
+                                <div class="col-xxl-4 col-md-4">
+                                    <div class="card info-card sales-card">
+                                        <div class="filter">
+                                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                <li class="dropdown-header text-start">
+                                                    <h6>Filtrer</h6>
+                                                </li>
+                                                <li><a class="dropdown-item" href="#">Ce mois</a></li>
+                                                <li><a class="dropdown-item" href="#">Cette année</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <h5 class="card-title">Utilisateurs vérifiés</h5>
+                                            <div class="d-flex align-items-center">
+                                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                    <i class="bi bi-patch-check"></i>
+                                                </div>
+                                                <div class="ps-3">
+                                                    <h6>145</h6>
+                                                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- nombre de messages envoyés  -->
+                                <div class="col-xxl-4 col-md-4">
+                                    <div class="card info-card sales-card">
+                                        <div class="filter">
+                                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                <li class="dropdown-header text-start">
+                                                    <h6>Filtrer</h6>
+                                                </li>
+                                                <li><a class="dropdown-item" href="#">Ce mois</a></li>
+                                                <li><a class="dropdown-item" href="#">Cette année</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <h5 class="card-title">Messages envoyés</h5>
+                                            <div class="d-flex align-items-center">
+                                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                    <i class="bi bi-chat-left-text"></i>
+                                                </div>
+                                                <div class="ps-3">
+                                                    <h6>145</h6>
+                                                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- nombre d'\amin  -->
+                                <div class="col-xxl-4 col-md-4">
+                                    <div class="card info-card sales-card">
+                                        <div class="filter">
+                                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                <li class="dropdown-header text-start">
+                                                    <h6>Filtrer</h6>
+                                                </li>
+                                                <li><a class="dropdown-item" href="#">Ce mois</a></li>
+                                                <li><a class="dropdown-item" href="#">Cette Année</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <h5 class="card-title">Nombres d'admins</h5>
+                                            <div class="d-flex align-items-center">
+                                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                    <i class="bi bi-shield-lock"></i>
+                                                </div>
+                                                <div class="ps-3">
+                                                    <h6>145</h6>
+                                                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- nombre d'\article blog  -->
+                                <div class="col-xxl-4 col-md-4">
+                                    <div class="card info-card sales-card">
+                                        <div class="filter">
+                                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                <li class="dropdown-header text-start">
+                                                    <h6>Filtrer</h6>
+                                                </li>
+                                                <li><a class="dropdown-item" href="#">Ce mois</a></li>
+                                                <li><a class="dropdown-item" href="#">Cette année</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <h5 class="card-title">Articles de blog</h5>
+                                            <div class="d-flex align-items-center">
+                                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                    <i class="bi bi-file-earmark-text"></i>
+                                                </div>
+                                                <div class="ps-3">
+                                                    <h6>145</h6>
+                                                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+                            </div>
+                        {% endblock %}
+                    </div><!-- End Left side columns -->
+
+
+                </div>
+            {% endblock %}
+        </section>
+
+    </main>
+{% endblock %}
