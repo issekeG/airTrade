@@ -15,7 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SpecFormTyped extends AbstractType
+class AircraftFields extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

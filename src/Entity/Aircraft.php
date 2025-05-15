@@ -59,7 +59,7 @@ class Aircraft
     /**
      * @var Collection<int, AirCraftImage>
      */
-    #[ORM\OneToMany(targetEntity: AirCraftImage::class, mappedBy: 'aircraft')]
+    #[ORM\OneToMany(targetEntity: AirCraftImage::class, mappedBy: 'aircraft', cascade: ["persist", "remove"], orphanRemoval: true)]
     private Collection $airCraftImages;
 
     #[ORM\ManyToOne(inversedBy: 'aircraft')]
@@ -69,7 +69,7 @@ class Aircraft
     /**
      * @var Collection<int, AircraftSpecs>
      */
-    #[ORM\OneToMany(targetEntity: AircraftSpecs::class, mappedBy: 'aircraft')]
+    #[ORM\OneToMany(targetEntity: AircraftSpecs::class, mappedBy: 'aircraft',cascade: ["persist", "remove"], orphanRemoval: true)]
     private Collection $aircraftSpecs;
 
     #[ORM\ManyToOne(inversedBy: 'aircraft')]
@@ -81,7 +81,7 @@ class Aircraft
     /**
      * @var Collection<int, AircraftDocument>
      */
-    #[ORM\OneToMany(targetEntity: AircraftDocument::class, mappedBy: 'aircraft')]
+    #[ORM\OneToMany(targetEntity: AircraftDocument::class, mappedBy: 'aircraft',cascade: ["persist", "remove"], orphanRemoval: true)]
     private Collection $aircraftDocuments;
 
     #[ORM\Column]
@@ -114,8 +114,11 @@ class Aircraft
     /**
      * @var Collection<int, InternContact>
      */
-    #[ORM\OneToMany(targetEntity: InternContact::class, mappedBy: 'aircraft')]
+    #[ORM\OneToMany(targetEntity: InternContact::class, mappedBy: 'aircraft',cascade: ["persist", "remove"], orphanRemoval: true)]
     private Collection $internContacts;
+
+    #[ORM\Column]
+    private ?bool $isReported = null;
 
     public function __construct()
     {
@@ -490,6 +493,18 @@ class Aircraft
                 $internContact->setAircraft(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isReported(): ?bool
+    {
+        return $this->isReported;
+    }
+
+    public function setIsReported(bool $isReported): static
+    {
+        $this->isReported = $isReported;
 
         return $this;
     }

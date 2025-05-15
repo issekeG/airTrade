@@ -1,0 +1,115 @@
+
+
+{% extends 'base.html.twig' %}
+{% block header %}
+    <header id="header" class="header fixed-top d-flex align-items-center">
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="{{ path('app_home') }}" class="logo d-flex align-items-center">
+                <img src="" alt="">
+                <span class="d-none d-lg-block">{{ 'app.logo'|trans }}</span>
+            </a>
+            {% block sidebarIcon %}
+                <i class="bi bi-list toggle-sidebar-btn d-block d-lg-none"></i>
+            {% endblock sidebarIcon %}
+        </div>
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+                <li class="nav-item dropdown px-3 d-flex align-items-center">
+                    {% if app.request.locale == "en" %}
+                        <span class="flag-icon flag-icon-gb me-2"></span>
+                    {% else %}
+                        <span class="flag-icon flag-icon-{{ app.request.locale }} me-2"></span>
+                    {% endif %}
+
+                    <form method="get" action="{{ path('change-locale') }}">
+                        <select name="_locale" onchange="this.form.submit()" class="form-select form-select-sm">
+                            {% for code, lang in available_languages.getAvailableLanguages() %}
+                                <option value="{{ code }}" {% if code == app.request.locale %}selected{% endif %}>
+                                    {{ lang.label }}
+                                </option>
+                            {% endfor %}
+                        </select>
+
+                        {% for key, value in app.request.query.all() %}
+                            {% if key != '_locale' %}
+                                {% if value is iterable %}
+                                    {% for v in value %}
+                                        <input type="hidden" name="{{ key }}[]" value="{{ v }}">
+                                    {% endfor %}
+                                {% else %}
+                                    <input type="hidden" name="{{ key }}" value="{{ value }}">
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </form>
+                </li>
+
+                <li class="nav-item dropdown pe-3">
+                    <a class="nav-link btn py-1" href="{{ path('app_login') }}" style="border: 1px solid #1A0B8C !important; color : #1A0B8C !important; ">
+                        <i class="bi bi-box-arrow-in-right me-1"></i> {{ 'auth.login'|trans }}
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+{% endblock %}
+{% block sidebar %}{% endblock %}
+{% block main %}
+    <main>
+        <div class="container" style="margin-top: 30px;">
+            <section class="section register d-flex flex-column justify-content-center py-4">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-9 d-flex flex-column justify-content-center">
+                            <div class="py-5">
+                                <span class="p-2 btn" style="background-color : #1A0B8C; color :white">
+                                    {{ 'register.header'|trans }}
+                                </span>
+                            </div>
+
+                            <div class="card mb-3">
+                                <div class="card-body mt-4">
+                                    <div class="alert alert-success shadow-sm p-4 rounded-3">
+                                        <h2 class="mb-4 text-success">🎉 {{ 'register.success.title'|trans }}</h2>
+
+                                        <p class="fs-5">
+                                            {{ 'register.success.message'|trans|raw }}
+                                        </p>
+
+                                        <div class="my-4">
+                                            <i class="fas fa-envelope fa-3x text-primary"></i>
+                                        </div>
+
+                                        <p class="fs-6">
+                                            {{ 'register.success.confirmation'|trans|raw }}
+                                        </p>
+
+                                        <p class="text-muted mt-3">
+                                            📩 {{ 'register.success.spam'|trans }}
+                                        </p>
+
+                                        <p class="mt-4">
+                                            {{ 'register.success.after_confirmation'|trans }}
+                                        </p>
+
+                                        <hr class="my-4">
+                                        <a href="{{ path('app_logout') }}" class="btn btn-outline-primary">
+                                            ⬅️ {{ 'button.back_home'|trans }}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+{% endblock %}
+
+
+{% block footer %}
+{% endblock %}
+
+

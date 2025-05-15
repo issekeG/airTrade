@@ -1,0 +1,480 @@
+aircraft_category:
+  edit:
+    title: "تعديل فئة الطائرة"
+    header: "تعديل فئة الطائرة"
+  back_to_list: "العودة إلى القائمة"
+
+form:
+  save: "حفظ"
+  update: "تحديث"
+  previous: "السابق"
+  next: "التالي"
+  finish: "إنهاء"
+  pseudo: "اسم المستخدم الخاص بك"
+  name_and_firstname: "الاسم الأخير والاسم الأول"
+  email: "بريدك الإلكتروني"
+  phone_number: "رقم الهاتف"
+  country: "بلدك"
+  password: "كلمة المرور الخاصة بك"
+  submit: "إرسال"
+  firstname: "اسمك الأول"
+  telephone: "هاتفك"
+  registration_date: "تاريخ تسجيلك"
+  accept_terms: "من خلال تحديد هذا المربع، فإنك توافق على شروط استخدام موقعنا الإلكتروني. يشمل ذلك سياسة الخصوصية، وقواعد السلوك، وشروط الخدمة."
+  accept_newsletter: "من خلال تحديد هذا المربع، فإنك توافق على تلقي رسائل بريد إلكتروني منا حول المنتجات الجديدة، العروض الخاصة، والأخبار. يمكنك إلغاء الاشتراك في أي وقت بالنقر على الرابط الموجود في كل بريد إلكتروني."
+  accept_brokerage_contact: "من خلال تحديد هذا المربع، فإنك توافق على أن تتواصل معك خدمات الوساطة لدينا لتقديم عروض مخصصة ومساعدتك في مساعيك."
+
+reset:
+  title: "هل نسيت كلمة المرور؟"
+  instructions: "أدخل عنوان بريدك الإلكتروني، وسنرسل لك رابطًا لإعادة تعيين كلمة المرور."
+  email_label: "عنوان البريد الإلكتروني"
+  submit: "إعادة تعيين كلمة المرور"
+  back_to_login: "العودة إلى صفحة تسجيل الدخول"
+  password:
+    new: "كلمة المرور الجديدة"
+    new_placeholder: "أدخل كلمة المرور الجديدة"
+    repeat: "كرر كلمة المرور"
+    repeat_placeholder: "كرر كلمة المرور الجديدة"
+    email_sent_notice: >
+      إذا كان هناك حساب يتطابق مع عنوان بريدك الإلكتروني، فقد تم إرسال بريد إلكتروني إليك يحتوي على رابط يمكنك استخدامه لإعادة تعيين كلمة المرور. ستنتهي صلاحية هذا الرابط خلال %expiration%.
+    no_email: >
+      إذا لم تتلق بريدًا إلكترونيًا، يرجى التحقق من مجلد البريد العشوائي أو <a href="%retry_url%">حاول مرة أخرى</a>.
+    back_to_login: "العودة إلى صفحة تسجيل الدخول"
+
+app:
+  logo_text: "شعار AirTrade هنا"
+  thank_you: "شكرًا"
+  logo: "شعار AirTrade"
+
+login:
+  email: "البريد الإلكتروني"
+  password: "كلمة المرور"
+  submit: "تسجيل الدخول"
+  forgot_password: "هل نسيت كلمة المرور؟"
+  button: "تسجيل الدخول"
+  error:
+    username_required: "يرجى إدخال اسم المستخدم الخاص بك."
+    password_required: "يرجى إدخال كلمة المرور الخاصة بك!"
+    invalid_credentials: "اسم المستخدم أو كلمة المرور غير صحيحة"
+  terms: >
+    بالنقر على "تسجيل الدخول"، فإنك توافق على الالتزام بشروط الاستخدام وسياسة الخصوصية الخاصة بنا.
+  no_account: "هل لديك حساب؟"
+  create_account: "إنشاء حساب"
+
+site:
+  logo_text: "شعار AirTrade"
+
+register:
+  header: "انضم إلى عشاق الطيران والمحترفين"
+  success:
+    title: "تم التسجيل بنجاح!"
+    message: "شكرًا لتسجيلك.<br>لإكمال إنشاء حسابك، يرجى تأكيد عنوان بريدك الإلكتروني."
+    confirmation: "تم إرسال بريد إلكتروني للتأكيد إلى عنوان البريد الإلكتروني الذي قدمته أثناء التسجيل.<br>يرجى النقر على الرابط الموجود فيه لتفعيل حسابك."
+    spam: "إذا لم ترَ هذا البريد الإلكتروني، يرجى التحقق من مجلد البريد العشوائي."
+    after_confirmation: "بعد التأكيد، ستتمكن من الوصول إلى مساحتك الشخصية والاستمتاع الكامل بخدماتنا."
+  button: "التسجيل"
+  welcome_text: "انضم إلى عشاق الطيران والمحترفين"
+  pseudo: "اسم المستخدم الخاص بك"
+  name: "الاسم الأخير والاسم الأول"
+  phone: "هاتفك"
+  email: "بريدك الإلكتروني"
+  country: "بلدك"
+  password: "كلمة المرور الخاصة بك"
+  terms: >
+    من خلال تحديد هذا المربع، فإنك توافق على شروط استخدام موقعنا الإلكتروني. يشمل ذلك سياسة الخصوصية، وقواعد السلوك، وشروط الخدمة.
+  newsletter: >
+    من خلال تحديد هذا المربع، فإنك توافق على تلقي رسائل بريد إلكتروني منا حول المنتجات الجديدة، العروض الخاصة، والأخبار. يمكنك إلغاء الاشتراك في أي وقت بالنقر على الرابط الموجود في كل بريد إلكتروني.
+  broker_contact: >
+    من خلال تحديد هذا المربع، فإنك توافق على أن تتواصل معك خدمات الوساطة لدينا لتقديم عروض مخصصة ومساعدتك في مساعيك.
+  submit: "حفظ"
+
+auth:
+  login: "تسجيل الدخول"
+
+admin:
+  list:
+    title: "قائمة المشرفين"
+  search:
+    placeholder: "البحث باستخدام الرمز ..."
+    aria_label: "أدخل الرمز ..."
+  create:
+    button: "إنشاء"
+
+table:
+  action: "إجراء"
+  pseudo: "اسم المستخدم"
+  name: "الاسم الأول والأخير"
+  email: "البريد الإلكتروني"
+  phone: "الهاتف"
+  registration_date: "تاريخ التسجيل"
+  role: "الدور"
+  ads_count: "عدد الإعلانات"
+
+category:
+  list:
+    title: "قائمة الفئات (%first% - %last% من %total%)"
+  button:
+    create: "إنشاء"
+  modal:
+    add_title: "إضافة فئة"
+    edit_title: "تعديل الفئة"
+  form:
+    name: "الاسم"
+
+button:
+  cancel: "إلغاء"
+  save: "حفظ"
+  back_home: "العودة إلى الصفحة الرئيسية"
+  delete: "حذف"
+
+confirm:
+  delete: "هل أنت متأكد أنك تريد حذف هذا العنصر؟"
+
+delete_confirmation: "هل أنت متأكد أنك تريد حذف هذا العنصر؟"
+delete_button: "حذف"
+
+share:
+  button: "مشاركة"
+
+aircraft:
+  delete_confirmation: "هل أنت متأكد أنك تريد حذف هذا العنصر؟"
+  delete_button: "حذف"
+  report_confirmation: "هل أنت متأكد أنك تريد الإبلاغ عن هذا العنصر؟"
+  report_button: "الإبلاغ"
+  shadow_confirmation: "هل أنت متأكد أنك تريد حظر أو إلغاء حظر هذا العنصر؟"
+  block_button: "حظر"
+  unblock_button: "إلغاء الحظر"
+  form_info: "أدخل معلومات الطائرة"
+  serial_number: "الرقم التسلسلي"
+  manufacturer: "الشركة المصنعة"
+  model: "الطراز"
+  year_of_manufacture: "سنة الصنع"
+  status: "الحالة"
+  registration_country: "بلد التسجيل"
+  service_entry_date: "تاريخ بدء الخدمة"
+  location: "الموقع"
+  show_details: "إظهار التفاصيل"
+  documents:
+    title: "الوثائق"
+    view: "عرض"
+    none: "لا توجد وثائق متاحة."
+  features:
+    others: "ميزات أخرى"
+  description: "الوصف"
+  seller_info: "معلومات البائع"
+  access_restricted: "الوصول مقيد"
+  view_contacts: "عرض جهات الاتصال"
+  view_seller_profile: "عرض ملف البائع"
+  contact_seller: "الاتصال بالبائع"
+  connect_to_view_contacts: "يرجى <a href=\"%login_url%\" class=\"text-primary fw-bold\">تسجيل الدخول</a> لعرض جهات الاتصال."
+  connect_to_contact_seller: "يرجى <a href=\"%login_url%\" class=\"text-primary fw-bold\">تسجيل الدخول</a> للتواصل مع البائع."
+  characteristics: "الخصائص"
+  reported: "تم الإبلاغ عن هذا الإعلان"
+  turboprop: "طائرة توربينية"
+  emplacement: "موقع الطائرة:"
+  list_published: "قائمة الإعلانات المنشورة (%first% - %last% من %total%)"
+  search_placeholder: "البحث باسم المستخدم أو البريد الإلكتروني ..."
+  search_label: "أدخل اسم المستخدم أو البريد الإلكتروني ..."
+  category: "الفئة"
+  price: "السعر"
+  total_hours: "إجمالي الساعات"
+  details_button: "عرض التفاصيل"
+
+seller:
+  info_title: "معلومات البائع"
+  username: "اسم المستخدم"
+  contact: "جهة الاتصال"
+  email: "البريد الإلكتروني"
+  phone: "الهاتف"
+  ads_count: "عدد الإعلانات"
+  login_to_see_info: "يرجى تسجيل الدخول لعرض معلومات البائع"
+
+alert:
+  view_images_login_0: "لعرض جميع الصور"
+  view_images_login_1: "قم بتسجيل الدخول"
+
+video:
+  no_html5_support: "متصفحك لا يدعم مقاطع فيديو HTML5."
+
+aircraft_manufacturer:
+  delete_confirm: "هل أنت متأكد أنك تريد حذف هذا العنصر؟"
+  delete_button: "حذف"
+  edit_title: "تعديل الشركة المصنعة"
+  edit_heading: "تعديل معلومات الشركة المصنعة"
+  update_button: "تحديث"
+  back_to_list: "العودة إلى القائمة"
+  new_title: "شركة مصنعة جديدة"
+  new_heading: "إنشاء شركة مصنعة جديدة للطائرات"
+  create_button: "إنشاء"
+  list: "قائمة الشركات المصنعة (%first% - %last% من %total%)"
+  search_placeholder: "البحث بالاسم ..."
+  search_label: "أدخل الاسم ..."
+  create: "إنشاء"
+  add_title: "إضافة شركة مصنعة"
+  name: "الاسم"
+  ad_count: "عدد الإعلانات"
+
+filter:
+  apply_filters: "تطبيق الفلاتر"
+  categories: "الفئات"
+  manufacturer: "الشركة المصنعة"
+  year_built: "سنة الصنع"
+  min_year: "السنة الدنيا"
+  max_year: "السنة العليا"
+  price: "السعر"
+  min_price: "السعر الأدنى"
+  max_price: "السعر الأعلى"
+  total_hours: "إجمالي الساعات"
+  min_hours: "الساعات الدنيا"
+  max_hours: "الساعات العليا"
+  seats_number: "عدد المقاعد"
+  min_seats: "الحد الأدنى للمقاعد"
+  max_seats: "الحد الأقصى للمقاعد"
+  publication_date: "تاريخ النشر"
+  min_date: "تاريخ النشر الأدنى"
+  max_date: "تاريخ النشر الأقصى"
+  status_name: "الحالة"
+  status:
+    used: "مستعمل"
+    new: "جديد"
+    used_condition: "مستعمل"
+  registration_number: "رقم التسجيل"
+  title: "تصفية"
+  this_month: "هذا الشهر"
+  this_year: "هذا العام"
+
+user:
+  list_title: "قائمة المستخدمين النشطين"
+  search_placeholder: "البحث باسم المستخدم أو البريد الإلكتروني..."
+  action: "إجراء"
+  username: "اسم المستخدم"
+  full_name: "الاسم الأول والأخير"
+  email: "البريد الإلكتروني"
+  phone: "الهاتف"
+  registration_date: "تاريخ التسجيل"
+  role: "الدور"
+  view_profile: "عرض الملف الشخصي"
+  lock_unlock: "التحقق"
+  verified: "تم التحقق"
+  not_verified: "غير متحقق"
+  no_users: "لم يتم العثور على مستخدمين"
+  from_to_total: "من %total%"
+  list_verified: "قائمة المستخدمين المتحقق منهم"
+  delete_confirm: "هل أنت متأكد أنك تريد حذف هذا العنصر؟"
+  delete_button: "حذف"
+  profile:
+    account_details: "تفاصيل الحساب"
+    details_tab: "التفاصيل"
+    my_info: "معلوماتي"
+    pseudo: "اسم المستخدم الخاص بك"
+    firstname: "اسمك الأول"
+    telephone: "هاتفك"
+    email: "بريدك الإلكتروني"
+    country: "بلدك"
+    created_at: "تاريخ التسجيل"
+    accept_terms_text: "من خلال تحديد هذا المربع، فإنك توافق على شروط استخدام موقعنا الإلكتروني. يشمل ذلك سياسة الخصوصية، وقواعد السلوك، وشروط الخدمة."
+    accept_newsletter_text: "من خلال تحديد هذا المربع، فإنك توافق على تلقي رسائل بريد إلكتروني منا حول المنتجات الجديدة، العروض الخاصة، والأخبار. يمكنك إلغاء الاشتراك في أي وقت بالنقر على الرابط الموجود في كل بريد إلكتروني."
+    accept_brokerage_contact_text: "من خلال تحديد هذا المربع، فإنك توافق على أن تتواصل معك خدمات الوساطة لدينا لتقديم عروض مخصصة ومساعدتك في مساعيك."
+    edit_infos: "تعديل معلوماتك"
+    edit_tab: "تعديل معلوماتك"
+    change_password_menu: "تغيير كلمة المرور"
+    change_password_tab: "تغيير كلمة المرور"
+    change_password_title: "تعيين كلمة مرور جديدة"
+    menu: "الإعلانات"
+    tab_title: "قائمة إعلاناتي"
+    location: "الموقع"
+    view_details: "عرض التفاصيل"
+
+sidebar:
+  my_ads: "إعلاناتي"
+  change_password: "تغيير كلمة المرور"
+  pages: "الصفحات"
+  logout: "تسجيل الخروج"
+  ads: "الإعلانات"
+  favorites: "المفضلة"
+  account_details: "تفاصيل الحساب"
+  edit_info: "تعديل المعلومات"
+  messaging: "المراسلة"
+  dashboard: "لوحة التحكم"
+  categories: "الفئات"
+  manufacturer: "الشركة المصنعة"
+  hidden_ads: "الإعلانات المخفية"
+  reported_ads: "الإعلانات المبلغ عنها"
+  admin: "المشرف"
+  verified_users: "المستخدمون المتحقق منهم"
+  non_verified_users: "المستخدمون غير المتحقق منهم"
+  blog_article: "مقالات المدونة"
+  add_article: "إضافة مقال"
+  list_articles: "قائمة المقالات"
+  apply_filters: "تطبيق الفلاتر"
+  year_built: "سنة الصنع"
+  min_year: "السنة الدنيا"
+  max_year: "السنة العليا"
+  price: "السعر"
+  min_price: "السعر الأدنى"
+  max_price: "السعر الأعلى"
+  hours: "إجمالي الساعات"
+  min_hour: "الساعات الدنيا"
+  max_hour: "الساعات العليا"
+  seats: "عدد المقاعد"
+  min_seat: "الحد الأدنى للمقاعد"
+  max_seat: "الحد الأقصى للمقاعد"
+  published_date: "تاريخ النشر"
+  min_date: "تاريخ النشر الأدنى"
+  max_date: "تاريخ النشر الأقصى"
+  status: "الحالة"
+  status_used: "مستعمل"
+  status_new: "جديد"
+  status_used_condition: "مستعمل"
+  registration_number: "رقم التسجيل"
+  registration_number_placeholder: "رقم التسجيل"
+  total_hours: "إجمالي الساعات"
+  number_of_seats: "عدد المقاعد"
+  min_seats: "الحد الأدنى للمقاعد"
+  max_seats: "الحد الأقصى للمقاعد"
+  min_publish_date: "تاريخ النشر الأدنى"
+  max_publish_date: "تاريخ النشر الأقصى"
+  used: "مستعمل"
+  new: "جديد"
+  second_hand: "مستعمل"
+
+profile:
+  my_ads: "إعلاناتي"
+  my_info: "معلوماتي"
+  username: "اسم المستخدم"
+  phone: "الهاتف"
+  ads_tab: "إعلاناتي"
+  title: "معلوماتي"
+  pseudo: "اسم المستخدم"
+  firstname: "الاسم الأول"
+  lastname: "الاسم الأخير"
+  email: "البريد الإلكتروني"
+  edit_link: "تعديل معلوماتك"
+  edit_tab: "تعديل معلوماتك"
+  my_information: "معلوماتي"
+  country: "البلد"
+  password: "كلمة المرور"
+  details_link: "تفاصيل الحساب"
+  details_tab: "التفاصيل"
+  telephone: "هاتفك:"
+  registered_at: "تاريخ التسجيل:"
+  change_password_link: "تغيير كلمة المرور"
+  change_password_tab: "تغيير كلمة المرور"
+  new_password_title: "تعيين كلمة مرور جديدة"
+  accept_terms: >
+    من خلال تحديد هذا المربع، فإنك توافق على شروط استخدام موقعنا الإلكتروني.
+    يشمل ذلك سياسة الخصوصية، وقواعد السلوك، وشروط الخدمة.
+  accept_newsletter: >
+    من خلال تحديد هذا المربع، فإنك توافق على تلقي رسائل بريد إلكتروني منا حول المنتجات الجديدة، العروض الخاصة، والأخبار.
+    يمكنك إلغاء الاشتراك في أي وقت بالنقر على الرابط الموجود في كل بريد إلكتروني.
+  accept_brokerage_contact: >
+    من خلال تحديد هذا المربع، فإنك توافق على أن تتواصل معك خدمات الوساطة لدينا لتقديم عروض مخصصة ومساعدتك في مساعيك.
+  my_ads_link: "إعلاناتي"
+  my_ads_tab: "قائمة إعلاناتي"
+  publish_ad: "نشر إعلان"
+
+ads:
+  location: "الموقع"
+  view_details: "عرض التفاصيل"
+
+common:
+  cancel: "إلغاء"
+  save: "حفظ"
+  action: "إجراء"
+  search: "بحث"
+  close: "إغلاق"
+
+stats:
+  total_ads: "العدد الإجمالي للإعلانات"
+  ads_per_category: "متوسط الإعلانات لكل فئة"
+  average_is: "المتوسط هو"
+  view_stats_by_category: "عرض الإحصائيات حسب الفئة"
+  reported_ads: "الإعلانات المبلغ عنها"
+  blocked_ads: "الإعلانات المحظورة"
+  total_users: "العدد الإجمالي للمستخدمين"
+  verified_users: "المستخدمون المتحقق منهم"
+  verified: "تم التحقق"
+  sent_messages: "الرسائل المرسلة"
+  total_admins: "المشرفون"
+  blog_articles: "مقالات المدونة"
+  ads_by_category: "الإعلانات حسب الفئة"
+  no_data: "لا توجد بيانات متاحة"
+
+header:
+  my_profile: "ملفي الشخصي"
+  sell_plane: "بيع طائرتك"
+  public_profile: "الملف العام"
+  logout: "تسجيل الخروج"
+  login: "تسجيل الدخول"
+  blog: "المدونة"
+  whatsapp: "الدردشة عبر واتساب"
+  restricted_access: "الوصول مقيد"
+  please_login: 'يرجى <a href="%url%" class="text-primary fw-bold">تسجيل الدخول</a> للاتصال بنا.'
+
+filter_by_category: "تصفية حسب الفئة"
+close: "إغلاق"
+category_filtering: "تصفية الفئات"
+search_category: "البحث عن فئة..."
+cancel: "إلغاء"
+apply: "تطبيق"
+
+homepage:
+  title: "السوق الخاص بعشاق الطيران والمحترفين."
+
+browse:
+  title: "تصفح حسب الفئة"
+  subtitle: "ابحث عن الطائرة التي تلبي احتياجاتك"
+
+listings:
+  title: "مجموعة مختارة من الطائرات للبيع"
+  subtitle: "طائرات استثنائية، جاهزة للإقلاع معك"
+
+blog:
+  title: "مقالات المدونة"
+  subtitle: "اكتشف أحدث مقالاتنا حول الطيران"
+
+cta:
+  explore: "استكشف السوق"
+  sell: "بيع طائرة"
+  details: "عرض التفاصيل"
+  search: "بحث"
+
+location: "الموقع:"
+price: "السعر:"
+year: "السنة:"
+
+categories:
+  jet_aircraft: "الطائرات النفاثة"
+  turboprop_aircraft: "الطائرات التوربينية"
+  piston_single_aircraft: "الطائرات ذات المحرك الواحد"
+  piston_twin_aircraft: "الطائرات ذات المحركين"
+  light_sport: "الطائرات الرياضية الخفيفة"
+  experimental_homebuilt_aircraft: "الطائرات التجريبية"
+  piston_agricultural_aircraft: "الطائرات الزراعية ذات المحرك"
+  piston_amphibious_flatplanes: "الطائرات المائية ذات المحرك"
+  piston_helicopters: "المروحيات ذات المحرك"
+  piston_military_aircraft: "الطائرات العسكرية ذات المحرك"
+  turbine_agricultural_aircraft: "الطائرات الزراعية التوربينية"
+  turbine_helicopters: "المروحيات التوربينية"
+  turbine_military_aircraft: "الطائرات العسكرية التوربينية"
+  turbine_amphibious_floatplane: "الطائرات المائية التوربينية"
+
+footer:
+  description: "رحلتك القادمة تبدأ هنا. بين الشغف والتميز، ابحث عن الطائرة التي ستأخذك إلى آفاق جديدة. السماء تنتظرك."
+  navigation: "التنقل"
+  home: "الصفحة الرئيسية"
+  blog: "المدونة"
+  contact: "الاتصال"
+  about: "حول"
+  categories: "الفئات"
+  category:
+    jet: "نفاث"
+    turboprop: "توربيني"
+    piston_single: "محرك واحد"
+    experimental: "تجريبي"
+  newsletter: "النشرة الإخبارية"
+  newsletter_description: "تلقَ أحدث الإعلانات والمقالات عبر البريد الإلكتروني."
+  email_placeholder: "بريدك الإلكتروني"
+  copyright: "Antalasoft. جميع الحقوق محفوظة."
+  legal_notice: "إشعار قانوني"
+  privacy_policy: "سياسة الخصوصية"

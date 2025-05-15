@@ -6,6 +6,7 @@ use App\Entity\Aircraft;
 use App\Entity\AirCraftCategory;
 use App\Entity\AircraftManufacturer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -18,17 +19,13 @@ class AircraftRepository extends ServiceEntityRepository
         parent::__construct($registry, Aircraft::class);
     }
 
-        /**
-         * @return Aircraft[] Returns an array of Aircraft objects
-         */
-        public function findByCategory($value): array
+
+        public function findByCategory($value): QueryBuilder
         {
             return $this->createQueryBuilder('a')
                 ->andWhere('a.aircraftCategory = :val')
                 ->setParameter('val', $value)
                 ->orderBy('a.id', 'ASC')
-                ->getQuery()
-                ->getResult()
             ;
         }
 
@@ -42,7 +39,7 @@ class AircraftRepository extends ServiceEntityRepository
             ;
         }
 
-    public function findByFilters(array $filters): array
+    public function findByFilters(array $filters): QueryBuilder
     {
         $qb = $this->createQueryBuilder('a')
             ->where('a.isPublished = true');
@@ -108,12 +105,13 @@ class AircraftRepository extends ServiceEntityRepository
                 ->setParameter('registration_number', '%'.$filters['registration_number'].'%');
         }
 
-        return $qb->getQuery()->getResult();
+        return $qb->orderBy('a.publishedAt', 'DESC');
     }
 
-    public function findByMainSearch(?AirCraftCategory $category, ?AircraftManufacturer $manufacturer, ?string $model): array
+    public function findByMainSearch(?AirCraftCategory $category, ?AircraftManufacturer $manufacturer, ?string $model): QueryBuilder
     {
-        $qb = $this->createQueryBuilder('a');
+        $qb = $this->createQueryBuilder('a')
+            ->where('a.isPublished = true');
 
         if ($category) {
             $qb->andWhere('a.aircraftCategory = :category')
@@ -130,9 +128,72 @@ class AircraftRepository extends ServiceEntityRepository
                 ->setParameter('model', '%' . strtolower($model) . '%');
         }
 
-        return $qb->orderBy('a.publishedAt', 'DESC')
+        return $qb->orderBy('a.publishedAt', 'DESC');
+
+    }
+
+    public function findAllAircraft():QueryBuilder{
+        return $this->createQueryBuilder('a')
+            ->where('a.isPublished = true')
+            ->orderBy('a.publishedAt', 'DESC');
+    }
+
+    public function findAllReported():QueryBuilder{
+            return $this->createQueryBuilder('a')
+                ->where('a.isReported = true')
+                ->orderBy('a.publishedAt', 'DESC');
+    }
+
+    public function findAllBlocked():QueryBuilder{
+            return $this->createQueryBuilder('a')
+                ->where('a.isPublished = false')
+                ->orderBy('a.publishedAt', 'DESC');
+    }
+    public function moyenneAnnoncesPerCategory(): float
+    {
+        $entityManager = $this->getEntityManager();
+
+        // Total d'annonces
+        $totalAnnonces = (int) $entityManager->createQueryBuilder()
+            ->select('COUNT(a.id)')
+            ->from('App\Entity\Aircraft', 'a')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        // Nombre de catégories ayant au moins une annonce
+        $totalCategories = (int) $entityManager->createQueryBuilder()
+            ->select('COUNT(DISTINCT c.id)')
+            ->from('App\Entity\Aircraft', 'a')
+            ->join('a.aircraftCategory', 'c')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        if ($totalCategories === 0) {
+            return 0;
+        }
+
+        return $totalAnnonces / $totalCategories;
+    }
+
+
+    public function countAircraftPerCategory(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->select('c.name AS category, COUNT(a.id) AS nombreAircraft')
+            ->join('a.aircraftCategory', 'c')
+            ->groupBy('c.id')
             ->getQuery()
             ->getResult();
+    }
+
+    public function findLast4Aircraft():array{
+        return $this->createQueryBuilder('a')
+            ->where('a.isPublished = true')
+            ->orderBy('a.publishedAt', 'DESC')
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult();
+
     }
 
 }

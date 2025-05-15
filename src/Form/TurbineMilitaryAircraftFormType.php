@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Dto\TurbineMilitaryAircraftDto;
 use App\Entity\Aircraft;
 use App\Entity\AircraftSpecs;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -18,248 +19,235 @@ class TurbineMilitaryAircraftFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        // Required Specs
-        $builder
-            ->add('registrationNumber', TextType::class, [
-                'label' => 'Registration #',
-                'required' => true,
-            ]);
+        switch ($options['step']) {
+            case 1:
+                $builder
+                    ->add('registrationNumber', TextType::class, [
+                        'label' => 'registrationNumber',
+                        'required' => true,
+                    ])
+                    ->add('displayRegistrationNumber', CheckboxType::class, [
+                        'label' => 'displayRegistrationNumber',
+                        'required' => false,
+                    ])
+                    ->add('flightRules', ChoiceType::class, [
+                        'label' => 'flightRules',
+                        'choices' => [
+                            'IFR' => 'IFR',
+                            'VFR' => 'VFR',
+                        ],
+                        'placeholder' => '------',
+                        'required' => false,
+                    ])
+                    ->add('locationAirportCode', TextType::class, [
+                        'label' => 'locationAirportCode',
+                        'required' => false,
+                    ])
+                    ->add('displaySerialNumber', CheckboxType::class, [
+                        'label' => 'displaySerialNumber',
+                        'required' => false,
+                    ])
+                    ->add('totalTime', NumberType::class, [
+                        'label' => 'totalTime',
+                        'required' => false,
+                        'attr' => ['min' => 0],
+                    ])
+                    ->add('seatNumber', NumberType::class, [
+                        'label' => 'seatNumber',
+                        'required' => false,
+                        'attr' => ['min' => 0],
+                    ]);
+                break;
+            case 2:
+                $builder
+                    ->add('airframeNotes', TextareaType::class, [
+                        'label' => 'airframeNotes',
+                        'required' => false,
+                        'attr' => ['class' => 'large-text-field'],
+                    ])
+                    ->add('hotSectionTime', NumberType::class, [
+                        'label' => 'hotSectionTime',
+                        'required' => false,
+                        'attr' => ['min' => 0],
+                    ])
+                    ->add('hotSectionTime2', NumberType::class, [
+                        'label' => 'hotSectionTime2',
+                        'required' => false,
+                        'attr' => ['min' => 0],
+                    ])
+                    ->add('hotSectionTime3', NumberType::class, [
+                        'label' => 'hotSectionTime3',
+                        'required' => false,
+                        'attr' => ['min' => 0],
+                    ])
+                    ->add('hotSectionTime4', NumberType::class, [
+                        'label' => 'hotSectionTime4',
+                        'required' => false,
+                        'attr' => ['min' => 0],
+                    ])
+                    ->add('overhaulTime', NumberType::class, [
+                        'label' => 'overhaulTime',
+                        'required' => false,
+                        'attr' => ['min' => 0],
+                    ])
+                    ->add('overhaulTime2', NumberType::class, [
+                        'label' => 'overhaulTime2',
+                        'required' => false,
+                        'attr' => ['min' => 0],
+                    ])
+                    ->add('overhaulTime3', NumberType::class, [
+                        'label' => 'overhaulTime3',
+                        'required' => false,
+                        'attr' => ['min' => 0],
+                    ]);
+                break;
+            case 3:
+                $builder
+                    ->add('overhaulTime4', NumberType::class, [
+                        'label' => 'overhaulTime4',
+                        'required' => false,
+                        'attr' => ['min' => 0],
+                    ])
+                    ->add('overhaulType', ChoiceType::class, [
+                        'label' => 'overhaulType',
+                        'choices' => [
+                            'SCMOH' => 'SCMOH',
+                            'SFOH' => 'SFOH',
+                            'SFRM' => 'SFRM',
+                            'SMOH' => 'SMOH',
+                            'SNEW' => 'SNEW',
+                            'SOH' => 'SOH',
+                            'STOH' => 'STOH',
+                            'CZI' => 'CZI',
+                        ],
+                        'placeholder' => '------',
+                        'required' => false,
+                    ])
+                    ->add('overhaulType2', ChoiceType::class, [
+                        'label' => 'overhaulType2',
+                        'choices' => [
+                            'SCMOH' => 'SCMOH',
+                            'SFOH' => 'SFOH',
+                            'SFRM' => 'SFRM',
+                            'SMOH' => 'SMOH',
+                            'SNEW' => 'SNEW',
+                            'SOH' => 'SOH',
+                            'STOH' => 'STOH',
+                            'CZI' => 'CZI',
+                        ],
+                        'placeholder' => '------',
+                        'required' => false,
+                    ])
+                    ->add('overhaulType3', ChoiceType::class, [
+                        'label' => 'overhaulType3',
+                        'choices' => [
+                            'SCMOH' => 'SCMOH',
+                            'SFOH' => 'SFOH',
+                            'SFRM' => 'SFRM',
+                            'SMOH' => 'SMOH',
+                            'SNEW' => 'SNEW',
+                            'SOH' => 'SOH',
+                            'STOH' => 'STOH',
+                            'CZI' => 'CZI',
+                        ],
+                        'placeholder' => '------',
+                        'required' => false,
+                    ])
+                    ->add('overhaulType4', ChoiceType::class, [
+                        'label' => 'overhaulType4',
+                        'choices' => [
+                            'SCMOH' => 'SCMOH',
+                            'SFOH' => 'SFOH',
+                            'SFRM' => 'SFRM',
+                            'SMOH' => 'SMOH',
+                            'SNEW' => 'SNEW',
+                            'SOH' => 'SOH',
+                            'STOH' => 'STOH',
+                            'CZI' => 'CZI',
+                        ],
+                        'placeholder' => '------',
+                        'required' => false,
+                    ])
+                    ->add('engineNotes', TextareaType::class, [
+                        'label' => 'engineNotes',
+                        'required' => false,
+                        'attr' => ['class' => 'large-text-field'],
+                    ])
+                    ->add('propNotes', TextareaType::class, [
+                        'label' => 'propNotes',
+                        'required' => false,
+                        'attr' => ['class' => 'large-text-field'],
+                    ]);
+                break;
+            case 4:
+                $builder
+                    ->add('modificationsNotes', TextareaType::class, [
+                        'label' => 'modificationsNotes',
+                        'required' => false,
+                        'attr' => ['class' => 'large-text-field'],
+                    ])
+                    ->add('adsbEquipped', ChoiceType::class, [
+                        'label' => 'adsbEquipped',
+                        'choices' => [
+                            'Yes' => true,
+                            'No' => false,
+                        ],
+                        'expanded' => true,
+                        'multiple' => false,
+                        'required' => false,
+                    ])
+                    ->add('avionicsNotes', TextareaType::class, [
+                        'label' => 'avionicsNotes',
+                        'required' => false,
+                        'attr' => ['class' => 'large-text-field'],
+                    ])
+                    ->add('equipmentNotes', TextareaType::class, [
+                        'label' => 'equipmentNotes',
+                        'required' => false,
+                        'attr' => ['class' => 'large-text-field'],
+                    ])
+                    ->add('yearPainted', ChoiceType::class, [
+                        'label' => 'yearPainted',
+                        'choices' => array_combine(range(1900, date('Y') + 1), range(1900, date('Y') + 1)),
+                        'placeholder' => '------',
+                        'required' => false,
+                    ])
+                    ->add('exteriorNotes', TextareaType::class, [
+                        'label' => 'exteriorNotes',
+                        'required' => false,
+                        'attr' => ['class' => 'large-text-field'],
+                    ]);
+                break;
+            case 5:
+                $builder
+                    ->add('yearInterior', ChoiceType::class, [
+                        'label' => 'yearInterior',
+                        'choices' => array_combine(range(1900, date('Y') + 1), range(1900, date('Y') + 1)),
+                        'placeholder' => '------',
+                        'required' => false,
+                    ])
+                    ->add('interiorNotes', TextareaType::class, [
+                        'label' => 'interiorNotes',
+                        'required' => false,
+                        'attr' => ['class' => 'large-text-field'],
+                    ])
+                    ->add('inspectionStatus', TextareaType::class, [
+                        'label' => 'inspectionStatus',
+                        'required' => false,
+                        'attr' => ['class' => 'large-text-field'],
+                    ]);
+                break;
+        }
 
-        // General Section
-        $builder
-            ->add('displayRegistrationNumber', CheckboxType::class, [
-                'label' => 'Display Registration # with this listing',
-                'required' => false,
-            ])
-            ->add('flightRules', ChoiceType::class, [
-                'label' => 'Flight Rules',
-                'choices' => [
-                    'IFR' => 'IFR',
-                    'VFR' => 'VFR',
-                ],
-                'placeholder' => '------',
-                'required' => false,
-            ])
-            ->add('locationAirportCode', TextType::class, [
-                'label' => 'Based at (e.g., LAX)',
-                'required' => false,
-            ])
-            ->add('displaySerialNumber', CheckboxType::class, [
-                'label' => 'Display Serial Number with this listing',
-                'required' => false,
-            ])
-            ->add('totalTime', NumberType::class, [
-                'label' => 'Total Time',
-                'required' => false,
-                'attr' => ['min' => 0],
-            ])
-            ->add('seatNumber', NumberType::class, [
-                'label' => 'Number of Seats',
-                'required' => false,
-                'attr' => ['min' => 0],
-            ]);
 
-        // Airframe Section
-        $builder
-            ->add('airframeNotes', TextareaType::class, [
-                'label' => 'Airframe Notes',
-                'required' => false,
-                'attr' => ['class' => 'large-text-field'],
-            ]);
-
-        // Engine Section
-        $builder
-            ->add('hotSectionTime', NumberType::class, [
-                'label' => 'Engine 1 Hot Section Time (in hours)',
-                'required' => false,
-                'attr' => ['min' => 0],
-            ])
-            ->add('hotSectionTime2', NumberType::class, [
-                'label' => 'Engine 2 Hot Section Time (in hours)',
-                'required' => false,
-                'attr' => ['min' => 0],
-            ])
-            ->add('hotSectionTime3', NumberType::class, [
-                'label' => 'Engine 3 Hot Section Time (in hours)',
-                'required' => false,
-                'attr' => ['min' => 0],
-            ])
-            ->add('hotSectionTime4', NumberType::class, [
-                'label' => 'Engine 4 Hot Section Time (in hours)',
-                'required' => false,
-                'attr' => ['min' => 0],
-            ])
-            ->add('overhaulTime', NumberType::class, [
-                'label' => 'Engine 1 Time (in hours)',
-                'required' => false,
-                'attr' => ['min' => 0],
-            ])
-            ->add('overhaulTime2', NumberType::class, [
-                'label' => 'Engine 2 Time (in hours)',
-                'required' => false,
-                'attr' => ['min' => 0],
-            ])
-            ->add('overhaulTime3', NumberType::class, [
-                'label' => 'Engine 3 Time (in hours)',
-                'required' => false,
-                'attr' => ['min' => 0],
-            ])
-            ->add('overhaulTime4', NumberType::class, [
-                'label' => 'Engine 4 Time (in hours)',
-                'required' => false,
-                'attr' => ['min' => 0],
-            ])
-            ->add('overhaulType', ChoiceType::class, [
-                'label' => 'Engine 1 Overhaul Type',
-                'choices' => [
-                    'SCMOH' => 'SCMOH',
-                    'SFOH' => 'SFOH',
-                    'SFRM' => 'SFRM',
-                    'SMOH' => 'SMOH',
-                    'SNEW' => 'SNEW',
-                    'SOH' => 'SOH',
-                    'STOH' => 'STOH',
-                    'CZI' => 'CZI',
-                ],
-                'placeholder' => '------',
-                'required' => false,
-            ])
-            ->add('overhaulType2', ChoiceType::class, [
-                'label' => 'Engine 2 Overhaul Type',
-                'choices' => [
-                    'SCMOH' => 'SCMOH',
-                    'SFOH' => 'SFOH',
-                    'SFRM' => 'SFRM',
-                    'SMOH' => 'SMOH',
-                    'SNEW' => 'SNEW',
-                    'SOH' => 'SOH',
-                    'STOH' => 'STOH',
-                    'CZI' => 'CZI',
-                ],
-                'placeholder' => '------',
-                'required' => false,
-            ])
-            ->add('overhaulType3', ChoiceType::class, [
-                'label' => 'Engine 3 Overhaul Type',
-                'choices' => [
-                    'SCMOH' => 'SCMOH',
-                    'SFOH' => 'SFOH',
-                    'SFRM' => 'SFRM',
-                    'SMOH' => 'SMOH',
-                    'SNEW' => 'SNEW',
-                    'SOH' => 'SOH',
-                    'STOH' => 'STOH',
-                    'CZI' => 'CZI',
-                ],
-                'placeholder' => '------',
-                'required' => false,
-            ])
-            ->add('overhaulType4', ChoiceType::class, [
-                'label' => 'Engine 4 Overhaul Type',
-                'choices' => [
-                    'SCMOH' => 'SCMOH',
-                    'SFOH' => 'SFOH',
-                    'SFRM' => 'SFRM',
-                    'SMOH' => 'SMOH',
-                    'SNEW' => 'SNEW',
-                    'SOH' => 'SOH',
-                    'STOH' => 'STOH',
-                    'CZI' => 'CZI',
-                ],
-                'placeholder' => '------',
-                'required' => false,
-            ])
-            ->add('engineNotes', TextareaType::class, [
-                'label' => 'Engine Notes',
-                'required' => false,
-                'attr' => ['class' => 'large-text-field'],
-            ]);
-
-        // Props Section
-        $builder
-            ->add('propNotes', TextareaType::class, [
-                'label' => 'Prop Notes',
-                'required' => false,
-                'attr' => ['class' => 'large-text-field'],
-            ]);
-
-        // Modifications/Conversions Section
-        $builder
-            ->add('modificationsNotes', TextareaType::class, [
-                'label' => 'Modifications/Conversions',
-                'required' => false,
-                'attr' => ['class' => 'large-text-field'],
-            ]);
-
-        // Avionics Section
-        $builder
-            ->add('adsbEquipped', ChoiceType::class, [
-                'label' => 'ADS-B Equipped',
-                'choices' => [
-                    'Yes' => true,
-                    'No' => false,
-                ],
-                'expanded' => true,
-                'multiple' => false,
-                'required' => false,
-            ])
-            ->add('avionicsNotes', TextareaType::class, [
-                'label' => 'Avionics/Radios',
-                'required' => false,
-                'attr' => ['class' => 'large-text-field'],
-            ]);
-
-        // Additional Equipment Section
-        $builder
-            ->add('equipmentNotes', TextareaType::class, [
-                'label' => 'Additional Equipment',
-                'required' => false,
-                'attr' => ['class' => 'large-text-field'],
-            ]);
-
-        // Exterior Section
-        $builder
-            ->add('yearPainted', ChoiceType::class, [
-                'label' => 'Year Painted',
-                'choices' => array_combine(range(1900, date('Y') + 1), range(1900, date('Y') + 1)),
-                'placeholder' => '------',
-                'required' => false,
-            ])
-            ->add('exteriorNotes', TextareaType::class, [
-                'label' => 'Exterior Notes',
-                'required' => false,
-                'attr' => ['class' => 'large-text-field'],
-            ]);
-
-        // Interior Section
-        $builder
-            ->add('yearInterior', ChoiceType::class, [
-                'label' => 'Year Interior',
-                'choices' => array_combine(range(1900, date('Y') + 1), range(1900, date('Y') + 1)),
-                'placeholder' => '------',
-                'required' => false,
-            ])
-            ->add('interiorNotes', TextareaType::class, [
-                'label' => 'Interior Notes',
-                'required' => false,
-                'attr' => ['class' => 'large-text-field'],
-            ]);
-
-        // Inspection Status Section
-        $builder
-            ->add('inspectionStatus', TextareaType::class, [
-                'label' => 'Inspection Status',
-                'required' => false,
-                'attr' => ['class' => 'large-text-field'],
-            ]);
     }
-
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => AircraftSpecs::class,
+            'data_class' => TurbineMilitaryAircraftDto::class,
         ]);
+        $resolver->setRequired('step');
     }
 }
 

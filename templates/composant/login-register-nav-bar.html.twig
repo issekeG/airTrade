@@ -1,0 +1,50 @@
+<header id="header" class="header fixed-top d-flex align-items-center">
+  <div class="d-flex align-items-center justify-content-between">
+    <a href="{{ path('app_home') }}" class="logo d-flex align-items-center">
+      <img src="" alt="">
+      <span class="d-none d-lg-block">{{ 'app.logo'|trans }}</span>
+    </a>
+    {% block sidebarIcon %}
+      <i class="bi bi-list toggle-sidebar-btn d-block d-lg-none"></i>
+    {% endblock sidebarIcon %}
+  </div>
+
+  <nav class="header-nav ms-auto">
+    <ul class="d-flex align-items-center">
+      <li class="nav-item dropdown px-3 d-flex align-items-center">
+        {% if app.request.locale == "en" %}
+          <span class="flag-icon flag-icon-gb me-2"></span>
+        {% else %}
+          <span class="flag-icon flag-icon-{{ app.request.locale }} me-2"></span>
+        {% endif %}
+
+        <form method="get" action="{{ path('change-locale') }}">
+          <select name="_locale" onchange="this.form.submit()" class="form-select form-select-sm">
+            {% for code, lang in available_languages.getAvailableLanguages() %}
+              <option value="{{ code }}" {% if code == app.request.locale %}selected{% endif %}>
+                {{ lang.label|trans }}
+              </option>
+            {% endfor %}
+          </select>
+          {% for key, value in app.request.query.all() %}
+            {% if key != '_locale' %}
+              {% if value is iterable %}
+                {% for v in value %}
+                  <input type="hidden" name="{{ key }}[]" value="{{ v }}">
+                {% endfor %}
+              {% else %}
+                <input type="hidden" name="{{ key }}" value="{{ value }}">
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </form>
+      </li>
+
+      <li class="nav-item dropdown pe-3">
+        <a class="nav-link btn py-1" href="{{ path('app_register') }}" style="border: 1px solid #1A0B8C !important; color : #1A0B8C !important;">
+          <i class="bi bi-box-arrow-in-right me-1"></i> {{ 'register.button'|trans }}
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>

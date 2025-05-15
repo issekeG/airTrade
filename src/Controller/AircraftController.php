@@ -15,6 +15,7 @@ use App\Form\AircraftType;
 use App\Form\ImageUploadType;
 use App\Form\InternContactType;
 use App\Form\JetAircraftFormType;
+use App\Form\MainSearchFormType;
 use App\Repository\AirCraftCategoryRepository;
 use App\Repository\AircraftManufacturerRepository;
 use App\Repository\AircraftRepository;
@@ -22,6 +23,7 @@ use App\Repository\AircraftSpecsRepository;
 use App\Service\DtoService;
 use App\Service\EmailService;
 use App\Service\FormTypeService;
+use App\Service\PaginatorService;
 use App\Service\VideoTrimmer;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,6 +33,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/aircraft')]
 final class AircraftController extends AbstractController
@@ -46,12 +49,18 @@ final class AircraftController extends AbstractController
         // Le constructeur est maintenant correctement initialisé avec les dépendances injectées
     }
 
-    #[Route(name: 'app_aircraft_index', methods: ['GET'])]
-    public function index(Request $request): Response
+    #[Route(name: 'app_aircraft_index', methods: ['GET', 'POST'])]
+    public function index(Request $request ,PaginatorService $paginatorService): Response
     {
-        $all_airCrafts = $this->airCraftRepository->findAll();
+
         $categories = $this->airCraftCategoryRepository->findAll();
         $manufacturers = $this->aircraftManufacturerRepository->findAll();
+        $search_form = $this->createForm(MainSearchFormType::class);
+        $search_form->handleRequest($request);
+
+        $queryBuilder = $this->airCraftRepository->findAllAircraft();
+
+        $all_airCrafts = $paginatorService->paginate($queryBuilder,$request,20);
 
         $itemsFilters[] = "";
         return $this->render('annonces/list.html.twig', [
@@ -63,8 +72,40 @@ final class AircraftController extends AbstractController
 
     }
 
+
+    #[Route('/main-search',name: 'app_aircraft_main_search', methods: ['GET', 'POST'])]
+    public function mainSearch(Request $request, AircraftRepository $aircraftRepository, PaginatorService $paginatorService): Response
+    {
+        $search_form = $this->createForm(MainSearchFormType::class);
+        $search_form->handleRequest($request);
+        $all_airCrafts = $this->airCraftRepository->findAll();
+        $categories = $this->airCraftCategoryRepository->findAll();
+        $manufacturers = $this->aircraftManufacturerRepository->findAll();
+
+        $data = $search_form->getData();
+        $category = $data['aircraftCategory'] ?? null;
+        $manufacturer = $data['aircraftManufacturer'] ?? null;
+        $model = $data['model'] ?? null;
+
+        // Toujours créer le query builder, même si les filtres sont nuls
+        $queryBuilder = $aircraftRepository->findByMainSearch($category, $manufacturer, $model);
+
+        $all_airCrafts = $paginatorService->paginate(
+            $queryBuilder,
+            $request,
+            1
+        );
+        return $this->render('annonces/list.html.twig', [
+            'allAirCrafts'=>$all_airCrafts,
+            'categories'=>$categories,
+            'manufacturers'=>$manufacturers
+        ]);
+
+
+    }
+
     #[Route('/filter/listing',name: 'app_aircraft_filter', methods: ['GET'])]
-    public function aircraftFilter(Request $request): Response{
+    public function aircraftFilter(Request $request, PaginatorService $paginatorService): Response{
 
         $categories = $this->airCraftCategoryRepository->findAll();
         $manufacturers = $this->aircraftManufacturerRepository->findAll();
@@ -92,7 +133,9 @@ final class AircraftController extends AbstractController
             }
         }
 
-        $allAirCrafts = $this->airCraftRepository->findByFilters($filters);
+        $queryBuilder = $this->airCraftRepository->findByFilters($filters);
+
+        $allAirCrafts = $paginatorService->paginate($queryBuilder,$request,1);
 
 
         $itemsFilters[] = "";
@@ -106,12 +149,15 @@ final class AircraftController extends AbstractController
     }
 
 
-
-
     #[Route('/listing/{categoryName}',name: 'app_aircraft_by_category', methods: ['GET'])]
-    public function getAircraftByCategory(Request $request, string $categoryName, AircraftRepository $aircraftRepository ,AirCraftCategoryRepository $airCraftCategoryRepository):Response{
-        $airCraftCategory = $airCraftCategoryRepository->findOneBy(['name'=>$categoryName]);
-        $all_airCrafts = $aircraftRepository->findByCategory($airCraftCategory);
+    public function getAircraftByCategory(Request $request, PaginatorService $paginatorService, string $categoryName, AircraftRepository $aircraftRepository ,AirCraftCategoryRepository $airCraftCategoryRepository):Response{
+
+        $categoryValueName = MenuCategories::getLabel($categoryName);
+        $airCraftCategory = $airCraftCategoryRepository->findOneBy(['name'=>$categoryValueName]);
+
+        $queryBuilder = $aircraftRepository->findByCategory($airCraftCategory);
+        $all_airCrafts = $paginatorService->paginate($queryBuilder,$request,1);
+
         $categories = $this->airCraftCategoryRepository->findAll();
         $manufacturers = $this->aircraftManufacturerRepository->findAll();
 
@@ -126,6 +172,7 @@ final class AircraftController extends AbstractController
 
 
     #[Route('/new', name: 'app_aircraft_new', methods: ['GET', 'POST'])]
+    #[IsGranted("ROLE_USER")]
     public function new(Request $request, SessionInterface $session, EntityManagerInterface $entityManager): Response
     {
         $aircraft = $session->get('aircraft', new Aircraft());
@@ -178,6 +225,7 @@ final class AircraftController extends AbstractController
         $formContact->handleRequest($request);
 
         if ($formContact->isSubmitted() && $formContact->isValid()) {
+
             $data = $formContact->getData();
 
             $this->emailService->sendContactNotificationEmail(
@@ -226,6 +274,28 @@ final class AircraftController extends AbstractController
 
         return $this->redirectToRoute('app_aircraft_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+    #[Route('/shadow/{id}', name: 'app_aircraft_shadow', methods: ['POST'])]
+    public function shadow(Request $request, Aircraft $aircraft, EntityManagerInterface $entityManager): Response{
+        if ($this->isCsrfTokenValid('shadow'.$aircraft->getId(), $request->getPayload()->getString('_token'))) {
+            $aircraft->setIsPublished(!$aircraft->isPublished());
+            $entityManager->flush();
+        }
+
+        return $this->redirect($request->headers->get('referer'), Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/report/{id}/annonce', name: 'app_aircraft_report', methods: ['POST'])]
+    public function report(Request $request, Aircraft $aircraft, EntityManagerInterface $entityManager):Response{
+        if ($this->isCsrfTokenValid('report'.$aircraft->getId(), $request->getPayload()->getString('_token'))) {
+            $aircraft->setIsPublished(false);
+            $aircraft->setIsReported(true);
+            $entityManager->flush();
+        }
+        return $this->redirect($request->headers->get('referer'), Response::HTTP_SEE_OTHER);
+    }
+
 
 
     #[Route('/register/step={step}', name: 'aircraft_wizard_form', requirements: ['step' => '\d+'])]
@@ -277,6 +347,7 @@ final class AircraftController extends AbstractController
                 $aircraft->setAircraftCategory($aircraftCategory);
                 $aircraft->setAircraftManufacturer($aircraftManufacturer);
                 $aircraft->setIsPublished(true);
+                $aircraft->setIsReported(false);
 
                 $slug = $aircraft->generateSlug($aircraftCategory,$aircraftManufacturer);
                 $aircraft->setSlug($slug);
@@ -324,7 +395,7 @@ final class AircraftController extends AbstractController
                 $videoName = $aircraft->getVideo(); // ex : "video.mp4"
 
                 // 3. Chemins complets
-                $videoPath = realpath($uploadsDir . $videoName); // 🔐 Assure un chemin absolu et correct
+                $videoPath = realpath($uploadsDir . $videoName);
                 $tempPath = $uploadsDir . 'trimmed_' . uniqid() . '.mp4';
 
                 // 4. Vérification
@@ -339,7 +410,16 @@ final class AircraftController extends AbstractController
                 } catch (\Exception $e) {
                     $this->addFlash('error', 'Erreur lors de la coupe de la vidéo : ' . $e->getMessage());
                 }
+
+                return $this->redirectToRoute('user_profile', [
+                    'id' => $this->getUser()->getId(),
+                    'page' => "ads",
+                ]);
+
+
             }
+
+
 
 
         }
@@ -357,6 +437,39 @@ final class AircraftController extends AbstractController
     public function aircraft_success():Response
     {
         return $this->render('patient/success.html.twig');
+    }
+
+
+
+    #[Route('/annonces/{filter}', name: 'admin_aircraft')]
+    public function backendAircraft(Request $request,string $filter ,PaginatorService $paginatorService, AircraftRepository $aircraftRepository): Response{
+
+        if ($filter == 'reported') {
+            $queryBuilder = $aircraftRepository->findAllReported();
+        }else{
+            $queryBuilder = $aircraftRepository->findAllBlocked();
+        }
+
+        $aircraft_all = $paginatorService->paginate($queryBuilder, $request,20);
+
+        return $this->render(
+            'backend/admin/annonce.html.twig',
+            [
+                'aircraft_all' => $aircraft_all,
+            ]
+        );
+    }
+
+    #[Route('admin/{slug}/annonce', name: 'app_admin_aircraft_show', methods: ['GET', 'POST'])]
+    public function admin_show(Request $request, string $slug, AircraftSpecsRepository $aircraftSpecsRepository): Response
+    {
+        $aircraft = $this->airCraftRepository->findOneBy(['slug'=>$slug]);
+
+        $aircraftSpecs= $aircraft->getAircraftSpecs()[0]->getDataSpecs();
+        return $this->render('backend/admin/annonce-detail.html.twig', [
+            'aircraft' => $aircraft,
+            'aircraftSpecs'=>$aircraftSpecs,
+        ]);
     }
 
 }

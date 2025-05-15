@@ -1,4 +1,21 @@
 aircraftPropertiesLabels:
+  droneType: "Type de drone"
+  operatingLength: "Longueur en fonctionnement"
+  operatingLengthUnit: "Unité de longueur en fonctionnement"
+  operatingWidth: "Largeur en fonctionnement"
+  operatingWidthUnit: "Unité de largeur en fonctionnement"
+  operatingHeight: "Hauteur en fonctionnement"
+  operatingHeightUnit: "Unité de hauteur en fonctionnement"
+  operatingWeight: "Poids en fonctionnement"
+  operatingWeightUnit: "Unité de poids en fonctionnement"
+  shippingLength: "Longueur à l’expédition"
+  shippingLengthUnit: "Unité de longueur à l’expédition"
+  shippingWidth: "Largeur à l’expédition"
+  shippingWidthUnit: "Unité de largeur à l’expédition"
+  shippingHeight: "Hauteur à l’expédition"
+  shippingHeightUnit: "Unité de hauteur à l’expédition"
+  shippingWeight: "Poids à l’expédition"
+  shippingWeightUnit: "Unité de poids à l’expédition"
   registrationNumber: "Immatriculation"
   displayRegistrationNumber: "Afficher l'immatriculation"
   flightRules: "Règles de vol"
@@ -170,6 +187,372 @@ aircraftPropertiesLabels:
   interior: "Remarques sur l'intérieur"
   modifications: "Modifications/Conversions"
   inspection: "Statut des inspections"
+
+  timeRemainingToOverhaul: 'Temps restant avant révision moteur 1'
+  timeRemainingToOverhaul2: 'Temps restant avant révision moteur 2'
+  floatType.Straight: 'Droit'
+  floatType.Amphibious: 'Amphibie'
+  includesWheeledLandingGear: "Inclut train d'atterrissage roues"
+  yes: 'Oui'
+  no: 'Non'
+
+  flightRules.IFR: 'IFR'
+  flightRules.VFR: 'VFR'
+  propNotes: 'Notes hélice'
+  props: "Remarques sur les hélices"
+  # Types de révision moteur (communs à tous)
+  overhaulType.SCMOH: "SCMOH"
+  overhaulType.SFOH: "SFOH"
+  overhaulType.SFRM: "SFRM"
+  overhaulType.SMOH: "SMOH"
+  overhaulType.SNEW: "SNEW"
+  overhaulType.SOH: "SOH"
+  overhaulType.STOH: "STOH"
+  overhaulType.CZI: "CZI"
+
+  rangeUnit.nautical_miles: 'Milles nautiques'
+  maxTakeoffWeightUnit:
+    pound: 'Livre'
+    ton: 'Tonne'
+    kilogram: 'Kilogramme'
+    metric_ton: 'Tonne métrique'
+    ounce: 'Once'
+  cruiseSpeed: 'Vitesse de croisière maximale'
+
+  # Step 3
+  cruiseSpeedUnit:
+    miles/hour: 'Milles/heure'
+    kilometers/hour: 'Kilomètres/heure'
+    knots: 'Nœuds'
+  hoverCeilingIge: 'Plafond en vol stationnaire IGE'
+  hoverCeilingIgeUnit:
+    inch: 'Pouce'
+    foot: 'Pied'
+    yard: 'Yard'
+    millimeter: 'Millimètre'
+    centimeter: 'Centimètre'
+    meter: 'Mètre'
+  hoverCeilingIgeInches: 'Plafond IGE (pouces)'
+  hoverCeilingOge: 'Plafond en vol stationnaire OGE'
+  hoverCeilingOgeInches: 'Plafond OGE (pouces)'
+  fuelCapacityUnit:
+    quart: 'Quart'
+    gallon: 'Gallon'
+    mililiter: 'Millilitre'
+    centiliter: 'Centilitre'
+    liter: 'Litre'
+  auxiliaryFuelTank: 'Réservoir auxiliaire'
+  auxiliaryFuelTank.true: 'Oui'
+  auxiliaryFuelTank.false: 'Non'
+  crashResistantFuelSystem: 'Système de carburant résistant aux crashs'
+  completeLogs: 'Journaux complets'
+
+
+  # Step 4
+  mainRotorBladeTimeRemaining: 'Temps restant pales rotor principal'
+  mainRotorHubTimeRemaining: 'Temps restant moyeu rotor principal'
+  mainRotorGearboxTimeRemaining: 'Temps restant boîte de transmission'
+  antiTorqueSystem: 'Système anti-couple'
+  antiTorqueSystem.Tail_Rotor: 'Rotor de queue'
+  antiTorqueSystem.Ducted_Fan: 'Ventilateur gainé'
+  antiTorqueSystem.NOTAR: 'NOTAR'
+  tailRotorBladeTimeRemaining: 'Temps restant pales rotor de queue'
+  tailRotorGearboxTimeRemaining: 'Temps restant boîte de transmission queue'
+  rotorNotes: 'Notes sur les rotors'
+
+  # Step 5
+  engine1Make: 'Fabricant moteur 1'
+  engine1Model: 'Modèle moteur 1'
+  engine1SerialNumber: 'Numéro de série moteur 1'
+  engine1Horsepower: 'Puissance moteur 1'
+  engine1HorsepowerUnit:
+    horsepower: 'Chevaux'
+    kilowatt: 'Kilowatt'
+    watt: 'Watt'
+    BTU/hour: 'BTU/heure'
+    metric_horsepower: 'Chevaux métriques'
+  engine1HotSectionTime: 'Temps section chaude moteur 1 (heures)'
+  engine1OverhaulTime: 'Temps moteur 1 (heures)'
+  engine1OverhaulType: 'Type de révision moteur 1'
+  engine1OverhaulType.SCMOH: 'SCMOH'
+  engine1OverhaulType.SFOH: 'SFOH'
+  engine1OverhaulType.SFRM: 'SFRM'
+  engine1OverhaulType.SMOH: 'SMOH'
+  engine1OverhaulType.SNEW: 'Neuf'
+  engine1OverhaulType.SOH: 'SOH'
+  engine1OverhaulType.STOH: 'STOH'
+  engine1OverhaulType.CZI: 'CZI'
+  engine1TimeBetweenOverhaul: 'TBO moteur 1'
+
+
+  # Step 6
+  engine2Make: 'Fabricant moteur 2'
+  engine2Model: 'Modèle moteur 2'
+  engine2SerialNumber: 'Numéro de série moteur 2'
+  engine2Horsepower: 'Puissance moteur 2'
+  engine2HotSectionTime: 'Temps section chaude moteur 2 (heures)'
+  engine2OverhaulTime: 'Temps moteur 2 (heures)'
+  engine2OverhaulType: 'Type de révision moteur 2'
+  engine2TimeBetweenOverhaul: 'TBO moteur 2'
+
+  adsbEquipped.true: 'Oui'
+  adsbEquipped.false: 'Non'
+  artificialHorizon: 'Horizon artificiel'
+  radarAltimeter: 'Altimètre radar'
+  singlePilotOperation: 'Opération monopilote'
+  autoPilot: 'Pilote automatique'
+  emergencyLocatorTransmitter: 'ELT'
+  airborneWeatherRadar: 'Radar météo'
+  trafficAvoidanceSystem: "Système d'évitement du trafic"
+  wireStrikeProtectionSystem: 'Système de protection contre les câbles'
+
+
+  # Step 8
+  dualControls: 'Commandes doubles'
+  cargoHook: 'Crochet de chargement'
+  airConditioning: 'Climatisation'
+  heater: 'Chauffage'
+  baggageCompartment: 'Compartiment à bagages'
+  bearpaws: 'Bearpaws'
+  doorType: 'Type de porte'
+  doorType.Hinged: 'Battante'
+  doorType.Sliding: 'Coulissante'
+  doorType.Hinged_and_Sliding: 'Battante et coulissante'
+  interiorConfiguration.Passenger_Utility: 'Passager/Utilitaire'
+  interiorConfiguration.Corporate: 'Affaires'
+  interiorConfiguration.Medical: 'Médical'
+  interiorConfiguration.Offshore: 'Offshore'
+  interiorConfiguration.SAR: 'Recherche et sauvetage'
+  interiorConfiguration.Law_Enforcement: 'Application de la loi'
+  interiorConfiguration.Military: 'Militaire'
+  interiorConfiguration.Aerial_Work: 'Travail aérien'
+  soundproofing: 'Insolation phonique'
+  bubbleWindows: 'Fenêtres bulles'
+  impactResistantWindshield: 'Pare-brise résistant aux impacts'
+  airworthy.true: 'Oui'
+  airworthy.false: 'Non'
+  # Overhaul Types
+  SCMOH: "SCMOH"
+  SFOH: "SFOH"
+  SFRM: "SFRM"
+  SMOH: "SMOH"
+  SNEW: "SNEW"
+  SOH: "SOH"
+  STOH: "STOH"
+  CZI: "CZI"
+
+  # Flight rules
+  IFR: "IFR"
+  VFR: "VFR"
+
+  flightRules.choices:
+    IFR: 'IFR'
+    VFR: 'VFR'
+
+  horsepowerEngine: 'Puissance moteur 1'
+  horsepowerUnit: 'Unité de puissance'
+  horsepowerUnit.choices:
+    horsepower: 'HP'
+    kilowatt: 'kW'
+    watt: 'W'
+    'BTU/hour': 'Btu/hr'
+    'metric horsepower': 'mhp'
+  overhaulType.choices:
+    SCMOH: 'SCMOH'
+    SFOH: 'SFOH'
+    SFRM: 'SFRM'
+    SMOH: 'SMOH'
+    SNEW: 'SNEW'
+    SOH: 'SOH'
+    STOH: 'STOH'
+  turbocharged: 'Moteur 1 Turbocompressé'
+  turbocharged.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+  turbonormalized: 'Moteur 1 Turbonormalisé'
+  turbonormalized.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+
+  horsepowerEngine2: 'Puissance moteur 2'
+  horsepowerUnit2: 'Unité de puissance'
+  # Step 4
+  turbocharged2: 'Moteur 2 Turbocompressé'
+  turbonormalized2: 'Moteur 2 Turbonormalisé'
+  adsbEquipped.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+
+  includesWheeledLandingGear.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+
+
+
+  shortTakeOffLanding: "STOL (Décollage/Atterrissage court)"
+  shortTakeOffLanding.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+  auxiliaryFuelTank.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+  logs.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+  speedbrakes: 'Aérofreins'
+  speedbrakes.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+  spoilers: 'Spoilers'
+  spoilers.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+
+  aftermarketEngineSTC: 'STC moteur après-vente'
+  aftermarketEngineSTC.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+  yearOverhauled: 'Année de révision/installation neuve'
+  turbo: 'Turbocompressé'
+  turbo.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+  turboNormalized: 'Turbonormalisé'
+  turboNormalized.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+
+  bladeComposition: 'Composition des pales'
+  bladeComposition.choices:
+    Aluminum: 'Aluminium'
+    Composite: 'Composite'
+  sweptBladePropellers.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+
+  # Step 3 - Modifications & Avionics
+  vortexGenerators: 'Générateurs de vortex'
+  vortexGenerators.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+
+  wideAreaAugSystem.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+  localizerPerformanceVG.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+  syntheticVisionTech.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+  enhancedVisionSystem.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+  yawDamper: 'Amortisseur de lacet'
+  yawDamper.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+  activeTraffic: 'Trafic actif'
+  activeTraffic.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+  terrainWarningSystem: "Système d'alerte terrain"
+  terrainWarningSystem.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+  engineMonitor: 'Moniteur moteur'
+  engineMonitor.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+  wifi.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+  pressurized.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+  oxygenSystem.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+  knownIce.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+  inadvertentIceProtection.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+  airConditioning.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+  floatKit.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+  includesFloats.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+  floatType.choices:
+    Straight: 'Droits'
+    Amphibious: 'Amphibies'
+  interiorConfiguration.choices:
+    Cargo: 'Cargo'
+    Passenger: 'Passager'
+  airworthy.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+
+  winglets.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+
+  engine1OverhaulType.choices:
+    SCMOH: 'SCMOH'
+    SFOH: 'SFOH'
+    SFRM: 'SFRM'
+    SMOH: 'SMOH'
+    SNEW: 'SNEW'
+    SOH: 'SOH'
+    STOH: 'STOH'
+  engine1AftermarketSTC: 'STC après-vente moteur 1'
+  engine1AftermarketSTC.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+  engine1YearOverhauled: 'Année de révision/installation neuve moteur 1'
+  engine1TimeRemainingToOverhaul: 'Temps restant avant révision moteur 1'
+  engine1Cycles: 'Cycles moteur 1'
+  engine1Turbocharged: 'Moteur 1 turbocompressé'
+  engine1Turbocharged.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+  engine1Turbonormalized: 'Moteur 1 turbonormalisé'
+  engine1Turbonormalized.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+
+
+  engine2AftermarketSTC: 'STC après-vente moteur 2'
+  engine2YearOverhauled: 'Année de révision/installation neuve moteur 2'
+  engine2TimeRemainingToOverhaul: 'Temps restant avant révision moteur 2'
+  engine2Cycles: 'Cycles moteur 2'
+  engine2Turbocharged: 'Moteur 2 turbocompressé'
+  engine2Turbonormalized: 'Moteur 2 turbonormalisé'
+
+  # Step 5 - Props
+  prop1Make: 'Constructeur hélice 1'
+  prop1Model: 'Modèle hélice 1'
+  prop1OverhaulTime: 'Temps hélice 1 (heures)'
+  prop1OverhaulType: 'Temps depuis'
+  prop2Make: 'Constructeur hélice 2'
+  prop2Model: 'Modèle hélice 2'
+  prop2OverhaulTime: 'Temps hélice 2 (heures)'
+  prop2OverhaulType: 'Temps depuis'
+
+  propsSync: 'Synchronisation hélices'
+  propsSync.choices:
+    'Yes': 'Oui'
+    'No': 'Non'
+
+
+
+
+
 
 
 

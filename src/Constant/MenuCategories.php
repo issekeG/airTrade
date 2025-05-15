@@ -21,6 +21,29 @@ class MenuCategories
     ['slug' => 'turbine-helicopters', 'name' => 'Turbine Helicopters', 'image' => 'turbine_helicopters_edit.png'],
     ];
 
+
+    public const CATEGORIES = [
+        'jet_aircraft' => 'Jet Aircraft',
+        'turboprop_aircraft' => 'Turboprop Aircraft',
+        'piston_single_aircraft' => 'Piston Single Aircraft',
+        'piston_twin_aircraft' => 'Piston Twin Aircraft',
+        'light_sport' => 'Light Sport',
+        'experimental_homebuilt_aircraft' => 'Experimental Homebuilt Aircraft',
+        'piston_agricultural_aircraft' => 'Piston Agricultural Aircraft',
+        'piston_amphibious_flatplanes' => 'Piston Amphibious Flatplanes',
+        'piston_helicopters' => 'Piston Helicopters',
+        'piston_military_aircraft' => 'Piston Military Aircraft',
+        'turbine_agricultural_aircraft' => 'Turbine Agricultural Aircraft',
+        'turbine_helicopters' => 'Turbine Helicopters',
+        'turbine_military_aircraft' => 'Turbine Military Aircraft',
+        'turbine_amphibious_floatplane' => 'Turbine Amphibious Floatplane',
+    ];
+
+    public static function getLabel(string $key): ?string
+    {
+        return self::CATEGORIES[$key] ?? null;
+    }
+
     public function getMenusCategories(): array
     {
         return $this->menusCategories;

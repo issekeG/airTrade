@@ -1,0 +1,15 @@
+<form method="post"
+      action="{{ path('app_aircraft_shadow', {'id': aircraft.id}) }}"
+      onsubmit="return confirm('{{ 'aircraft.shadow_confirmation'|trans }}');">
+    <input type="hidden" name="_token" value="{{ csrf_token('shadow' ~ aircraft.id) }}">
+    <button class="btn btn-outline-warning">
+        {% if aircraft.isPublished %}
+            <i class="bi bi-shield-slash-fill me-1"></i>
+            {{ 'aircraft.block_button'|trans }}
+        {% else %}
+            <i class="bi bi-shield-check me-1"></i>
+            {{ 'aircraft.unblock_button'|trans }}
+        {% endif %}
+    </button>
+</form>
+

@@ -23,10 +23,6 @@ class InternContactType extends AbstractType
                 'label' => 'Prénom',
                 'required' => true,
             ])
-            ->add('lastName', TextType::class, [
-                'label' => 'Nom',
-                'required' => true,
-            ])
             ->add('email', EmailType::class, [
                 'label' => 'Email',
                 'required' => true,

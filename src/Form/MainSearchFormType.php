@@ -6,6 +6,7 @@ use App\Entity\AirCraftCategory;
 use App\Entity\AircraftManufacturer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -48,7 +49,9 @@ class MainSearchFormType extends AbstractType
                     'aria-label' => 'Modèle d\'avion',
                     'id' => 'model',
                 ],
-            ]);
+            ])
+
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

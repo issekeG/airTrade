@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block seo %}
+  <title>{{ article.seoTitle | striptags }}</title>
+  <meta name="description" content="{{ article.seoDescription | striptags }}">
+  <meta name="keywords" content="{{ article.seoKeyword | striptags }}">
+  <meta property="og:title" content="{{ article.title | striptags}}">
+  <meta property="og:description" content="{{ article.seoDescription | striptags}}">
+{% endblock %}
+
+
+
+{% block sidebar %}{% endblock %}
+
+{% block main %}
+<main>
+
+  <!-- Blog detail start -->
+  <section class="blog__detail">
+    <div class="container g-0 line pt-140">
+      <span class="line-3"></span>
+      <div class="row">
+        <div class="col-xxl-8 col-xl-10 offset-xxl-2 offset-xl-1">
+          <div class="blog__detail-top" style="margin-top: 80px;">
+            <h2 class="blog__detail-date animation__word_come">{{ article.category }}<span>{{ article.publishedAt |date('d/m/Y') }}</span></h2>
+            <h3 class="blog__detail-title animation__word_come" style="font-size: 30px;">
+              {{ article.title }}
+            </h3>
+          </div>
+        </div>
+        <div class="col-xxl-12">
+          <div class="blog__detail-thumb">
+            <img src="{{ asset('uploads/blog/article_image/' ~ article.image) }}" alt="{{ article.title }}" data-speed="0.5">
+          </div>
+        </div>
+        <div class="col-xxl-8 col-xl-10 offset-xxl-2 offset-xl-1">
+          <div class="blog__detail-content">
+            {{ article.description | raw }}
+
+            {% for section in article.articleSections %}
+              <h2>{{ section.title }}</h2>
+              <img src="{{ asset('upload/article_sections/' ~ section.image) }}" alt="{{ section.title }}">
+              {{ section.description | raw}}
+
+            {% endfor %}
+
+          </div>
+          <div class="blog__detail-tags">
+            <p class="sub-title-anim">Tags:
+              {% for tag in article.articleTags %}
+                <a href="">{{ tag.name }}</a>,
+              {% endfor %}
+
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Blog detail end -->
+
+
+  <!-- Related blog start -->
+  <section class="blog__related blog__animation">
+    <div class="container g-0 line pt-130 pb-140">
+      <span class="line-3"></span>
+      <div class="row">
+        <div class="col-xxl-12">
+          <div class="sec-title-wrapper">
+            <h2 class="sec-title title-anim">Articles recommandés </h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="row reset-grid">
+
+        {% for related_article in related_articles %}
+        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4">
+          <article class="blog__item">
+            <div class="blog__img-wrapper">
+              <a href="">
+                <div class="img-box">
+                  <img class="image-box__item" src="{{ asset('uploads/blog/article_image_affiche/' ~ related_article.imageAffiche) }}" alt="{{ related_article.title }}">
+                  <img class="image-box__item" src="{{ asset('uploads/blog/article_image_affiche/' ~ related_article.imageAffiche) }}" alt="{{ related_article.title }}">
+                </div>
+              </a>
+            </div>
+            <h4 class="blog__meta sub-title-anim"><a href="">{{ related_article.category  }}</a> . {{ related_article.publishedAt |date('d/m/Y') }}</h4>
+            <h5>
+              <a href="" class="blog__title sub-title-anim">
+                {{ related_article.title|slice(0, 45) }}{% if related_article.title|length > 45 %}…{% endif %}
+              </a>
+            </h5>
+            <a href="{{ path('app_blog_show',{'slug':article.slug}) }}" class="blog__btn">Lire l'article <span><i
+                        class="fa-solid fa-arrow-right"></i></span></a>
+          </article>
+        </div>
+        {% else %}
+          <p>Poursuivez la lecture d'articles afin d'obtenir des recommandations.</p>
+        {% endfor %}
+
+
+      </div>
+    </div>
+  </section>
+  <!-- Related blog end -->
+
+
+
+
+</main>
+{% endblock %}

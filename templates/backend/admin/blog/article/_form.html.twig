@@ -1,0 +1,92 @@
+{{ form_start(form) }}
+
+<div class="container">
+    <div class="row mb-3">
+        <div class="">
+            {{ form_row(form.category) }}
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="">
+            {{ form_row(form.title) }}
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="">
+            {{ form_row(form.description) }}
+        </div>
+    </div>
+
+    <div class="row mb-3">
+
+        <div class="col-md-6">
+            {{ form_row(form.imageFile) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.imageAfficheFile) }}
+        </div>
+    </div>
+
+
+    <div class="row mb-3">
+        <div class="">
+            {{ form_row(form.seoTitle) }}
+        </div>
+        <div class="">
+            {{ form_row(form.seoKeywords) }}
+        </div>
+        <div class="">
+            {{ form_row(form.seoDescription) }}
+        </div>
+    </div>
+
+
+
+    {# --- Sections dynamiques --- #}
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <h5>Sections</h5>
+            <div id="sections-container" data-prototype="{{ form_widget(form.articleSections.vars.prototype)|e('html_attr') }}">
+                {% for sectionForm in form.articleSections %}
+                    <div class="section-item mb-3 border p-3 position-relative">
+                        {{ form_row(sectionForm) }}
+                        <button type="button" class="btn btn-danger btn-sm remove-section position-absolute top-0 end-0 m-2">Supprimer</button>
+                    </div>
+                {% endfor %}
+            </div>
+            <button type="button" class="btn btn-secondary mt-3" id="add-section">Ajouter une section</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text-end">
+            <button class="btn btn-primary">Enregistrer</button>
+        </div>
+    </div>
+</div>
+
+{{ form_end(form) }}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let container = document.getElementById('sections-container');
+        let index = container.querySelectorAll('.section-item').length;
+        let addButton = document.getElementById('add-section');
+
+        addButton.addEventListener('click', function () {
+            let prototype = container.dataset.prototype;
+            let newForm = prototype.replace(/__name__/g, index);
+            let newElement = document.createElement('div');
+            newElement.classList.add('section-item', 'mb-3', 'border', 'p-3', 'position-relative');
+            newElement.innerHTML = newForm + '<button type="button" class="btn btn-danger btn-sm remove-section position-absolute top-0 end-0 m-2">Supprimer</button>';
+            container.appendChild(newElement);
+            index++;
+        });
+
+        container.addEventListener('click', function (e) {
+            if (e.target.classList.contains('remove-section')) {
+                e.target.closest('.section-item').remove();
+            }
+        });
+    });
+</script>

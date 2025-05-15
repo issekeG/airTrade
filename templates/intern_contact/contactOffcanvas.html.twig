@@ -10,7 +10,6 @@
                 {{ form_start(contactForm, {'attr': {'class': 'needs-validation'}}) }}
 
                 <div class="mb-3 d-none">
-                    <p>Gicke</p>
                     {{ form_row(contactForm.aircraft, {'attr': {'type': 'hidden'}}) }}
                 </div>
 
@@ -18,12 +17,6 @@
                     {{ form_label(contactForm.firstName, null, {'label_attr': {'class': 'form-label'}}) }}
                     {{ form_widget(contactForm.firstName, {'attr': {'class': 'form-control'}}) }}
                     {{ form_errors(contactForm.firstName) }}
-                </div>
-
-                <div class="mb-3">
-                    {{ form_label(contactForm.lastName, null, {'label_attr': {'class': 'form-label'}}) }}
-                    {{ form_widget(contactForm.lastName, {'attr': {'class': 'form-control'}}) }}
-                    {{ form_errors(contactForm.lastName) }}
                 </div>
 
                 <div class="mb-3">
@@ -46,7 +39,9 @@
 
 
 
-                <button type="submit" class="btn btn-primary">Envoyer</button>
+                <button type="submit" class="btn text-white" style="background-color: #1A0B8C;">
+                    {{ 'form.submit'|trans }}
+                </button>
 
                 {{ form_end(contactForm) }}
             </div>

@@ -66,6 +66,39 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->setParameter('isVerify', true)
             ;
     }
+    public function nbrFindVerifyUsers(): int
+    {
+        return (int) $this->createQueryBuilder('u')
+            ->select('COUNT(u.id)')
+            ->andWhere('u.roles NOT LIKE :role')
+            ->andWhere('u.isVerified = :isVerify')
+            ->setParameter('role', '%"ROLE_ADMIN"%')
+            ->setParameter('isVerify', true)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+    public function nbrFindNonVerifyUsers(): int
+    {
+        return (int) $this->createQueryBuilder('u')
+            ->select('COUNT(u.id)')
+            ->andWhere('u.roles NOT LIKE :role')
+            ->andWhere('u.isVerified = :isVerify')
+            ->setParameter('role', '%"ROLE_ADMIN"%')
+            ->setParameter('isVerify', false)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function nbrAdmin(): int
+    {
+        return (int) $this->createQueryBuilder('u')
+            ->select('COUNT(u.id)')
+            ->andWhere('u.roles LIKE :role')
+            ->setParameter('role', '%"ROLE_ADMIN"%')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
 
     public function searchUserVerifyUsersByPseudoOrMail($value): QueryBuilder
     {

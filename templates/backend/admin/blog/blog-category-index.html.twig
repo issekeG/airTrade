@@ -1,0 +1,163 @@
+{% extends 'backend/base.html.twig' %}
+
+{% block main %}
+    <main id="main" class="main">
+
+        <section class="section dashboard">
+            {% block main_content %}
+                <div class="row">
+
+                    <!-- Left side columns -->
+
+                    <div class="col-lg-12">
+                        {% block sideColumns %}
+                            <div class="row">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                {% set firstItemNumber = (article_categories.currentPageNumber - 1) * article_categories.itemNumberPerPage + 1 %}
+                                                {% set lastItemNumber = firstItemNumber + article_categories.items|length - 1 %}
+                                                <h5 class="card-title">
+                                                    {{ 'category.list.title'|trans({'%first%': firstItemNumber, '%last%': lastItemNumber, '%total%': article_categories.totalItemCount}) }}
+                                                </h5>
+                                            </div>
+
+                                            <div class="col-md-4 d-flex justify-content-end">
+                                                <h5 class="card-title">
+                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#creeCategoryModal">
+                                                        <i class="bi bi-patch-plus-fill"></i> {{ 'category.button.create'|trans }}
+                                                    </a>
+                                                </h5>
+                                            </div>
+
+                                            {# MODAL CRÉATION CATÉGORIE #}
+                                            <div class="modal fade" id="creeCategoryModal" tabindex="-1" aria-labelledby="creeCategoryModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="creeCategoryModalLabel">{{ 'category.modal.add_title'|trans }}</h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        {{ form_start(categoryForm, {'attr': {'class': 'container mt-4', 'action': path('app_article_category_new')}}) }}
+                                                        <div class="modal-body">
+                                                            <div class="mb-3">
+                                                                {{ form_label(categoryForm.name, 'category.form.name'|trans, {'label_attr': {'class': 'form-label'}}) }}
+                                                                {{ form_widget(categoryForm.name, {'attr': {'class': 'form-control'}}) }}
+                                                                {{ form_errors(categoryForm.name) }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'button.cancel'|trans }}</button>
+                                                            <button type="submit" class="btn btn-primary">{{ 'button.save'|trans }}</button>
+                                                        </div>
+                                                        {{ form_end(categoryForm) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">{{ 'table.action'|trans }}</th>
+                                                <th scope="col">{{ 'table.name'|trans }}</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for category in article_categories %}
+                                                <tr>
+                                                    <td>
+                                                        <a href="#"
+                                                           class="mx-2 edit-category-btn"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#editCategoryModal"
+                                                           data-id="{{ category.id }}"
+                                                           data-name="{{ category.name }}">
+                                                            <i class="bi bi-pencil-square"></i>
+                                                        </a>
+                                                        <a href="{{ path('app_article_category_delete',{'id':category.id}) }}" class="ms-2">
+                                                            <i class="bi bi-trash-fill"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>{{ category.name }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+
+                                        <div class="pagination">
+                                            {{ knp_pagination_render(article_categories) }}
+                                        </div>
+
+                                        {# MODAL MODIFICATION CATÉGORIE #}
+                                        <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="editCategoryModalLabel">{{ 'category.modal.edit_title'|trans }}</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                                                    </div>
+                                                    {{ form_start(editCategoryForm, {
+                                                        'attr': {
+                                                            'id': 'editCategoryForm',
+                                                            'class': 'container'
+                                                        },
+                                                        'action': path('app_article_category_edit', {'id': 'PLACEHOLDER'})
+                                                    }) }}
+                                                    <div class="modal-body">
+                                                        {{ form_row(editCategoryForm.name, {'attr': {'class': 'form-control'}}) }}
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'button.cancel'|trans }}</button>
+                                                        <button type="submit" class="btn btn-primary">{{ 'button.save'|trans }}</button>
+                                                    </div>
+                                                    {{ form_end(editCategoryForm) }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        {% endblock %}
+                    </div>
+
+                    <!-- End Left side columns -->
+
+
+                </div>
+            {% endblock %}
+        </section>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const editButtons = document.querySelectorAll('.edit-category-btn');
+                const editForm = document.getElementById('editCategoryForm');
+                const nameInput = document.querySelector('#editCategoryForm input[name="article_category[name]"]');
+                const formActionTemplate = "{{ path('app_article_category_edit', {'id': 'PLACEHOLDER'}) }}";
+
+                editButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        const categoryId = this.getAttribute('data-id');
+
+                        // Injecter les données dans le formulaire
+                        nameInput.value = this.getAttribute('data-name');
+
+                        // Mettre à jour dynamiquement l'action du formulaire
+                        editForm.action = formActionTemplate.replace('PLACEHOLDER', categoryId);
+                    });
+                });
+            });
+        </script>
+
+
+
+
+    </main>
+{% endblock %}
+
+
+
+
+

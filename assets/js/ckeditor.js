@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error(error);
             });
     });
+
+
     $('.select-element').select2({
         width: 'resolve',
         placeholder: function(){

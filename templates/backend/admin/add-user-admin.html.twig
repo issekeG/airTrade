@@ -1,6 +1,3 @@
-
-
-
 {% extends 'backend/base.html.twig' %}
 
 {% block main %}
@@ -21,7 +18,6 @@
                                             <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
                                         {% endfor %}
 
-
                                         {{ form_errors(registrationForm) }}
 
                                         {{ form_start(registrationForm) }}
@@ -34,7 +30,7 @@
                                                                 'class': 'form-control',
                                                             }
                                                         }) }}
-                                                        <label for="registration_form_pseudo">Votre pseudo</label>
+                                                        <label for="registration_form_pseudo">{{ 'form.pseudo'|trans }}</label>
                                                     </div>
 
                                                     {{ form_errors(registrationForm.pseudo) }}
@@ -46,7 +42,7 @@
                                                                 'class': 'form-control',
                                                             }
                                                         }) }}
-                                                        <label for="registration_form_firstname">Nom & Prénom</label>
+                                                        <label for="registration_form_firstname">{{ 'form.name_and_firstname'|trans }}</label>
                                                     </div>
 
                                                     {{ form_errors(registrationForm.firstname) }}
@@ -58,7 +54,7 @@
                                                                 'class': 'form-control',
                                                             }
                                                         }) }}
-                                                        <label for="registration_form_email">Votre email</label>
+                                                        <label for="registration_form_email">{{ 'form.email'|trans }}</label>
                                                     </div>
 
                                                     {{ form_errors(registrationForm.email) }}
@@ -73,7 +69,7 @@
                                                                 'class': 'form-control',
                                                             }
                                                         }) }}
-                                                        <label for="registration_form_country">Le numéro de téléphone</label>
+                                                        <label for="registration_form_country">{{ 'form.phone_number'|trans }}</label>
                                                     </div>
 
                                                     {{ form_errors(registrationForm.telephone) }}
@@ -85,7 +81,7 @@
                                                                 'class': 'form-select',
                                                             }
                                                         }) }}
-                                                        <label for="registration_form_country">Votre pays</label>
+                                                        <label for="registration_form_country">{{ 'form.country'|trans }}</label>
                                                     </div>
 
                                                     {{ form_errors(registrationForm.country) }}
@@ -97,7 +93,7 @@
                                                                 'class': 'form-control',
                                                             }
                                                         }) }}
-                                                        <label for="registration_form_country">Votre mot de passe</label>
+                                                        <label for="registration_form_country">{{ 'form.password'|trans }}</label>
                                                     </div>
 
                                                     {{ form_errors(registrationForm.plainPassword) }}
@@ -111,10 +107,9 @@
                                         <div class="row">
 
                                             <div class="col-md-6">
-                                                <button class="btn btn-primary w-100 border-0" type="submit" style="background-color: #07182e;">Enregistrer</button>
+                                                <button class="btn btn-primary w-100 border-0" type="submit" style="background-color: #07182e;">{{ 'form.save'|trans }}</button>
                                             </div>
                                         </div>
-
 
                                         {{ form_end(registrationForm) }}
 
@@ -124,15 +119,9 @@
                         {% endblock %}
                     </div><!-- End Left side columns -->
 
-
                 </div>
             {% endblock %}
         </section>
-
-
-
-
-
 
     </main>
 {% endblock %}

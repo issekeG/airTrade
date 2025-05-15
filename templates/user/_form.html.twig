@@ -12,121 +12,88 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="form-floating mb-3">
-                    {{ form_widget(form.pseudo, {
-                        'attr': {
-                            'class': 'form-control',
-                        }
-                    }) }}
-                    <label for="user__pseudo">Votre pseudo</label>
+                    {{ form_widget(form.pseudo, {'attr': {'class': 'form-control'}}) }}
+                    <label for="user__pseudo">{{ 'form.pseudo'|trans }}</label>
                 </div>
-
                 {{ form_errors(form.pseudo) }}
             </div>
+
             <div class="form-group">
                 <div class="form-floating mb-3">
-                    {{ form_widget(form.firstname, {
-                        'attr': {
-                            'class': 'form-control',
-                        }
-                    }) }}
-                    <label for="user_firstname">Votre Prénom</label>
+                    {{ form_widget(form.firstname, {'attr': {'class': 'form-control'}}) }}
+                    <label for="user_firstname">{{ 'form.firstname'|trans }}</label>
                 </div>
-
                 {{ form_errors(form.firstname) }}
             </div>
+
             <div class="form-group">
                 <div class="form-floating mb-3">
-                    {{ form_widget(form.telephone, {
-                        'attr': {
-                            'class': 'form-control',
-                        }
-                    }) }}
-                    <label for="user_telephone">Votre téléphone</label>
+                    {{ form_widget(form.telephone, {'attr': {'class': 'form-control'}}) }}
+                    <label for="user_telephone">{{ 'form.telephone'|trans }}</label>
                 </div>
-
                 {{ form_errors(form.telephone) }}
             </div>
-
         </div>
+
         <div class="col-md-6">
             <div class="form-group">
                 <div class="form-floating mb-3">
-                    {{ form_widget(form.email, {
-                        'attr': {
-                            'class': 'form-control',
-                        }
-                    }) }}
-                    <label for="user_email">Votre email</label>
+                    {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                    <label for="user_email">{{ 'form.email'|trans }}</label>
                 </div>
-
                 {{ form_errors(form.email) }}
             </div>
+
             <div class="form-group">
                 <div class="form-floating mb-3">
-                    {{ form_widget(form.country, {
-                        'attr': {
-                            'class': 'form-select',
-                        }
-                    }) }}
-                    <label for="user_country">Votre pays</label>
+                    {{ form_widget(form.country, {'attr': {'class': 'form-select'}}) }}
+                    <label for="user_country">{{ 'form.country'|trans }}</label>
                 </div>
-
                 {{ form_errors(form.country) }}
             </div>
+
             <div class="form-group">
                 <div class="form-floating mb-3">
-                    <small>La date de votre inscription</small>
+                    <small>{{ 'form.registration_date'|trans }}</small>
                     <p>{{ user.createAt | date('d/m/Y H:i') }}</p>
                 </div>
-
             </div>
-
         </div>
-
     </div>
 
     <hr>
+
     <div class="form-check">
-        {{ form_widget(form.acceptTerms, {
-            'attr': {
-                'class': 'form-check-input',
-            }
-        }) }}
+        {{ form_widget(form.acceptTerms, {'attr': {'class': 'form-check-input'}}) }}
         <label class="form-check-label" for="user_acceptTerms">
-            <small>
-                En cochant cette case, vous acceptez les conditions générales d'utilisation de notre site. Cela inclut notre politique de confidentialité, nos règles de conduite et nos modalités de service.
-            </small>
-        </label>
-    </div>
-    <hr>
-    <div class="form-check">
-        {{ form_widget(form.acceptNewsletter, {
-            'attr': {
-                'class': 'form-check-input',
-            }
-        }) }}
-        <label class="form-check-label" for="user_acceptNewsletter">
-            <small>
-                En cochant cette case, vous acceptez de recevoir des e-mails de notre part concernant nos nouveaux produits, offres spéciales et actualités. Vous pouvez vous désabonner à tout moment en cliquant sur le lien présent dans chaque e-mail.
-            </small>
-        </label>
-    </div>
-    <hr>
-    <div class="form-check">
-        {{ form_widget(form.acceptBrokerageContact, {
-            'attr': {
-                'class': 'form-check-input',
-            }
-        }) }}
-        <label class="form-check-label" for="user_acceptBrokerageContact">
-            <small>
-                En cochant cette case, vous acceptez que nos services de courtage vous contactent pour vous proposer des offres personnalisées et vous accompagner dans vos démarches.
-            </small>
+            <small>{{ 'form.accept_terms'|trans }}</small>
         </label>
     </div>
 
     <hr>
-    <button class="btn btn-primary w-100 border-0" type="submit" style="background-color: #07182e;">Enregistrer</button>
+
+    <div class="form-check">
+        {{ form_widget(form.acceptNewsletter, {'attr': {'class': 'form-check-input'}}) }}
+        <label class="form-check-label" for="user_acceptNewsletter">
+            <small>{{ 'form.accept_newsletter'|trans }}</small>
+        </label>
+    </div>
+
+    <hr>
+
+    <div class="form-check">
+        {{ form_widget(form.acceptBrokerageContact, {'attr': {'class': 'form-check-input'}}) }}
+        <label class="form-check-label" for="user_acceptBrokerageContact">
+            <small>{{ 'form.accept_brokerage_contact'|trans }}</small>
+        </label>
+    </div>
+
+    <hr>
+
+    <button class="btn btn-primary w-100 border-0" type="submit" style="background-color: #07182e;">
+        {{ 'form.save'|trans }}
+    </button>
+
 
     {{ form_end(form) }}
 

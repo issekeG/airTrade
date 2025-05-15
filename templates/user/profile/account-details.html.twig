@@ -1,75 +1,72 @@
 {% extends 'user/profile/users-profile.html.twig' %}
 
- {% block ads_details %}
-     <li class="nav-item bx-border-circle">
-         <a class="nav-link collapsed bg-primary text-white" href="{{ path('user_profile',{'id':app.user.id, 'page':'details'}) }}">
-             <i class="bi bi-person-circle text-white"></i><span>Détails du compte</span>
-         </a>
-     </li>
- {% endblock %}
+{% block ads_details %}
+    <li class="nav-item bx-border-circle">
+        <a class="nav-link collapsed bg-primary text-white" href="{{ path('user_profile', {'id': app.user.id, 'page': 'details'}) }}">
+            <i class="bi bi-person-circle text-white"></i>
+            <span>{{ 'profile.details_link'|trans }}</span>
+        </a>
+    </li>
+{% endblock %}
 
 {% block content %}
     <div class="card-body pt-3">
         <!-- Bordered Tabs -->
         <ul class="nav nav-tabs nav-tabs-bordered">
-
             <li class="nav-item">
-                <button class="nav-link active" data-bs-toggle="tab">Détails</button>
+                <button class="nav-link active" data-bs-toggle="tab">
+                    {{ 'profile.details_tab'|trans }}
+                </button>
             </li>
-
         </ul>
-        <div class="tab-content pt-2">
 
+        <div class="tab-content pt-2">
             <div class="tab-pane fade show active profile-overview" id="profile-overview">
 
-                <h5 class="card-title">Mes informations</h5>
+                <h5 class="card-title">{{ 'profile.my_information'|trans }}</h5>
                 <div class="card-body mt-4">
-
                     <div class="row">
                         <div class="col-md-6">
-
                             <div class="form-group mb-4">
                                 <div class="form-control-static">
-                                    <strong>Votre pseudo :</strong>
+                                    <strong>{{ 'profile.pseudo'|trans }}</strong>
                                     <p class="mb-0">{{ user.pseudo }}</p>
                                 </div>
                             </div>
 
-
                             <div class="form-group mb-4">
                                 <div class="form-control-static">
-                                    <strong>Votre prénom :</strong>
+                                    <strong>{{ 'profile.firstname'|trans }}</strong>
                                     <p class="mb-0">{{ user.firstname }}</p>
                                 </div>
                             </div>
 
                             <div class="form-group mb-4">
                                 <div class="form-control-static">
-                                    <strong>Votre Telephone :</strong>
+                                    <strong>{{ 'profile.telephone'|trans }}</strong>
                                     <p class="mb-0">{{ user.telephone }}</p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-md-6">
-
                             <div class="form-group mb-4">
                                 <div class="form-control-static">
-                                    <strong>Votre email :</strong>
+                                    <strong>{{ 'profile.email'|trans }}</strong>
                                     <p class="mb-0">{{ user.email }}</p>
                                 </div>
                             </div>
 
                             <div class="form-group mb-4">
                                 <div class="form-control-static">
-                                    <strong>Votre pays :</strong>
+                                    <strong>{{ 'profile.country'|trans }}</strong>
                                     <p class="mb-0">{{ user.country }}</p>
                                 </div>
                             </div>
 
                             <div class="form-group mb-4">
                                 <div class="form-control-static">
-                                    <strong>Date d'inscription :</strong>
+                                    <strong>{{ 'profile.registered_at'|trans }}</strong>
                                     <p class="mb-0">{{ user.createAt | date('d/m/Y H:i') }}</p>
                                 </div>
                             </div>
@@ -82,53 +79,44 @@
                                class="form-check-input rounded-checkbox"
                                id="acceptTerms"
                                name="acceptTerms"
-                        {{ user.acceptTerms ? 'checked' : '' }}
-                        disabled
-                        >
+                                {{ user.acceptTerms ? 'checked' : '' }}
+                               disabled>
                         <label class="form-check-label" for="acceptTerms">
-                            <small>
-                                En cochant cette case, vous acceptez les conditions générales d'utilisation de notre site. Cela inclut notre politique de confidentialité, nos règles de conduite et nos modalités de service.
-                            </small>
+                            <small>{{ 'profile.accept_terms'|trans }}</small>
                         </label>
                     </div>
+
                     <hr>
                     <div class="form-check">
                         <input type="checkbox"
                                class="form-check-input rounded-checkbox"
                                id="acceptNewsletter"
                                name="acceptNewsletter"
-                        {{ user.acceptNewsletter ? 'checked' : '' }}
-                        disabled
-                        >
+                                {{ user.acceptNewsletter ? 'checked' : '' }}
+                               disabled>
                         <label class="form-check-label" for="acceptNewsletter">
-                            <small>
-                                En cochant cette case, vous acceptez de recevoir des e-mails de notre part concernant nos nouveaux produits, offres spéciales et actualités. Vous pouvez vous désabonner à tout moment en cliquant sur le lien présent dans chaque e-mail.
-                            </small>
+                            <small>{{ 'profile.accept_newsletter'|trans }}</small>
                         </label>
                     </div>
+
                     <hr>
                     <div class="form-check">
                         <input type="checkbox"
                                class="form-check-input rounded-checkbox"
                                id="acceptBrokerageContact"
                                name="acceptBrokerageContact"
-                        {{ user.acceptBrokerageContact ? 'checked' : '' }}
-                        disabled
-                        >
+                                {{ user.acceptBrokerageContact ? 'checked' : '' }}
+                               disabled>
                         <label class="form-check-label" for="acceptBrokerageContact">
-                            <small>
-                                En cochant cette case, vous acceptez que nos services de courtage vous contactent pour vous proposer des offres personnalisées et vous accompagner dans vos démarches.
-                            </small>
+                            <small>{{ 'profile.accept_brokerage_contact'|trans }}</small>
                         </label>
                     </div>
 
                     <hr>
-
                 </div>
             </div>
-
         </div><!-- End Bordered Tabs -->
-
     </div>
 {% endblock %}
+
 

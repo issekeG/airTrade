@@ -5,307 +5,405 @@
 {% endblock %}
 
 {% block main %}
-<section class="listings-section py-2 bg-light">
-    <div class="container py-5">
-        <!-- Première rangée : Galerie + Infos générales -->
-        <div class="row g-4 mt-1 mb-4">
-            <!-- Galerie Photo -->
-            <div class="col-lg-7">
-                <div class="gallery-container">
-
-                    {% if aircraft.airCraftImages|length > 0 %}
-                        <img id="mainImage" src="{{ asset('uploads/images/aircraft/' ~ aircraft.airCraftImages[0].image) }}"
-                             alt="{{ aircraft.aircraftManufacturer.name }} {{ aircraft.model }}">
-                    {% endif %}
-                </div>
-                <div class="thumbnail-container" id="thumbnailContainer">
-
-                    {% if app.user %}
-                        {# Utilisateur connecté → afficher toutes les images #}
-                        {% for image in aircraft.airCraftImages %}
-                            <img src="{{ asset('uploads/images/aircraft/' ~ image.image) }}"
-                                 class="thumbnail active"
-                                 alt="Vue"
-                                 onclick="changeMainImage(this, '{{ asset('uploads/images/aircraft/' ~ image.image) }}')">
-                        {% endfor %}
-                    {% else %}
-                        {# Utilisateur non connecté → afficher seulement 3 images + message #}
-                        {% set images = aircraft.airCraftImages|slice(0, 3) %}
-                        {% for image in images %}
-                            <img src="{{ asset('uploads/images/aircraft/' ~ image.image) }}"
-                                 class="thumbnail active"
-                                 alt="Vue"
-                                 onclick="changeMainImage(this, '{{ asset('uploads/images/aircraft/' ~ image.image) }}')">
-                        {% endfor %}
-
-                        <div class="alert alert-info text-center">
-                            <i class="bi bi-lock me-1"></i>
-                            Pour voir toutes les images, <a href="{{ path('app_login') }}" class="fw-bold text-primary">connectez-vous</a>.
-                        </div>
-                    {% endif %}
-
-                </div>
-            </div>
-
-            <!-- Informations générales -->
-            <div class="col-lg-5">
-                <div class="card border-0 shadow-sm p-4 h-100">
-                    <div class="justify-content-between align-items-start mb-4">
-                        <div>
-                            <h1 class="h3 fw-bold">{{ aircraft.yearOfManufacture }} {{ aircraft.aircraftManufacturer.name }} {{ aircraft.model }}</h1>
-                            <span class="badge bg-primary-subtle text-primary">Turboprop Aircraft</span>
-                        </div>
-                        <div class="price-tag">${{ aircraft.price }}</div>
-                        <small>Emplacement de l'avion : {{ aircraft.city }} {{ aircraft.country }}</small>
+    <section class="listings-section py-2 bg-light">
+        <div class="container py-5">
+            <!-- Première rangée : Galerie + Infos générales -->
+            <div class="row g-4 mt-1 mb-4">
+                <!-- Galerie Photo -->
+                <div class="col-lg-7">
+                    <div class="gallery-container">
+                        {% if aircraft.video is not empty and app.user %}
+                            <!-- Afficher la vidéo en premier si elle existe -->
+                            <video id="mainVideo" controls class="w-100" poster="{{ aircraft.airCraftImages|length > 0 ? asset('uploads/images/aircraft/' ~ aircraft.airCraftImages[0].image) : '' }}" style="display: block;">
+                                <source src="{{ asset('uploads/video/aircraft_video/' ~ aircraft.video) }}" type="video/mp4">
+                                {{ 'video.no_html5_support'|trans }}
+                            </video>
+                            {% if aircraft.airCraftImages|length > 0 %}
+                                <img id="mainImage" src="{{ asset('uploads/images/aircraft/' ~ aircraft.airCraftImages[0].image) }}"
+                                     alt="{{ aircraft.aircraftManufacturer.name }} {{ aircraft.model }}" style="display: none;">
+                            {% endif %}
+                        {% elseif aircraft.airCraftImages|length > 0 %}
+                            <!-- Sinon afficher la première image comme avant -->
+                            <img id="mainImage" src="{{ asset('uploads/images/aircraft/' ~ aircraft.airCraftImages[0].image) }}"
+                                 alt="{{ aircraft.aircraftManufacturer.name }} {{ aircraft.model }}">
+                        {% endif %}
                     </div>
+                    <div class="thumbnail-container" id="thumbnailContainer">
+                        {% if aircraft.video is not empty and app.user %}
+                            <!-- Miniature pour la vidéo -->
+                            <img src="{{ asset('images/thumbnail/img.png') }}"
+                                 class="thumbnail active"
+                                 alt="Vidéo"
+                                 onclick="showMainVideo('{{ asset('uploads/video/aircraft_video/' ~ aircraft.video) }}')">
+                        {% endif %}
 
-                    <div class="d-flex gap-2 mb-4 flex-wrap">
-                        <button class="btn btn-outline-danger">
-                            <i class="bi bi-flag me-1"></i> Signaler
-                        </button>
+                        {% if app.user %}
+                            {# Utilisateur connecté → afficher toutes les images #}
+                            {% for image in aircraft.airCraftImages %}
+                                <img src="{{ asset('uploads/images/aircraft/' ~ image.image) }}"
+                                     class="thumbnail {% if aircraft.video is empty and loop.first %}active{% endif %}"
+                                     alt="Vue"
+                                     onclick="changeMainImage(this, '{{ asset('uploads/images/aircraft/' ~ image.image) }}')">
+                            {% endfor %}
+                        {% else %}
+                            {# Utilisateur non connecté → afficher seulement 3 images + message #}
+                            {% set images = aircraft.airCraftImages|slice(0, 3) %}
+                            {% for image in images %}
+                                <img src="{{ asset('uploads/images/aircraft/' ~ image.image) }}"
+                                     class="thumbnail {% if aircraft.video is empty and loop.first %}active{% endif %}"
+                                     alt="Vue"
+                                     onclick="changeMainImage(this, '{{ asset('uploads/images/aircraft/' ~ image.image) }}')">
+                            {% endfor %}
 
-
-                        <!-- Bouton Dropdown Partager -->
-                        <div class="dropdown">
-                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="shareDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-share-fill me-1"></i> Partager
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="shareDropdown">
-                                {% set shareUrl = absolute_url(path('app_aircraft_show', {'slug': aircraft.slug})) %}
-
-                                <li>
-                                    <a class="dropdown-item" href="https://www.facebook.com/sharer/sharer.php?u={{ shareUrl }}" target="_blank">
-                                        <i class="bi bi-facebook me-2"></i> Facebook
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="https://wa.me/?text={{ shareUrl | url_encode }}" target="_blank">
-                                        <i class="bi bi-whatsapp me-2"></i> WhatsApp
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="https://www.linkedin.com/shareArticle?mini=true&url={{ shareUrl }}" target="_blank">
-                                        <i class="bi bi-linkedin me-2"></i> LinkedIn
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="https://twitter.com/intent/tweet?url={{ shareUrl }}" target="_blank">
-                                        <i class="bi bi-twitter me-2"></i> Twitter
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                            <div class="alert alert-info text-center thumbnail-connect">
+                                <i class="bi bi-lock me-1"></i>
+                                {{ 'alert.view_images_login_0'|trans }}, <a href="{{ path('app_login') }}" class="fw-bold text-primary"> {{ 'alert.view_images_login_1'|trans }}</a>.
+                            </div>
+                        {% endif %}
                     </div>
+                </div>
 
-
-                    <div class="detail-section">
-                        <h3 class="h5 fw-semibold"><i class="fas fa-user-tie detail-icon"></i> Information du vendeur<a href="{{ path('user_public_profile',{ 'pseudo':aircraft.publishedBy.pseudo } )}}"></a></h3>
-                        <div class="d-flex align-items-center gap-3">
+                <!-- Informations générales -->
+                <div class="col-lg-5">
+                    <div class="card border-0 shadow-sm p-4 h-100">
+                        <div class="justify-content-between align-items-start mb-4">
                             <div>
-                                <h4 class="h6 mb-1">{{ aircraft.publishedBy.pseudo }}</h4>
-                                {% if app.user %}
-                                    <p class="mb-1 small"><i class="fas fa-phone me-2"></i> {{ aircraft.publishedBy.telephone}} </p>
-                                    <p class="mb-0 small"><i class="fas fa-envelope me-2"></i> {{ aircraft.publishedBy.email }}</p>
+                                {% if aircraft.isReported %}
+                                    <h4 class="bold text-danger">
+                                        <small>{{ 'aircraft.reported'|trans }}</small>
+                                        <i class="bi bi-flag me-1"></i></h4>
+                                {% endif %}
+                                <h1 class="h3 fw-bold">{{ aircraft.yearOfManufacture }} {{ aircraft.aircraftManufacturer.name }} {{ aircraft.model }}</h1>
+                                <span class="badge bg-primary-subtle text-primary">{{aircraft.aircraftCategory.name}}</span>
+                            </div>
+                            <div class="price-tag">${{ aircraft.price }}</div>
+                            <small>{{ 'aircraft.emplacement'|trans }} : {{ aircraft.city }} {{ aircraft.country }}</small>
+                        </div>
+
+                        <div class="d-flex gap-2 mb-4 flex-wrap">
+
+                            {% include 'aircraft/_repport_form.html.twig' %}
+
+                            <!-- Bouton Dropdown Partager -->
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="shareDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-share-fill me-1"></i> {{ 'share.button'|trans }}
+                                </button>
+
+                                <ul class="dropdown-menu" aria-labelledby="shareDropdown">
+                                    {% set shareUrl = absolute_url(path('app_aircraft_show', {'slug': aircraft.slug})) %}
+
+                                    <li>
+                                        <a class="dropdown-item" href="https://www.facebook.com/sharer/sharer.php?u={{ shareUrl }}" target="_blank">
+                                            <i class="bi bi-facebook me-2"></i> Facebook
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="https://wa.me/?text={{ shareUrl | url_encode }}" target="_blank">
+                                            <i class="bi bi-whatsapp me-2"></i> WhatsApp
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="https://www.linkedin.com/shareArticle?mini=true&url={{ shareUrl }}" target="_blank">
+                                            <i class="bi bi-linkedin me-2"></i> LinkedIn
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="https://twitter.com/intent/tweet?url={{ shareUrl }}" target="_blank">
+                                            <i class="bi bi-twitter me-2"></i> Twitter
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="detail-section">
+                            <h3 class="h5 fw-semibold">
+                                <i class="fas fa-user-tie detail-icon"></i>
+                                {{ 'aircraft.seller_info'|trans }}
+                                <a href="{{ path('user_public_profile', { 'pseudo': aircraft.publishedBy.pseudo }) }}"></a>
+                            </h3>
+                            <div class="d-flex align-items-center gap-3">
+                                <div>
+                                    <h4 class="h6 mb-1">{{ aircraft.publishedBy.pseudo }}</h4>
+                                    {% if app.user %}
+                                        <p class="mb-1 small">
+                                            <i class="fas fa-phone me-2"></i>
+                                            {{ aircraft.publishedBy.telephone }}
+                                        </p>
+                                        <p class="mb-0 small">
+                                            <i class="fas fa-envelope me-2"></i>
+                                            {{ aircraft.publishedBy.email }}
+                                        </p>
+                                    {% endif %}
+                                </div>
+
+                                {% if not app.user %}
+                                    <button
+                                            class="btn btn-outline-primary ms-auto"
+                                            data-bs-toggle="popover"
+                                            data-bs-placement="top"
+                                            data-bs-html="true"
+                                            data-bs-trigger="focus"
+                                            title="{{ 'aircraft.access_restricted'|trans }}"
+                                            data-bs-content="{{ 'aircraft.connect_to_view_contacts'|trans({'%login_url%': path('app_login')}) }}"
+
+                                    >
+
+                                        <i class="fas fa-eye me-1"></i>
+                                        {{ 'aircraft.view_contacts'|trans }}
+                                    </button>
+
                                 {% endif %}
                             </div>
+                        </div>
 
-                            {% if not app.user %}
-                                <button
-                                        class="btn btn-outline-primary ms-auto"
+                        <div class="d-grid gap-3 mt-4">
+                            <a href="{{ path('user_public_profile', { 'pseudo': aircraft.publishedBy.pseudo }) }}">
+                                <i class="bi bi-eye me-2"></i>
+                                {{ 'aircraft.view_seller_profile'|trans }}
+                            </a>
+                            {% if app.user %}
+                                <a class="btn text-white"
+                                   style="background-color: #1A0B8C; display: inline-block;"
+                                   type="button"
+                                   data-bs-toggle="offcanvas"
+                                   data-bs-target="#offcanvasExample"
+                                   aria-controls="offcanvasExample">
+                                    {{ 'aircraft.contact_seller'|trans }}
+                                </a>
+                                {% include 'intern_contact/contactOffcanvas.html.twig' %}
+                            {% else %}
+                                <a
+                                        class="btn p-x-2 text-white d-inline-flex align-items-center col-md-8"
                                         data-bs-toggle="popover"
+                                        style="background-color: #1A0B8C; display: inline-block;"
                                         data-bs-placement="top"
                                         data-bs-html="true"
                                         data-bs-trigger="focus"
-                                        title="Accès réservé"
-                                        data-bs-content='Veuillez <a href="{{ path("app_login") }}" class="text-primary fw-bold" >vous connecter</a> pour voir les contacts.'
+                                        title="{{ 'aircraft.access_restricted'|trans }}"
+                                        data-bs-content="{{ 'aircraft.connect_to_contact_seller'|trans({'%login_url%': path('app_login')}) }}"
+
                                 >
-                                    <i class="fas fa-eye me-1"></i> Voir les contacts
-                                </button>
+                                    <i class="bi bi-envelope me-1"></i>
+                                    {{ 'aircraft.contact_seller'|trans }}
+                                </a>
                             {% endif %}
-
-
                         </div>
 
                     </div>
+                </div>
+            </div>
 
-                    <div class="d-grid gap-3 mt-4">
-                        <a href="{{ path('user_public_profile',{ 'pseudo':aircraft.publishedBy.pseudo } )}}">
-                            <i class="bi bi-eye me-2"></i> Voir le profil du vendeur
-                        </a>
-                        {% if app.user %}
-                            <button class="btn btn-primary btn-lg">
-                                <i class="bi bi-phone me-2"></i> Contacter le vendeur
-                            </button>
-                            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                                Button with data-bs-target
-                            </button>
-                            {% include 'intern_contact/contactOffcanvas.html.twig' %}
-                        {% else %}
-                            <button
-                                    class="btn btn-primary p-x-2 d-inline-flex align-items-center col-md-8"
-                                    data-bs-toggle="popover"
-                                    data-bs-placement="top"
-                                    data-bs-html="true"
-                                    data-bs-trigger="focus"
-                                    title="Accès réservé"
-                                    data-bs-content='Veuillez <a href="{{ path("app_login") }}" class="text-primary fw-bold">vous connecter</a> pour contacter le vendeur.'
-                            >
-                                <i class="bi bi-envelope me-1"></i> Contacter le vendeur
-                            </button>
-                        {% endif %}
+            <!-- Deuxième rangée : Autres caractéristiques -->
+            <div class="row g-4">
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm p-4">
+                        <div class="detail-section">
+                            <h3 class="h5 fw-semibold">
+                                <i class="fas fa-list-alt detail-icon"></i>
+                                {{ 'aircraft.characteristics'|trans }}
+                            </h3>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="specs-badge">
+                                    <strong>{{ 'aircraft.serial_number'|trans }} :</strong> {{ aircraft.serialNumber }}
+                                </span>
+                                                            <span class="specs-badge">
+                                    <strong>{{ 'aircraft.manufacturer'|trans }} :</strong> {{ aircraft.aircraftManufacturer.name }}
+                                </span>
+                                                            <span class="specs-badge">
+                                    <strong>{{ 'aircraft.model'|trans }} :</strong> {{ aircraft.model }}
+                                </span>
+                                                            <span class="specs-badge">
+                                    <strong>{{ 'aircraft.year_of_manufacture'|trans }} :</strong> {{ aircraft.yearOfManufacture | date('Y') }}
+                                </span>
+                                                            <span class="specs-badge">
+                                    <strong>{{ 'aircraft.status'|trans }} :</strong> {{ aircraft.status }}
+                                </span>
+                                                            <span class="specs-badge">
+                                    <strong>{{ 'aircraft.registration_country'|trans }} :</strong> {{ aircraft.registrationCountry }}
+                                </span>
+                                                            <span class="specs-badge">
+                                    <strong>{{ 'aircraft.service_entry_date'|trans }} :</strong> {{ aircraft.serviceEntryDate | date('Y') }}
+                                </span>
+                            </div>
 
+                            <h3 class="h5 fw-semibold mt-4">
+                                <i class="fas fa-list-alt detail-icon"></i> {{ 'aircraft.description'|trans }}
+                            </h3>
+                            <p>
+                                {{ aircraft.description | raw}}
+                            </p>
+                        </div>
+
+                        <div class="detail-section">
+                            <i class="fas fa-cogs detail-icon"></i> {{ 'aircraft.features.others'|trans }}
+                            <div class="row">
+                                {% set half = (aircraftSpecs|length / 2)|round(0, 'ceil') %}
+                                <div class="col-md-6">
+                                    <table class="table table-bordered table-striped">
+                                        <tbody>
+                                        {% set excludedKeys = ['displayRegistrationNumber', 'displaySerialNumber'] %}
+
+                                        {% for key, value in aircraftSpecs|slice(0, half) %}
+                                            {% if key not in excludedKeys %}
+                                                <tr>
+                                                    <th><small>{{ ('aircraftProperties.' ~ key)|trans({}, 'aircraftproperties') }}</small></th>
+                                                    <td>
+                                                        <small>
+                                                            {% if value is same as(true) or value == 1 %}
+                                                                {{ ('aircraftPropertiesValues.' ~ value)|trans({}, 'aircraftpropertiesvalues') }}
+                                                            {% elseif value is same as(false) or value == 0 %}
+                                                                {{ ('aircraftPropertiesValues.' ~ value)|trans({}, 'aircraftpropertiesvalues') }}
+                                                            {% else %}
+                                                                {{ value }}
+                                                            {% endif %}
+                                                        </small>
+                                                    </td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-6">
+                                    <table class="table table-bordered table-striped">
+                                        <tbody>
+                                        {% for key, value in aircraftSpecs|slice(half) %}
+                                            {% if key not in ['champAExclure', 'champBExclure'] %}
+                                                <tr>
+                                                    <th><small>{{ ('aircraftProperties.' ~ key)|trans({}, 'aircraftproperties') }}</small></th>
+                                                    <td>
+                                                        <small>
+                                                            {% if value is same as(true) or value == 1 %}
+                                                                {{ ('aircraftPropertiesValues.' ~ value)|trans({}, 'aircraftpropertiesvalues') }}
+                                                            {% elseif value is same as(false) or value == 0 %}
+                                                                {{ ('aircraftPropertiesValues.' ~ value)|trans({}, 'aircraftpropertiesvalues') }}
+                                                            {% else %}
+                                                                {{ value }}
+                                                            {% endif %}
+                                                        </small>
+                                                    </td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="detail-section mt-4">
+                            <h3 class="h5 fw-semibold mb-3">
+                                <i class="fas fa-file-alt detail-icon"></i> {{ 'aircraft.documents.title'|trans }}
+                            </h3>
+
+                            {% if aircraft.aircraftDocuments is not empty %}
+                                <ul class="list-group">
+                                    {% for doc in aircraft.aircraftDocuments %}
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span>
+                                            <i class="fas fa-file-pdf text-danger me-2"></i>
+                                            {{ doc.name }}
+                                        </span>
+                                            <a href="{{ asset('uploads/documents/aircraft_document/' ~ doc.name) }}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                                {{ 'aircraft.documents.view'|trans }}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                <p class="text-muted">{{ 'aircraft.documents.none'|trans }}</p>
+                            {% endif %}
+                        </div>
 
                     </div>
-
                 </div>
             </div>
         </div>
 
-        <!-- Deuxième rangée : Autres caractéristiques -->
-        <div class="row g-4">
-            <div class="col-12">
-                <div class="card border-0 shadow-sm p-4">
-                    <div class="detail-section">
-                        <h3 class="h5 fw-semibold"><i class="fas fa-list-alt detail-icon"></i> Caractéristiques</h3>
-                        <div class="d-flex flex-wrap gap-2">
-                            <span class="specs-badge"><strong>Numéro de série :</strong> {{ aircraft.serialNumber }}</span>
-                            <span class="specs-badge"><strong>Fabricant :</strong> {{ aircraft.aircraftManufacturer.name}} </span>
-                            <span class="specs-badge"><strong>Modèle :</strong> {{ aircraft.model}} </span>
-                            <span class="specs-badge"><strong>Année de fabrication :</strong> {{ aircraft.yearOfManufacture | date('Y')}} </span>
-                            <span class="specs-badge"><strong>Statut :</strong> {{ aircraft.status }}</span>
-                            <span class="specs-badge"><strong>Pays d'immatriculation:</strong> {{ aircraft.registrationCountry }}</span>
-                            <span class="specs-badge"><strong>Date de mise en service :</strong> {{ aircraft.serviceEntryDate | date('Y') }}</span>
-                        </div>
-                        <h3 class="h5 fw-semibold mt-4"><i class="fas fa-list-alt detail-icon"></i> Description</h3>
-                        <p>
-                            {{ aircraft.description | raw}}
-                        </p>
+        <script>
+            function showMainVideo(videoSrc) {
+                const mainVideo = document.getElementById('mainVideo');
+                const mainImg = document.getElementById('mainImage');
+                const thumbnailContainer = document.getElementById('thumbnailContainer');
 
+                // Afficher la vidéo et cacher l'image
+                if (mainVideo) {
+                    mainVideo.style.display = 'block';
+                    mainVideo.src = videoSrc;
+                    mainVideo.load();
+                    mainVideo.play();
+                }
+                if (mainImg) {
+                    mainImg.style.display = 'none';
+                }
 
-                    </div>
+                // Gestion de la classe active
+                document.querySelectorAll('.thumbnail').forEach(img => img.classList.remove('active'));
+                event.target.classList.add('active');
 
-                    <div class="detail-section">
-                        <h3 class="h5 fw-semibold"><i class="fas fa-cogs detail-icon"></i> Autres caracteristiques</h3>
-                        <div class="row">
-                            {% set half = (aircraftSpecs|length / 2)|round(0, 'ceil') %}
-                            <div class="col-md-6">
-                                <table class="table table-bordered table-striped">
-                                    <tbody>
-                                    {% set excludedKeys = ['displayRegistrationNumber', 'displaySerialNumber'] %}
-
-                                    {% for key, value in aircraftSpecs|slice(0, half) %}
-                                        {% if key not in excludedKeys %}
-                                            <tr>
-                                                <th><small>{{ ('aircraftProperties.' ~ key)|trans({}, 'aircraftproperties') }}</small></th>
-                                                <td>
-                                                    <small>
-                                                        {% if value is same as(true) or value == 1 %}
-                                                            {{ ('aircraftPropertiesValues.' ~ value)|trans({}, 'aircraftpropertiesvalues') }}
-                                                        {% elseif value is same as(false) or value == 0 %}
-                                                            {{ ('aircraftPropertiesValues.' ~ value)|trans({}, 'aircraftpropertiesvalues') }}
-                                                        {% else %}
-                                                            {{ value }}
-                                                        {% endif %}
-                                                    </small>
-                                                </td>
-                                            </tr>
-                                        {% endif %}
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="col-md-6">
-                                <table class="table table-bordered table-striped">
-                                    <tbody>
-                                    {% for key, value in aircraftSpecs|slice(half) %}
-                                        {% if key not in ['champAExclure', 'champBExclure'] %}
-                                            <tr>
-                                                <th><small>{{ ('aircraftProperties.' ~ key)|trans({}, 'aircraftproperties') }}</small></th>
-                                                <td>
-                                                    <small>
-                                                        {% if value is same as(true) or value == 1 %}
-                                                            {{ ('aircraftPropertiesValues.' ~ value)|trans({}, 'aircraftpropertiesvalues') }}
-                                                        {% elseif value is same as(false) or value == 0 %}
-                                                            {{ ('aircraftPropertiesValues.' ~ value)|trans({}, 'aircraftpropertiesvalues') }}
-                                                        {% else %}
-                                                            {{ value }}
-                                                        {% endif %}
-                                                    </small>
-                                                </td>
-                                            </tr>
-                                        {% endif %}
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="detail-section mt-4">
-                        <h3 class="h5 fw-semibold mb-3">
-                            <i class="fas fa-file-alt detail-icon"></i> Documents
-                        </h3>
-
-                        {% if aircraft.aircraftDocuments is not empty %}
-                            <ul class="list-group">
-                                {% for doc in aircraft.aircraftDocuments %}
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <span>
-                                        <i class="fas fa-file-pdf text-danger me-2"></i>
-                                        {{ doc.name }}
-                                    </span>
-                                        <a href="{{ asset('uploads/documents/aircraft_document/' ~ doc.name) }}" target="_blank" class="btn btn-sm btn-outline-primary">
-                                            Voir
-                                        </a>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        {% else %}
-                            <p class="text-muted">Aucun document disponible.</p>
-                        {% endif %}
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function changeMainImage(thumbnail, newSrc) {
-            const mainImg = document.getElementById('mainImage');
-            const thumbnailContainer = document.getElementById('thumbnailContainer');
-
-            // Transition pour l'image principale
-            mainImg.style.opacity = '0';
-            setTimeout(() => {
-                mainImg.src = newSrc;
-                mainImg.style.opacity = '1';
-            }, 200);
-
-            // Gestion de la classe active
-            document.querySelectorAll('.thumbnail').forEach(img => img.classList.remove('active'));
-            thumbnail.classList.add('active');
-
-            // Défilement horizontal dans le conteneur des miniatures uniquement
-            const thumbnailRect = thumbnail.getBoundingClientRect();
-            const containerRect = thumbnailContainer.getBoundingClientRect();
-            const scrollOffset = thumbnailRect.left - containerRect.left - (containerRect.width / 2) + (thumbnailRect.width / 2);
-            thumbnailContainer.scrollBy({
-                left: scrollOffset,
-                behavior: 'smooth'
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const mainImg = document.getElementById('mainImage');
-            if (mainImg) {
-                mainImg.addEventListener('click', () => window.open(mainImg.src, '_blank'));
+                // Défilement horizontal
+                const thumbnailRect = event.target.getBoundingClientRect();
+                const containerRect = thumbnailContainer.getBoundingClientRect();
+                const scrollOffset = thumbnailRect.left - containerRect.left - (containerRect.width / 2) + (thumbnailRect.width / 2);
+                thumbnailContainer.scrollBy({
+                    left: scrollOffset,
+                    behavior: 'smooth'
+                });
             }
-        });
-    </script>
 
-</section>
+            function changeMainImage(thumbnail, newSrc) {
+                const mainVideo = document.getElementById('mainVideo');
+                const mainImg = document.getElementById('mainImage');
+                const thumbnailContainer = document.getElementById('thumbnailContainer');
+
+                // Cacher la vidéo et afficher l'image
+                if (mainVideo) {
+                    mainVideo.style.display = 'none';
+                    mainVideo.pause();
+                }
+                if (mainImg) {
+                    mainImg.style.display = 'block';
+
+                    // Transition pour l'image principale
+                    mainImg.style.opacity = '0';
+                    setTimeout(() => {
+                        mainImg.src = newSrc;
+                        mainImg.style.opacity = '1';
+                    }, 200);
+                }
+
+                // Gestion de la classe active
+                document.querySelectorAll('.thumbnail').forEach(img => img.classList.remove('active'));
+                thumbnail.classList.add('active');
+
+                // Défilement horizontal dans le conteneur des miniatures
+                const thumbnailRect = thumbnail.getBoundingClientRect();
+                const containerRect = thumbnailContainer.getBoundingClientRect();
+                const scrollOffset = thumbnailRect.left - containerRect.left - (containerRect.width / 2) + (thumbnailRect.width / 2);
+                thumbnailContainer.scrollBy({
+                    left: scrollOffset,
+                    behavior: 'smooth'
+                });
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const mainImg = document.getElementById('mainImage');
+                if (mainImg) {
+                    mainImg.addEventListener('click', () => window.open(mainImg.src, '_blank'));
+                }
+
+                const mainVideo = document.getElementById('mainVideo');
+                if (mainVideo) {
+                    mainVideo.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        // Empêche l'ouverture dans un nouvel onglet mais permet les contrôles vidéo
+                    });
+                }
+            });
+        </script>
+    </section>
 {% endblock %}
 
 {% block footer %}

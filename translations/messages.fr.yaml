@@ -1,0 +1,520 @@
+aircraft_category:
+  edit:
+    title: "Modifier une catégorie d'avion"
+    header: "Éditer la catégorie d'avion"
+  back_to_list: "Retour à la liste"
+
+
+form:
+  save: "Enregistrer"
+  update: "Mettre à jour"
+  previous: "Précédent"
+  next: "Suivant"
+  finish: "Terminer"
+  pseudo: "Votre pseudo"
+  name_and_firstname: "Nom & Prénom"
+  email: "Votre email"
+  phone_number: "Le numéro de téléphone"
+  country: "Votre pays"
+  password: "Votre mot de passe"
+  submit: "Envoyer"
+  firstname: "Votre prénom"
+  telephone: "Votre téléphone"
+  registration_date: "La date de votre inscription"
+  accept_terms: "En cochant cette case, vous acceptez les conditions générales d'utilisation de notre site. Cela inclut notre politique de confidentialité, nos règles de conduite et nos modalités de service."
+  accept_newsletter: "En cochant cette case, vous acceptez de recevoir des e-mails de notre part concernant nos nouveaux produits, offres spéciales et actualités. Vous pouvez vous désabonner à tout moment en cliquant sur le lien présent dans chaque e-mail."
+  accept_brokerage_contact: "En cochant cette case, vous acceptez que nos services de courtage vous contactent pour vous proposer des offres personnalisées et vous accompagner dans vos démarches."
+
+
+reset:
+  title: "Mot de passe oublié ?"
+  instructions: "Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe."
+  email_label: "Adresse mail"
+  submit: "Réinitialiser le mot de passe"
+  back_to_login: "Retourner à la page de connexion"
+  password:
+    new: "Nouveau mot de passe"
+    new_placeholder: "Entrez votre nouveau mot de passe"
+    repeat: "Répétez le mot de passe"
+    repeat_placeholder: "Répétez votre nouveau mot de passe"
+    email_sent_notice: >
+        Si un compte correspondant à votre adresse e-mail existe, un e-mail vient de vous être envoyé contenant un lien que vous pouvez utiliser pour réinitialiser votre mot de passe. Ce lien expirera dans %expiration%.
+    no_email: >
+        Si vous ne recevez pas d'e-mail, veuillez vérifier votre dossier de spam ou <a href="%retry_url%">réessayez</a>.
+    back_to_login: "Retourner à la page de connexion"
+app:
+  logo_text: "AirTradeLogoIci"
+  thank_you: "Merci"
+  logo: "AirTradeLogo"
+
+
+
+
+
+login:
+  email: "E-mail"
+  password: "Mot de passe"
+  submit: "Se connecter"
+  forgot_password: "Mot de passe oublié ?"
+  button: "Se connecter"
+  error:
+    username_required: "Veuillez entrer votre identifiant."
+    password_required: "Veuillez entrer votre mot de passe !"
+    invalid_credentials: "Identifiant ou mot de passe incorrect"
+  terms: >
+    En cliquant sur "Se connecter", vous acceptez d'être lié par nos Conditions d'utilisation et notre Politique de confidentialité.
+  no_account: "Avez-vous un compte ?"
+  create_account: "Créer un compte"
+
+
+site:
+  logo_text: AirTradeLogo
+
+
+
+register:
+  header: Rejoindre les passionnés et professionnels de l’aviation
+  success:
+    title: Inscription réussie !
+    message: Merci pour votre inscription.<br>Pour finaliser la création de votre compte, il vous suffit de confirmer votre adresse e-mail.
+    confirmation: Un e-mail de confirmation vous a été envoyé à l’adresse que vous avez fournie lors de l’inscription.<br>Veuillez cliquer sur le lien qu’il contient pour activer votre compte.
+    spam: Si vous ne voyez pas cet e-mail, pensez à vérifier votre dossier de courriers indésirables (spam).
+    after_confirmation: Après confirmation, vous pourrez accéder à votre espace personnel et profiter pleinement de nos services.
+
+  button: "S'inscrire"
+  welcome_text: "Rejoindre les passionnés et professionnels de l’aviation"
+  pseudo: "Votre pseudo"
+  name: "Votre Nom & Prénom"
+  phone: "Votre téléphone"
+  email: "Votre email"
+  country: "Votre pays"
+  password: "Votre mot de passe"
+  terms: >
+    En cochant cette case, vous acceptez les conditions générales d'utilisation de notre site. Cela inclut notre politique de confidentialité, nos règles de conduite et nos modalités de service.
+  newsletter: >
+    En cochant cette case, vous acceptez de recevoir des e-mails de notre part concernant nos nouveaux produits, offres spéciales et actualités. Vous pouvez vous désabonner à tout moment en cliquant sur le lien présent dans chaque e-mail.
+  broker_contact: >
+    En cochant cette case, vous acceptez que nos services de courtage vous contactent pour vous proposer des offres personnalisées et vous accompagner dans vos démarches.
+  submit: "Enregistrer"
+
+
+auth:
+  login: "Se connecter"
+
+
+admin:
+  list:
+    title: "Liste des administrateurs"
+  search:
+    placeholder: "Recherche avec le code ...."
+    aria_label: "Entre le code ...."
+  create:
+    button: "Créer"
+
+table:
+  action: "Action"
+  pseudo: "Pseudo"
+  name: "Prénom & Nom"
+  email: "Email"
+  phone: "Téléphone"
+  registration_date: "Date d'inscription"
+  role: "Rôle"
+  ads_count: "Nombre d'annonces"
+
+category:
+  list:
+    title: "Liste des Catégories (%first% - %last% sur %total%)"
+  button:
+    create: "Créer"
+  modal:
+    add_title: "Ajouter une catégorie"
+    edit_title: "Modifier la catégorie"
+  form:
+    name: "Nom"
+
+
+
+button:
+  cancel: "Annuler"
+  save: "Enregistrer"
+  back_home: "Retour à l’accueil"
+  delete: "Supprimer"
+
+confirm:
+  delete: "Êtes-vous sûr de vouloir supprimer cet élément ?"
+
+
+
+
+
+delete_confirmation: "Êtes-vous sûr de vouloir supprimer cet élément ?"
+delete_button: "Supprimer"
+
+share:
+  button: "Partager"
+
+aircraft:
+  delete_confirmation: "Êtes-vous sûr de vouloir supprimer cet élément ?"
+  delete_button: "Supprimer"
+  report_confirmation: "Êtes-vous sûr de vouloir signaler cet élément ?"
+  report_button: "Signaler"
+  shadow_confirmation: "Êtes-vous sûr de vouloir bloquer ou débloquer cet élément ?"
+  block_button: "Bloquer"
+  unblock_button: "Débloquer"
+  form_info: "Saisissez les informations sur l'avion"
+  serial_number: "Numéro de série"
+  manufacturer: "Fabricant"
+  model: "Modèle"
+  year_of_manufacture: "Année de fabrication"
+  status: "Statut"
+  registration_country: "Pays d'immatriculation"
+  service_entry_date: "Date de mise en service"
+  location: "Localisation"
+  show_details: "Voir les détails"
+  documents:
+    title: "Documents"
+    view: "Voir"
+    none: "Aucun document disponible."
+  features:
+    others: "Autres caractéristiques"
+  description: "Description"
+  seller_info: "Information du vendeur"
+  access_restricted: "Accès réservé"
+
+  connect_to_view_contacts: "Veuillez <a href=\"%login_url%\" class=\"text-primary fw-bold\">vous connecter</a> pour voir les contacts."
+  connect_to_contact_seller: "Veuillez <a href=\"%login_url%\" class=\"text-primary fw-bold\">vous connecter</a> pour contacter le vendeur."
+
+  view_contacts: "Voir les contacts"
+  view_seller_profile: "Voir le profil du vendeur"
+  contact_seller: "Contacter le vendeur"
+  characteristics: "Caractéristiques"
+  reported: "Cette annonce a été signalée"
+  turboprop: "Avion à turbopropulseur"
+  emplacement: "Emplacement de l'avion :"
+  list_published: "Liste des annonces publiées (%first% - %last% sur %total%)"
+  search_placeholder: "Recherche par pseudo ou email ..."
+  search_label: "Entrer le pseudo ou email ..."
+  category: "Catégorie"
+  price: "Prix"
+  total_hours: "Heures totales"
+  details_button: "Voir les détails"
+
+seller:
+  info_title: "Information du vendeur"
+  username: "Pseudo"
+  contact: "Contact"
+  email: "Email"
+  phone: "Téléphone"
+  ads_count: "Nombre d'annonces"
+  login_to_see_info: "Veuillez vous connecter pour voir les informations du vendeur"
+
+
+
+
+
+alert:
+  view_images_login_0: "Pour voir toutes les images"
+  view_images_login_1: "connectez-vous"
+
+video:
+  no_html5_support: "Votre navigateur ne supporte pas les vidéos HTML5."
+
+
+
+aircraft_manufacturer:
+  delete_confirm: "Êtes-vous sûr de vouloir supprimer cet élément ?"
+  delete_button: "Supprimer"
+  edit_title: "Modifier le constructeur"
+  edit_heading: "Modifier les informations du constructeur"
+  update_button: "Mettre à jour"
+  back_to_list: "Retour à la liste"
+  new_title: "Nouveau constructeur"
+  new_heading: "Créer un nouveau constructeur d'avion"
+  create_button: "Créer"
+  list: "Liste des constructeurs (%first% - %last% sur %total%)"
+  search_placeholder: "Recherche avec nom ..."
+  search_label: "Entre le nom ..."
+  create: "Créer"
+  add_title: "Ajouter un constructeur"
+  name: "Nom"
+  ad_count: "Nombre d'annonces"
+
+
+filter:
+  apply_filters: "Appliquer les filtres"
+  categories: "Catégories"
+  manufacturer: "Constructeur"
+  year_built: "Année de construction"
+  min_year: "Année min"
+  max_year: "Année max"
+  price: "Prix"
+  min_price: "Prix min"
+  max_price: "Prix max"
+  total_hours: "Heures totales"
+  min_hours: "Nombre d'heure min"
+  max_hours: "Nombre d'heure max"
+  seats_number: "Nombre de sièges"
+  min_seats: "Nombre de sièges min"
+  max_seats: "Nombre de sièges max"
+  publication_date: "Date de publication"
+  min_date: "Date de publication min"
+  max_date: "Date de publication max"
+  status_name: "Status"
+  status:
+    used: "Utilisé"
+    new: "Neuf"
+    used_condition: "Occasion"
+  registration_number: "Num d'enregistrement"
+  title: "Filtrer"
+  this_month: "Ce mois-ci"
+  this_year: "Cette année"
+
+
+
+user:
+# translations/messages.fr.yaml
+  list_title: "Liste des utilisateurs actifs"
+  search_placeholder: "Recherche par pseudo ou email..."
+  action: "Action"
+  username: "Pseudo"
+  full_name: "Prénom & Nom"
+  email: "Email"
+  phone: "Téléphone"
+  registration_date: "Date d'inscription"
+  role: "Rôle"
+  view_profile: "Voir le profil"
+  lock_unlock: "Vérification"
+  verified: "Vérifié"
+  not_verified: "Non vérifié"
+  no_users: "Aucun utilisateur trouvé"
+  from_to_total: "sur %total%"
+  list_verified: "Liste des utilisateurs vérifiés"
+  delete_confirm: "Êtes-vous sûr de vouloir supprimer cet élément ?"
+  delete_button: "Supprimer"
+  profile:
+    account_details: "Détails du compte"
+    details_tab: "Détails"
+    my_info: "Mes informations"
+    pseudo: "Votre pseudo"
+    firstname: "Votre prénom"
+    telephone: "Votre téléphone"
+    email: "Votre email"
+    country: "Votre pays"
+    created_at: "Date d'inscription"
+    accept_terms_text: "En cochant cette case, vous acceptez les conditions générales d'utilisation de notre site. Cela inclut notre politique de confidentialité, nos règles de conduite et nos modalités de service."
+    accept_newsletter_text: "En cochant cette case, vous acceptez de recevoir des e-mails de notre part concernant nos nouveaux produits, offres spéciales et actualités. Vous pouvez vous désabonner à tout moment en cliquant sur le lien présent dans chaque e-mail."
+    accept_brokerage_contact_text: "En cochant cette case, vous acceptez que nos services de courtage vous contactent pour vous proposer des offres personnalisées et vous accompagner dans vos démarches."
+    edit_infos: "Modifier vos infos"
+    edit_tab: "Modifier vos informations"
+    change_password_menu: "Modifier le mot de passe"
+    change_password_tab: "Modifier le mot de passe"
+    change_password_title: "Définition du nouveau mot de passe"
+    menu: "Les annonces"
+    tab_title: "Liste de mes annonces"
+    location: "Localisation"
+    view_details: "Voir les détails"
+
+
+sidebar:
+  my_ads: "Mes annonces"
+  change_password: "Modifier le mot de passe"
+  pages: "Pages"
+  logout: "Se déconnecter"
+  ads: "Les annonces"
+  favorites: "Les favoris"
+  account_details: "Détails du compte"
+  edit_info: "Modifier les infos"
+  messaging: "Messagerie"
+  dashboard: "Tableau de bord"
+  categories: "Catégories"
+  manufacturer: "Constructeur"
+  hidden_ads: "Annonces masquées"
+  reported_ads: "Annonces signalées"
+  admin: "Admin"
+  verified_users: "Utilisateurs vérifiés"
+  non_verified_users: "Utilisateurs non vérifiés"
+  blog_article: "Articles du blog"
+  add_article: "Ajouter un article"
+  list_articles: "Lister les articles"
+  apply_filters: "Appliquer les filtres"
+  year_built: "Année de construction"
+  min_year: "Année min"
+  max_year: "Année max"
+  price: "Prix"
+  min_price: "Prix min"
+  max_price: "Prix max"
+  hours: "Heures totales"
+  min_hour: "Nombre d'heure min"
+  max_hour: "Nombre d'heure max"
+  seats: "Nombre de sièges"
+  min_seat: "Nombre de sièges min"
+  max_seat: "Nombre de sièges max"
+  published_date: "Date de publication"
+  min_date: "Date de publication min"
+  max_date: "Date de publication max"
+  status: "Statut"
+  status_used: "Utilisé"
+  status_new: "Neuf"
+  status_used_condition: "Occasion"
+  registration_number: "Num d'enregistrement"
+  registration_number_placeholder: "Numéro d'enregistrement"
+  total_hours: "Heures totales"
+  number_of_seats: "Nombre de sièges"
+  min_seats: "Nombre de sièges min"
+  max_seats: "Nombre de sièges max"
+  min_publish_date: "Date de publication min"
+  max_publish_date: "Date de publication max"
+  used: "Utilisé"
+  new: "Neuf"
+  second_hand: "Occasion"
+
+
+profile:
+  my_ads: "Mes annonces"
+  my_info: "Mes informations"
+  username: "Pseudo"
+  phone: "Téléphone"
+  ads_tab: "Mes annonces"
+  title: "Mes informations"
+  pseudo: "Pseudo"
+  firstname: "Prénom"
+  lastname: "Nom"
+  email: "Email"
+  edit_link: "Modifier vos infos"
+  edit_tab: "Modifier vos informations"
+  my_information: "Mes informations"
+  country: "Pays"
+  password: "Mot de passe"
+  details_link: "Détails du compte"
+  details_tab: "Détails"
+  telephone: "Votre téléphone :"
+  registered_at: "Date d'inscription :"
+  change_password_link: "Modifier le mot de passe"
+  change_password_tab: "Modifier le mot de passe"
+  new_password_title: "Définition du nouveau mot de passe"
+  accept_terms: >
+    En cochant cette case, vous acceptez les conditions générales d'utilisation de notre site.
+    Cela inclut notre politique de confidentialité, nos règles de conduite et nos modalités de service.
+  accept_newsletter: >
+    En cochant cette case, vous acceptez de recevoir des e-mails de notre part concernant nos nouveaux produits, offres spéciales et actualités.
+    Vous pouvez vous désabonner à tout moment en cliquant sur le lien présent dans chaque e-mail.
+  accept_brokerage_contact: >
+    En cochant cette case, vous acceptez que nos services de courtage vous contactent pour vous proposer des offres personnalisées et vous accompagner dans vos démarches.
+  my_ads_link: "Mes annonces"
+  my_ads_tab: "Liste de mes annonces"
+  publish_ad: "Publier une annonce"
+
+ads:
+  location: "Localisation"
+  view_details: "Voir les détails"
+
+common:
+  cancel: "Annuler"
+  save: "Enregistrer"
+  action: "Action"
+  search: "Rechercher"
+  close: "Fermer"
+
+
+stats:
+  total_ads: "Nombre total d’annonces"
+  ads_per_category: "Moyenne d’annonces par catégorie"
+  average_is: "La moyenne est"
+  view_stats_by_category: "Voir les statistiques par catégorie"
+  reported_ads: "Annonces signalées"
+  blocked_ads: "Annonces masquées"
+  total_users: "Nombre total d’utilisateurs"
+  verified_users: "Utilisateurs vérifiés"
+  verified: "vérifiés"
+  sent_messages: "Messages envoyés"
+  total_admins: "Administrateurs"
+  blog_articles: "Articles de blog"
+  ads_by_category: "Annonces par catégorie"
+  no_data: "Aucune donnée disponible"
+
+
+header:
+  my_profile: "Mon profil"
+  sell_plane: "Vendez votre avion"
+  public_profile: "Profil public"
+  logout: "Se déconnecter"
+  login: "Se connecter"
+  blog: "Blog"
+  whatsapp: "Discuter sur WhatsApp"
+  restricted_access: "Accès réservé"
+  please_login: 'Veuillez <a href="%url%" class="text-primary fw-bold">vous connecter</a> pour nous contacter.'
+
+
+filter_by_category: "Filtrer par catégorie"
+close: "Fermer"
+category_filtering: "Filtrage par catégorie"
+search_category: "Rechercher une catégorie..."
+cancel: "Annuler"
+apply: "Appliquer"
+
+
+# Titres principaux
+homepage:
+  title: "La marketplace des passionnés et professionnels de l'aviation."
+browse:
+  title: "Parcourir par catégorie"
+  subtitle: "Trouvez l'avion qui correspond à vos besoins"
+listings:
+  title: "Sélection d'avions à vendre"
+  subtitle: "Des appareils d'exception, prêts à prendre leur envol avec vous"
+blog:
+  title: "Articles du blog"
+  subtitle: "Découvrez nos derniers articles autour de l'aviation"
+
+# Boutons et liens
+cta:
+  explore: "Explorer la marketplace"
+  sell: "Vendre un avion"
+  details: "Voir les détails"
+  search: "Rechercher"
+
+# Labels
+location: "Localisation :"
+price: "Prix :"
+year: "Année :"
+
+# Catégories d'avions
+categories:
+  jet_aircraft: "Avions à réaction"
+  turboprop_aircraft: "Avions turboprop"
+  piston_single_aircraft: "Avions à piston mono-moteur"
+  piston_twin_aircraft: "Avions à piston bi-moteur"
+  light_sport: "Avions légers de sport"
+  experimental_homebuilt_aircraft: "Avions expérimentaux"
+  piston_agricultural_aircraft: "Avions agricoles à piston"
+  piston_amphibious_flatplanes: "Hydravions à piston"
+  piston_helicopters: "Hélicoptères à piston"
+  piston_military_aircraft: "Avions militaires à piston"
+  turbine_agricultural_aircraft: "Avions agricoles à turbine"
+  turbine_helicopters: "Hélicoptères à turbine"
+  turbine_military_aircraft: "Avions militaires à turbine"
+  turbine_amphibious_floatplane: "Hydravions à turbine"
+
+
+
+footer:
+  description: "Votre prochain départ commence ici. Entre passion et excellence, trouvez l'appareil qui vous accompagnera vers de nouveaux horizons. Le ciel n'attend que vous."
+  navigation: "Navigation"
+  home: "Accueil"
+  blog: "Blog"
+  contact: "Contact"
+  about: "À propos"
+  categories: "Catégories"
+  category:
+    jet: "Jet"
+    turboprop: "Turboprop"
+    piston_single: "Piston Mono"
+    experimental: "Experimental"
+  newsletter: "Newsletter"
+  newsletter_description: "Recevez les dernières annonces et articles par email."
+  email_placeholder: "Votre email"
+  copyright: "Antalasoft. Tous droits réservés."
+  legal_notice: "Mentions légales"
+  privacy_policy: "Politique de confidentialité"
+
+

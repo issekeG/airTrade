@@ -1,0 +1,480 @@
+aircraft_category:
+  edit:
+    title: "Flugzeugkategorie bearbeiten"
+    header: "Flugzeugkategorie bearbeiten"
+  back_to_list: "Zurück zur Liste"
+
+form:
+  save: "Speichern"
+  update: "Aktualisieren"
+  previous: "Vorherige"
+  next: "Nächste"
+  finish: "Abschließen"
+  pseudo: "Ihr Benutzername"
+  name_and_firstname: "Nachname & Vorname"
+  email: "Ihre E-Mail"
+  phone_number: "Telefonnummer"
+  country: "Ihr Land"
+  password: "Ihr Passwort"
+  submit: "Senden"
+  firstname: "Ihr Vorname"
+  telephone: "Ihr Telefon"
+  registration_date: "Ihr Registrierungsdatum"
+  accept_terms: "Durch das Aktivieren dieses Kontrollkästchens stimmen Sie unseren Nutzungsbedingungen zu. Dies umfasst unsere Datenschutzrichtlinie, Verhaltensregeln und Servicebedingungen."
+  accept_newsletter: "Durch das Aktivieren dieses Kontrollkästchens stimmen Sie zu, E-Mails von uns über neue Produkte, Sonderangebote und Neuigkeiten zu erhalten. Sie können sich jederzeit abmelden, indem Sie auf den Link in jeder E-Mail klicken."
+  accept_brokerage_contact: "Durch das Aktivieren dieses Kontrollkästchens stimmen Sie zu, dass unsere Maklerdienste Sie kontaktieren dürfen, um Ihnen personalisierte Angebote zu unterbreiten und Sie bei Ihren Anliegen zu unterstützen."
+
+reset:
+  title: "Passwort vergessen?"
+  instructions: "Geben Sie Ihre E-Mail-Adresse ein, und wir senden Ihnen einen Link, um Ihr Passwort zurückzusetzen."
+  email_label: "E-Mail-Adresse"
+  submit: "Passwort zurücksetzen"
+  back_to_login: "Zurück zur Anmeldeseite"
+  password:
+    new: "Neues Passwort"
+    new_placeholder: "Geben Sie Ihr neues Passwort ein"
+    repeat: "Passwort wiederholen"
+    repeat_placeholder: "Wiederholen Sie Ihr neues Passwort"
+    email_sent_notice: >
+      Wenn ein Konto mit Ihrer E-Mail-Adresse existiert, wurde Ihnen soeben eine E-Mail mit einem Link gesendet, den Sie verwenden können, um Ihr Passwort zurückzusetzen. Dieser Link läuft in %expiration% ab.
+    no_email: >
+      Wenn Sie keine E-Mail erhalten, überprüfen Sie bitte Ihren Spam-Ordner oder <a href="%retry_url%">versuchen Sie es erneut</a>.
+    back_to_login: "Zurück zur Anmeldeseite"
+
+app:
+  logo_text: "AirTradeLogoHier"
+  thank_you: "Danke"
+  logo: "AirTradeLogo"
+
+login:
+  email: "E-Mail"
+  password: "Passwort"
+  submit: "Anmelden"
+  forgot_password: "Passwort vergessen?"
+  button: "Anmelden"
+  error:
+    username_required: "Bitte geben Sie Ihren Benutzernamen ein."
+    password_required: "Bitte geben Sie Ihr Passwort ein!"
+    invalid_credentials: "Falscher Benutzername oder Passwort"
+  terms: >
+    Durch Klicken auf "Anmelden" erklären Sie sich damit einverstanden, an unsere Nutzungsbedingungen und Datenschutzrichtlinie gebunden zu sein.
+  no_account: "Haben Sie ein Konto?"
+  create_account: "Konto erstellen"
+
+site:
+  logo_text: "AirTradeLogo"
+
+register:
+  header: "Schließen Sie sich Luftfahrtbegeisterten und Profis an"
+  success:
+    title: "Registrierung erfolgreich!"
+    message: "Vielen Dank für Ihre Registrierung.<br>Um die Erstellung Ihres Kontos abzuschließen, bestätigen Sie bitte Ihre E-Mail-Adresse."
+    confirmation: "Eine Bestätigungs-E-Mail wurde an die von Ihnen bei der Registrierung angegebene E-Mail-Adresse gesendet.<br>Bitte klicken Sie auf den darin enthaltenen Link, um Ihr Konto zu aktivieren."
+    spam: "Wenn Sie diese E-Mail nicht sehen, überprüfen Sie bitte Ihren Spam-Ordner."
+    after_confirmation: "Nach der Bestätigung können Sie auf Ihren persönlichen Bereich zugreifen und unsere Dienste in vollem Umfang nutzen."
+  button: "Registrieren"
+  welcome_text: "Schließen Sie sich Luftfahrtbegeisterten und Profis an"
+  pseudo: "Ihr Benutzername"
+  name: "Ihr Nachname & Vorname"
+  phone: "Ihr Telefon"
+  email: "Ihre E-Mail"
+  country: "Ihr Land"
+  password: "Ihr Passwort"
+  terms: >
+    Durch das Aktivieren dieses Kontrollkästchens stimmen Sie unseren Nutzungsbedingungen zu. Dies umfasst unsere Datenschutzrichtlinie, Verhaltensregeln und Servicebedingungen.
+  newsletter: >
+    Durch das Aktivieren dieses Kontrollkästchens stimmen Sie zu, E-Mails von uns über neue Produkte, Sonderangebote und Neuigkeiten zu erhalten. Sie können sich jederzeit abmelden, indem Sie auf den Link in jeder E-Mail klicken.
+  broker_contact: >
+    Durch das Aktivieren dieses Kontrollkästchens stimmen Sie zu, dass unsere Maklerdienste Sie kontaktieren dürfen, um Ihnen personalisierte Angebote zu unterbreiten und Sie bei Ihren Anliegen zu unterstützen.
+  submit: "Speichern"
+
+auth:
+  login: "Anmelden"
+
+admin:
+  list:
+    title: "Liste der Administratoren"
+  search:
+    placeholder: "Suche mit Code ..."
+    aria_label: "Code eingeben ..."
+  create:
+    button: "Erstellen"
+
+table:
+  action: "Aktion"
+  pseudo: "Benutzername"
+  name: "Vorname & Nachname"
+  email: "E-Mail"
+  phone: "Telefon"
+  registration_date: "Registrierungsdatum"
+  role: "Rolle"
+  ads_count: "Anzahl der Anzeigen"
+
+category:
+  list:
+    title: "Liste der Kategorien (%first% - %last% von %total%)"
+  button:
+    create: "Erstellen"
+  modal:
+    add_title: "Kategorie hinzufügen"
+    edit_title: "Kategorie bearbeiten"
+  form:
+    name: "Name"
+
+button:
+  cancel: "Abbrechen"
+  save: "Speichern"
+  back_home: "Zurück zur Startseite"
+  delete: "Löschen"
+
+confirm:
+  delete: "Sind Sie sicher, dass Sie dieses Element löschen möchten?"
+
+delete_confirmation: "Sind Sie sicher, dass Sie dieses Element löschen möchten?"
+delete_button: "Löschen"
+
+share:
+  button: "Teilen"
+
+aircraft:
+  delete_confirmation: "Sind Sie sicher, dass Sie dieses Element löschen möchten?"
+  delete_button: "Löschen"
+  report_confirmation: "Sind Sie sicher, dass Sie dieses Element melden möchten?"
+  report_button: "Melden"
+  shadow_confirmation: "Sind Sie sicher, dass Sie dieses Element sperren oder entsperren möchten?"
+  block_button: "Sperren"
+  unblock_button: "Entsperren"
+  form_info: "Geben Sie die Informationen zum Flugzeug ein"
+  serial_number: "Seriennummer"
+  manufacturer: "Hersteller"
+  model: "Modell"
+  year_of_manufacture: "Baujahr"
+  status: "Status"
+  registration_country: "Registrierungsland"
+  service_entry_date: "Inbetriebnahmedatum"
+  location: "Standort"
+  show_details: "Details anzeigen"
+  documents:
+    title: "Dokumente"
+    view: "Ansehen"
+    none: "Keine Dokumente verfügbar."
+  features:
+    others: "Andere Merkmale"
+  description: "Beschreibung"
+  seller_info: "Verkäuferinformationen"
+  access_restricted: "Eingeschränkter Zugang"
+  view_contacts: "Kontakte ansehen"
+  view_seller_profile: "Verkäuferprofil ansehen"
+  contact_seller: "Verkäufer kontaktieren"
+  connect_to_view_contacts: "Bitte <a href=\"%login_url%\" class=\"text-primary fw-bold\">melden Sie sich an</a>, um die Kontakte zu sehen."
+  connect_to_contact_seller: "Bitte <a href=\"%login_url%\" class=\"text-primary fw-bold\">melden Sie sich an</a>, um den Verkäufer zu kontaktieren."
+  characteristics: "Eigenschaften"
+  reported: "Diese Anzeige wurde gemeldet"
+  turboprop: "Turboprop-Flugzeug"
+  emplacement: "Standort des Flugzeugs:"
+  list_published: "Liste der veröffentlichten Anzeigen (%first% - %last% von %total%)"
+  search_placeholder: "Suche nach Benutzername oder E-Mail ..."
+  search_label: "Benutzername oder E-Mail eingeben ..."
+  category: "Kategorie"
+  price: "Preis"
+  total_hours: "Gesamtstunden"
+  details_button: "Details anzeigen"
+
+seller:
+  info_title: "Verkäuferinformationen"
+  username: "Benutzername"
+  contact: "Kontakt"
+  email: "E-Mail"
+  phone: "Telefon"
+  ads_count: "Anzahl der Anzeigen"
+  login_to_see_info: "Bitte melden Sie sich an, um die Verkäuferinformationen einzusehen"
+
+alert:
+  view_images_login_0: "Um alle Bilder zu sehen"
+  view_images_login_1: "melden Sie sich an"
+
+video:
+  no_html5_support: "Ihr Browser unterstützt keine HTML5-Videos."
+
+aircraft_manufacturer:
+  delete_confirm: "Sind Sie sicher, dass Sie dieses Element löschen möchten?"
+  delete_button: "Löschen"
+  edit_title: "Hersteller bearbeiten"
+  edit_heading: "Herstellerinformationen bearbeiten"
+  update_button: "Aktualisieren"
+  back_to_list: "Zurück zur Liste"
+  new_title: "Neuer Hersteller"
+  new_heading: "Neuen Flugzeughersteller erstellen"
+  create_button: "Erstellen"
+  list: "Liste der Hersteller (%first% - %last% von %total%)"
+  search_placeholder: "Suche nach Name ..."
+  search_label: "Name eingeben ..."
+  create: "Erstellen"
+  add_title: "Hersteller hinzufügen"
+  name: "Name"
+  ad_count: "Anzahl der Anzeigen"
+
+filter:
+  apply_filters: "Filter anwenden"
+  categories: "Kategorien"
+  manufacturer: "Hersteller"
+  year_built: "Baujahr"
+  min_year: "Min. Jahr"
+  max_year: "Max. Jahr"
+  price: "Preis"
+  min_price: "Min. Preis"
+  max_price: "Max. Preis"
+  total_hours: "Gesamtstunden"
+  min_hours: "Min. Stunden"
+  max_hours: "Max. Stunden"
+  seats_number: "Anzahl der Sitze"
+  min_seats: "Min. Sitze"
+  max_seats: "Max. Sitze"
+  publication_date: "Veröffentlichungsdatum"
+  min_date: "Min. Veröffentlichungsdatum"
+  max_date: "Max. Veröffentlichungsdatum"
+  status_name: "Status"
+  status:
+    used: "Gebraucht"
+    new: "Neu"
+    used_condition: "Second-Hand"
+  registration_number: "Registrierungsnummer"
+  title: "Filtern"
+  this_month: "Dieser Monat"
+  this_year: "Dieses Jahr"
+
+user:
+  list_title: "Liste der aktiven Benutzer"
+  search_placeholder: "Suche nach Benutzername oder E-Mail..."
+  action: "Aktion"
+  username: "Benutzername"
+  full_name: "Vorname & Nachname"
+  email: "E-Mail"
+  phone: "Telefon"
+  registration_date: "Registrierungsdatum"
+  role: "Rolle"
+  view_profile: "Profil ansehen"
+  lock_unlock: "Verifizierung"
+  verified: "Verifiziert"
+  not_verified: "Nicht verifiziert"
+  no_users: "Keine Benutzer gefunden"
+  from_to_total: "von %total%"
+  list_verified: "Liste der verifizierten Benutzer"
+  delete_confirm: "Sind Sie sicher, dass Sie dieses Element löschen möchten?"
+  delete_button: "Löschen"
+  profile:
+    account_details: "Kontodetails"
+    details_tab: "Details"
+    my_info: "Meine Informationen"
+    pseudo: "Ihr Benutzername"
+    firstname: "Ihr Vorname"
+    telephone: "Ihr Telefon"
+    email: "Ihre E-Mail"
+    country: "Ihr Land"
+    created_at: "Registrierungsdatum"
+    accept_terms_text: "Durch das Aktivieren dieses Kontrollkästchens stimmen Sie unseren Nutzungsbedingungen zu. Dies umfasst unsere Datenschutzrichtlinie, Verhaltensregeln und Servicebedingungen."
+    accept_newsletter_text: "Durch das Aktivieren dieses Kontrollkästchens stimmen Sie zu, E-Mails von uns über neue Produkte, Sonderangebote und Neuigkeiten zu erhalten. Sie können sich jederzeit abmelden, indem Sie auf den Link in jeder E-Mail klicken."
+    accept_brokerage_contact_text: "Durch das Aktivieren dieses Kontrollkästchens stimmen Sie zu, dass unsere Maklerdienste Sie kontaktieren dürfen, um Ihnen personalisierte Angebote zu unterbreiten und Sie bei Ihren Anliegen zu unterstützen."
+    edit_infos: "Ihre Informationen bearbeiten"
+    edit_tab: "Ihre Informationen bearbeiten"
+    change_password_menu: "Passwort ändern"
+    change_password_tab: "Passwort ändern"
+    change_password_title: "Neues Passwort festlegen"
+    menu: "Anzeigen"
+    tab_title: "Liste meiner Anzeigen"
+    location: "Standort"
+    view_details: "Details anzeigen"
+
+sidebar:
+  my_ads: "Meine Anzeigen"
+  change_password: "Passwort ändern"
+  pages: "Seiten"
+  logout: "Abmelden"
+  ads: "Anzeigen"
+  favorites: "Favoriten"
+  account_details: "Kontodetails"
+  edit_info: "Informationen bearbeiten"
+  messaging: "Nachrichten"
+  dashboard: "Dashboard"
+  categories: "Kategorien"
+  manufacturer: "Hersteller"
+  hidden_ads: "Versteckte Anzeigen"
+  reported_ads: "Gemeldete Anzeigen"
+  admin: "Admin"
+  verified_users: "Verifizierte Benutzer"
+  non_verified_users: "Nicht verifizierte Benutzer"
+  blog_article: "Blogartikel"
+  add_article: "Artikel hinzufügen"
+  list_articles: "Artikel auflisten"
+  apply_filters: "Filter anwenden"
+  year_built: "Baujahr"
+  min_year: "Min. Jahr"
+  max_year: "Max. Jahr"
+  price: "Preis"
+  min_price: "Min. Preis"
+  max_price: "Max. Preis"
+  hours: "Gesamtstunden"
+  min_hour: "Min. Stunden"
+  max_hour: "Max. Stunden"
+  seats: "Anzahl der Sitze"
+  min_seat: "Min. Sitze"
+  max_seat: "Max. Sitze"
+  published_date: "Veröffentlichungsdatum"
+  min_date: "Min. Veröffentlichungsdatum"
+  max_date: "Max. Veröffentlichungsdatum"
+  status: "Status"
+  status_used: "Gebraucht"
+  status_new: "Neu"
+  status_used_condition: "Second-Hand"
+  registration_number: "Registrierungsnummer"
+  registration_number_placeholder: "Registrierungsnummer"
+  total_hours: "Gesamtstunden"
+  number_of_seats: "Anzahl der Sitze"
+  min_seats: "Min. Sitze"
+  max_seats: "Max. Sitze"
+  min_publish_date: "Min. Veröffentlichungsdatum"
+  max_publish_date: "Max. Veröffentlichungsdatum"
+  used: "Gebraucht"
+  new: "Neu"
+  second_hand: "Second-Hand"
+
+profile:
+  my_ads: "Meine Anzeigen"
+  my_info: "Meine Informationen"
+  username: "Benutzername"
+  phone: "Telefon"
+  ads_tab: "Meine Anzeigen"
+  title: "Meine Informationen"
+  pseudo: "Benutzername"
+  firstname: "Vorname"
+  lastname: "Nachname"
+  email: "E-Mail"
+  edit_link: "Ihre Informationen bearbeiten"
+  edit_tab: "Ihre Informationen bearbeiten"
+  my_information: "Meine Informationen"
+  country: "Land"
+  password: "Passwort"
+  details_link: "Kontodetails"
+  details_tab: "Details"
+  telephone: "Ihr Telefon:"
+  registered_at: "Registrierungsdatum:"
+  change_password_link: "Passwort ändern"
+  change_password_tab: "Passwort ändern"
+  new_password_title: "Neues Passwort festlegen"
+  accept_terms: >
+    Durch das Aktivieren dieses Kontrollkästchens stimmen Sie unseren Nutzungsbedingungen zu.
+    Dies umfasst unsere Datenschutzrichtlinie, Verhaltensregeln und Servicebedingungen.
+  accept_newsletter: >
+    Durch das Aktivieren dieses Kontrollkästchens stimmen Sie zu, E-Mails von uns über neue Produkte, Sonderangebote und Neuigkeiten zu erhalten.
+    Sie können sich jederzeit abmelden, indem Sie auf den Link in jeder E-Mail klicken.
+  accept_brokerage_contact: >
+    Durch das Aktivieren dieses Kontrollkästchens stimmen Sie zu, dass unsere Maklerdienste Sie kontaktieren dürfen, um Ihnen personalisierte Angebote zu unterbreiten und Sie bei Ihren Anliegen zu unterstützen.
+  my_ads_link: "Meine Anzeigen"
+  my_ads_tab: "Liste meiner Anzeigen"
+  publish_ad: "Anzeige veröffentlichen"
+
+ads:
+  location: "Standort"
+  view_details: "Details anzeigen"
+
+common:
+  cancel: "Abbrechen"
+  save: "Speichern"
+  action: "Aktion"
+  search: "Suchen"
+  close: "Schließen"
+
+stats:
+  total_ads: "Gesamtzahl der Anzeigen"
+  ads_per_category: "Durchschnittliche Anzeigen pro Kategorie"
+  average_is: "Der Durchschnitt ist"
+  view_stats_by_category: "Statistiken nach Kategorie anzeigen"
+  reported_ads: "Gemeldete Anzeigen"
+  blocked_ads: "Gesperrte Anzeigen"
+  total_users: "Gesamtzahl der Benutzer"
+  verified_users: "Verifizierte Benutzer"
+  verified: "verifiziert"
+  sent_messages: "Gesendete Nachrichten"
+  total_admins: "Administratoren"
+  blog_articles: "Blogartikel"
+  ads_by_category: "Anzeigen nach Kategorie"
+  no_data: "Keine Daten verfügbar"
+
+header:
+  my_profile: "Mein Profil"
+  sell_plane: "Ihr Flugzeug verkaufen"
+  public_profile: "Öffentliches Profil"
+  logout: "Abmelden"
+  login: "Anmelden"
+  blog: "Blog"
+  whatsapp: "Auf WhatsApp chatten"
+  restricted_access: "Eingeschränkter Zugang"
+  please_login: 'Bitte <a href="%url%" class="text-primary fw-bold">melden Sie sich an</a>, um uns zu kontaktieren.'
+
+filter_by_category: "Nach Kategorie filtern"
+close: "Schließen"
+category_filtering: "Kategoriefilterung"
+search_category: "Nach einer Kategorie suchen..."
+cancel: "Abbrechen"
+apply: "Anwenden"
+
+homepage:
+  title: "Der Marktplatz für Luftfahrtbegeisterte und Profis."
+
+browse:
+  title: "Nach Kategorie durchsuchen"
+  subtitle: "Finden Sie das Flugzeug, das Ihren Bedürfnissen entspricht"
+
+listings:
+  title: "Auswahl an Flugzeugen zum Verkauf"
+  subtitle: "Außergewöhnliche Flugzeuge, bereit, mit Ihnen abzuheben"
+
+blog:
+  title: "Blogartikel"
+  subtitle: "Entdecken Sie unsere neuesten Artikel über die Luftfahrt"
+
+cta:
+  explore: "Den Marktplatz erkunden"
+  sell: "Flugzeug verkaufen"
+  details: "Details anzeigen"
+  search: "Suchen"
+
+location: "Standort:"
+price: "Preis:"
+year: "Jahr:"
+
+categories:
+  jet_aircraft: "Jet-Flugzeuge"
+  turboprop_aircraft: "Turboprop-Flugzeuge"
+  piston_single_aircraft: "Einmotorige Kolbenflugzeuge"
+  piston_twin_aircraft: "Zweimotorige Kolbenflugzeuge"
+  light_sport: "Leichte Sportflugzeuge"
+  experimental_homebuilt_aircraft: "Experimentelle Flugzeuge"
+  piston_agricultural_aircraft: "Kolben-Landwirtschaftsflugzeuge"
+  piston_amphibious_flatplanes: "Kolben-Schwimmerflugzeuge"
+  piston_helicopters: "Kolben-Hubschrauber"
+  piston_military_aircraft: "Kolben-Militärflugzeuge"
+  turbine_agricultural_aircraft: "Turbinen-Landwirtschaftsflugzeuge"
+  turbine_helicopters: "Turbinen-Hubschrauber"
+  turbine_military_aircraft: "Turbinen-Militärflugzeuge"
+  turbine_amphibious_floatplane: "Turbinen-Schwimmerflugzeuge"
+
+footer:
+  description: "Ihr nächster Abflug beginnt hier. Zwischen Leidenschaft und Exzellenz finden Sie das Flugzeug, das Sie zu neuen Horizonten bringt. Der Himmel wartet auf Sie."
+  navigation: "Navigation"
+  home: "Startseite"
+  blog: "Blog"
+  contact: "Kontakt"
+  about: "Über uns"
+  categories: "Kategorien"
+  category:
+    jet: "Jet"
+    turboprop: "Turboprop"
+    piston_single: "Kolben-Einmotor"
+    experimental: "Experimental"
+  newsletter: "Newsletter"
+  newsletter_description: "Erhalten Sie die neuesten Anzeigen und Artikel per E-Mail."
+  email_placeholder: "Ihre E-Mail"
+  copyright: "Antalasoft. Alle Rechte vorbehalten."
+  legal_notice: "Rechtshinweis"
+  privacy_policy: "Datenschutzrichtlinie"

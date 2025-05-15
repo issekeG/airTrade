@@ -1,13 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit AircraftManufacturer{% endblock %}
+{% block title %}{{ 'aircraft_manufacturer.edit_title'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>Edit AircraftManufacturer</h1>
+    <div class="container mt-5">
+        <h1 class="mb-4">{{ 'aircraft_manufacturer.edit_heading'|trans }}</h1>
 
-    {{ include('aircraft_manufacturer/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('aircraft_manufacturer/_form.html.twig', {'button_label': 'aircraft_manufacturer.update_button'|trans }) }}
 
-    <a href="{{ path('app_aircraft_manufacturer_index') }}">back to list</a>
+        <a href="{{ path('app_aircraft_manufacturer_index') }}" class="btn btn-secondary mt-3">
+            {{ 'aircraft_manufacturer.back_to_list'|trans }}
+        </a>
 
-    {{ include('aircraft_manufacturer/_delete_form.html.twig') }}
+        <div class="mt-3">
+            {{ include('aircraft_manufacturer/_delete_form.html.twig') }}
+        </div>
+    </div>
 {% endblock %}
+

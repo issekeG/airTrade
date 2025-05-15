@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block header %}
+    {% include 'composant/nav-login.html.twig' %}
 {% endblock %}
 {% block sidebar %}
 {% endblock %}
@@ -14,7 +15,6 @@
 
                             <div class="d-flex justify-content-center py-4">
                                 <a href="" class="logo d-flex align-items-center w-auto">
-                                    <span class="d-none d-lg-block">AirTradeLogoIci</span>
                                 </a>
                             </div><!-- End Logo -->
 
@@ -60,7 +60,7 @@
                                         </small>
                                     </div>
                                     <hr>
-                                    <button class="btn btn-primary w-100 border-0" type="submit" style="background-color: #07182e;">Sauvegarder</button>
+                                    <button class="btn text-white w-100 border-0" type="submit" style="background-color: #1A0B8C;">Sauvegarder</button>
 
                                     {{ form_end(resetForm) }}
                                     <hr>

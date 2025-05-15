@@ -24,15 +24,15 @@ class PistonSingleAircraftFormType extends AbstractType
             case 1:
                 $builder
                     ->add('regNumber', TextType::class, [
-                        'label' => 'Registration #',
+                        'label' => 'regNumber',
                         'required' => true,
                     ])
                     ->add('displayRegNumber', CheckboxType::class, [
-                        'label' => 'Display Registration # with this listing',
+                        'label' => 'displayRegNumber',
                         'required' => false,
                     ])
                     ->add('flightRules', ChoiceType::class, [
-                        'label' => 'Flight Rules',
+                        'label' => 'flightRules',
                         'choices' => [
                             '------' => '',
                             'IFR' => 'IFR',
@@ -41,35 +41,35 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('locationAirportCode', TextType::class, [
-                        'label' => 'Based at (LAX)',
+                        'label' => 'locationAirportCode',
                         'required' => false,
                     ])
                     ->add('displaySerialNumber', CheckboxType::class, [
-                        'label' => 'Display Serial Number with this listing',
+                        'label' => 'displaySerialNumber',
                         'required' => false,
                     ])
                     ->add('totalTime', NumberType::class, [
-                        'label' => 'Total Time',
+                        'label' => 'totalTime',
                         'required' => false,
                     ])
                     ->add('rangeAircraft', NumberType::class, [
-                        'label' => 'Range',
+                        'label' => 'rangeAircraft',
                         'required' => false,
                     ])
                     ->add('maxTakeoffWeight', NumberType::class, [
-                        'label' => 'Max Takeoff Weight',
+                        'label' => 'maxTakeoffWeight',
                         'required' => false,
                     ])
                     ->add('basicEmptyWeight', NumberType::class, [
-                        'label' => 'Basic Empty Weight',
+                        'label' => 'basicEmptyWeight',
                         'required' => false,
                     ])
                     ->add('usefulLoad', NumberType::class, [
-                        'label' => 'Useful Load',
+                        'label' => 'usefulLoad',
                         'required' => false,
                     ])
                     ->add('shortTakeOffLanding', ChoiceType::class, [
-                        'label' => 'STOL',
+                        'label' => 'shortTakeOffLanding',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -79,11 +79,11 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('fuelCapacityVolume', NumberType::class, [
-                        'label' => 'Fuel Capacity Volume',
+                        'label' => 'fuelCapacityVolume',
                         'required' => false,
                     ])
                     ->add('auxiliaryFuelTank', ChoiceType::class, [
-                        'label' => 'Auxiliary Fuel Tank',
+                        'label' => 'auxiliaryFuelTank',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -93,7 +93,7 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('logs', ChoiceType::class, [
-                        'label' => 'Complete Logs',
+                        'label' => 'logs',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -103,7 +103,7 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('speedbrakes', ChoiceType::class, [
-                        'label' => 'Speedbrakes',
+                        'label' => 'speedbrakes',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -113,7 +113,7 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('spoilers', ChoiceType::class, [
-                        'label' => 'Spoilers',
+                        'label' => 'spoilers',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -123,7 +123,7 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('airframeNotes', TextareaType::class, [
-                        'label' => 'Airframe Notes',
+                        'label' => 'airframeNotes',
                         'required' => false,
                     ]);
 
@@ -131,27 +131,27 @@ class PistonSingleAircraftFormType extends AbstractType
             case 2:
                 $builder
                     ->add('engineMake', TextType::class, [
-                        'label' => 'Engine Manufacturer',
+                        'label' => 'engineMake',
                         'required' => false,
                     ])
                     ->add('engineModel', TextType::class, [
-                        'label' => 'Engine Model',
+                        'label' => 'engineModel',
                         'required' => false,
                     ])
                     ->add('engineSerialNum', TextType::class, [
-                        'label' => 'Engine Serial Number',
+                        'label' => 'engineSerialNum',
                         'required' => false,
                     ])
                     ->add('horsepowerEngine', NumberType::class, [
-                        'label' => 'Engine Horsepower',
+                        'label' => 'horsepowerEngine',
                         'required' => false,
                     ])
                     ->add('overhaulTime', NumberType::class, [
-                        'label' => 'Engine Time (in hours)',
+                        'label' => 'overhaulTime',
                         'required' => false,
                     ])
                     ->add('overhaulType', ChoiceType::class, [
-                        'label' => 'Engine Time Since',
+                        'label' => 'overhaulType',
                         'choices' => [
                             '------' => '',
                             'SCMOH' => 'SCMOH',
@@ -165,11 +165,11 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('timeBetweenOverhaul', NumberType::class, [
-                        'label' => 'Engine TBO (in hours)',
+                        'label' => 'timeBetweenOverhaul',
                         'required' => false,
                     ])
                     ->add('aftermarketEngineSTC', ChoiceType::class, [
-                        'label' => 'Aftermarket Engine STC',
+                        'label' => 'aftermarketEngineSTC',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -179,20 +179,20 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('yearOverhauled', ChoiceType::class, [
-                        'label' => 'Year Engine Overhauled or Installed as New',
+                        'label' => 'yearOverhauled',
                         'choices' => $this->getYearChoices(),
                         'required' => false,
                     ])
                     ->add('timeRemainingToOverhaul', NumberType::class, [
-                        'label' => 'Engine Time Remaining To Overhaul',
+                        'label' => 'timeRemainingToOverhaul',
                         'required' => false,
                     ])
                     ->add('engineCycles', NumberType::class, [
-                        'label' => 'Engine Cycles',
+                        'label' => 'engineCycles',
                         'required' => false,
                     ])
                     ->add('turbo', ChoiceType::class, [
-                        'label' => 'Turbocharged',
+                        'label' => 'turbo',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -202,7 +202,7 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('turboNormalized', ChoiceType::class, [
-                        'label' => 'Turbonormalized',
+                        'label' => 'turboNormalized',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -212,23 +212,23 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('engineNotes', TextareaType::class, [
-                        'label' => 'Engine Notes',
+                        'label' => 'engineNotes',
                         'required' => false,
                     ])
                     ->add('propMake', TextType::class, [
-                        'label' => 'Prop Manufacturer',
+                        'label' => 'propMake',
                         'required' => false,
                     ])
                     ->add('propModel', TextType::class, [
-                        'label' => 'Prop Model',
+                        'label' => 'propModel',
                         'required' => false,
                     ])
                     ->add('propOverhaulTime', NumberType::class, [
-                        'label' => 'Prop Time (in hours)',
+                        'label' => 'propOverhaulTime',
                         'required' => false,
                     ])
                     ->add('propOverhaulType', ChoiceType::class, [
-                        'label' => 'Prop Time Since',
+                        'label' => 'propOverhaulType',
                         'choices' => [
                             '------' => '',
                             'SCMOH' => 'SCMOH',
@@ -242,11 +242,11 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('numBlades', NumberType::class, [
-                        'label' => 'Number of Blades',
+                        'label' => 'numBlades',
                         'required' => false,
                     ])
                     ->add('bladeComposition', ChoiceType::class, [
-                        'label' => 'Blade Composition',
+                        'label' => 'bladeComposition',
                         'choices' => [
                             '------' => '',
                             'Aluminum' => 'Aluminum',
@@ -255,7 +255,7 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('sweptBladePropellers', ChoiceType::class, [
-                        'label' => 'Swept Blade Propellers',
+                        'label' => 'sweptBladePropellers',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -265,7 +265,7 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('propsNotes', TextareaType::class, [
-                        'label' => 'Prop Notes',
+                        'label' => 'propsNotes',
                         'required' => false,
                     ]);
 
@@ -273,7 +273,7 @@ class PistonSingleAircraftFormType extends AbstractType
             case 3:
                 $builder
                     ->add('vortexGenerators', ChoiceType::class, [
-                        'label' => 'Vortex Generators',
+                        'label' => 'vortexGenerators',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -283,91 +283,91 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('modificationsNotes', TextareaType::class, [
-                        'label' => 'Modifications/Conversions',
+                        'label' => 'modificationsNotes',
                         'required' => false,
                     ])
                     ->add('flightDeckManufacturer', TextType::class, [
-                        'label' => 'Flight Deck Manufacturer',
+                        'label' => 'flightDeckManufacturer',
                         'required' => false,
                     ])
                     ->add('flightDeckModel', TextType::class, [
-                        'label' => 'Flight Deck Model',
+                        'label' => 'flightDeckModel',
                         'required' => false,
                     ])
                     ->add('primaryFlightDisplay1Manufacturer', TextType::class, [
-                        'label' => 'Primary Flight Display 1 Manufacturer',
+                        'label' => 'primaryFlightDisplay1Manufacturer',
                         'required' => false,
                     ])
                     ->add('primaryFlightDisplay1Model', TextType::class, [
-                        'label' => 'Primary Flight Display 1 Model',
+                        'label' => 'primaryFlightDisplay1Model',
                         'required' => false,
                     ])
                     ->add('primaryFlightDisplay2Manufacturer', TextType::class, [
-                        'label' => 'Primary Flight Display 2 Manufacturer',
+                        'label' => 'primaryFlightDisplay2Manufacturer',
                         'required' => false,
                     ])
                     ->add('primaryFlightDisplay2Model', TextType::class, [
-                        'label' => 'Primary Flight Display 2 Model',
+                        'label' => 'primaryFlightDisplay2Model',
                         'required' => false,
                     ])
                     ->add('multiFunctionDisplay1Manufacturer', TextType::class, [
-                        'label' => 'Multi-Function Display 1 Manufacturer',
+                        'label' => 'multiFunctionDisplay1Manufacturer',
                         'required' => false,
                     ])
                     ->add('multiFunctionDisplay1Model', TextType::class, [
-                        'label' => 'Multi-Function Display 1 Model',
+                        'label' => 'multiFunctionDisplay1Model',
                         'required' => false,
                     ])
                     ->add('multiFunctionDisplay2Manufacturer', TextType::class, [
-                        'label' => 'Multi-Function Display 2 Manufacturer',
+                        'label' => 'multiFunctionDisplay2Manufacturer',
                         'required' => false,
                     ])
                     ->add('multiFunctionDisplay2Model', TextType::class, [
-                        'label' => 'Multi-Function Display 2 Model',
+                        'label' => 'multiFunctionDisplay2Model',
                         'required' => false,
                     ])
                     ->add('gps1Manufacturer', TextType::class, [
-                        'label' => 'GPS 1 Manufacturer',
+                        'label' => 'gps1Manufacturer',
                         'required' => false,
                     ])
                     ->add('gps1Model', TextType::class, [
-                        'label' => 'GPS 1 Model',
+                        'label' => 'gps1Model',
                         'required' => false,
                     ])
                     ->add('gps2Manufacturer', TextType::class, [
-                        'label' => 'GPS 2 Manufacturer',
+                        'label' => 'gps2Manufacturer',
                         'required' => false,
                     ])
                     ->add('gps2Model', TextType::class, [
-                        'label' => 'GPS 2 Model',
+                        'label' => 'gps2Model',
                         'required' => false,
                     ])
                     ->add('transponder1Manufacturer', TextType::class, [
-                        'label' => 'Transponder 1 Manufacturer',
+                        'label' => 'transponder1Manufacturer',
                         'required' => false,
                     ])
                     ->add('transponder1Model', TextType::class, [
-                        'label' => 'Transponder 1 Model',
+                        'label' => 'transponder1Model',
                         'required' => false,
                     ])
                     ->add('transponder2Manufacturer', TextType::class, [
-                        'label' => 'Transponder 2 Manufacturer',
+                        'label' => 'transponder2Manufacturer',
                         'required' => false,
                     ])
                     ->add('transponder2Model', TextType::class, [
-                        'label' => 'Transponder 2 Model',
+                        'label' => 'transponder2Model',
                         'required' => false,
                     ])
                     ->add('autopilotManufacturer', TextType::class, [
-                        'label' => 'Autopilot Manufacturer',
+                        'label' => 'autopilotManufacturer',
                         'required' => false,
                     ])
                     ->add('autopilotModel', TextType::class, [
-                        'label' => 'Autopilot Model',
+                        'label' => 'autopilotModel',
                         'required' => false,
                     ])
                     ->add('adsbEquipped', ChoiceType::class, [
-                        'label' => 'ADS-B Equipped',
+                        'label' => 'adsbEquipped',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -376,14 +376,12 @@ class PistonSingleAircraftFormType extends AbstractType
                         'multiple' => false,
                         'required' => false,
                     ]);
-                    // Engine Program
-
 
                 break;
             case 4:
                 $builder
                     ->add('wideAreaAugSystem', ChoiceType::class, [
-                        'label' => 'WAAS',
+                        'label' => 'wideAreaAugSystem',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -393,7 +391,7 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('localizerPerformanceVG', ChoiceType::class, [
-                        'label' => 'LPV',
+                        'label' => 'localizerPerformanceVG',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -403,7 +401,7 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('syntheticVisionTech', ChoiceType::class, [
-                        'label' => 'SVT',
+                        'label' => 'syntheticVisionTech',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -413,7 +411,7 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('enhancedVisionSystem', ChoiceType::class, [
-                        'label' => 'EVS',
+                        'label' => 'enhancedVisionSystem',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -423,7 +421,7 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('yawDamper', ChoiceType::class, [
-                        'label' => 'Yaw Damper',
+                        'label' => 'yawDamper',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -433,7 +431,7 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('activeTraffic', ChoiceType::class, [
-                        'label' => 'Active Traffic',
+                        'label' => 'activeTraffic',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -443,7 +441,7 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('terrainWarningSystem', ChoiceType::class, [
-                        'label' => 'Terrain Warning System',
+                        'label' => 'terrainWarningSystem',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -453,7 +451,7 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('engineMonitor', ChoiceType::class, [
-                        'label' => 'Engine Monitor',
+                        'label' => 'engineMonitor',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -463,11 +461,11 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('avionicsNotes', TextareaType::class, [
-                        'label' => 'Avionics/Radios',
+                        'label' => 'avionicsNotes',
                         'required' => false,
                     ])
                     ->add('wifi', ChoiceType::class, [
-                        'label' => 'WiFi',
+                        'label' => 'wifi',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -477,7 +475,7 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('pressurized', ChoiceType::class, [
-                        'label' => 'Pressurized',
+                        'label' => 'pressurized',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -487,7 +485,7 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('oxygenSystem', ChoiceType::class, [
-                        'label' => 'Oxygen System',
+                        'label' => 'oxygenSystem',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -497,7 +495,7 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('knownIce', ChoiceType::class, [
-                        'label' => 'Flight Into Known Icing (FIKI)',
+                        'label' => 'knownIce',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -507,7 +505,7 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('inadvertentIceProtection', ChoiceType::class, [
-                        'label' => 'Inadvertent Ice Protection',
+                        'label' => 'inadvertentIceProtection',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -517,7 +515,7 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('airConditioning', ChoiceType::class, [
-                        'label' => 'A/C',
+                        'label' => 'airConditioning',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -527,7 +525,7 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('floatKit', ChoiceType::class, [
-                        'label' => 'Float Kit',
+                        'label' => 'floatKit',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -537,7 +535,7 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('includesFloats', ChoiceType::class, [
-                        'label' => 'Includes Floats',
+                        'label' => 'includesFloats',
                         'choices' => [
                             'Yes' => 1,
                             'No' => 0,
@@ -547,7 +545,7 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('floatType', ChoiceType::class, [
-                        'label' => 'Float Type',
+                        'label' => 'floatType',
                         'choices' => [
                             '------' => '',
                             'Straight' => 'Straight',
@@ -556,7 +554,7 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('equipmentNotes', TextareaType::class, [
-                        'label' => 'Additional Equipment',
+                        'label' => 'equipmentNotes',
                         'required' => false,
                     ]);
 
@@ -564,25 +562,25 @@ class PistonSingleAircraftFormType extends AbstractType
             case 5:
                 $builder
                     ->add('yearPainted', ChoiceType::class, [
-                        'label' => 'Year Painted',
+                        'label' => 'yearPainted',
                         'choices' => $this->getYearChoices(),
                         'required' => false,
                     ])
                     ->add('exteriorNotes', TextareaType::class, [
-                        'label' => 'Exterior Notes',
+                        'label' => 'exteriorNotes',
                         'required' => false,
                     ])
                     ->add('yearInterior', ChoiceType::class, [
-                        'label' => 'Year Interior',
+                        'label' => 'yearInterior',
                         'choices' => $this->getYearChoices(),
                         'required' => false,
                     ])
                     ->add('seatNumber', NumberType::class, [
-                        'label' => 'Number of Seats',
+                        'label' => 'seatNumber',
                         'required' => false,
                     ])
                     ->add('interiorConfiguration', ChoiceType::class, [
-                        'label' => 'Configuration',
+                        'label' => 'interiorConfiguration',
                         'choices' => [
                             '------' => '',
                             'Cargo' => 'Cargo',
@@ -591,15 +589,15 @@ class PistonSingleAircraftFormType extends AbstractType
                         'required' => false,
                     ])
                     ->add('interiorNotes', TextareaType::class, [
-                        'label' => 'Interior Notes',
+                        'label' => 'interiorNotes',
                         'required' => false,
                     ])
                     ->add('inspectionStatus', TextareaType::class, [
-                        'label' => 'Inspection Status',
+                        'label' => 'inspectionStatus',
                         'required' => false,
                     ])
                     ->add('airworthy', ChoiceType::class, [
-                        'label' => 'Airworthy',
+                        'label' => 'airworthy',
                         'choices' => [
                             '------' => '',
                             'Yes' => 1,
@@ -609,7 +607,6 @@ class PistonSingleAircraftFormType extends AbstractType
                     ]);
 
                 break;
-
         }
     }
 

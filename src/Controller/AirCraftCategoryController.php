@@ -24,6 +24,7 @@ final class AirCraftCategoryController extends AbstractController
         $editCategoryForm = $this->createForm(AirCraftCategoryType::class, $airCraftCategory);
         $form->handleRequest($request);
         $editCategoryForm->handleRequest($request);
+
         $queryBuilder = $airCraftCategoryRepository->findAllQueryBuilder();
         $pagination = $paginatorService->paginate($queryBuilder, $request, 8);
 

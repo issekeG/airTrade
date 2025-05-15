@@ -1,0 +1,480 @@
+aircraft_category:
+  edit:
+    title: "Edit an aircraft category"
+    header: "Edit aircraft category"
+  back_to_list: "Back to list"
+
+form:
+  save: "Save"
+  update: "Update"
+  previous: "Previous"
+  next: "Next"
+  finish: "Finish"
+  pseudo: "Your username"
+  name_and_firstname: "Last Name & First Name"
+  email: "Your email"
+  phone_number: "Phone number"
+  country: "Your country"
+  password: "Your password"
+  submit: "Submit"
+  firstname: "Your first name"
+  telephone: "Your phone"
+  registration_date: "Your registration date"
+  accept_terms: "By checking this box, you agree to our website's terms of use. This includes our privacy policy, code of conduct, and terms of service."
+  accept_newsletter: "By checking this box, you agree to receive emails from us about our new products, special offers, and news. You can unsubscribe at any time by clicking the link in each email."
+  accept_brokerage_contact: "By checking this box, you agree to be contacted by our brokerage services to offer you personalized offers and assist you in your endeavors."
+
+reset:
+  title: "Forgot your password?"
+  instructions: "Enter your email address, and we will send you a link to reset your password."
+  email_label: "Email address"
+  submit: "Reset password"
+  back_to_login: "Return to login page"
+  password:
+    new: "New password"
+    new_placeholder: "Enter your new password"
+    repeat: "Repeat password"
+    repeat_placeholder: "Repeat your new password"
+    email_sent_notice: >
+      If an account matching your email address exists, an email has just been sent to you containing a link you can use to reset your password. This link will expire in %expiration%.
+    no_email: >
+      If you do not receive an email, please check your spam folder or <a href="%retry_url%">try again</a>.
+    back_to_login: "Return to login page"
+
+app:
+  logo_text: "AirTradeLogoHere"
+  thank_you: "Thank you"
+  logo: "AirTradeLogo"
+
+login:
+  email: "Email"
+  password: "Password"
+  submit: "Log in"
+  forgot_password: "Forgot password?"
+  button: "Log in"
+  error:
+    username_required: "Please enter your username."
+    password_required: "Please enter your password!"
+    invalid_credentials: "Incorrect username or password"
+  terms: >
+    By clicking "Log in", you agree to be bound by our Terms of Use and Privacy Policy.
+  no_account: "Do you have an account?"
+  create_account: "Create an account"
+
+site:
+  logo_text: "AirTradeLogo"
+
+register:
+  header: "Join aviation enthusiasts and professionals"
+  success:
+    title: "Registration successful!"
+    message: "Thank you for registering.<br>To finalize your account creation, please confirm your email address."
+    confirmation: "A confirmation email has been sent to the email address you provided during registration.<br>Please click the link it contains to activate your account."
+    spam: "If you don’t see this email, please check your spam folder."
+    after_confirmation: "After confirmation, you will be able to access your personal space and fully enjoy our services."
+  button: "Sign up"
+  welcome_text: "Join aviation enthusiasts and professionals"
+  pseudo: "Your username"
+  name: "Your Last Name & First Name"
+  phone: "Your phone"
+  email: "Your email"
+  country: "Your country"
+  password: "Your password"
+  terms: >
+    By checking this box, you agree to our website's terms of use. This includes our privacy policy, code of conduct, and terms of service.
+  newsletter: >
+    By checking this box, you agree to receive emails from us about our new products, special offers, and news. You can unsubscribe at any time by clicking the link in each email.
+  broker_contact: >
+    By checking this box, you agree to be contacted by our brokerage services to offer you personalized offers and assist you in your endeavors.
+  submit: "Save"
+
+auth:
+  login: "Log in"
+
+admin:
+  list:
+    title: "List of administrators"
+  search:
+    placeholder: "Search with code ..."
+    aria_label: "Enter code ..."
+  create:
+    button: "Create"
+
+table:
+  action: "Action"
+  pseudo: "Username"
+  name: "First Name & Last Name"
+  email: "Email"
+  phone: "Phone"
+  registration_date: "Registration date"
+  role: "Role"
+  ads_count: "Number of ads"
+
+category:
+  list:
+    title: "List of Categories (%first% - %last% of %total%)"
+  button:
+    create: "Create"
+  modal:
+    add_title: "Add a category"
+    edit_title: "Edit category"
+  form:
+    name: "Name"
+
+button:
+  cancel: "Cancel"
+  save: "Save"
+  back_home: "Back to homepage"
+  delete: "Delete"
+
+confirm:
+  delete: "Are you sure you want to delete this item?"
+
+delete_confirmation: "Are you sure you want to delete this item?"
+delete_button: "Delete"
+
+share:
+  button: "Share"
+
+aircraft:
+  delete_confirmation: "Are you sure you want to delete this item?"
+  delete_button: "Delete"
+  report_confirmation: "Are you sure you want to report this item?"
+  report_button: "Report"
+  shadow_confirmation: "Are you sure you want to block or unblock this item?"
+  block_button: "Block"
+  unblock_button: "Unblock"
+  form_info: "Enter aircraft information"
+  serial_number: "Serial number"
+  manufacturer: "Manufacturer"
+  model: "Model"
+  year_of_manufacture: "Year of manufacture"
+  status: "Status"
+  registration_country: "Registration country"
+  service_entry_date: "Service entry date"
+  location: "Location"
+  show_details: "Show details"
+  documents:
+    title: "Documents"
+    view: "View"
+    none: "No documents available."
+  features:
+    others: "Other features"
+  description: "Description"
+  seller_info: "Seller information"
+  access_restricted: "Restricted access"
+  view_contacts: "View contacts"
+  view_seller_profile: "View seller profile"
+  contact_seller: "Contact seller"
+  connect_to_view_contacts: "Please <a href=\"%login_url%\" class=\"text-primary fw-bold\">log in</a> to view the contacts."
+  connect_to_contact_seller: "Please <a href=\"%login_url%\" class=\"text-primary fw-bold\">log in</a> to contact the seller."
+  characteristics: "Characteristics"
+  reported: "This ad has been reported"
+  turboprop: "Turboprop aircraft"
+  emplacement: "Aircraft location:"
+  list_published: "List of published ads (%first% - %last% of %total%)"
+  search_placeholder: "Search by username or email ..."
+  search_label: "Enter username or email ..."
+  category: "Category"
+  price: "Price"
+  total_hours: "Total hours"
+  details_button: "View details"
+
+seller:
+  info_title: "Seller information"
+  username: "Username"
+  contact: "Contact"
+  email: "Email"
+  phone: "Phone"
+  ads_count: "Number of ads"
+  login_to_see_info: "Please log in to view seller information"
+
+alert:
+  view_images_login_0: "To view all images"
+  view_images_login_1: "log in"
+
+video:
+  no_html5_support: "Your browser does not support HTML5 videos."
+
+aircraft_manufacturer:
+  delete_confirm: "Are you sure you want to delete this item?"
+  delete_button: "Delete"
+  edit_title: "Edit manufacturer"
+  edit_heading: "Edit manufacturer information"
+  update_button: "Update"
+  back_to_list: "Back to list"
+  new_title: "New manufacturer"
+  new_heading: "Create a new aircraft manufacturer"
+  create_button: "Create"
+  list: "List of manufacturers (%first% - %last% of %total%)"
+  search_placeholder: "Search by name ..."
+  search_label: "Enter name ..."
+  create: "Create"
+  add_title: "Add a manufacturer"
+  name: "Name"
+  ad_count: "Number of ads"
+
+filter:
+  apply_filters: "Apply filters"
+  categories: "Categories"
+  manufacturer: "Manufacturer"
+  year_built: "Year built"
+  min_year: "Min year"
+  max_year: "Max year"
+  price: "Price"
+  min_price: "Min price"
+  max_price: "Max price"
+  total_hours: "Total hours"
+  min_hours: "Min hours"
+  max_hours: "Max hours"
+  seats_number: "Number of seats"
+  min_seats: "Min seats"
+  max_seats: "Max seats"
+  publication_date: "Publication date"
+  min_date: "Min publication date"
+  max_date: "Max publication date"
+  status_name: "Status"
+  status:
+    used: "Used"
+    new: "New"
+    used_condition: "Second-hand"
+  registration_number: "Registration number"
+  title: "Filter"
+  this_month: "This month"
+  this_year: "This year"
+
+user:
+  list_title: "List of active users"
+  search_placeholder: "Search by username or email..."
+  action: "Action"
+  username: "Username"
+  full_name: "First Name & Last Name"
+  email: "Email"
+  phone: "Phone"
+  registration_date: "Registration date"
+  role: "Role"
+  view_profile: "View profile"
+  lock_unlock: "Verification"
+  verified: "Verified"
+  not_verified: "Not verified"
+  no_users: "No users found"
+  from_to_total: "of %total%"
+  list_verified: "List of verified users"
+  delete_confirm: "Are you sure you want to delete this item?"
+  delete_button: "Delete"
+  profile:
+    account_details: "Account details"
+    details_tab: "Details"
+    my_info: "My information"
+    pseudo: "Your username"
+    firstname: "Your first name"
+    telephone: "Your phone"
+    email: "Your email"
+    country: "Your country"
+    created_at: "Registration date"
+    accept_terms_text: "By checking this box, you agree to our website's terms of use. This includes our privacy policy, code of conduct, and terms of service."
+    accept_newsletter_text: "By checking this box, you agree to receive emails from us about our new products, special offers, and news. You can unsubscribe at any time by clicking the link in each email."
+    accept_brokerage_contact_text: "By checking this box, you agree to be contacted by our brokerage services to offer you personalized offers and assist you in your endeavors."
+    edit_infos: "Edit your information"
+    edit_tab: "Edit your information"
+    change_password_menu: "Change password"
+    change_password_tab: "Change password"
+    change_password_title: "Set new password"
+    menu: "Ads"
+    tab_title: "List of my ads"
+    location: "Location"
+    view_details: "View details"
+
+sidebar:
+  my_ads: "My ads"
+  change_password: "Change password"
+  pages: "Pages"
+  logout: "Log out"
+  ads: "Ads"
+  favorites: "Favorites"
+  account_details: "Account details"
+  edit_info: "Edit info"
+  messaging: "Messaging"
+  dashboard: "Dashboard"
+  categories: "Categories"
+  manufacturer: "Manufacturer"
+  hidden_ads: "Hidden ads"
+  reported_ads: "Reported ads"
+  admin: "Admin"
+  verified_users: "Verified users"
+  non_verified_users: "Non-verified users"
+  blog_article: "Blog articles"
+  add_article: "Add article"
+  list_articles: "List articles"
+  apply_filters: "Apply filters"
+  year_built: "Year built"
+  min_year: "Min year"
+  max_year: "Max year"
+  price: "Price"
+  min_price: "Min price"
+  max_price: "Max price"
+  hours: "Total hours"
+  min_hour: "Min hours"
+  max_hour: "Max hours"
+  seats: "Number of seats"
+  min_seat: "Min seats"
+  max_seat: "Max seats"
+  published_date: "Publication date"
+  min_date: "Min publication date"
+  max_date: "Max publication date"
+  status: "Status"
+  status_used: "Used"
+  status_new: "New"
+  status_used_condition: "Second-hand"
+  registration_number: "Registration number"
+  registration_number_placeholder: "Registration number"
+  total_hours: "Total hours"
+  number_of_seats: "Number of seats"
+  min_seats: "Min seats"
+  max_seats: "Max seats"
+  min_publish_date: "Min publication date"
+  max_publish_date: "Max publication date"
+  used: "Used"
+  new: "New"
+  second_hand: "Second-hand"
+
+profile:
+  my_ads: "My ads"
+  my_info: "My information"
+  username: "Username"
+  phone: "Phone"
+  ads_tab: "My ads"
+  title: "My information"
+  pseudo: "Username"
+  firstname: "First name"
+  lastname: "Last name"
+  email: "Email"
+  edit_link: "Edit your info"
+  edit_tab: "Edit your information"
+  my_information: "My information"
+  country: "Country"
+  password: "Password"
+  details_link: "Account details"
+  details_tab: "Details"
+  telephone: "Your phone:"
+  registered_at: "Registration date:"
+  change_password_link: "Change password"
+  change_password_tab: "Change password"
+  new_password_title: "Set new password"
+  accept_terms: >
+    By checking this box, you agree to our website's terms of use.
+    This includes our privacy policy, code of conduct, and terms of service.
+  accept_newsletter: >
+    By checking this box, you agree to receive emails from us about our new products, special offers, and news.
+    You can unsubscribe at any time by clicking the link in each email.
+  accept_brokerage_contact: >
+    By checking this box, you agree to be contacted by our brokerage services to offer you personalized offers and assist you in your endeavors.
+  my_ads_link: "My ads"
+  my_ads_tab: "List of my ads"
+  publish_ad: "Publish an ad"
+
+ads:
+  location: "Location"
+  view_details: "View details"
+
+common:
+  cancel: "Cancel"
+  save: "Save"
+  action: "Action"
+  search: "Search"
+  close: "Close"
+
+stats:
+  total_ads: "Total number of ads"
+  ads_per_category: "Average ads per category"
+  average_is: "The average is"
+  view_stats_by_category: "View stats by category"
+  reported_ads: "Reported ads"
+  blocked_ads: "Blocked ads"
+  total_users: "Total number of users"
+  verified_users: "Verified users"
+  verified: "verified"
+  sent_messages: "Messages sent"
+  total_admins: "Administrators"
+  blog_articles: "Blog articles"
+  ads_by_category: "Ads by category"
+  no_data: "No data available"
+
+header:
+  my_profile: "My profile"
+  sell_plane: "Sell your plane"
+  public_profile: "Public profile"
+  logout: "Log out"
+  login: "Log in"
+  blog: "Blog"
+  whatsapp: "Chat on WhatsApp"
+  restricted_access: "Restricted access"
+  please_login: 'Please <a href="%url%" class="text-primary fw-bold">log in</a> to contact us.'
+
+filter_by_category: "Filter by category"
+close: "Close"
+category_filtering: "Category filtering"
+search_category: "Search for a category..."
+cancel: "Cancel"
+apply: "Apply"
+
+homepage:
+  title: "The marketplace for aviation enthusiasts and professionals."
+
+browse:
+  title: "Browse by category"
+  subtitle: "Find the aircraft that meets your needs"
+
+listings:
+  title: "Selection of aircraft for sale"
+  subtitle: "Exceptional aircraft, ready to take off with you"
+
+blog:
+  title: "Blog articles"
+  subtitle: "Discover our latest articles about aviation"
+
+cta:
+  explore: "Explore the marketplace"
+  sell: "Sell an aircraft"
+  details: "View details"
+  search: "Search"
+
+location: "Location:"
+price: "Price:"
+year: "Year:"
+
+categories:
+  jet_aircraft: "Jet aircraft"
+  turboprop_aircraft: "Turboprop aircraft"
+  piston_single_aircraft: "Single-engine piston aircraft"
+  piston_twin_aircraft: "Twin-engine piston aircraft"
+  light_sport: "Light sport aircraft"
+  experimental_homebuilt_aircraft: "Experimental aircraft"
+  piston_agricultural_aircraft: "Piston agricultural aircraft"
+  piston_amphibious_flatplanes: "Piston floatplanes"
+  piston_helicopters: "Piston helicopters"
+  piston_military_aircraft: "Piston military aircraft"
+  turbine_agricultural_aircraft: "Turbine agricultural aircraft"
+  turbine_helicopters: "Turbine helicopters"
+  turbine_military_aircraft: "Turbine military aircraft"
+  turbine_amphibious_floatplane: "Turbine floatplanes"
+
+footer:
+  description: "Your next departure starts here. Between passion and excellence, find the aircraft that will take you to new horizons. The sky is waiting for you."
+  navigation: "Navigation"
+  home: "Home"
+  blog: "Blog"
+  contact: "Contact"
+  about: "About"
+  categories: "Categories"
+  category:
+    jet: "Jet"
+    turboprop: "Turboprop"
+    piston_single: "Piston Single"
+    experimental: "Experimental"
+  newsletter: "Newsletter"
+  newsletter_description: "Receive the latest ads and articles by email."
+  email_placeholder: "Your email"
+  copyright: "Antalasoft. All rights reserved."
+  legal_notice: "Legal notice"
+  privacy_policy: "Privacy policy"

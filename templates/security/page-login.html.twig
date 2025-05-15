@@ -1,89 +1,93 @@
 {% extends 'base.html.twig' %}
+
 {% block header %}
+  {% include 'composant/login-register-nav-bar.html.twig' %}
 {% endblock %}
-{% block sidebar %}
-{% endblock %}
+
+{% block sidebar %}{% endblock %}
+
 {% block main %}
   <main>
     <div class="container">
-
       <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-5 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
               <div class="d-flex justify-content-center py-4">
-                <a href="" class="logo d-flex align-items-center w-auto">
-                  <span class="d-none d-lg-block" style="color: #00ffff">AirTradeLogoIci</span>
-                </a>
-              </div><!-- End Logo -->
+                <a href="" class="logo d-flex align-items-center w-auto"></a>
+              </div>
 
               <div class="card mb-3">
-
                 <div class="card-body">
-
                   <form class="row g-3 needs-validation" method="post" novalidate>
-
                     <div class="col-12 pt-4">
-                      <label for="username" class="form-label">E-mail</label>
+                      <label for="username" class="form-label">{{ 'login.email'|trans }}</label>
                       <div class="input-group has-validation">
                         <input type="text" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
-                        <div class="invalid-feedback">Veuillez entre votre identifiant.</div>
+                        <div class="invalid-feedback">{{ 'login.error.username_required'|trans }}</div>
                       </div>
                     </div>
 
                     <div class="col-12">
-                      <label for="password" class="form-label">Mot de passe</label>
+                      <label for="password" class="form-label">{{ 'login.password'|trans }}</label>
                       <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
-                      <div class="invalid-feedback">Veuillez entrer votre mot de passe!</div>
+                      <div class="invalid-feedback">{{ 'login.error.password_required'|trans }}</div>
                     </div>
 
-                    <input type="hidden" name="_csrf_token"
-                           value="{{ csrf_token('authenticate') }}"
-                    >
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
                     {% if error %}
                       <p class="text-center small text-danger" id="error_connect">
-                        Identifiant ou mot de passe incorrect
+                        {{ 'login.error.invalid_credentials'|trans }}
                       </p>
                     {% endif %}
+
                     <div class="col-12">
-                      <p class="small mb-0"><a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié ?</a></p>
+                      <p class="small mb-0">
+                        <a href="{{ path('app_forgot_password_request') }}">{{ 'login.forgot_password'|trans }}</a>
+                      </p>
                     </div>
 
                     <div class="col-12">
-
-                      <button class="btn btn-primary w-100 border-0" type="submit" style="background-color: #07182e;">Se connecter</button>
+                      <button class="btn flex text-white border-0" type="submit" style="background-color: #1A0B8C;">
+                        {{ 'login.submit'|trans }}
+                      </button>
+                      <hr>
                       <div class="text-center">
-                        <small>En cliquant sur "Se connecter", vous acceptez d'être lié par nos Conditions d'utilisation et notre Politique de confidentialité.
-
-                        </small>
+                        <small>{{ 'login.terms'|trans }}</small>
                       </div>
                     </div>
+
                     <hr>
                     <div class="col-12">
-                      <p class="small mb-0">Avez-vous un compte ? <a href="{{ path('app_register') }}">Créer un compte</a></p>
+                      <p class="small mb-0">
+                        {{ 'login.no_account'|trans }} <a href="{{ path('app_register') }}" style="color:#1A0B8C;">{{ 'login.create_account'|trans }}</a>
+                      </p>
                     </div>
                   </form>
+
                   <script>
-                    $('document').ready(function() {
-                      $("#username, #password").on("keyup", function () {
-                        $("#error_connect").addClass("d-none");
+                    document.addEventListener("DOMContentLoaded", function() {
+                      document.getElementById("username").addEventListener("keyup", function () {
+                        document.getElementById("error_connect")?.classList.add("d-none");
+                      });
+                      document.getElementById("password").addEventListener("keyup", function () {
+                        document.getElementById("error_connect")?.classList.add("d-none");
                       });
                     });
                   </script>
-
                 </div>
               </div>
 
             </div>
           </div>
         </div>
-
       </section>
-
     </div>
-  </main><!-- End #main -->
+  </main>
 {% endblock %}
+
 
 {% block footer %}
 {% endblock %}

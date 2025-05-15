@@ -17,7 +17,7 @@
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                                Saisissez les informations sur l'avion
+                                                {{ 'aircraft.form_info'|trans }}
                                             </button>
                                         </h2>
                                         <div id="flush-collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
@@ -98,16 +98,17 @@
                                                     <div class="form-navigation d-flex justify-content-between mt-4">
                                                         {% if step > 1 %}
                                                             <a href="{{ path('aircraft_wizard_form', {'step': step - 1}) }}" class="btn btn-secondary">
-                                                                Précédent
+                                                                {{ 'form.previous'|trans }}
                                                             </a>
                                                         {% else %}
                                                             <span></span> {# Placeholder pour alignement #}
                                                         {% endif %}
 
                                                         <button type="submit" class="btn btn-primary">
-                                                            {{ step == totalSteps ? 'Terminer' : 'Suivant' }}
+                                                            {{ step == totalSteps ? 'form.finish'|trans : 'form.next'|trans }}
                                                         </button>
                                                     </div>
+
 
                                                     {{ form_end(form) }}
                                                 </div>

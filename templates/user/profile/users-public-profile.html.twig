@@ -2,13 +2,10 @@
 {% extends 'base.html.twig' %}
 
 {% block sideColumns %}
-
-
   <section class="listings-section py-2 bg-light">
     <div class="container">
       <div class="row g-4">
 
-        <!-- Listing 1 - Beechcraft Baron -->
         {% for aircraft in allAirCrafts %}
           <div class="col-md-6 col-lg-6">
             <div class="aircraft-card">
@@ -20,16 +17,21 @@
                 {% endif %}
               </div>
               <div class="aircraft-details">
-
                 <div>
                   <span class="aircraft-type">{{ aircraft.aircraftCategory.name }}</span>
                 </div>
-                <small class="text-primary bold"><span>{{ aircraft.yearOfManufacture }}</span>{{ aircraft.aircraftManufacturer.name }} {{ aircraft.model }}</small>
-                <p class="aircraft-location">Location : {{ aircraft.city }},  {{ aircraft.country }}</p>
+                <small class="text-primary bold">
+                  <span>{{ aircraft.yearOfManufacture }}</span>
+                  {{ aircraft.aircraftManufacturer.name }} {{ aircraft.model }}
+                </small>
+                <p class="aircraft-location">{{ 'aircraft.location'|trans }} : {{ aircraft.city }}, {{ aircraft.country }}</p>
                 <div class="aircraft-price">€{{ aircraft.price }}</div>
-                <div class=" bg-white border-top-0 py-0">
+                <div class="bg-white border-top-0 py-0">
                   <div class="d-grid">
-                    <a href="{{ path('app_aircraft_show', {'slug':aircraft.slug}) }}" class="btn btn-outline-primary">Voir les details</a>
+                    <a href="{{ path('app_aircraft_show', {'slug': aircraft.slug}) }}"
+                       class="btn btn-outline-primary">
+                      {{ 'aircraft.details_button'|trans }}
+                    </a>
                   </div>
                 </div>
               </div>
@@ -37,98 +39,86 @@
           </div>
         {% endfor %}
 
-
       </div>
-
     </div>
   </section>
-
 {% endblock %}
-
-
 
 {% block rightColumns %}
   <div class="col-lg-4">
-
-    <!-- Recent Activity -->
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Information du vendeur</h5>
-
+        <h5 class="card-title">{{ 'seller.info_title'|trans }}</h5>
         <div class="activity">
 
           <div class="activity-item d-flex">
-            <div class="activite-label">Pseudo</div>
+            <div class="activite-label">{{ 'seller.username'|trans }}</div>
             <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
             <div class="activity-content">
               {% if app.user %}
-                  {{ user.pseudo }}
+                {{ user.pseudo }}
               {% else %}
                 *******
               {% endif %}
             </div>
-          </div><!-- End activity item-->
+          </div>
 
           <div class="activity-item d-flex">
-            <div class="activite-label">Contact</div>
+            <div class="activite-label">{{ 'seller.contact'|trans }}</div>
             <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
             <div class="activity-content">
-
               {% if app.user %}
                 {{ user.firstname }}
               {% else %}
                 *******
               {% endif %}
             </div>
-          </div><!-- End activity item-->
+          </div>
 
           <div class="activity-item d-flex">
-            <div class="activite-label">Email</div>
+            <div class="activite-label">{{ 'seller.email'|trans }}</div>
             <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
             <div class="activity-content">
-
               {% if app.user %}
                 {{ user.email }}
               {% else %}
                 *******
               {% endif %}
             </div>
-          </div><!-- End activity item-->
+          </div>
 
           <div class="activity-item d-flex">
-            <div class="activite-label">Telephone</div>
+            <div class="activite-label">{{ 'seller.phone'|trans }}</div>
             <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
             <div class="activity-content">
-
               {% if app.user %}
                 {{ user.telephone }}
               {% else %}
                 *******
               {% endif %}
             </div>
-          </div><!-- End activity item-->
+          </div>
 
           <div class="activity-item d-flex">
-            <div class="activite-label">Nombre d'annonce</div>
+            <div class="activite-label">{{ 'seller.ads_count'|trans }}</div>
             <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
             <div class="activity-content">
               {{ allAirCrafts | length }}
             </div>
           </div>
 
-
-            <div class="activity-content">
-              <a href="{{ path('app_login') }}">Veuillez vous connecter pour voir les informations du vendeur</a>
-            </div>
-
+          {% if not app.user %}
+          <div class="activity-content">
+            <a href="{{ path('app_login') }}">{{ 'seller.login_to_see_info'|trans }}</a>
+          </div>
+          {% endif %}
 
         </div>
-
       </div>
     </div>
-
   </div>
 {% endblock %}
+
 
 {% block footer %}
 {% endblock %}

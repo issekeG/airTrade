@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% block sidebar %}{% endblock %}
+
+{% block main %}
+    <main id="aviation-homepage" class="main bg-light">
+        <!-- Listings Section -->
+        <section class="listings-section py-2 bg-light">
+            <div class="container">
+                <div class="row g-4" style="margin-top: 50px;">
+                    {% for article in articles %}
+                        <div class="col-xxl-6 col-xl-6 col-lg-6">
+                            <article class="blog__item-3">
+                                <div class="blog__img-wrapper-3">
+                                    <a href="">
+                                        <div class="img-box">
+                                            <img class="image-box__item" src="{{ asset('uploads/blog/article_image_affiche/' ~ article.imageAffiche) }}" alt="{{ article.title }}">
+                                            <img class="image-box__item" src="{{ asset('uploads/blog/article_image_affiche/' ~ article.imageAffiche) }}" alt="{{ article.title }}">
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="blog__info-3 bg-white">
+                                    <h4 class="blog__meta"><a href="">{{ article.category }}</a> . {{ article.publishedAt |date('d/m/Y') }}</h4>
+                                    <h5>
+                                    {{ article.title|slice(0, 70) }}{% if article.title|length > 70 %}…{% endif %}
+                                    </h5>
+                                    <hr>
+                                    <a href="{{ path('app_blog_show',{'slug':article.slug}) }}" class="blog__btn">lire l'article <span><i
+                                                    class="fa-solid fa-arrow-right"></i></span></a>
+                                </div>
+                            </article>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+{% endblock %}
+
+{% block footer %}
+    <footer class="text-white pt-5 pb-4 mt-5" style="background-color: #1A0B8C;">
+        <div class="container">
+            <div class="row">
+                <!-- Logo et Description -->
+                <div class="col-md-4 mb-4">
+                    <img src="{{ asset('images/your-logo.png') }}" alt="Logo" style="height: 50px;" class="mb-3">
+                    <p class="text-white">
+                        <small>
+                            {{ 'footer.description'|trans }}
+                        </small>
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <!-- Liens utiles -->
+                <div class="col-md-2 mb-4">
+                    <h6 class="text-uppercase fw-bold mb-3">{{ 'footer.navigation'|trans }}</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="" class="text-white text-decoration-none">{{ 'footer.home'|trans }}</a></li>
+                        <li><a href="" class="text-white text-decoration-none">{{ 'footer.blog'|trans }}</a></li>
+                        <li><a href="" class="text-white text-decoration-none">{{ 'footer.contact'|trans }}</a></li>
+                        <li><a href="" class="text-white text-decoration-none">{{ 'footer.about'|trans }}</a></li>
+                    </ul>
+                </div>
+
+                <!-- Catégories -->
+                <div class="col-md-3 mb-4">
+                    <h6 class="text-uppercase fw-bold mb-3">{{ 'footer.categories'|trans }}</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="{{ path('app_aircraft_by_category', {'categoryName':'Jet Aircraft'}) }}" class="text-white text-decoration-none">{{ 'footer.category.jet'|trans }}</a></li>
+                        <li><a href="{{ path('app_aircraft_by_category', {'categoryName':'Turboprop Aircraft'}) }}" class="text-white text-decoration-none">{{ 'footer.category.turboprop'|trans }}</a></li>
+                        <li><a href="{{ path('app_aircraft_by_category', {'categoryName':'Piston Single'}) }}" class="text-white text-decoration-none">{{ 'footer.category.piston_single'|trans }}</a></li>
+                        <li><a href="{{ path('app_aircraft_by_category', {'categoryName':'Experimental'}) }}" class="text-white text-decoration-none">{{ 'footer.category.experimental'|trans }}</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="col-md-3 mb-4">
+                    <h6 class="text-uppercase fw-bold mb-3">{{ 'footer.newsletter'|trans }}</h6>
+                    <p class="text-white">{{ 'footer.newsletter_description'|trans }}</p>
+                    <form>
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="{{ 'footer.email_placeholder'|trans }}">
+                            <button class="btn btn-primary" type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <hr class="border-secondary">
+
+            <!-- Footer bottom -->
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <p class="mb-2 mb-md-0 text-white">&copy; {{ "now"|date("Y") }} {{ 'footer.copyright'|trans }}</p>
+                <div>
+                    <a href="#" class="text-white me-3 text-decoration-none">{{ 'footer.legal_notice'|trans }}</a>
+                    <a href="#" class="text-white text-decoration-none">{{ 'footer.privacy_policy'|trans }}</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+{% endblock %}
+
+

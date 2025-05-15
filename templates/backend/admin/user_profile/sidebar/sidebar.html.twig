@@ -9,146 +9,141 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" onclick="submitSidebarFilter();">
                     <i class="bi bi-funnel"></i>
-                    <span>Appliquer les filtres</span>
+                    <span>{{ 'filter.apply_filters'|trans }}</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-bs-toggle="modal" data-bs-target="#categoryFilterModal">
-                    <i class="bi bi-tags"></i><span>Catégories</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-tags"></i><span>{{ 'filter.categories'|trans }}</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-bs-toggle="modal" data-bs-target="#manufacturerFilterModal">
-                    <i class="bi bi-building"></i><span>Constructeur</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-building"></i><span>{{ 'filter.manufacturer'|trans }}</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#year-built-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-calendar3"></i><span>Année de construction</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-calendar3"></i><span>{{ 'filter.year_built'|trans }}</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="year-built-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                     <li>
                         <a>
                             <div class="form-floating col-12">
-                                <select class="form-select form-select-sm" id="sidebarMinYear" name="aircraft_min_year" aria-label="Année min">
-                                    <option selected disabled>Année min</option>
+                                <select class="form-select form-select-sm" id="sidebarMinYear" name="aircraft_min_year" aria-label="{{ 'filter.min_year'|trans }}">
+                                    <option selected disabled>{{ 'filter.min_year'|trans }}</option>
                                     {% set currentYear = "now"|date("Y") %}
                                     {% for year in 1950..currentYear %}
                                         <option value="{{ year }}">{{ year }}</option>
                                     {% endfor %}
                                 </select>
-                                <label for="sidebarMinYear" class="text-muted fw-normal">Année min</label>
+                                <label for="sidebarMinYear" class="text-muted fw-normal">{{ 'filter.min_year'|trans }}</label>
                             </div>
                         </a>
                     </li>
                     <li>
                         <a>
                             <div class="form-floating col-12">
-                                <select class="form-select form-select-sm" id="sidebarMaxYear" name="aircraft_max_year" aria-label="Année max">
-                                    <option selected disabled>Année max</option>
+                                <select class="form-select form-select-sm" id="sidebarMaxYear" name="aircraft_max_year" aria-label="{{ 'filter.max_year'|trans }}">
+                                    <option selected disabled>{{ 'filter.max_year'|trans }}</option>
                                     {% set currentYear = "now"|date("Y") %}
                                     {% for year in 1950..currentYear %}
                                         <option value="{{ year }}">{{ year }}</option>
                                     {% endfor %}
                                 </select>
-                                <label for="sidebarMaxYear" class="text-muted fw-normal">Année max</label>
+                                <label for="sidebarMaxYear" class="text-muted fw-normal">{{ 'filter.max_year'|trans }}</label>
                             </div>
                         </a>
                     </li>
                 </ul>
-
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#price-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-cash-coin"></i><span>Prix</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-cash-coin"></i><span>{{ 'filter.price'|trans }}</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="price-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <ul id="price-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                     <li>
                         <a>
                             <div class="form-floating col-12">
-                                <input type="number" class="form-control form-control-sm" id="sidebarMinPrice" name="aircraft_min_price" placeholder="Prix min" min="0">
-                                <label for="sidebarMinPrice" class="text-muted fw-normal">Prix min</label>
+                                <input type="number" class="form-control form-control-sm" id="sidebarMinPrice" name="aircraft_min_price" placeholder="{{ 'filter.min_price'|trans }}" min="0">
+                                <label for="sidebarMinPrice" class="text-muted fw-normal">{{ 'filter.min_price'|trans }}</label>
                             </div>
                         </a>
                     </li>
                     <li>
                         <a>
                             <div class="form-floating col-12">
-                                <input type="number" class="form-control form-control-sm" id="sidebarMaxPrice" name="aircraft_max_price" placeholder="Prix max" min="0">
-                                <label for="sidebarMaxPrice" class="text-muted fw-normal">Prix max</label>
+                                <input type="number" class="form-control form-control-sm" id="sidebarMaxPrice" name="aircraft_max_price" placeholder="{{ 'filter.max_price'|trans }}" min="0">
+                                <label for="sidebarMaxPrice" class="text-muted fw-normal">{{ 'filter.max_price'|trans }}</label>
                             </div>
                         </a>
                     </li>
                 </ul>
             </li>
             <li class="nav-item">
-
                 <a class="nav-link collapsed" data-bs-target="#hours-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-clock-history"></i><span>Heures totales</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-clock-history"></i><span>{{ 'filter.total_hours'|trans }}</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="hours-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <ul id="hours-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                     <li>
                         <a>
                             <div class="form-floating col-12">
-                                <input type="number" class="form-control form-control-sm" id="sidebarMinHour" name="aircraft_min_hour" placeholder="nombre d'heure min" min="0">
-                                <label for="sidebarMinHour" class="text-muted fw-normal">Nombre d'heure min</label>
+                                <input type="number" class="form-control form-control-sm" id="sidebarMinHour" name="aircraft_min_hour" placeholder="{{ 'filter.min_hours'|trans }}" min="0">
+                                <label for="sidebarMinHour" class="text-muted fw-normal">{{ 'filter.min_hours'|trans }}</label>
                             </div>
-
                         </a>
                     </li>
                     <li>
                         <a>
                             <div class="form-floating col-12">
-                                <input type="number" class="form-control form-control-sm" id="sidebarMaxHour" name="aircraft_max_hour" placeholder="nombre d'heure max" min="0">
-                                <label for="sidebarMaxHour" class="text-muted fw-normal">Nombre d'heure max</label>
+                                <input type="number" class="form-control form-control-sm" id="sidebarMaxHour" name="aircraft_max_hour" placeholder="{{ 'filter.max_hours'|trans }}" min="0">
+                                <label for="sidebarMaxHour" class="text-muted fw-normal">{{ 'filter.max_hours'|trans }}</label>
                             </div>
                         </a>
                     </li>
                 </ul>
-
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#number-seats-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-person-bounding-box"></i><span>Nombre de sièges</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-person-bounding-box"></i><span>{{ 'filter.seats_number'|trans }}</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="number-seats-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <ul id="number-seats-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                     <li>
                         <a>
                             <div class="form-floating col-12">
-                                <input type="number" class="form-control form-control-sm" id="sidebarMinSeat" name="aircraft_min_seat" placeholder="Nombre de sièges min" min="0">
-                                <label for="sidebarMinSeat" class="text-muted fw-normal">Nombre de sièges min</label>
+                                <input type="number" class="form-control form-control-sm" id="sidebarMinSeat" name="aircraft_min_seat" placeholder="{{ 'filter.min_seats'|trans }}" min="0">
+                                <label for="sidebarMinSeat" class="text-muted fw-normal">{{ 'filter.min_seats'|trans }}</label>
                             </div>
                         </a>
                     </li>
                     <li>
                         <a>
                             <div class="form-floating col-12">
-                                <input type="number" class="form-control form-control-sm" id="sidebarMaxSeat" name="aircraft_max_seat" placeholder="Nombre de sièges max" min="0">
-                                <label for="sidebarMaxSeat" class="text-muted fw-normal">Nombre de sièges max</label>
+                                <input type="number" class="form-control form-control-sm" id="sidebarMaxSeat" name="aircraft_max_seat" placeholder="{{ 'filter.max_seats'|trans }}" min="0">
+                                <label for="sidebarMaxSeat" class="text-muted fw-normal">{{ 'filter.max_seats'|trans }}</label>
                             </div>
                         </a>
                     </li>
                 </ul>
-
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#date-published-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-calendar3"></i><span>Date de publication</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-calendar3"></i><span>{{ 'filter.publication_date'|trans }}</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="date-published-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                     <li>
                         <a>
                             <div class="form-floating col-12">
-                                <input type="date" class="form-control form-control-sm" id="sidebarMinDate" name="aircraft_min_date" placeholder="Date de publication min">
-                                <label for="sidebarMinDate" class="text-muted fw-normal">Date de publication min</label>
+                                <input type="date" class="form-control form-control-sm" id="sidebarMinDate" name="aircraft_min_date" placeholder="{{ 'filter.min_date'|trans }}">
+                                <label for="sidebarMinDate" class="text-muted fw-normal">{{ 'filter.min_date'|trans }}</label>
                             </div>
                         </a>
                     </li>
                     <li>
                         <a>
                             <div class="form-floating col-12">
-                                <input type="date" class="form-control form-control-sm" id="sidebarMaxDate" name="aircraft_max_date" placeholder="Date de publication max">
-                                <label for="sidebarMaxDate" class="text-muted fw-normal">Date de publication max</label>
+                                <input type="date" class="form-control form-control-sm" id="sidebarMaxDate" name="aircraft_max_date" placeholder="{{ 'filter.max_date'|trans }}">
+                                <label for="sidebarMaxDate" class="text-muted fw-normal">{{ 'filter.max_date'|trans }}</label>
                             </div>
                         </a>
                     </li>
@@ -156,7 +151,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#status-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-clipboard-check"></i><span>Status</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-clipboard-check"></i><span>{{ 'filter.status_name'|trans }}</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="status-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                     <li>
@@ -164,7 +159,7 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="utilise" id="statusUsed" name="aircraft_status[]">
                                 <label class="form-check-label" for="statusUsed">
-                                    Utilisé
+                                    {{ 'filter.status.used'|trans }}
                                 </label>
                             </div>
                         </a>
@@ -174,7 +169,7 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="neuf" id="statusNew" name="aircraft_status[]">
                                 <label class="form-check-label" for="statusNew">
-                                    Neuf
+                                    {{ 'filter.status.new'|trans }}
                                 </label>
                             </div>
                         </a>
@@ -184,33 +179,30 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="occasion" id="statusUsedCondition" name="aircraft_status[]">
                                 <label class="form-check-label" for="statusUsedCondition">
-                                    Occasion
+                                    {{ 'filter.status.used_condition'|trans }}
                                 </label>
                             </div>
                         </a>
                     </li>
                 </ul>
             </li>
-
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#registration-number-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-calendar-check"></i><span>Num d'enregistrement</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-calendar-check"></i><span>{{ 'filter.registration_number'|trans }}</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="registration-number-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                     <li>
                         <a>
                             <div class="form-floating col-12">
-                                <input type="text" class="form-control form-control-sm" id="sidebarRegistrationNumber" name="aircraft_registration_number" placeholder="Numéro d'enregistrement">
-                                <label for="sidebarRegistrationNumber" class="text-muted fw-normal">Numéro d'enregistrement</label>
+                                <input type="text" class="form-control form-control-sm" id="sidebarRegistrationNumber" name="aircraft_registration_number" placeholder="{{ 'filter.registration_number'|trans }}">
+                                <label for="sidebarRegistrationNumber" class="text-muted fw-normal">{{ 'filter.registration_number'|trans }}</label>
                             </div>
                         </a>
                     </li>
                 </ul>
             </li>
-
         </ul>
     </form>
-
 </aside>
 
 <script>

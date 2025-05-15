@@ -1,5 +1,55 @@
 {% extends 'base.html.twig' %}
 {% block header %}
+    <header id="header" class="header fixed-top d-flex align-items-center">
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="{{ path('app_home') }}" class="logo d-flex align-items-center">
+                <img src="" alt="">
+                <span class="d-none d-lg-block">{{ 'app.logo'|trans }}</span>
+            </a>
+            {% block sidebarIcon %}
+                <i class="bi bi-list toggle-sidebar-btn d-block d-lg-none"></i>
+            {% endblock sidebarIcon %}
+        </div>
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+                <li class="nav-item dropdown px-3 d-flex align-items-center">
+                    {% if app.request.locale == "en" %}
+                        <span class="flag-icon flag-icon-gb me-2"></span>
+                    {% else %}
+                        <span class="flag-icon flag-icon-{{ app.request.locale }} me-2"></span>
+                    {% endif %}
+
+                    <form method="get" action="{{ path('change-locale') }}">
+                        <select name="_locale" onchange="this.form.submit()" class="form-select form-select-sm">
+                            {% for code, lang in available_languages.getAvailableLanguages() %}
+                                <option value="{{ code }}" {% if code == app.request.locale %}selected{% endif %}>
+                                    {{ lang.label|trans }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        {% for key, value in app.request.query.all() %}
+                            {% if key != '_locale' %}
+                                {% if value is iterable %}
+                                    {% for v in value %}
+                                        <input type="hidden" name="{{ key }}[]" value="{{ v }}">
+                                    {% endfor %}
+                                {% else %}
+                                    <input type="hidden" name="{{ key }}" value="{{ value }}">
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </form>
+                </li>
+
+                <li class="nav-item dropdown pe-3">
+                    <a class="nav-link btn py-1" href="{{ path('app_register') }}" style="border: 1px solid #1A0B8C !important; color : #1A0B8C !important;">
+                        <i class="bi bi-box-arrow-in-right me-1"></i> {{ 'register.button'|trans }}
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
 {% endblock %}
 {% block sidebar %}
 {% endblock %}
@@ -13,57 +63,48 @@
                         <div class="col-lg-5 col-md-6 d-flex flex-column justify-content-center">
 
                             <div class="d-flex justify-content-center py-4">
-                                <a href="" class="logo d-flex align-items-center w-auto">
-                                    <span class="d-none d-lg-block">AirTradeLogoIci</span>
-                                </a>
+
                             </div><!-- End Logo -->
 
                             <div class="d-flex justify-content-center py-2">
-                                <h3>Mot de passe oublié ?</h3>
+                                <h3>{{ 'reset.title'|trans }}</h3>
                             </div>
 
                             <div class="card mb-3">
-
                                 <div class="card-body">
                                     {{ form_errors(requestForm) }}
 
                                     {{ form_start(requestForm) }}
-
-                                        <div class="row">
-                                            <div class="my-3">
-                                                <div>
-                                                    <small>
-                                                        Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.
-                                                    </small>
-                                                </div>
-                                                <div class="form-floating mt-3">
-                                                    {{ form_widget(requestForm.email, {'attr': {'class': 'form-control'}}) }}
-                                                    <label for="reset_password_request_form_email">Adresse mail</label>
-                                                </div>
-
+                                    <div class="row">
+                                        <div class="my-3">
+                                            <div>
+                                                <small>{{ 'reset.instructions'|trans }}</small>
                                             </div>
-                                            <div class="my-3">
-                                                <div class="col-12">
-                                                    <div class="row gap-2">
-                                                        <button class="btn btn-primary w-100 border-0" type="submit" style="background-color: #07182e;">Réinitialiser le mot de passe
-                                                        </button>
-                                                        <hr>
-                                                        <a href="{{ path('app_login') }}" class="btn btn-primary w-100 border-0" style="background-color: #07182e;">retourner à la page de connexion
-                                                        </a>
-                                                    </div>
-
+                                            <div class="form-floating mt-3">
+                                                {{ form_widget(requestForm.email, {'attr': {'class': 'form-control'}}) }}
+                                                <label for="reset_password_request_form_email">{{ 'reset.email_label'|trans }}</label>
+                                            </div>
+                                        </div>
+                                        <div class="my-3">
+                                            <div class="col-12">
+                                                <div class="row gap-2">
+                                                    <button class="btn w-100 border-0 text-white" type="submit" style="background-color: #1A0B8C;">
+                                                        {{ 'reset.submit'|trans }}
+                                                    </button>
+                                                    <hr>
+                                                    <a href="{{ path('app_login') }}" class="text-white btn w-100 border-0" style="background-color: #1A0B8C;">
+                                                        {{ 'reset.back_to_login'|trans }}
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
-
+                                    </div>
                                     {{ form_end(requestForm) }}
-
-
-
                                 </div>
                             </div>
 
                         </div>
+
                     </div>
                 </div>
 

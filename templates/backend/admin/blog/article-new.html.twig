@@ -1,0 +1,35 @@
+{% extends 'backend/base.html.twig' %}
+
+{% block main %}
+    <main id="main" class="main">
+
+        <section class="section dashboard">
+            {% block main_content %}
+                <div class="row">
+
+                    <!-- Left side columns -->
+
+                    <div class="col-lg-12">
+                        {% block sideColumns %}
+                            <div class="row">
+                                <div class="card">
+                                    <div class="card-body">
+                                        {{ include('backend/admin/blog/article/_form.html.twig') }}
+                                        {{ encore_entry_script_tags('ckeditor') }}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endblock %}
+                    </div>
+
+                    <!-- End Left side columns -->
+
+
+                </div>
+            {% endblock %}
+        </section>
+
+
+    </main>
+{% endblock %}
+

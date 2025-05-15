@@ -1,0 +1,84 @@
+{% extends 'backend/base.html.twig' %}
+
+{% block main %}
+    <main id="main" class="main">
+
+        <section class="section dashboard">
+            {% block main_content %}
+                <div class="row">
+
+                    <!-- Left side columns -->
+
+                    <div class="col-lg-12">
+                        {% block sideColumns %}
+                            <div class="row">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                {% set firstItemNumber = (articles.currentPageNumber - 1) * articles.itemNumberPerPage + 1 %}
+                                                {% set lastItemNumber = firstItemNumber + articles.items|length - 1 %}
+                                                <h5 class="card-title">
+                                                    {{ 'category.list.title'|trans({'%first%': firstItemNumber, '%last%': lastItemNumber, '%total%': articles.totalItemCount}) }}
+                                                </h5>
+                                            </div>
+
+                                            <div class="col-md-4 d-flex justify-content-end">
+                                                <h5 class="card-title">
+                                                    <a href="{{ path('app_article_new') }}">
+                                                        <i class="bi bi-patch-plus-fill"></i> {{ 'category.button.create'|trans }}
+                                                    </a>
+                                                </h5>
+                                            </div>
+
+                                        </div>
+
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">{{ 'table.action'|trans }}</th>
+                                                <th scope="col">{{ 'table.name'|trans }}</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for article in articles %}
+                                                <tr>
+                                                    <td>
+                                                        <a href="">
+                                                            <i class="bi bi-pencil-square"></i>
+                                                        </a>
+                                                        <a href="{{ path('app_article_category_delete',{'id':article.id}) }}" class="ms-2">
+                                                            <i class="bi bi-trash-fill"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>{{ article.title }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+
+                                        <div class="pagination">
+                                            {{ knp_pagination_render(articles) }}
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        {% endblock %}
+                    </div>
+
+                    <!-- End Left side columns -->
+
+
+                </div>
+            {% endblock %}
+        </section>
+
+
+    </main>
+{% endblock %}
+
+
+
+
+

@@ -1,6 +1,7 @@
 
 {% extends 'base.html.twig' %}
 {% block header %}
+    {% include 'composant/login-register-nav-bar.html.twig' %}
 {% endblock %}
 {% block sidebar %}
 {% endblock %}
@@ -14,13 +15,10 @@
                         <div class="col-lg-5 col-md-6 d-flex flex-column justify-content-center">
 
                             <div class="d-flex justify-content-center py-4">
-                                <a href="" class="logo d-flex align-items-center w-auto">
-                                    <span class="d-none d-lg-block">AirTradeLogoIci</span>
-                                </a>
                             </div><!-- End Logo -->
 
                             <div class="d-flex justify-content-center py-2">
-                                <h3>Merci </h3>
+                                <h3>{{ 'app.thank_you'|trans }}</h3>
                             </div>
 
                             <div class="card mb-3">
@@ -28,27 +26,33 @@
                                 <div class="card-body p-4">
                                     <p>
                                         <small>
-                                            Si un compte correspondant à votre adresse e-mail existe, un e-mail vient de vous être envoyé contenant un lien que vous pouvez utiliser pour réinitialiser votre mot de passe. Ce lien expirera dans
-                                         {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+                                            {{ 'reset.password.email_sent_notice'|trans({
+                                                '%expiration%': resetToken.expirationMessageKey|trans(
+                                                    resetToken.expirationMessageData,
+                                                    'ResetPasswordBundle'
+                                                )
+                                            }) }}
                                         </small>
                                     </p>
                                     <hr>
-                                    <small>Si vous ne recevez pas d'e-mail, veuillez vérifier votre dossier de spam ou <a href="{{ path('app_forgot_password_request') }}">réessayez</a>.</small>
+                                    <small>
+                                        {{ 'reset.password.no_email'|trans({
+                                            '%retry_url%': path('app_forgot_password_request')
+                                        })|raw }}
+                                    </small>
 
                                     <div class="row gap-2 mt-4">
-                                        <a href="{{ path('app_login') }}" class="btn btn-primary w-100 border-0" style="background-color: #07182e;">retourner à la page de connexion
+                                        <a href="{{ path('app_login') }}" class="btn text-white w-100 border-0" style="background-color: #1A0B8C;">
+                                            {{ 'reset.password.back_to_login'|trans }}
                                         </a>
                                     </div>
-
-
-
-
 
                                 </div>
                             </div>
 
                         </div>
                     </div>
+
                 </div>
 
             </section>

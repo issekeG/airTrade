@@ -21,7 +21,7 @@ class UserType extends AbstractType
             ->add('pseudo')
             ->add('email')
             ->add('firstname')
-            ->add('lastname')
+            ->add('telephone')
             ->add('country', CountryType::class, [
                 'label' => 'Pays',
                 'placeholder' => 'Sélectionnez un pays',

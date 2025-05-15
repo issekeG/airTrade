@@ -13,275 +13,281 @@
                         {% block sideColumns %}
                             <div class="row">
 
-                                <!-- nombre d\'annonce -->
+                                <!-- nombre d'annonce -->
                                 <div class="col-xxl-4 col-md-4">
                                     <div class="card info-card sales-card">
                                         <div class="filter">
                                             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                                 <li class="dropdown-header text-start">
-                                                    <h6>Filtrer</h6>
+                                                    <h6>{{ 'filter.title'|trans }}</h6>
                                                 </li>
-                                                <li><a class="dropdown-item" href="#">Ce mois</a></li>
-                                                <li><a class="dropdown-item" href="#">Cette année</a></li>
+                                                <li><a class="dropdown-item" href="#">{{ 'filter.this_month'|trans }}</a></li>
+                                                <li><a class="dropdown-item" href="#">{{ 'filter.this_year'|trans }}</a></li>
                                             </ul>
                                         </div>
-
                                         <div class="card-body">
-                                            <h5 class="card-title">Nombre total d'annonces</h5>
+                                            <h5 class="card-title"><small>{{ 'stats.total_ads'|trans }}</small></h5>
                                             <div class="d-flex align-items-center">
                                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                                     <i class="bi bi-newspaper"></i>
                                                 </div>
                                                 <div class="ps-3">
-                                                    <h6>145</h6>
-                                                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                                                    <h6>{{ nbTotalAnnonce }}</h6>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- moyenne d\'annonce par categories-->
+                                <!-- moyenne d'annonce par catégorie -->
                                 <div class="col-xxl-4 col-md-4">
                                     <div class="card info-card sales-card">
                                         <div class="filter">
                                             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                                 <li class="dropdown-header text-start">
-                                                    <h6>Filtrer</h6>
+                                                    <h6>{{ 'filter.title'|trans }}</h6>
                                                 </li>
-                                                <li><a class="dropdown-item" href="#">Ce mois</a></li>
-                                                <li><a class="dropdown-item" href="#">Cette année</a></li>
+                                                <li><a class="dropdown-item" href="#">{{ 'filter.this_month'|trans }}</a></li>
+                                                <li><a class="dropdown-item" href="#">{{ 'filter.this_year'|trans }}</a></li>
                                             </ul>
                                         </div>
-
                                         <div class="card-body">
-                                            <h5 class="card-title">Annonces/categories</h5>
+                                            <h5 class="card-title">{{ 'stats.ads_per_category'|trans }}</h5>
                                             <div class="d-flex align-items-center">
                                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                                     <i class="bi bi-newspaper"></i>
                                                 </div>
                                                 <div class="ps-3">
-                                                    <h6>145</h6>
-                                                    <span class="text-muted small pt-2 ps-1"><a href="#">Voir les stats par categories</a></span>
+                                                    <small>{{ 'stats.average_is'|trans }}</small><h6>{{ averageAnnonceByCategory }}</h6>
+                                                    <span class="text-muted small pt-2 ps-1">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#modalStats">{{ 'stats.view_stats_by_category'|trans }}</a>
+                            </span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- nombre d\annonce signalée  -->
+                                <!-- annonces signalées -->
                                 <div class="col-xxl-4 col-md-4">
                                     <div class="card info-card sales-card">
                                         <div class="filter">
                                             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                                 <li class="dropdown-header text-start">
-                                                    <h6>Filtrer</h6>
+                                                    <h6>{{ 'filter.title'|trans }}</h6>
                                                 </li>
-                                                <li><a class="dropdown-item" href="#">Ce mois</a></li>
-                                                <li><a class="dropdown-item" href="#">Cette année</a></li>
+                                                <li><a class="dropdown-item" href="#">{{ 'filter.this_month'|trans }}</a></li>
+                                                <li><a class="dropdown-item" href="#">{{ 'filter.this_year'|trans }}</a></li>
                                             </ul>
                                         </div>
-
                                         <div class="card-body">
-                                            <h5 class="card-title">Annonces signalées</h5>
+                                            <h5 class="card-title">{{ 'stats.reported_ads'|trans }}</h5>
                                             <div class="d-flex align-items-center">
                                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                                    <i class="bi bi-exclamation-triangle"></i>
+                                                    <i class="bi bi-flag-fill text-danger"></i>
                                                 </div>
                                                 <div class="ps-3">
-                                                    <h6>145</h6>
-                                                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                                                    <h6>{{ nbTotalReportedAnnonce }}</h6>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- nombre d\annonce masquée  -->
+                                <!-- annonces masquées -->
                                 <div class="col-xxl-4 col-md-4">
                                     <div class="card info-card sales-card">
                                         <div class="filter">
                                             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                                 <li class="dropdown-header text-start">
-                                                    <h6>Filtrer</h6>
+                                                    <h6>{{ 'filter.title'|trans }}</h6>
                                                 </li>
-                                                <li><a class="dropdown-item" href="#">Ce mois</a></li>
-                                                <li><a class="dropdown-item" href="#">Cette année</a></li>
+                                                <li><a class="dropdown-item" href="#">{{ 'filter.this_month'|trans }}</a></li>
+                                                <li><a class="dropdown-item" href="#">{{ 'filter.this_year'|trans }}</a></li>
                                             </ul>
                                         </div>
-
                                         <div class="card-body">
-                                            <h5 class="card-title">Annonces masquées</h5>
+                                            <h5 class="card-title"><small>{{ 'stats.blocked_ads'|trans }}</small></h5>
                                             <div class="d-flex align-items-center">
                                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                                     <i class="bi bi-eye-slash"></i>
                                                 </div>
                                                 <div class="ps-3">
-                                                    <h6>145</h6>
-                                                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                                                    <h6>{{ nbTotalBlockedAnnonce }}</h6>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- nombre d\'utilisateur  -->
+                                <!-- utilisateurs -->
                                 <div class="col-xxl-4 col-md-4">
                                     <div class="card info-card sales-card">
                                         <div class="filter">
                                             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                                 <li class="dropdown-header text-start">
-                                                    <h6>Filtrer</h6>
+                                                    <h6>{{ 'filter.title'|trans }}</h6>
                                                 </li>
-                                                <li><a class="dropdown-item" href="#">Ce mois</a></li>
-                                                <li><a class="dropdown-item" href="#">Cette année</a></li>
+                                                <li><a class="dropdown-item" href="#">{{ 'filter.this_month'|trans }}</a></li>
+                                                <li><a class="dropdown-item" href="#">{{ 'filter.this_year'|trans }}</a></li>
                                             </ul>
                                         </div>
-
                                         <div class="card-body">
-                                            <h5 class="card-title">Nombre total d'utilisateurs</h5>
+                                            <h5 class="card-title">{{ 'stats.total_users'|trans }}</h5>
                                             <div class="d-flex align-items-center">
                                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                                     <i class="bi bi-people"></i>
                                                 </div>
                                                 <div class="ps-3">
-                                                    <h6>145</h6>
-                                                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                                                    <h6>{{ nbTotalUser }}</h6>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- pourcentage des utilisateurs verifié  -->
+                                <!-- utilisateurs vérifiés -->
                                 <div class="col-xxl-4 col-md-4">
                                     <div class="card info-card sales-card">
                                         <div class="filter">
                                             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                                 <li class="dropdown-header text-start">
-                                                    <h6>Filtrer</h6>
+                                                    <h6>{{ 'filter.title'|trans }}</h6>
                                                 </li>
-                                                <li><a class="dropdown-item" href="#">Ce mois</a></li>
-                                                <li><a class="dropdown-item" href="#">Cette année</a></li>
+                                                <li><a class="dropdown-item" href="#">{{ 'filter.this_month'|trans }}</a></li>
+                                                <li><a class="dropdown-item" href="#">{{ 'filter.this_year'|trans }}</a></li>
                                             </ul>
                                         </div>
-
                                         <div class="card-body">
-                                            <h5 class="card-title">Utilisateurs vérifiés</h5>
+                                            <h5 class="card-title">{{ 'stats.verified_users'|trans }}</h5>
                                             <div class="d-flex align-items-center">
                                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                                     <i class="bi bi-patch-check"></i>
                                                 </div>
                                                 <div class="ps-3">
-                                                    <h6>145</h6>
-                                                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                                                    <h6>{{ nbTotalActiveUser }}</h6>
+                                                    <span class="text-success small pt-1 fw-bold">{{ (nbTotalActiveUser / nbTotalUser * 100)|round(1) }}%</span>
+                                                    <span class="text-muted small pt-2 ps-1">{{ 'stats.verified'|trans }}</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- nombre de messages envoyés  -->
+                                <!-- messages envoyés -->
                                 <div class="col-xxl-4 col-md-4">
                                     <div class="card info-card sales-card">
                                         <div class="filter">
                                             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                                 <li class="dropdown-header text-start">
-                                                    <h6>Filtrer</h6>
+                                                    <h6>{{ 'filter.title'|trans }}</h6>
                                                 </li>
-                                                <li><a class="dropdown-item" href="#">Ce mois</a></li>
-                                                <li><a class="dropdown-item" href="#">Cette année</a></li>
+                                                <li><a class="dropdown-item" href="#">{{ 'filter.this_month'|trans }}</a></li>
+                                                <li><a class="dropdown-item" href="#">{{ 'filter.this_year'|trans }}</a></li>
                                             </ul>
                                         </div>
-
                                         <div class="card-body">
-                                            <h5 class="card-title">Messages envoyés</h5>
+                                            <h5 class="card-title">{{ 'stats.sent_messages'|trans }}</h5>
                                             <div class="d-flex align-items-center">
                                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                                     <i class="bi bi-chat-left-text"></i>
                                                 </div>
                                                 <div class="ps-3">
-                                                    <h6>145</h6>
-                                                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                                                    <h6>0</h6>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- nombre d'\amin  -->
+                                <!-- nombre d'admin -->
                                 <div class="col-xxl-4 col-md-4">
                                     <div class="card info-card sales-card">
                                         <div class="filter">
                                             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                                 <li class="dropdown-header text-start">
-                                                    <h6>Filtrer</h6>
+                                                    <h6>{{ 'filter.title'|trans }}</h6>
                                                 </li>
-                                                <li><a class="dropdown-item" href="#">Ce mois</a></li>
-                                                <li><a class="dropdown-item" href="#">Cette Année</a></li>
+                                                <li><a class="dropdown-item" href="#">{{ 'filter.this_month'|trans }}</a></li>
+                                                <li><a class="dropdown-item" href="#">{{ 'filter.this_year'|trans }}</a></li>
                                             </ul>
                                         </div>
-
                                         <div class="card-body">
-                                            <h5 class="card-title">Nombres d'admins</h5>
+                                            <h5 class="card-title">{{ 'stats.total_admins'|trans }}</h5>
                                             <div class="d-flex align-items-center">
                                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                                     <i class="bi bi-shield-lock"></i>
                                                 </div>
                                                 <div class="ps-3">
-                                                    <h6>145</h6>
-                                                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                                                    <h6>{{ totalAdmin }}</h6>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- nombre d'\article blog  -->
+                                <!-- articles blog -->
                                 <div class="col-xxl-4 col-md-4">
                                     <div class="card info-card sales-card">
                                         <div class="filter">
                                             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                                 <li class="dropdown-header text-start">
-                                                    <h6>Filtrer</h6>
+                                                    <h6>{{ 'filter.title'|trans }}</h6>
                                                 </li>
-                                                <li><a class="dropdown-item" href="#">Ce mois</a></li>
-                                                <li><a class="dropdown-item" href="#">Cette année</a></li>
+                                                <li><a class="dropdown-item" href="#">{{ 'filter.this_month'|trans }}</a></li>
+                                                <li><a class="dropdown-item" href="#">{{ 'filter.this_year'|trans }}</a></li>
                                             </ul>
                                         </div>
-
                                         <div class="card-body">
-                                            <h5 class="card-title">Articles de blog</h5>
+                                            <h5 class="card-title">{{ 'stats.blog_articles'|trans }}</h5>
                                             <div class="d-flex align-items-center">
                                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                                     <i class="bi bi-file-earmark-text"></i>
                                                 </div>
                                                 <div class="ps-3">
-                                                    <h6>145</h6>
-                                                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                                                    <h6>0</h6>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
+                            </div>
 
-
-
-
-
-
+                            <!-- Modal Bootstrap -->
+                            <div class="modal fade" id="modalStats" tabindex="-1" aria-labelledby="modalStatsLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalStatsLabel">{{ 'stats.ads_by_category'|trans }}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ 'common.close'|trans }}"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul class="list-group">
+                                                {% for item in aircraftPerCategory %}
+                                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                        {{ item.category }}
+                                                        <span class="badge bg-primary rounded-pill">{{ item.nombreAircraft }}</span>
+                                                    </li>
+                                                {% else %}
+                                                    <li class="list-group-item">{{ 'stats.no_data'|trans }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         {% endblock %}
+
                     </div><!-- End Left side columns -->
 
 

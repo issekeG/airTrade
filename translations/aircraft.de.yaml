@@ -1,0 +1,17 @@
+aircraftForm:
+  category_label: "Kategorie"
+  manufacturer_label: "Hersteller"
+  registration_country_label: "Registrierungsland"
+  model_label: "Modell"
+  serial_number_label: "Seriennummer"
+  total_hours_label: "Gesamtflugstunden"
+  price_label: "Preis"
+  year_of_manufacture_label: "Baujahr"
+  status_label: "Status"
+  service_entry_date_label: "Inbetriebnahmedatum"
+  usage_type_label: "Nutzungsart"
+  country_label: "Standort (Land)"
+  city_label: "Standort (Stadt)"
+  description_label: "Beschreibung"
+  submit_button: "Weiter"
+

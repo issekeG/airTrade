@@ -1,0 +1,9 @@
+<form method="post"
+      action="{{ path('app_aircraft_report', {'id': aircraft.id}) }}"
+      onsubmit="return confirm('{{ 'aircraft.report_confirmation'|trans }}');">
+    <input type="hidden" name="_token" value="{{ csrf_token('report' ~ aircraft.id) }}">
+    <button class="btn btn-outline-danger">
+        <i class="bi bi-flag me-1"></i>{{ 'aircraft.report_button'|trans }}
+    </button>
+</form>
+
