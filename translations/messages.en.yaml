@@ -45,48 +45,67 @@ app:
   logo_text: "AirTradeLogoHere"
   thank_you: "Thank you"
   logo: "AirTradeLogo"
-
 login:
-  email: "Email"
-  password: "Password"
-  submit: "Log in"
-  forgot_password: "Forgot password?"
   button: "Log in"
-  error:
-    username_required: "Please enter your username."
-    password_required: "Please enter your password!"
-    invalid_credentials: "Incorrect username or password"
   terms: >
     By clicking "Log in", you agree to be bound by our Terms of Use and Privacy Policy.
-  no_account: "Do you have an account?"
+  email: "Email address"
+  password: "Password"
+  error:
+    username_required: "Please enter your email address."
+    username_invalid: "The email address format is invalid."
+    password_required: "Please enter your password."
+    password_too_short: "The password must be at least 6 characters long."
+    invalid_credentials: "Incorrect email or password."
+
+  forgot_password: "Forgot your password?"
+  submit: "Log in"
+  no_account: "Don't have an account yet?"
   create_account: "Create an account"
 
 site:
   logo_text: "AirTradeLogo"
 
 register:
+  pseudo: "Username"
+  name: "First Name"
+  phone: "Phone"
+  email: "Email"
+  country: "Country"
+  password: "Password"
+  submit: "Create my account"
+
+  error:
+    pseudo_taken: "This username is already taken."
+    pseudo: "Please enter a username."
+    firstname: "Please enter your first name."
+    telephone: "Please enter your phone number."
+    email: "Please enter an email address."
+    email_format: "Please enter a valid email address."
+    country: "Please select a country."
+    password: "Please enter a password."
+    password_format: "The password must contain at least 6 characters and one uppercase letter."
+    terms: "You must accept the terms and conditions."
+    broker: "You must accept the terms and conditions."
+    newsletter: "You must accept the terms and conditions."
+
   header: "Join aviation enthusiasts and professionals"
   success:
-    title: "Registration successful!"
-    message: "Thank you for registering.<br>To finalize your account creation, please confirm your email address."
-    confirmation: "A confirmation email has been sent to the email address you provided during registration.<br>Please click the link it contains to activate your account."
-    spam: "If you don’t see this email, please check your spam folder."
+    title: "Registration Successful!"
+    message: "Thank you for registering.<br>To complete your account creation, simply confirm your email address."
+    confirmation: "A confirmation email has been sent to the address you provided during registration.<br>Please click on the link within it to activate your account."
+    spam: "If you don't see this email, please check your spam folder."
     after_confirmation: "After confirmation, you will be able to access your personal space and fully enjoy our services."
+
   button: "Sign up"
   welcome_text: "Join aviation enthusiasts and professionals"
-  pseudo: "Your username"
-  name: "Your Last Name & First Name"
-  phone: "Your phone"
-  email: "Your email"
-  country: "Your country"
-  password: "Your password"
+
   terms: >
-    By checking this box, you agree to our website's terms of use. This includes our privacy policy, code of conduct, and terms of service.
+    By checking this box, you agree to the terms of use of our website. This includes our privacy policy, code of conduct, and service terms.
   newsletter: >
-    By checking this box, you agree to receive emails from us about our new products, special offers, and news. You can unsubscribe at any time by clicking the link in each email.
+    By checking this box, you agree to receive emails from us regarding our new products, special offers, and news. You can unsubscribe at any time by clicking the link in each email.
   broker_contact: >
-    By checking this box, you agree to be contacted by our brokerage services to offer you personalized offers and assist you in your endeavors.
-  submit: "Save"
+    By checking this box, you agree that our brokerage services may contact you to offer personalized deals and assist you with your process.
 
 auth:
   login: "Log in"
@@ -442,6 +461,30 @@ cta:
 location: "Location:"
 price: "Price:"
 year: "Year:"
+
+# translations/messages.en.yaml
+no_aircraft_found: "No aircraft listings available at the moment."
+return_home: "View all listings"
+
+# translations/messages.en.yaml
+error:
+  404:
+    title: "404 – Page not found"
+    description: "The page you are looking for doesn't exist."
+    message: "The page you are looking for doesn't exist."
+    back_home: "Back to home"
+    credits: "Designed by <a href=\"%url%\" target=\"_blank\" class=\"text-decoration-none\">%provider%</a>"
+
+password:
+  new:       "New Password"
+  repeat:    "Repeat Password"
+  notice:    "By clicking “Save”, you agree to our Terms of Use and Privacy Policy."
+  error:
+    min_length: "Password must be at least %length% characters."
+    mismatch:   "Passwords do not match."
+link:
+  back_to_login: "Back to login"
+
 
 categories:
   jet_aircraft: "Jet aircraft"

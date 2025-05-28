@@ -1,73 +1,87 @@
+<aside id="sidebar" class="sidebar bg-white shadow-sm border-end">
 
+    <ul class="sidebar-nav list-unstyled p-3" id="sidebar-nav">
 
-<aside id="sidebar" class="sidebar">
-
-    <ul class="sidebar-nav" id="sidebar-nav">
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ path('app_admin') }}">
-                <i class="bi bi-funnel"></i>
+        <li class="nav-item mb-2">
+            <a class="nav-link d-flex align-items-center gap-2 text-dark fw-semibold" href="{{ path('app_admin') }}">
+                <i class="bi bi-speedometer2 fs-5 text-primary"></i>
                 <span>{{ 'sidebar.dashboard'|trans }}</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ path('app_air_craft_category_index') }}">
-                <i class="bi bi-tags"></i><span>{{ 'sidebar.categories'|trans }}</span><i class="bi bi-chevron-contract ms-auto"></i>
+
+        <li class="nav-item mb-2">
+            <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{ path('app_air_craft_category_index') }}">
+                <i class="bi bi-tags fs-5 text-secondary"></i>
+                <span>{{ 'sidebar.categories'|trans }}</span>
             </a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ path('app_aircraft_manufacturer_index') }}">
-                <i class="bi bi-building-gear"></i><span>{{ 'sidebar.manufacturer'|trans }}</span><i class="bi bi-chevron-contract ms-auto"></i>
+        <li class="nav-item mb-2">
+            <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{ path('app_aircraft_manufacturer_index') }}">
+                <i class="bi bi-building-gear fs-5 text-secondary"></i>
+                <span>{{ 'sidebar.manufacturer'|trans }}</span>
             </a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ path('admin_aircraft', {'filter': 'blocked'}) }}">
-                <i class="bi bi-eye-slash"></i> <span>{{ 'sidebar.hidden_ads'|trans }}</span><i class="bi bi-chevron-contract ms-auto"></i>
+        <li class="nav-item mb-2">
+            <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{ path('admin_aircraft', {'filter': 'blocked'}) }}">
+                <i class="bi bi-eye-slash fs-5 text-warning"></i>
+                <span>{{ 'sidebar.hidden_ads'|trans }}</span>
             </a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ path('admin_aircraft', {'filter': 'reported'}) }}">
-                <i class="bi bi-flag-fill text-danger"></i> <span>{{ 'sidebar.reported_ads'|trans }}</span><i class="bi bi-chevron-contract ms-auto"></i>
+        <li class="nav-item mb-2">
+            <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{ path('admin_aircraft', {'filter': 'reported'}) }}">
+                <i class="bi bi-flag-fill fs-5 text-danger"></i>
+                <span>{{ 'sidebar.reported_ads'|trans }}</span>
             </a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ path('app_user_admin_index') }}">
-                <i class="bi bi-shield-lock"></i><span>{{ 'sidebar.admin'|trans }}</span><i class="bi bi-chevron-contract ms-auto"></i>
+        <li class="nav-item mb-2">
+            <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{ path('app_user_admin_index') }}">
+                <i class="bi bi-shield-lock fs-5 text-secondary"></i>
+                <span>{{ 'sidebar.admin'|trans }}</span>
             </a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ path('app_user_index_verify') }}">
-                <i class="bi bi-people"></i><span>{{ 'sidebar.verified_users'|trans }}</span><i class="bi bi-chevron-contract ms-auto"></i>
+        <li class="nav-item mb-2">
+            <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{ path('app_user_index_verify') }}">
+                <i class="bi bi-person-check fs-5 text-success"></i>
+                <span>{{ 'sidebar.verified_users'|trans }}</span>
             </a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ path('app_user_index_non_verify') }}">
-                <i class="bi bi-people"></i><span>{{ 'sidebar.non_verified_users'|trans }}</span><i class="bi bi-chevron-contract ms-auto"></i>
+        <li class="nav-item mb-4">
+            <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{ path('app_user_index_non_verify') }}">
+                <i class="bi bi-person-x fs-5 text-muted"></i>
+                <span>{{ 'sidebar.non_verified_users'|trans }}</span>
             </a>
         </li>
-        <li class="nav-heading">Section Blog</li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ path('app_article_index') }}">
-                <i class="bi bi-newspaper"></i><span>Article</span>
+
+        <!-- Blog Section Header -->
+        <li class="nav-heading text-uppercase text-muted small fw-bold mb-2">Blog</li>
+
+        <li class="nav-item mb-2">
+            <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{ path('app_article_index') }}">
+                <i class="bi bi-newspaper fs-5 text-info"></i>
+                <span>Articles</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ path('app_article_category_index') }}">
-                <i class="bi bi-folder2-open"></i><span>Categorie Article</span>
+
+        <li class="nav-item mb-2">
+            <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{ path('app_article_category_index') }}">
+                <i class="bi bi-folder2-open fs-5 text-info"></i>
+                <span>Catégories</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#">
-                <i class="bi bi-tags"></i><span>Blog Tags</span>
+
+        <li class="nav-item mb-2">
+            <a class="nav-link d-flex align-items-center gap-2 text-dark" href="#">
+                <i class="bi bi-tags fs-5 text-info"></i>
+                <span>Tags</span>
             </a>
         </li>
 
     </ul>
-
 
 </aside>

@@ -26,7 +26,8 @@ final class BlogController extends AbstractController
         if($articleLang != null){
             $queryBuilder = $articleRepository->findByLanguage(['language' => $articleLang]);
         }else{
-            $queryBuilder = $articleRepository->findAllArticle();
+            $articleLang = $request->getLocale();
+            $queryBuilder = $articleRepository->findByLanguage(['language' => $articleLang]);
 
         }
 

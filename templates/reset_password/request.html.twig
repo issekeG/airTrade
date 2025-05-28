@@ -3,12 +3,11 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
         <div class="d-flex align-items-center justify-content-between">
             <a href="{{ path('app_home') }}" class="logo d-flex align-items-center">
-                <img src="" alt="">
-                <span class="d-none d-lg-block">{{ 'app.logo'|trans }}</span>
+                <img src="{{ asset('assets/img/logo/logo-principale.png') }}" alt="dealAircraft logo" class="d-lg-block d-none">
+                <img src="{{ asset('assets/img/logo/logo1.png') }}" alt="dealAircraft logo" class="d-block d-lg-none">
+                <span class="d-none d-lg-block"><span class="text-danger">Deal</span>Aircraft</span>
             </a>
-            {% block sidebarIcon %}
-                <i class="bi bi-list toggle-sidebar-btn d-block d-lg-none"></i>
-            {% endblock sidebarIcon %}
+
         </div>
 
         <nav class="header-nav ms-auto">
@@ -24,7 +23,7 @@
                         <select name="_locale" onchange="this.form.submit()" class="form-select form-select-sm">
                             {% for code, lang in available_languages.getAvailableLanguages() %}
                                 <option value="{{ code }}" {% if code == app.request.locale %}selected{% endif %}>
-                                    {{ lang.label|trans }}
+                                    {{ lang.label }}
                                 </option>
                             {% endfor %}
                         </select>
@@ -43,14 +42,16 @@
                 </li>
 
                 <li class="nav-item dropdown pe-3">
-                    <a class="nav-link btn py-1" href="{{ path('app_register') }}" style="border: 1px solid #1A0B8C !important; color : #1A0B8C !important;">
-                        <i class="bi bi-box-arrow-in-right me-1"></i> {{ 'register.button'|trans }}
+                    <a class="nav-link btn py-1" href="{{ path('app_login') }}" style="border: 1px solid var(--primary-color) !important; color : var(--primary-color) !important;">
+                        <span class="d-block d-md-none"><i class="bi bi-person-circle fs-4"></i></span>
+                        <span class="d-none d-md-block"> <i class="bi bi-box-arrow-in-right me-1"></i> {{ 'login.button'|trans }}</span>
                     </a>
                 </li>
             </ul>
         </nav>
     </header>
 {% endblock %}
+
 {% block sidebar %}
 {% endblock %}
 {% block main %}
@@ -88,11 +89,11 @@
                                         <div class="my-3">
                                             <div class="col-12">
                                                 <div class="row gap-2">
-                                                    <button class="btn w-100 border-0 text-white" type="submit" style="background-color: #1A0B8C;">
+                                                    <button class="btn w-100 border-0 text-white" type="submit" style="background-color: var(--primary-color);">
                                                         {{ 'reset.submit'|trans }}
                                                     </button>
                                                     <hr>
-                                                    <a href="{{ path('app_login') }}" class="text-white btn w-100 border-0" style="background-color: #1A0B8C;">
+                                                    <a href="{{ path('app_login') }}" class="text-white btn w-100 border-0" style="background-color:  var(--primary-color);">
                                                         {{ 'reset.back_to_login'|trans }}
                                                     </a>
                                                 </div>

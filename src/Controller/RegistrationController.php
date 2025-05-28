@@ -9,6 +9,7 @@ use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
@@ -59,6 +60,23 @@ class RegistrationController extends AbstractController
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form,
         ]);
+    }
+
+    #[Route('/check_pseudo', name: 'check_pseudo', methods: ['GET'])]
+    public function checkPseudo(Request $request, UserRepository $userRepository): JsonResponse
+    {
+        $pseudo = $request->query->get('pseudo');
+
+        // Vérifier si le pseudo existe dans la base de données
+        $user = $userRepository->findOneBy(['pseudo' => $pseudo]);
+
+        if ($user) {
+            // Si l'utilisateur existe déjà
+            return new JsonResponse(['exists' => true]);
+        }
+
+        // Si le pseudo est disponible
+        return new JsonResponse(['exists' => false]);
     }
 
 

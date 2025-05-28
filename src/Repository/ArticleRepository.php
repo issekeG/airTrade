@@ -45,6 +45,17 @@ class ArticleRepository extends ServiceEntityRepository
                 ;
         }
 
+    public function findLastArticle($langue): ?array
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.langue = :value')
+            ->setParameter('value', $langue)
+            ->orderBy('a.publishedAt', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult();
+    }
+
     //    public function findOneBySomeField($value): ?Article
     //    {
     //        return $this->createQueryBuilder('a')

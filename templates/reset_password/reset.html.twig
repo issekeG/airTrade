@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block header %}
-    {% include 'composant/nav-login.html.twig' %}
+    {% include 'composant/login-register-nav-bar.html.twig' %}
 {% endblock %}
 {% block sidebar %}
 {% endblock %}
@@ -26,47 +26,94 @@
 
                                 <div class="card-body mt-4">
 
-                                    {{ form_start(resetForm) }}
+                                    {{ form_start(resetForm, {
+                                        'attr': {
+                                            'novalidate': 'novalidate',
+                                        }
+                                    }) }}
 
-                                    <div class="form-group">
-                                        <div class="form-floating mb-3">
+
+                                    <div class="form-group mb-3">
+                                        <div class="form-floating">
                                             {{ form_widget(resetForm.plainPassword.first, {
-                                                'attr': {
-                                                    'class': 'form-control',
-                                                }
+                                                'attr': { 'class': 'form-control', 'id': 'password1' }
                                             }) }}
-                                            <label for="change_password_form_plainPassword_first">Nouveau mot de passe</label>
+                                            <label for="password1">{{ 'password.new'|trans({}, 'messages') }}</label>
                                         </div>
-
-                                        {{ form_errors(resetForm.plainPassword.first) }}
+                                        <div id="error-password1" class="text-danger small mt-1" style="display:none;"></div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <div class="form-floating mb-3">
+                                    <div class="form-group mb-3">
+                                        <div class="form-floating">
                                             {{ form_widget(resetForm.plainPassword.second, {
-                                                'attr': {
-                                                    'class': 'form-control',
-                                                }
+                                                'attr': { 'class': 'form-control', 'id': 'password2' }
                                             }) }}
-                                            <label for="change_password_form_plainPassword_second">Répéter le mot de passe</label>
+                                            <label for="password2">{{ 'password.repeat'|trans({}, 'messages') }}</label>
                                         </div>
-
-                                        {{ form_errors(resetForm.plainPassword.second) }}
+                                        <div id="error-password2" class="text-danger small mt-1" style="display:none;"></div>
                                     </div>
 
-                                    <div class="text-center">
-                                        <small>En cliquant sur "Sauvegarder", vous acceptez d'être lié par nos Conditions d'utilisation et notre Politique de confidentialité.
-
-                                        </small>
+                                    <div class="text-center mb-3">
+                                        <small>{{ 'password.notice'|trans({}, 'messages') }}</small>
                                     </div>
-                                    <hr>
-                                    <button class="btn text-white w-100 border-0" type="submit" style="background-color: #1A0B8C;">Sauvegarder</button>
+
+                                    <button id="submitBtn" class="btn text-white w-100 border-0" type="submit"
+                                            style="background-color: var(--primary-color);" disabled>
+                                        {{ 'button.save'|trans({}, 'messages') }}
+                                    </button>
 
                                     {{ form_end(resetForm) }}
-                                    <hr>
-                                    <a href="{{ path("app_login") }}"> <small>Retour à la page de connexion</small></a>
 
+                                    <hr>
+                                    <a href="{{ path('app_login') }}" class="d-block text-center" style="color: var(--primary-color);">
+                                        <small>{{ 'link.back_to_login'|trans({}, 'messages') }}</small>
+                                    </a>
                                 </div>
+
+                                {% block javascripts %}
+                                    <script src="{{ asset('assets/vendor/jquery/jquery-3.7.1.min.js') }}"></script>
+                                    <script>
+                                        $(function(){
+                                            const $p1 = $('#change_password_form_plainPassword_first');
+                                            const $p2 = $('#change_password_form_plainPassword_second');
+                                            const $err1 = $('#error-password1');
+                                            const $err2 = $('#error-password2');
+                                            const $submit = $('#submitBtn');
+
+                                            function validate() {
+                                                let valid = true;
+                                                $err1.hide().text('');
+                                                $err2.hide().text('');
+
+                                                const val1 = $p1.val();
+                                                const val2 = $p2.val();
+
+                                                // 1. Minimum 8 caractères
+                                                if (val1.length < 6) {
+                                                    valid = false;
+                                                    $err1.text('{{ "password.error.min_length"|trans({"%length%":6}, "messages") }}').show();
+                                                }
+
+                                                // 2. Correspondance
+                                                if (val2 && val1 !== val2) {
+                                                    valid = false;
+                                                    $err2.text('{{ "password.error.mismatch"|trans({}, "messages") }}').show();
+                                                }
+
+                                                // 3. Champs non vides
+                                                if (!val1 || !val2) {
+                                                    valid = false;
+                                                }
+
+                                                $submit.prop('disabled', !valid);
+                                            }
+
+                                            $p1.on('keyup change', validate);
+                                            $p2.on('keyup change', validate);
+                                        });
+                                    </script>
+                                {% endblock %}
+
                             </div>
 
                         </div>

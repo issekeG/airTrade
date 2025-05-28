@@ -58,202 +58,247 @@
 
 {% block main %}
     <main>
-        <div class="container" style="margin-top: 30px;">
+        <div class="container mt-4">
             <section class="section register d-flex flex-column justify-content-center py-4">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-9 d-flex flex-column justify-content-center">
+                <div class="row justify-content-center">
+                    <div class="col-md-9 d-flex flex-column justify-content-center">
 
-                            <div class="py-5">
-                            <span class="p-2 btn" style="background-color : var(--primary-color); color :white">
-                                {{ 'register.welcome_text'|trans }}
-                            </span>
-                            </div>
-
-                            <div class="card mb-3">
-                                <div class="card-body mt-4">
-                                    {% for flash_error in app.flashes('verify_email_error') %}
-                                        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-                                    {% endfor %}
-
-                                    {{ form_errors(registrationForm )}}
-                                    {{ form_start(registrationForm,  {
-                                        'attr': {
-                                            'novalidate': 'novalidate'}
-                                    }) }}
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <div class="form-floating mb-3">
-                                                    {{ form_widget(registrationForm.pseudo, {'attr': {'class': 'form-control'}}) }}
-                                                    <label for="registration_form_pseudo">{{ 'register.pseudo'|trans }}</label>
-                                                </div>
-                                                {{ form_errors(registrationForm.pseudo) }}
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="form-floating mb-3">
-                                                    {{ form_widget(registrationForm.firstname, {'attr': {'class': 'form-control'}}) }}
-                                                    <label for="registration_form_firstname">{{ 'register.name'|trans }}</label>
-                                                </div>
-                                                {{ form_errors(registrationForm.firstname) }}
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="form-floating mb-3">
-                                                    {{ form_widget(registrationForm.telephone, {'attr': {'class': 'form-control'}}) }}
-                                                    <label for="registration_form_telephone">{{ 'register.phone'|trans }}</label>
-                                                </div>
-                                                {{ form_errors(registrationForm.telephone) }}
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <div class="form-floating mb-3">
-                                                    {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
-                                                    <label for="registration_form_email">{{ 'register.email'|trans }}</label>
-                                                </div>
-                                                {{ form_errors(registrationForm.email) }}
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="form-floating mb-3">
-                                                    {{ form_widget(registrationForm.country, {'attr': {'class': 'form-select'}}) }}
-                                                    <label for="registration_form_country">{{ 'register.country'|trans }}</label>
-                                                </div>
-                                                {{ form_errors(registrationForm.country) }}
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="form-floating mb-3">
-                                                    {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
-                                                    <label for="registration_form_plainPassword">{{ 'register.password'|trans }}</label>
-                                                </div>
-                                                {{ form_errors(registrationForm.plainPassword) }}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <hr>
-                                    <div class="form-check">
-                                        {{ form_widget(registrationForm.acceptTerms, {'attr': {'class': 'form-check-input'}}) }}
-                                        <label class="form-check-label" for="registration_form_acceptTerms">
-                                            <small>{{ 'register.terms'|trans }}</small>
-                                        </label>
-                                    </div>
-
-                                    <hr>
-                                    <div class="form-check">
-                                        {{ form_widget(registrationForm.acceptNewsletter, {'attr': {'class': 'form-check-input'}}) }}
-                                        <label class="form-check-label" for="registration_form_acceptNewsletter">
-                                            <small>{{ 'register.newsletter'|trans }}</small>
-                                        </label>
-                                    </div>
-
-                                    <hr>
-                                    <div class="form-check">
-                                        {{ form_widget(registrationForm.acceptBrokerageContact, {'attr': {'class': 'form-check-input'}}) }}
-                                        <label class="form-check-label" for="registration_form_acceptBrokerageContact">
-                                            <small>{{ 'register.broker_contact'|trans }}</small>
-                                        </label>
-                                    </div>
-
-                                    <hr>
-                                    <button class="btn flex text-white border-0" type="submit" style="background-color: var(--primary-color);">
-                                        {{ 'register.submit'|trans }}
-                                    </button>
-
-                                    {{ form_end(registrationForm) }}
-                                </div>
-                            </div>
-
+                        <div class="py-5">
+                        <span class="p-2 btn" style="background-color: var(--primary-color); color: white;">
+                            {{ 'register.welcome_text'|trans }}
+                        </span>
                         </div>
+
+                        <div class="card mb-3">
+                            <div class="card-body mt-4">
+                                {% for flash_error in app.flashes('verify_email_error') %}
+                                    <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                                {% endfor %}
+
+                                {{ form_start(registrationForm, {
+                                    'attr': {
+                                        'novalidate': 'novalidate',
+                                        'data-errors': {
+                                            'pseudo': 'register.error.pseudo'|trans,
+                                            'firstname': 'register.error.firstname'|trans,
+                                            'telephone': 'register.error.telephone'|trans,
+                                            'email': 'register.error.email'|trans,
+                                            'email_format': 'register.error.email_format'|trans,
+                                            'country': 'register.error.country'|trans,
+                                            'password': 'register.error.password'|trans,
+                                            'password_format': 'register.error.password_format'|trans,
+                                            'terms': 'register.error.terms'|trans,
+                                            'broker': 'register.error.broker'|trans,
+                                            'newsletter': 'register.error.newsletter'|trans
+                                        }|json_encode|raw
+                                    }
+                                }) }}
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3">
+                                            {{ form_widget(registrationForm.pseudo, {'attr': {'class': 'form-control'}}) }}
+                                            <label for="registration_form_pseudo">{{ 'register.pseudo'|trans }}</label>
+                                            <div id="pseudo_error" class="invalid-feedback" style="display:none;">
+                                                {{ 'register.error.pseudo'|trans }}
+                                            </div>
+                                            {{ form_errors(registrationForm.pseudo) }}
+                                        </div>
+
+                                        <div class="form-floating mb-3">
+                                            {{ form_widget(registrationForm.firstname, {'attr': {'class': 'form-control'}}) }}
+                                            <label for="registration_form_firstname">{{ 'register.name'|trans }}</label>
+                                            {{ form_errors(registrationForm.firstname) }}
+                                        </div>
+
+                                        <div class="form-floating mb-3">
+                                            {{ form_widget(registrationForm.telephone, {'attr': {'class': 'form-control'}}) }}
+                                            <label for="registration_form_telephone">{{ 'register.phone'|trans }}</label>
+                                            {{ form_errors(registrationForm.telephone) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3">
+                                            {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+                                            <label for="registration_form_email">{{ 'register.email'|trans }}</label>
+                                            {{ form_errors(registrationForm.email) }}
+                                        </div>
+
+                                        <div class="form-floating mb-3">
+                                            {{ form_widget(registrationForm.country, {'attr': {'class': 'form-select'}}) }}
+                                            <label for="registration_form_country">{{ 'register.country'|trans }}</label>
+                                            {{ form_errors(registrationForm.country) }}
+                                        </div>
+
+                                        <div class="form-floating mb-3">
+                                            {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+                                            <label for="registration_form_plainPassword">{{ 'register.password'|trans }}</label>
+                                            {{ form_errors(registrationForm.plainPassword) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <div class="form-check">
+                                    {{ form_widget(registrationForm.acceptTerms, {'attr': {'class': 'form-check-input'}}) }}
+                                    <label class="form-check-label" for="registration_form_acceptTerms">
+                                        <small>{{ 'register.terms'|trans }}</small>
+                                    </label>
+                                </div>
+
+                                <hr>
+
+                                <div class="form-check">
+                                    {{ form_widget(registrationForm.acceptNewsletter, {'attr': {'class': 'form-check-input'}}) }}
+                                    <label class="form-check-label" for="registration_form_acceptNewsletter">
+                                        <small>{{ 'register.newsletter'|trans }}</small>
+                                    </label>
+                                </div>
+
+                                <hr>
+
+                                <div class="form-check">
+                                    {{ form_widget(registrationForm.acceptBrokerageContact, {'attr': {'class': 'form-check-input'}}) }}
+                                    <label class="form-check-label" for="registration_form_acceptBrokerageContact">
+                                        <small>{{ 'register.broker_contact'|trans }}</small>
+                                    </label>
+                                </div>
+
+                                <hr>
+
+                                <button class="btn text-white border-0" type="submit" style="background-color: var(--primary-color);">
+                                    {{ 'register.submit'|trans }}
+                                </button>
+
+                                {{ form_end(registrationForm) }}
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </section>
         </div>
+
         <script src="{{ asset('assets/vendor/jquery/jquery-3.7.1.min.js') }}"></script>
         <script>
-            $(document).ready(function () {
+            $(function () {
                 const form = $('form[name="registration_form"]');
+                const errors = form.data('errors');
+                let isPseudoTaken = false; // ✅ Contrôle du pseudo pris
 
-                // Supprimer les erreurs au moment de la saisie ou changement
+                function t(key) {
+                    return errors[key] || 'Erreur';
+                }
+
+                function addError(input, message) {
+                    if (!input.hasClass('is-invalid')) {
+                        input.addClass('is-invalid');
+                        input.after(`<div class="invalid-feedback">${message}</div>`);
+                    }
+                }
+
                 form.on('input change', '.is-invalid', function () {
-                    $(this).removeClass('is-invalid');
-                    $(this).next('.invalid-feedback').remove();
+                    $(this).removeClass('is-invalid').next('.invalid-feedback').remove();
+                });
+
+                $('#registration_form_pseudo').on('input', function () {
+                    const pseudo = $(this).val();
+                    if (pseudo.length >= 3) {
+                        $.ajax({
+                            url: '{{ path('check_pseudo') }}',
+                            type: 'GET',
+                            data: { pseudo },
+                            success(response) {
+                                if (response.exists) {
+                                    isPseudoTaken = true; // ✅ Marquer comme pris
+                                    $('#pseudo_error')
+                                        .text("{{ 'register.error.pseudo_taken'|trans }}")
+                                        .show();
+                                    $('#registration_form_pseudo').addClass('is-invalid');
+                                } else {
+                                    isPseudoTaken = false;
+                                    $('#pseudo_error').hide();
+                                    $('#registration_form_pseudo').removeClass('is-invalid');
+                                }
+                            },
+                            error() {
+                                alert('An error occurred while checking the username.');
+                            }
+                        });
+                    } else {
+                        isPseudoTaken = false;
+                        $('#pseudo_error').hide();
+                        $('#registration_form_pseudo').removeClass('is-invalid');
+                    }
                 });
 
                 form.on('submit', function (e) {
                     let isValid = true;
                     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    const passwordPattern = /^(?=.*[A-Z]).{6,}$/; // 6+ caractères, 1 majuscule
+                    const passwordPattern = /^(?=.*[A-Z]).{6,}$/;
 
-                    // Supprimer les anciens messages d'erreur
                     form.find('.is-invalid').removeClass('is-invalid');
                     form.find('.invalid-feedback').remove();
 
-                    function addError(input, message) {
-                        if (!input.hasClass('is-invalid')) {
-                            input.addClass('is-invalid');
-                            input.after(`<div class="invalid-feedback">${message}</div>`);
-                        }
-                    }
-
-                    // Champs requis
                     const requiredFields = [
-                        { id: '#registration_form_pseudo', message: 'Veuillez entrer un pseudo.' },
-                        { id: '#registration_form_firstname', message: 'Veuillez entrer votre prénom.' },
-                        { id: '#registration_form_telephone', message: 'Veuillez entrer votre téléphone.' },
-                        { id: '#registration_form_email', message: 'Veuillez entrer une adresse email.' },
-                        { id: '#registration_form_country', message: 'Veuillez sélectionner un pays.' },
-                        { id: '#registration_form_plainPassword', message: 'Veuillez entrer un mot de passe.' },
+                        { id: '#registration_form_pseudo', key: 'pseudo' },
+                        { id: '#registration_form_firstname', key: 'firstname' },
+                        { id: '#registration_form_telephone', key: 'telephone' },
+                        { id: '#registration_form_email', key: 'email' },
+                        { id: '#registration_form_country', key: 'country' },
+                        { id: '#registration_form_plainPassword', key: 'password' },
                     ];
 
                     requiredFields.forEach(field => {
                         const input = $(field.id);
-                        if (input.val().trim() === '') {
-                            addError(input, field.message);
+                        if (!input.val().trim()) {
+                            addError(input, t(field.key));
                             isValid = false;
                         }
                     });
 
-                    // Format email
-                    const emailInput = $('#registration_form_email');
-                    if (emailInput.val().trim() !== '' && !emailPattern.test(emailInput.val())) {
-                        addError(emailInput, 'Veuillez entrer une adresse email valide.');
+                    const email = $('#registration_form_email').val().trim();
+                    if (email && !emailPattern.test(email)) {
+                        addError($('#registration_form_email'), t('email_format'));
                         isValid = false;
                     }
 
-                    // Validation du mot de passe
-                    const passwordInput = $('#registration_form_plainPassword');
-                    const passwordVal = passwordInput.val();
-                    if (passwordVal.trim() !== '' && !passwordPattern.test(passwordVal)) {
-                        addError(passwordInput, 'Le mot de passe doit contenir au moins 6 caractères et une lettre majuscule.');
+                    const password = $('#registration_form_plainPassword').val().trim();
+                    if (password && !passwordPattern.test(password)) {
+                        addError($('#registration_form_plainPassword'), t('password_format'));
                         isValid = false;
                     }
 
-                    // Cases à cocher obligatoires
                     const checkboxes = [
-                        { id: '#registration_form_acceptTerms', message: 'Vous devez accepter les conditions générales.' },
-                        { id: '#registration_form_acceptBrokerageContact', message: 'Vous devez accepter les conditions générales.' },
-                        { id: '#registration_form_acceptNewsletter', message: 'Vous devez accepter les conditions générales.' }
+                        { id: '#registration_form_acceptTerms', key: 'terms' },
+                        { id: '#registration_form_acceptBrokerageContact', key: 'broker' },
+                        { id: '#registration_form_acceptNewsletter', key: 'newsletter' },
                     ];
 
                     checkboxes.forEach(field => {
                         const input = $(field.id);
                         if (!input.is(':checked')) {
-                            addError(input, field.message);
+                            addError(input, t(field.key));
                             isValid = false;
                         }
                     });
 
-                    if (!isValid) {
-                        e.preventDefault();
+                    // ✅ Vérification du pseudo
+                    if (isPseudoTaken) {
+                        addError($('#registration_form_pseudo'), "{{ 'register.error.pseudo_taken'|trans }}");
+                        isValid = false;
                     }
+
+                    if (!isValid) e.preventDefault();
                 });
             });
         </script>
 
-
-
     </main>
+
+
 {% endblock %}
 
 

@@ -16,7 +16,7 @@
                             <!-- Afficher la vidéo en premier si elle existe -->
                             <video id="mainVideo" controls class="w-100" poster="{{ aircraft.airCraftImages|length > 0 ? asset('uploads/images/aircraft/' ~ aircraft.airCraftImages[0].image) : '' }}" style="display: block;">
                                 <source src="{{ asset('uploads/video/aircraft_video/' ~ aircraft.video) }}" type="video/mp4">
-                                Votre navigateur ne supporte pas les vidéos HTML5.
+                                {{ 'video.no_html5_support'|trans }}
                             </video>
                             {% if aircraft.airCraftImages|length > 0 %}
                                 <img id="mainImage" src="{{ asset('uploads/images/aircraft/' ~ aircraft.airCraftImages[0].image) }}"
@@ -57,7 +57,7 @@
 
                             <div class="alert alert-info text-center thumbnail-connect">
                                 <i class="bi bi-lock me-1"></i>
-                                Pour voir toutes les images, <a href="{{ path('app_login') }}" class="fw-bold text-primary">connectez-vous</a>.
+                                {{ 'alert.view_images_login_0'|trans }}, <a href="{{ path('app_login') }}" class="fw-bold text-primary"> {{ 'alert.view_images_login_1'|trans }}</a>.
                             </div>
                         {% endif %}
                     </div>
@@ -65,68 +65,108 @@
 
                 <!-- Informations générales -->
                 <div class="col-lg-5">
-                    <div class="card border-0 shadow-sm p-4 h-100">
-                        <div class="justify-content-between align-items-start mb-4">
-                            {% if not aircraft.isPublished %}
-                            <h4 class="bold text-danger">Cette annonce est bloquée <i class="bi bi-shield-slash-fill me-1"></i></h4>
-                            {% endif %}
+                    <div class="card border-0 shadow-lg p-4 h-100">
+                        <!-- En-tête annonce -->
+                        <div class="d-flex justify-content-between flex-wrap mb-3">
                             <div>
-                                <h1 class="h3 fw-bold">{{ aircraft.yearOfManufacture }} {{ aircraft.aircraftManufacturer.name }} {{ aircraft.model }}</h1>
-                                <span class="badge bg-primary-subtle text-primary">Turboprop Aircraft</span>
+                                {% if aircraft.isReported %}
+                                    <div class="alert alert-danger py-1 px-2 d-inline-flex align-items-center">
+                                        <i class="bi bi-flag-fill me-2"></i>
+                                        <strong>{{ 'aircraft.reported'|trans }}</strong>
+                                    </div>
+                                {% endif %}
+                                <h2 class="h4 fw-bold mt-2">{{ aircraft.yearOfManufacture }} {{ aircraft.aircraftManufacturer.name }} {{ aircraft.model }}</h2>
+                                <span class="badge bg-primary-subtle text-primary mt-1">{{ aircraft.aircraftCategory.name }}</span>
+                                <p class="small text-muted mt-1">
+                                    <i class="bi bi-geo-alt me-1"></i>
+                                    {{ 'aircraft.emplacement'|trans }} : {{ aircraft.city }}, {{ aircraft.country }}
+                                </p>
                             </div>
-                            <div class="price-tag">${{ aircraft.price }}</div>
-                            <small>Emplacement de l'avion : {{ aircraft.city }} {{ aircraft.country }}</small>
+                            <div class="text-end">
+                                <h4 class="text-success fw-bold">{{ aircraft.price | number_format(0, '.', ' ') }} €</h4>
+                            </div>
                         </div>
 
-                        <div class="d-flex gap-2 mb-4 flex-wrap">
-                            <!-- Bouton Supprimer (avec une icône claire et une couleur danger) -->
+                        <!-- Boutons Actions -->
+                        <div class="d-flex flex-wrap gap-2 mb-4">
+                                <!-- Bouton Supprimer (avec une icône claire et une couleur danger) -->
 
-                            <form method="post" action="{{ path('app_aircraft_delete', {'id': aircraft.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ aircraft.id) }}">
-                                <button class="btn btn-outline-danger">
-                                    <i class="bi bi-trash3-fill me-1"></i> Supprimer
-                                </button>
-                            </form>
+                                <form method="post" action="{{ path('app_aircraft_delete', {'id': aircraft.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ aircraft.id) }}">
+                                    <button class="btn btn-outline-danger">
+                                        <i class="bi bi-trash3-fill me-1"></i> Supprimer
+                                    </button>
+                                </form>
 
 
-                            {% include 'aircraft/_shadow_form.html.twig' %}
+                                {% include 'aircraft/_shadow_form.html.twig' %}
+
                         </div>
 
-                        <div class="detail-section">
-                            <h3 class="h5 fw-semibold"><i class="fas fa-user-tie detail-icon"></i> Information du vendeur<a href="{{ path('user_public_profile',{ 'pseudo':aircraft.publishedBy.pseudo } )}}"></a></h3>
+                        <!-- Informations du vendeur -->
+                        <div class="border-top pt-3">
+                            <h5 class="fw-semibold mb-3">
+                                <i class="fas fa-user-tie me-2"></i> {{ 'aircraft.seller_info'|trans }}
+                            </h5>
                             <div class="d-flex align-items-center gap-3">
                                 <div>
-                                    <h4 class="h6 mb-1">{{ aircraft.publishedBy.pseudo }}</h4>
+                                    <h6 class="mb-1 mx-2">
+                                        <i class="bi bi-person me-2"></i>{{ aircraft.publishedBy.pseudo }}
+                                    </h6>
                                     {% if app.user %}
-                                        <p class="mb-1 small"><i class="fas fa-phone me-2"></i> {{ aircraft.publishedBy.telephone}} </p>
-                                        <p class="mb-0 small"><i class="fas fa-envelope me-2"></i> {{ aircraft.publishedBy.email }}</p>
+                                        <p class="mb-1 small text-muted">
+                                            <i class="bi bi-telephone mx-2"></i>{{ aircraft.publishedBy.telephone }}
+                                        </p>
+                                        <p class="mb-0 small text-muted">
+                                            <i class="bi bi-envelope mx-2"></i>{{ aircraft.publishedBy.email }}
+                                        </p>
+                                    {% else %}
+                                        <button class="btn btn-style-outline btn-sm"
+                                                data-bs-toggle="popover"
+                                                data-bs-placement="top"
+                                                data-bs-html="true"
+                                                data-bs-trigger="focus"
+                                                title="{{ 'aircraft.access_restricted'|trans }}"
+                                                data-bs-content="{{ 'aircraft.connect_to_view_contacts'|trans({'%login_url%': path('app_login')}) }}">
+                                            <i class="fas fa-eye me-1"></i>
+                                            {{ 'aircraft.view_contacts'|trans }}
+                                        </button>
                                     {% endif %}
                                 </div>
-
-                                {% if not app.user %}
-                                    <button
-                                            class="btn btn-outline-primary ms-auto"
-                                            data-bs-toggle="popover"
-                                            data-bs-placement="top"
-                                            data-bs-html="true"
-                                            data-bs-trigger="focus"
-                                            title="Accès réservé"
-                                            data-bs-content='Veuillez <a href="{{ path("app_login") }}" class="text-primary fw-bold" >vous connecter</a> pour voir les contacts.'
-                                    >
-                                        <i class="fas fa-eye me-1"></i> Voir les contacts
-                                    </button>
-                                {% endif %}
                             </div>
                         </div>
-
-                        <div class="d-grid gap-3 mt-4">
-                            <a href="{{ path('user_public_profile',{ 'pseudo':aircraft.publishedBy.pseudo } )}}">
-                                <i class="bi bi-eye me-2"></i> Voir le profil du vendeur
+                        <div class="d-grid gap-2 mt-4">
+                            <a class="btn btn-outline-secondary" href="{{ path('user_public_profile', { 'pseudo': aircraft.publishedBy.pseudo }) }}">
+                                <i class="bi bi-person-lines-fill me-2"></i> {{ 'aircraft.view_seller_profile'|trans }}
                             </a>
+
+                            {% if app.user %}
+                                <a style="background-color: var(--primary-color);" class="btn text-white"
+                                   data-bs-toggle="offcanvas"
+                                   data-bs-target="#offcanvasExample"
+                                   aria-controls="offcanvasExample">
+                                    <i class="bi bi-envelope-fill me-2"></i>{{ 'aircraft.contact_seller'|trans }}
+                                </a>
+                                {% include 'intern_contact/contactOffcanvas.html.twig' %}
+                            {% else %}
+                                <a style="background-color: var(--primary-color);" class="btn text-white"
+                                   data-bs-toggle="popover"
+                                   data-bs-placement="top"
+                                   data-bs-html="true"
+                                   data-bs-trigger="focus"
+                                   title="{{ 'aircraft.access_restricted'|trans }}"
+                                   data-bs-content="{{ 'aircraft.connect_to_contact_seller'|trans({'%login_url%': path('app_login')}) }}">
+                                    <i class="bi bi-envelope-fill me-2"></i>{{ 'aircraft.contact_seller'|trans }}
+                                </a>
+                            {% endif %}
                         </div>
+
+
                     </div>
                 </div>
+
             </div>
+
 
             <!-- Deuxième rangée : Autres caractéristiques -->
             <div class="row g-4">

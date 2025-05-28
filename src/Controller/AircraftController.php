@@ -251,6 +251,7 @@ final class AircraftController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_aircraft_edit', methods: ['GET', 'POST'])]
+    #[IsGranted("ROLE_USER")]
     public function edit(Request $request, Aircraft $aircraft, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(AircraftType::class, $aircraft);
@@ -269,6 +270,7 @@ final class AircraftController extends AbstractController
     }
 
     #[Route('/{id}/delete', name: 'app_aircraft_delete', methods: ['POST'])]
+    #[IsGranted("ROLE_USER")]
     public function delete(Request $request, Aircraft $aircraft, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$aircraft->getId(), $request->getPayload()->getString('_token'))) {
@@ -303,6 +305,7 @@ final class AircraftController extends AbstractController
 
 
     #[Route('/register/step={step}', name: 'aircraft_wizard_form', requirements: ['step' => '\d+'])]
+    #[IsGranted("ROLE_USER")]
     public function formWizard(int $step, MaxSteps $maxSteps, Request $request,VideoTrimmer $videoTrimmer ,SessionInterface $session, DtoService $dtoService, FormTypeService $formTypeService,AircraftManufacturerRepository $aircraftManufacturerRepository ,AirCraftCategoryRepository $airCraftCategoryRepository, EntityManagerInterface $em): Response
     {
         // Récupérer la catégorie d'avion de la session ou une valeur par défaut
@@ -469,15 +472,44 @@ final class AircraftController extends AbstractController
         );
     }
 
-    #[Route('admin/{slug}/annonce', name: 'app_admin_aircraft_show', methods: ['GET', 'POST'])]
+    #[Route('/admin/{slug}/annonce', name: 'app_admin_aircraft_show', methods: ['GET', 'POST'])]
     public function admin_show(Request $request, string $slug, AircraftSpecsRepository $aircraftSpecsRepository): Response
     {
         $aircraft = $this->airCraftRepository->findOneBy(['slug'=>$slug]);
+        $user = $this->getUser();
+        $defaultData = [
+            'firstName' => $user?->getFirstName(),
+            'email' => $user?->getEmail(),
+            'phone' => $user?->getTelephone(),
+            'aircraft'=>$aircraft
+        ];
+
+        $formContact = $this->createForm(InternContactType::class, $defaultData);
+
+        $formContact->handleRequest($request);
+        $message_send = "";
 
         $aircraftSpecs= $aircraft->getAircraftSpecs()[0]->getDataSpecs();
+        if ($formContact->isSubmitted() && $formContact->isValid()) {
+
+            $data = $formContact->getData();
+
+            $this->emailService->sendContactNotificationEmail(
+                $data,
+                $aircraft->getPublishedBy()->getEmail(), // Adresse destinataire
+                $aircraft->getAircraftCategory()->getName().' '.$aircraft->getAircraftManufacturer()->getName()." ".$aircraft->getModel(), // Titre de l'avion
+                'Vous avez reçu un nouveau message de contact'
+            );
+
+            $message_send = 'Votre message a bien été envoyé avec succès au vendre';
+
+            // Tu peux les utiliser ou les sauvegarder où tu veux
+        }
         return $this->render('backend/admin/annonce-detail.html.twig', [
             'aircraft' => $aircraft,
             'aircraftSpecs'=>$aircraftSpecs,
+            'contactForm'=>$formContact,
+            'message_send'=>$message_send
         ]);
     }
 

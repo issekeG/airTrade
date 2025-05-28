@@ -7,185 +7,150 @@
             <div class="col-lg-12">
                 {% block sideColumns %}
                     <div class="row">
-                        <div class="card">
+                        <div class="card shadow-sm border-0 rounded mb-4">
                             <div class="card-body">
-                                <div class="row">
+                                <div class="row align-items-center mb-3">
                                     <div class="col-md-5">
                                         {% set firstItemNumber = (aircraftManufacturers.currentPageNumber - 1) * aircraftManufacturers.itemNumberPerPage + 1 %}
                                         {% set lastItemNumber = firstItemNumber + aircraftManufacturers.items|length - 1 %}
-                                        <h5 class="card-title">
-                                            <small>
-                                                {{ 'aircraft_manufacturer.list'|trans({
-                                                    '%first%': firstItemNumber,
-                                                    '%last%': lastItemNumber,
-                                                    '%total%': aircraftManufacturers.totalItemCount
-                                                }) }}
-                                            </small>
-                                        </h5>
+                                        <h6 class="text-muted mb-0">
+                                            {{ 'aircraft_manufacturer.list'|trans({
+                                                '%first%': firstItemNumber,
+                                                '%last%': lastItemNumber,
+                                                '%total%': aircraftManufacturers.totalItemCount
+                                            }) }}
+                                        </h6>
                                     </div>
 
                                     <div class="col-md-4">
-                                        <div class="card-title">
-                                            <form class="search-form d-flex align-items-center" method="POST" action="{{ path('app_aircraft_manufacturer_index') }}">
-                                                <div class="input-group input-group-sm mb-3">
-                                                    <input
-                                                            type="search"
-                                                            class="form-control"
-                                                            name="search"
-                                                            placeholder="{{ 'aircraft_manufacturer.search_placeholder'|trans }}"
-                                                            aria-label="{{ 'aircraft_manufacturer.search_label'|trans }}"
-                                                            aria-describedby="admin-school-bouton"
-                                                    >
-                                                    <button class="btn border border-gray-400" type="submit" id="admin-school-bouton">
-                                                        <i class="bi bi-search"></i>
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
+                                        <form class="d-flex" method="POST" action="{{ path('app_aircraft_manufacturer_index') }}">
+                                            <input type="search" class="form-control form-control-sm me-2"
+                                                   name="search"
+                                                   placeholder="{{ 'aircraft_manufacturer.search_placeholder'|trans }}"
+                                                   aria-label="{{ 'aircraft_manufacturer.search_label'|trans }}">
+                                            <button class="btn btn-outline-primary btn-sm" type="submit">
+                                                <i class="bi bi-search"></i>
+                                            </button>
+                                        </form>
                                     </div>
 
-                                    <div class="col-md-3 d-flex justify-content-end">
-                                        <h5 class="card-title">
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#creeManufacturerModal">
-                                                <i class="bi bi-patch-plus-fill"></i> {{ 'aircraft_manufacturer.create'|trans }}
-                                            </a>
-                                        </h5>
-                                    </div>
-
-                                    <!-- Modal Création -->
-                                    <div class="modal fade" id="creeManufacturerModal" tabindex="-1" aria-labelledby="creeManufacturerModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="creeManufacturerModalLabel">{{ 'aircraft_manufacturer.add_title'|trans }}</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                {{ form_start(aircraftManufacturerForm, {'attr': {'class': 'container mt-4', 'action': path('app_aircraft_manufacturer_new')}}) }}
-                                                <div class="modal-body">
-                                                    <div class="mb-3">
-                                                        {{ form_label(aircraftManufacturerForm.name, 'aircraft_manufacturer.name'|trans, {'label_attr': {'class': 'form-label'}}) }}
-                                                        {{ form_widget(aircraftManufacturerForm.name, {'attr': {'class': 'form-control'}}) }}
-                                                        {{ form_errors(aircraftManufacturerForm.name, {'attr': {'class': 'invalid-feedback'}}) }}
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'common.cancel'|trans }}</button>
-                                                    <button type="submit" class="btn btn-primary">{{ 'common.save'|trans }}</button>
-                                                </div>
-                                                {{ form_end(aircraftManufacturerForm) }}
-                                            </div>
-                                        </div>
+                                    <div class="col-md-3 text-end">
+                                        <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#creeManufacturerModal">
+                                            <i class="bi bi-patch-plus-fill me-1"></i> {{ 'aircraft_manufacturer.create'|trans }}
+                                        </a>
                                     </div>
                                 </div>
 
-                                <!-- Table with stripped rows -->
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">{{ 'common.action'|trans }}</th>
-                                        <th scope="col">{{ 'aircraft_manufacturer.name'|trans }}</th>
-                                        <th scope="col">{{ 'aircraft_manufacturer.ad_count'|trans }}</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {% for aircraftManufacturer in aircraftManufacturers %}
+                                <!-- Table -->
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle">
+                                        <thead class="table-light">
                                         <tr>
-                                            <td class="gap-2">
-                                                <a href="#"
-                                                   class="mx-2 edit-manufacturer-btn"
-                                                   data-bs-toggle="modal"
-                                                   data-bs-target="#editManufacturerModal"
-                                                   data-id="{{ aircraftManufacturer.id }}"
-                                                   data-name="{{ aircraftManufacturer.name }}">
-                                                    <i class="bi bi-pencil-square"></i>
-                                                </a>
-                                                <a href="{{ path('app_aircraft_manufacturer_delete',{'id':aircraftManufacturer.id}) }}" class="ms-2">
-                                                    <i class="bi bi-trash-fill"></i>
-                                                </a>
-                                            </td>
-                                            <td>{{ aircraftManufacturer.name }}</td>
-                                            <td>{{ aircraftManufacturer.aircraft | length }}</td>
+                                            <th scope="col">{{ 'common.action'|trans }}</th>
+                                            <th scope="col">{{ 'aircraft_manufacturer.name'|trans }}</th>
+                                            <th scope="col">{{ 'aircraft_manufacturer.ad_count'|trans }}</th>
                                         </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                        {% for manufacturer in aircraftManufacturers %}
+                                            <tr>
+                                                <td>
+                                                    <a href="#"
+                                                       class="text-warning me-2 edit-manufacturer-btn"
+                                                       data-bs-toggle="modal"
+                                                       data-bs-target="#editManufacturerModal"
+                                                       data-id="{{ manufacturer.id }}"
+                                                       data-name="{{ manufacturer.name }}">
+                                                        <i class="bi bi-pencil-square"></i>
+                                                    </a>
+                                                    <a href="{{ path('app_aircraft_manufacturer_delete', {id: manufacturer.id}) }}"
+                                                       class="text-danger">
+                                                        <i class="bi bi-trash-fill"></i>
+                                                    </a>
+                                                </td>
+                                                <td>{{ manufacturer.name }}</td>
+                                                <td>{{ manufacturer.aircraft|length }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
 
-                                <div class="pagination">
+                                <div class="mt-3">
                                     {{ knp_pagination_render(aircraftManufacturers) }}
                                 </div>
-
-                                <!-- Modal Édition -->
-                                <div class="modal fade" id="editManufacturerModal" tabindex="-1" aria-labelledby="editManufacturerModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="editManufacturerModalLabel">{{ 'aircraft_manufacturer.edit_title'|trans }}</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
-                                            </div>
-
-                                            {{ form_start(editAircraftManufacturerForm, {
-                                                'attr': {
-                                                    'id': 'editAircraftManufacturerForm',
-                                                    'class': 'container'
-                                                },
-                                                'action': path('app_aircraft_manufacturer_edit', {'id': 'PLACEHOLDER'})
-                                            }) }}
-
-                                            <div class="modal-body">
-                                                {{ form_row(editAircraftManufacturerForm.name, {'attr': { 'class': 'form-control' }}) }}
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'common.cancel'|trans }}</button>
-                                                <button type="submit" class="btn btn-primary">{{ 'common.save'|trans }}</button>
-                                            </div>
-
-                                            {{ form_end(editAircraftManufacturerForm) }}
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                     </div>
                 {% endblock %}
             </div>
-
         </section>
 
+        <!-- Modal : Créer un fabricant -->
+        <div class="modal fade" id="creeManufacturerModal" tabindex="-1" aria-labelledby="creeManufacturerModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content rounded shadow">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="creeManufacturerModalLabel">{{ 'aircraft_manufacturer.add_title'|trans }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ 'common.close'|trans }}"></button>
+                    </div>
+                    {{ form_start(aircraftManufacturerForm, {'attr': {'action': path('app_aircraft_manufacturer_new')}}) }}
+                    <div class="modal-body p-4">
+                        {{ form_row(aircraftManufacturerForm.name, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'common.cancel'|trans }}</button>
+                        <button type="submit" class="btn btn-primary">{{ 'common.save'|trans }}</button>
+                    </div>
+                    {{ form_end(aircraftManufacturerForm) }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal : Modifier un fabricant -->
+        <div class="modal fade" id="editManufacturerModal" tabindex="-1" aria-labelledby="editManufacturerModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content rounded shadow">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editManufacturerModalLabel">{{ 'aircraft_manufacturer.edit_title'|trans }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ 'common.close'|trans }}"></button>
+                    </div>
+                    {{ form_start(editAircraftManufacturerForm, {
+                        'attr': {
+                            'id': 'editAircraftManufacturerForm'
+                        },
+                        'action': path('app_aircraft_manufacturer_edit', {'id': 'PLACEHOLDER'})
+                    }) }}
+                    <div class="modal-body p-4">
+                        {{ form_row(editAircraftManufacturerForm.name, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'common.cancel'|trans }}</button>
+                        <button type="submit" class="btn btn-primary">{{ 'common.save'|trans }}</button>
+                    </div>
+                    {{ form_end(editAircraftManufacturerForm) }}
+                </div>
+            </div>
+        </div>
 
         <script>
-
             document.addEventListener('DOMContentLoaded', function () {
                 const editButtons = document.querySelectorAll('.edit-manufacturer-btn');
                 const editForm = document.getElementById('editAircraftManufacturerForm');
-                const nameInput = document.querySelector('#editAircraftManufacturerForm input[name="aircraft_manufacturer[name]"]');
+                const nameInput = editForm.querySelector('input[name="aircraft_manufacturer[name]"]');
+                const actionTemplate = "{{ path('app_aircraft_manufacturer_edit', {'id': 'PLACEHOLDER'}) }}";
 
-                const formActionTemplate = "{{ path('app_aircraft_manufacturer_edit', {'id': 'PLACEHOLDER'}) }}";
+                editButtons.forEach(btn => {
+                    btn.addEventListener('click', function () {
+                        const id = this.dataset.id;
+                        const name = this.dataset.name;
 
-                editButtons.forEach(button => {
-                    button.addEventListener('click', function () {
-                        const manufacturerId = this.getAttribute('data-id');
-
-                        // Injecter les données dans le formulaire
-                        nameInput.value = this.getAttribute('data-name');
-
-                        // Mettre à jour dynamiquement l'action du formulaire
-                        editForm.action = formActionTemplate.replace('PLACEHOLDER', manufacturerId);
-
+                        nameInput.value = name;
+                        editForm.action = actionTemplate.replace('PLACEHOLDER', id);
                     });
                 });
             });
         </script>
 
-
-
-
     </main>
 {% endblock %}
-
-
-
-
-

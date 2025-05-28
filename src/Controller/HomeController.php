@@ -21,7 +21,9 @@ final class HomeController extends AbstractController
         $search_form = $this->createForm(MainSearchFormType::class);
         $search_form->handleRequest($request);
         $all_airCrafts = $aircraftRepository->findLast4Aircraft();
-        $blog_articles = $articleRepository->findAll();
+
+        $articleLang = $request->getLocale();
+        $blog_articles = $articleRepository->findLastArticle($articleLang);
 
         $menusCategories = new MenuCategories();
         $all_categories = $menusCategories->getMenusCategories();

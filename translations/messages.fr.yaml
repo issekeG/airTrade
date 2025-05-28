@@ -52,27 +52,49 @@ app:
 
 
 login:
-  email: "E-mail"
-  password: "Mot de passe"
-  submit: "Se connecter"
-  forgot_password: "Mot de passe oublié ?"
   button: "Se connecter"
-  error:
-    username_required: "Veuillez entrer votre identifiant."
-    password_required: "Veuillez entrer votre mot de passe !"
-    invalid_credentials: "Identifiant ou mot de passe incorrect"
   terms: >
     En cliquant sur "Se connecter", vous acceptez d'être lié par nos Conditions d'utilisation et notre Politique de confidentialité.
-  no_account: "Avez-vous un compte ?"
-  create_account: "Créer un compte"
+  email: "Adresse e-mail"
+  password: "Mot de passe"
+  error:
+    username_required: "Veuillez entrer votre adresse e-mail."
+    username_invalid: "Le format de l'adresse e-mail est invalide."
+    password_required: "Veuillez entrer votre mot de passe."
+    password_too_short: "Le mot de passe doit contenir au moins 6 caractères."
+    invalid_credentials: "Adresse e-mail ou mot de passe incorrect."
 
+  forgot_password: "Mot de passe oublié ?"
+  submit: "Se connecter"
+  no_account: "Vous n'avez pas encore de compte ?"
+  create_account: "Créer un compte"
 
 site:
   logo_text: AirTradeLogo
 
-
-
 register:
+  pseudo: "Pseudo"
+  name: "Prénom"
+  phone: "Téléphone"
+  email: "Email"
+  country: "Pays"
+  password: "Mot de passe"
+  submit: "Créer mon compte"
+
+  error:
+    pseudo_taken: "Ce nom d'utilisateur est déjà utilisé."
+    pseudo: "Veuillez entrer un pseudo."
+    firstname: "Veuillez entrer votre prénom."
+    telephone: "Veuillez entrer votre téléphone."
+    email: "Veuillez entrer une adresse email."
+    email_format: "Veuillez entrer une adresse email valide."
+    country: "Veuillez sélectionner un pays."
+    password: "Veuillez entrer un mot de passe."
+    password_format: "Le mot de passe doit contenir au moins 6 caractères et une lettre majuscule."
+    terms: "Vous devez accepter les conditions générales."
+    broker: "Vous devez accepter les conditions générales."
+    newsletter: "Vous devez accepter les conditions générales."
+
   header: Rejoindre les passionnés et professionnels de l’aviation
   success:
     title: Inscription réussie !
@@ -83,19 +105,16 @@ register:
 
   button: "S'inscrire"
   welcome_text: "Rejoindre les passionnés et professionnels de l’aviation"
-  pseudo: "Votre pseudo"
-  name: "Votre Nom & Prénom"
-  phone: "Votre téléphone"
-  email: "Votre email"
-  country: "Votre pays"
-  password: "Votre mot de passe"
+
   terms: >
     En cochant cette case, vous acceptez les conditions générales d'utilisation de notre site. Cela inclut notre politique de confidentialité, nos règles de conduite et nos modalités de service.
   newsletter: >
     En cochant cette case, vous acceptez de recevoir des e-mails de notre part concernant nos nouveaux produits, offres spéciales et actualités. Vous pouvez vous désabonner à tout moment en cliquant sur le lien présent dans chaque e-mail.
   broker_contact: >
     En cochant cette case, vous acceptez que nos services de courtage vous contactent pour vous proposer des offres personnalisées et vous accompagner dans vos démarches.
-  submit: "Enregistrer"
+
+
+
 
 
 auth:
@@ -478,22 +497,46 @@ location: "Localisation :"
 price: "Prix :"
 year: "Année :"
 
+no_aircraft_found: "Aucune annonce disponible pour le moment."
+return_home: "Voir toutes les annonces"
+
+# translations/messages.fr.yaml
+error:
+  404:
+    title: "404 – Page introuvable"
+    description: "La page que vous recherchez n'existe pas."
+    message: "La page que vous recherchez n'existe pas."
+    back_home: "Retour à l'accueil"
+
+
+
+password:
+  new:       "Nouveau mot de passe"
+  repeat:    "Répéter le mot de passe"
+  notice:    "En cliquant sur « Sauvegarder », vous acceptez nos Conditions d’utilisation et notre Politique de confidentialité."
+  error:
+    min_length: "Le mot de passe doit contenir au moins %length% caractères."
+    mismatch:   "Les mots de passe ne correspondent pas."
+
+link:
+  back_to_login: "Retour à la page de connexion"
+
 # Catégories d'avions
 categories:
-  jet_aircraft: "Avions à réaction"
-  turboprop_aircraft: "Avions turboprop"
-  piston_single_aircraft: "Avions à piston mono-moteur"
-  piston_twin_aircraft: "Avions à piston bi-moteur"
-  light_sport: "Avions légers de sport"
-  experimental_homebuilt_aircraft: "Avions expérimentaux"
-  piston_agricultural_aircraft: "Avions agricoles à piston"
-  piston_amphibious_flatplanes: "Hydravions à piston"
-  piston_helicopters: "Hélicoptères à piston"
-  piston_military_aircraft: "Avions militaires à piston"
-  turbine_agricultural_aircraft: "Avions agricoles à turbine"
-  turbine_helicopters: "Hélicoptères à turbine"
-  turbine_military_aircraft: "Avions militaires à turbine"
-  turbine_amphibious_floatplane: "Hydravions à turbine"
+  jet_aircraft: "Jet aircraft"
+  turboprop_aircraft: "Turboprop aircraft"
+  piston_single_aircraft: "Single-engine piston aircraft"
+  piston_twin_aircraft: "Twin-engine piston aircraft"
+  light_sport: "Light sport aircraft"
+  experimental_homebuilt_aircraft: "Experimental aircraft"
+  piston_agricultural_aircraft: "Piston agricultural aircraft"
+  piston_amphibious_flatplanes: "Piston floatplanes"
+  piston_helicopters: "Piston helicopters"
+  piston_military_aircraft: "Piston military aircraft"
+  turbine_agricultural_aircraft: "Turbine agricultural aircraft"
+  turbine_helicopters: "Turbine helicopters"
+  turbine_military_aircraft: "Turbine military aircraft"
+  turbine_amphibious_floatplane: "Turbine floatplanes"
 
 
 

@@ -20,22 +20,22 @@
 
               <div class="card mb-3">
                 <div class="card-body">
-                  <form class="row g-3 needs-validation" method="post" novalidate>
+                  <form id="loginForm" class="row g-3" method="post" novalidate>
                     <div class="col-12 pt-4">
                       <label for="username" class="form-label">{{ 'login.email'|trans }}</label>
                       <div class="input-group has-validation">
                         <input
-                                type="text"
+                                type="email"
                                 value="{{ last_username }}"
                                 name="_username"
                                 id="username"
                                 class="form-control"
-                                placeholder="Entrez votre adresse email"
+                                placeholder="{{ 'login.email'|trans }}"
                                 autocomplete="email"
                                 required
                                 autofocus
                         >
-                        <div class="invalid-feedback">{{ 'login.error.username_required'|trans }}</div>
+                        <div class="invalid-feedback" id="username-error">{{ 'login.error.username_required'|trans }}</div>
                       </div>
                     </div>
 
@@ -46,11 +46,11 @@
                               name="_password"
                               id="password"
                               class="form-control"
-                              placeholder="Entrez votre mot de passe"
+                              placeholder="{{ 'login.password'|trans }}"
                               autocomplete="current-password"
                               required
                       >
-                      <div class="invalid-feedback">{{ 'login.error.password_required'|trans }}</div>
+                      <div class="invalid-feedback" id="password-error">{{ 'login.error.password_required'|trans }}</div>
                     </div>
 
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
@@ -85,18 +85,72 @@
                     </div>
                   </form>
 
+
+                  <!-- Script jQuery -->
+                  <script src="{{ asset('assets/vendor/jquery/jquery-3.7.1.min.js') }}"></script>
                   <script>
-                    document.addEventListener("DOMContentLoaded", function() {
-                      document.getElementById("username").addEventListener("keyup", function () {
-                        document.getElementById("error_connect")?.classList.add("d-none");
+                    $(document).ready(function () {
+                      const $form = $('#loginForm');
+
+                      const messages = {
+                        usernameRequired: '{{ "login.error.username_required"|trans|e("js") }}',
+                        usernameInvalid: '{{ "login.error.username_invalid"|trans|e("js") }}',
+                        passwordRequired: '{{ "login.error.password_required"|trans|e("js") }}',
+                        passwordTooShort: '{{ "login.error.password_too_short"|trans|e("js") }}',
+                      };
+
+                      $form.on('submit', function (event) {
+                        let isValid = true;
+
+                        const $email = $('#username');
+                        const $emailError = $('#username-error');
+                        const emailValue = $email.val().trim();
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                        if (!emailValue) {
+                          $email.addClass('is-invalid');
+                          $emailError.text(messages.usernameRequired);
+                          isValid = false;
+                        } else if (!emailRegex.test(emailValue)) {
+                          $email.addClass('is-invalid');
+                          $emailError.text(messages.usernameInvalid);
+                          isValid = false;
+                        } else {
+                          $email.removeClass('is-invalid');
+                        }
+
+                        const $password = $('#password');
+                        const $passwordError = $('#password-error');
+                        const passwordValue = $password.val().trim();
+
+                        if (!passwordValue) {
+                          $password.addClass('is-invalid');
+                          $passwordError.text(messages.passwordRequired);
+                          isValid = false;
+                        } else if (passwordValue.length < 6) {
+                          $password.addClass('is-invalid');
+                          $passwordError.text(messages.passwordTooShort);
+                          isValid = false;
+                        } else {
+                          $password.removeClass('is-invalid');
+                        }
+
+                        if (!isValid) {
+                          event.preventDefault();
+                          event.stopPropagation();
+                        }
                       });
-                      document.getElementById("password").addEventListener("keyup", function () {
-                        document.getElementById("error_connect")?.classList.add("d-none");
+
+                      $('#username, #password').on('input', function () {
+                        $('#error_connect').addClass('d-none');
+                        $(this).removeClass('is-invalid');
                       });
                     });
                   </script>
+
                 </div>
               </div>
+
 
             </div>
           </div>

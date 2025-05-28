@@ -1,86 +1,103 @@
-{{ form_start(form) }}
+{{ form_start(form, {'attr': {'class': 'needs-validation'}}) }}
 
-<div class="container">
-    <div class="row mb-3">
-        <div class="">
-            {{ form_row(form.category) }}
-        </div>
-    </div>
-    <div class="row mb-3">
-        <div class="">
-            {{ form_row(form.title) }}
-        </div>
-    </div>
-    <div class="row mb-3">
-        <div class="">
-            {{ form_row(form.description) }}
-        </div>
-    </div>
+<div class="container py-4">
+    <!-- Bloc : Informations générales -->
+    <div class="card shadow-sm rounded-4 mb-4">
+        <div class="card-body">
+            <h4 class="mb-4">Détails de l’article</h4>
 
-    <div class="row mb-3">
+            <div class="mb-3">
+                {{ form_row(form.category, {'label': 'Catégorie'}) }}
+            </div>
 
-        <div class="col-md-6">
-            {{ form_row(form.imageFile) }}
-        </div>
-    </div>
+            <div class="mb-3">
+                {{ form_row(form.langue, {'label': 'Langue'}) }}
+            </div>
 
+            <div class="mb-3 mx-3">
+                {{ form_row(form.title, {'label': 'Titre de l’article'}) }}
+            </div>
 
-    <div class="row mb-3">
-        <div class="">
-            {{ form_row(form.seoTitle) }}
-        </div>
-        <div class="">
-            {{ form_row(form.seoKeywords) }}
-        </div>
-        <div class="">
-            {{ form_row(form.seoDescription) }}
+            <div class="mb-3">
+                {{ form_row(form.description, {'label': 'Contenu'}) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_row(form.imageFile, {'label': 'Image à la une'}) }}
+            </div>
         </div>
     </div>
 
+    <!-- Bloc : Référencement SEO -->
+    <div class="card shadow-sm rounded-4 mb-4">
+        <div class="card-body">
+            <h4 class="mb-4">Référencement (SEO)</h4>
 
+            <div class="mb-3">
+                {{ form_row(form.seoTitle, {'label': 'Titre SEO'}) }}
+            </div>
 
-    {# --- Sections dynamiques --- #}
-    <div class="row mb-3">
-        <div class="col-md-12">
-            <h5>Sections</h5>
+            <div class="mb-3">
+                {{ form_row(form.seoKeywords, {'label': 'Mots-clés SEO'}) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_row(form.seoDescription, {'label': 'Description SEO'}) }}
+            </div>
+        </div>
+    </div>
+
+    <!-- Bloc : Sections dynamiques -->
+    <div class="card shadow-sm rounded-4 mb-4">
+        <div class="card-body">
+            <h4 class="mb-3">Contenu dynamique</h4>
+            <p class="text-muted small mb-3">
+                Ajoutez des sections supplémentaires au besoin (texte, images, etc.).
+            </p>
+
             <div id="sections-container" data-prototype="{{ form_widget(form.articleSections.vars.prototype)|e('html_attr') }}">
                 {% for sectionForm in form.articleSections %}
-                    <div class="section-item mb-3 border p-3 position-relative">
+                    <div class="section-item mb-3 border rounded-3 p-3 bg-light position-relative">
                         {{ form_row(sectionForm) }}
-                        <button type="button" class="btn btn-danger btn-sm remove-section position-absolute top-0 end-0 m-2">Supprimer</button>
+                        <button type="button" class="btn-close position-absolute top-0 end-0 m-2 remove-section" aria-label="Supprimer cette section"></button>
                     </div>
                 {% endfor %}
             </div>
-            <button type="button" class="btn btn-secondary mt-3" id="add-section">Ajouter une section</button>
+
+            <button type="button" class="btn btn-outline-primary mt-3" id="add-section">
+                <i class="bi bi-plus-circle"></i> Ajouter une section
+            </button>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-12 text-end">
-            <button class="btn btn-primary">Enregistrer</button>
-        </div>
+    <!-- Bouton d'enregistrement -->
+    <div class="text-end">
+        <button class="btn btn-success px-4">
+            <i class="bi bi-save"></i> Enregistrer l’article
+        </button>
     </div>
 </div>
 
 {{ form_end(form) }}
 
+<!-- JS : Gestion des sections -->
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        let container = document.getElementById('sections-container');
+    document.addEventListener('DOMContentLoaded', () => {
+        const container = document.getElementById('sections-container');
         let index = container.querySelectorAll('.section-item').length;
-        let addButton = document.getElementById('add-section');
+        const addButton = document.getElementById('add-section');
 
-        addButton.addEventListener('click', function () {
-            let prototype = container.dataset.prototype;
-            let newForm = prototype.replace(/__name__/g, index);
-            let newElement = document.createElement('div');
-            newElement.classList.add('section-item', 'mb-3', 'border', 'p-3', 'position-relative');
-            newElement.innerHTML = newForm + '<button type="button" class="btn btn-danger btn-sm remove-section position-absolute top-0 end-0 m-2">Supprimer</button>';
-            container.appendChild(newElement);
+        addButton.addEventListener('click', () => {
+            const prototype = container.dataset.prototype;
+            const newForm = prototype.replace(/__name__/g, index);
+            const wrapper = document.createElement('div');
+            wrapper.classList.add('section-item', 'mb-3', 'border', 'rounded-3', 'p-3', 'bg-light', 'position-relative');
+            wrapper.innerHTML = newForm + '<button type="button" class="btn-close position-absolute top-0 end-0 m-2 remove-section" aria-label="Supprimer cette section"></button>';
+            container.appendChild(wrapper);
             index++;
         });
 
-        container.addEventListener('click', function (e) {
+        container.addEventListener('click', (e) => {
             if (e.target.classList.contains('remove-section')) {
                 e.target.closest('.section-item').remove();
             }

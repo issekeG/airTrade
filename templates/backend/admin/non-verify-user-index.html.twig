@@ -2,44 +2,45 @@
 
 {% block main %}
     <main id="main" class="main">
-
         <section class="section dashboard">
             {% block main_content %}
                 <div class="row">
-
-                    <!-- Left side columns -->
-
-                    <div class="col-lg-12">
+                    <div class="col-12">
                         {% block sideColumns %}
-                            <div class="row">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                {% set firstItemNumber = (users.currentPageNumber - 1) * users.itemNumberPerPage + 1 %}
-                                                {% set lastItemNumber = firstItemNumber + users.items|length - 1 %}
-                                                <h5 class="card-title">
-                                                    <small>
-                                                        {{ 'user.list_title'|trans }} ({{ firstItemNumber }} - {{ lastItemNumber }} {{ 'user.from_to_total'|trans({'%first%': firstItemNumber, '%last%': lastItemNumber, '%total%': users.totalItemCount}) }})
-                                                    </small>
-                                                </h5>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="card-title">
-                                                    <form class="search-form d-flex align-items-center" method="POST" action="{{ path('app_user_index_non_verify') }}">
-                                                        <div class="input-group input-group-sm mb-3">
-                                                            <input type="search" class="form-control" name="search" placeholder="{{ 'user.search_placeholder'|trans }}" aria-label="{{ 'user.search_placeholder'|trans }}" aria-describedby="user-recherche">
-                                                            <button class="btn border border-gray-400" type="submit" id="user-recherche">
-                                                                <i class="bi bi-search"></i>
-                                                            </button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
+                            <div class="card shadow-sm border-0 mb-4">
+                                <div class="card-body p-4">
+                                    <div class="row align-items-center mb-4">
+                                        <div class="col-md-6">
+                                            {% set firstItemNumber = (users.currentPageNumber - 1) * users.itemNumberPerPage + 1 %}
+                                            {% set lastItemNumber = firstItemNumber + users.items|length - 1 %}
+                                            <h5 class="mb-0 text-primary">
+                                                {{ 'user.list_title'|trans }}
+                                                <small class="text-muted">
+                                                    ({{ firstItemNumber }} - {{ lastItemNumber }}
+                                                    {{ 'user.from_to_total'|trans({'%first%': firstItemNumber, '%last%': lastItemNumber, '%total%': users.totalItemCount}) }})
+                                                </small>
+                                            </h5>
                                         </div>
+                                        <div class="col-md-6 text-md-end">
+                                            <form method="POST" action="{{ path('app_user_index_non_verify') }}" class="d-flex justify-content-md-end">
+                                                <div class="input-group input-group-sm w-100 w-md-auto">
+                                                    <input type="search"
+                                                           name="search"
+                                                           class="form-control"
+                                                           placeholder="{{ 'user.search_placeholder'|trans }}"
+                                                           aria-label="{{ 'user.search_placeholder'|trans }}"
+                                                           aria-describedby="user-recherche">
+                                                    <button class="btn btn-outline-secondary" type="submit" id="user-recherche">
+                                                        <i class="bi bi-search"></i>
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
 
-                                        <table class="table table-striped">
-                                            <thead>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover align-middle">
+                                            <thead class="table-light">
                                             <tr>
                                                 <th scope="col">{{ 'user.action'|trans }}</th>
                                                 <th scope="col">{{ 'user.username'|trans }}</th>
@@ -53,13 +54,18 @@
                                             <tbody>
                                             {% for user in users %}
                                                 <tr>
-                                                    <td class="gap-2">
-                                                        <a href="{{ path('admin_view_user_profile', {'id': user.id, 'page': 'ads'}) }}" class="ms-2" title="{{ 'user.view_profile'|trans }}"><i class="bi bi-eye-fill"></i></a>
-                                                        <a href="{{ path('user_profile_luck', {'id': user.id}) }}" class="ms-2" title="{{ 'user.lock_unlock'|trans }}">
+                                                    <td>
+                                                        <a href="{{ path('admin_view_user_profile', {'id': user.id, 'page': 'ads'}) }}"
+                                                           class="text-decoration-none me-2"
+                                                           title="{{ 'user.view_profile'|trans }}">
+                                                            <i class="bi bi-eye-fill text-primary"></i>
+                                                        </a>
+                                                        <a href="{{ path('user_profile_luck', {'id': user.id}) }}"
+                                                           title="{{ 'user.lock_unlock'|trans }}">
                                                             {% if user.IsVerified %}
-                                                                <i class="bi bi-unlock-fill"></i>
+                                                                <i class="bi bi-unlock-fill text-success"></i>
                                                             {% else %}
-                                                                <i class="bi bi-lock-fill"></i>
+                                                                <i class="bi bi-lock-fill text-danger"></i>
                                                             {% endif %}
                                                         </a>
                                                     </td>
@@ -67,44 +73,33 @@
                                                     <td>{{ user.firstname }}</td>
                                                     <td>{{ user.email }}</td>
                                                     <td>{{ user.telephone }}</td>
-                                                    <td>{{ user.createAt | date('d-m-y') }}</td>
-                                                    <td>{% for role in user.roles %} {{ role }} {% endfor %}</td>
+                                                    <td>{{ user.createAt | date('d-m-Y') }}</td>
+                                                    <td>
+                                                        {% for role in user.roles %}
+                                                            <span class="badge bg-secondary">{{ role }}</span>
+                                                        {% endfor %}
+                                                    </td>
                                                 </tr>
                                             {% else %}
                                                 <tr>
-                                                    <td colspan="7">{{ 'user.no_users'|trans }}</td>
+                                                    <td colspan="7" class="text-center text-muted">
+                                                        {{ 'user.no_users'|trans }}
+                                                    </td>
                                                 </tr>
                                             {% endfor %}
                                             </tbody>
                                         </table>
+                                    </div>
 
-                                        <div class="pagination">
-                                            {{ knp_pagination_render(users) }}
-                                        </div>
+                                    <div class="d-flex justify-content-center mt-3">
+                                        {{ knp_pagination_render(users) }}
                                     </div>
                                 </div>
                             </div>
                         {% endblock %}
                     </div>
-
-
-
-                    <!-- End Left side columns -->
-
-
                 </div>
             {% endblock %}
         </section>
-
-
-
-
-
-
     </main>
 {% endblock %}
-
-
-
-
-

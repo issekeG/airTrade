@@ -43,7 +43,7 @@
                         <div class="col-12 col-lg-3">
                             {{ form_widget(search_form.model, {
                                 attr: {
-                                    class: 'form-select form-control'
+                                    class: 'form-control'
                                 }
                             }) }}
                         </div>
@@ -199,20 +199,20 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="articles-preview row">
-                        {% for article in blog_articles %}
-                            <div class="m-0 p-0">
-                                <article>
-                                    <a href="{{ path('app_blog_show', {'slug': article.slug}) }}" style="text-decoration: none; color: inherit;">
-                                        <img src="{{ asset('uploads/blog/article_image/' ~ article.image) }}" alt="{{ article.image }}" />
-                                        <h3><b>{{ article.title|length > 55 ? article.title|slice(0, 55) ~ '...' : article.title }}</b></h3>
-                                        <time>Date de publication : {{ article.publishedAt | date('d-m-y') }}</time>
-                                    </a>
-                                </article>
+                <div class="row g-4 justify-content-center">
+                    {% for article in blog_articles %}
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="card h-100 shadow-sm">
+                                <a href="{{ path('app_blog_show', {'slug': article.slug}) }}" class="text-decoration-none text-dark">
+                                    <img src="{{ asset('uploads/blog/article_image/' ~ article.image) }}" alt="{{ article.image }}" class="card-img-top object-fit-cover" style="height: 200px;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ article.title|length > 60 ? article.title|slice(0, 60) ~ '...' : article.title }}</h5>
+                                        <p class="card-text small text-muted">Date de publication : {{ article.publishedAt | date('d-m-Y') }}</p>
+                                    </div>
+                                </a>
                             </div>
-                        {% endfor %}
-
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </section>
