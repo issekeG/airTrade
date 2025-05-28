@@ -1,41 +1,32 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
   <div class="d-flex align-items-center justify-content-between">
     <a href="{{ path('app_home') }}" class="logo d-flex align-items-center">
-      <img src="" alt="">
-      <span class="d-none d-lg-block">AirTradeLogo</span>
+      <img src="{{ asset('assets/img/logo/logo-principale.png') }}" alt="dealAircraft logo" class="d-lg-block d-none">
+      <img src="{{ asset('assets/img/logo/logo1.png') }}" alt="dealAircraft logo" class="d-block d-lg-none">
+      <span class="d-none d-lg-block"><span class="text-danger">Deal</span>Aircraft</span>
     </a>
-    {% block sidebarIcon %}
-      <i class="bi bi-list toggle-sidebar-btn d-block d-lg-none"></i>
-    {% endblock sidebarIcon %}
+      {% set showSidebarIcon = showSidebarIcon is defined ? showSidebarIcon : true %}
+      {% if showSidebarIcon %}
+          <i class="bi bi-list toggle-sidebar-btn d-block d-lg-none"></i>
+      {% endif %}
+
   </div><!-- End Logo -->
 
   <nav class="header-nav ms-auto">
     <ul class="d-flex align-items-center">
-      <li class="nav-item dropdown pe-3">
+      <li class="nav-item dropdown pe-3 d-none d-md-block">
         <a class="nav-link" href="{{ path('app_blog_listing') }}">
-          {{ 'header.blog'|trans }}
+          Blog
         </a>
       </li>
-      <li class="nav-item dropdown pe-3">
-        {% if app.user %}
-          <a style="background-color: #1A0B8C;" href="https://wa.me/+212612405068?text=Bonjour%2C+je+souhaite+plus+d'informations" target="_blank" class="btn py-1 text-white">
-            {{ 'header.whatsapp'|trans }}
-          </a>
-        {% else %}
-          <a
-                  class="btn py-1 text-white"
-                  style="background-color: #1A0B8C;"
-                  data-bs-toggle="popover"
-                  data-bs-placement="bottom"
-                  data-bs-html="true"
-                  data-bs-trigger="focus"
-                  title="{{ 'header.restricted_access'|trans }}"
-                  data-bs-content='{% set login_url = path("app_login") %}{{ "header.please_login"|trans({"%url%": login_url})|raw }}'
-          >
-            {{ 'header.whatsapp'|trans }}
-          </a>
-        {% endif %}
-      </li>
+
+
+        <li class="nav-item dropdown px-3 d-none d-md-block">
+            <a class="nav-link" href="#">
+                Newsletter
+            </a>
+        </li>
+
       <li class="nav-item dropdown px-3 d-flex align-items-center">
         <!-- Afficher le drapeau de la langue sélectionnée -->
         {% if app.request.locale == "en" %}
@@ -67,10 +58,113 @@
           {% endfor %}
         </form>
       </li>
+      <li class="nav-item dropdown d-none d-md-block">
+
+            <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                <i class="bi bi-question-circle-fill"></i>
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                <li class="dropdown-header">
+                    Informations générales
+                </li>
+
+                <li class="notification-item">
+                    <a href="{{ path('app_about_us') }}" class="text-reset">
+                        <i class="bi bi-info-circle text-primary"></i>
+                        À propos de nous
+                    </a>
+                </li>
+
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+
+                <li class="notification-item">
+                    <a href="{{ path('general_conditions') }}" class="d-flex align-items-center gap-2 text-nowrap text-reset">
+                        <i class="bi bi-file-earmark-text text-success"></i>
+                        Conditions générales
+                    </a>
+                </li>
+
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+
+                <li class="notification-item">
+                    <a href="{{ path('app_contact_us') }}" class="text-reset">
+                        <i class="bi bi-envelope text-danger"></i>
+                        Nous contacter
+                    </a>
+                </li>
+            </ul>
+
+      </li>
+      <li class="nav-item dropdown d-block d-md-none">
+
+            <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                <i class="bi bi-stack"></i>
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                <li class="dropdown-header">
+                    Menu - Informations générales
+                </li>
+
+                <li class="notification-item">
+                    <a href="" class="d-flex align-items-center gap-2 text-nowrap text-reset">
+                        <i class="bi bi-journal-text text-info"></i>
+                        Blog
+                    </a>
+                </li>
+
+                <li><hr class="dropdown-divider"></li>
+
+                <li class="notification-item">
+                    <a href="" class="d-flex align-items-center gap-2 text-nowrap text-reset">
+                        <i class="bi bi-envelope-open text-primary"></i>
+                        Newsletter
+                    </a>
+                </li>
+
+                <li><hr class="dropdown-divider"></li>
+
+                <li class="notification-item">
+                    <a href="{{ path('app_about_us') }}" class="d-flex align-items-center gap-2 text-nowrap text-reset">
+                        <i class="bi bi-info-circle text-secondary"></i>
+                        À propos de nous
+                    </a>
+                </li>
+
+                <li><hr class="dropdown-divider"></li>
+
+                <li class="notification-item">
+                    <a href="{{ path('general_conditions') }}" class="d-flex align-items-center gap-2 text-nowrap text-reset">
+                        <i class="bi bi-file-earmark-text text-success"></i>
+                        Conditions générales
+                    </a>
+                </li>
+
+                <li><hr class="dropdown-divider"></li>
+
+                <li class="notification-item">
+                    <a href="{{ path('app_contact_us') }}" class="d-flex align-items-center gap-2 text-nowrap text-reset">
+                        <i class="bi bi-chat-left-text text-danger"></i>
+                        Nous contacter
+                    </a>
+                </li>
+            </ul>
+
+
+        </li>
+
 
       <li class="nav-item dropdown pe-3">
         {% if app.user %}
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+
+              <i class="bi bi-person-circle fs-4"></i>
+
             <span class="d-none d-md-block dropdown-toggle ps-2">{{ app.user.firstname }}</span>
           </a><!-- End Profile Iamge Icon -->
 
@@ -86,6 +180,16 @@
               </a>
             </li>
             <li><hr class="dropdown-divider"></li>
+            {% if app.user and is_granted('ROLE_ADMIN') %}
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="{{ path('app_admin') }}">
+                        <i class="bi bi-speedometer2 me-2"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+            {% endif %}
+
             <li>
               <a class="dropdown-item d-flex align-items-center" href="{{ path('app_aircraft_new') }}">
                 <i class="bi bi-plus-circle"></i>
@@ -107,9 +211,13 @@
             </li>
           </ul>
         {% else %}
-          <a class="nav-link" href="{{ path('app_login') }}">
-            <i class="bi bi-box-arrow-in-right me-1"></i> {{ 'header.login'|trans }}
-          </a>
+            <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ path('app_login') }}">
+
+                <i class="bi bi-person-circle fs-4"></i>
+
+                <span class="d-none d-md-block ps-2"><span class="text-danger">{{ 'header.login'|trans }}</span> / S'inscrire</span>
+            </a>
+
         {% endif %}
       </li><!-- End Profile Nav -->
     </ul>

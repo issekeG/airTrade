@@ -93,7 +93,7 @@ final class AircraftController extends AbstractController
         $all_airCrafts = $paginatorService->paginate(
             $queryBuilder,
             $request,
-            1
+            20
         );
         return $this->render('annonces/list.html.twig', [
             'allAirCrafts'=>$all_airCrafts,
@@ -135,7 +135,7 @@ final class AircraftController extends AbstractController
 
         $queryBuilder = $this->airCraftRepository->findByFilters($filters);
 
-        $allAirCrafts = $paginatorService->paginate($queryBuilder,$request,1);
+        $allAirCrafts = $paginatorService->paginate($queryBuilder,$request,20);
 
 
         $itemsFilters[] = "";
@@ -156,7 +156,7 @@ final class AircraftController extends AbstractController
         $airCraftCategory = $airCraftCategoryRepository->findOneBy(['name'=>$categoryValueName]);
 
         $queryBuilder = $aircraftRepository->findByCategory($airCraftCategory);
-        $all_airCrafts = $paginatorService->paginate($queryBuilder,$request,1);
+        $all_airCrafts = $paginatorService->paginate($queryBuilder,$request,20);
 
         $categories = $this->airCraftCategoryRepository->findAll();
         $manufacturers = $this->aircraftManufacturerRepository->findAll();
@@ -223,6 +223,7 @@ final class AircraftController extends AbstractController
         $formContact = $this->createForm(InternContactType::class, $defaultData);
 
         $formContact->handleRequest($request);
+        $message_send = "";
 
         if ($formContact->isSubmitted() && $formContact->isValid()) {
 
@@ -235,6 +236,8 @@ final class AircraftController extends AbstractController
                 'Vous avez reçu un nouveau message de contact'
             );
 
+            $message_send = 'Votre message a bien été envoyé avec succès au vendre';
+
             // Tu peux les utiliser ou les sauvegarder où tu veux
         }
 
@@ -242,7 +245,8 @@ final class AircraftController extends AbstractController
         return $this->render('annonces/detail.html.twig', [
             'aircraft' => $aircraft,
             'aircraftSpecs'=>$aircraftSpecs,
-            'contactForm'=>$formContact
+            'contactForm'=>$formContact,
+            'message_send'=>$message_send
         ]);
     }
 
@@ -304,6 +308,11 @@ final class AircraftController extends AbstractController
         // Récupérer la catégorie d'avion de la session ou une valeur par défaut
         $aircraftCategory = $session->get('aircraftCategory', new AircraftCategory());
         // Obtenir le DTO en fonction de la catégorie d'avion
+
+        $aircraft = $session->get('aircraft');
+        if ($aircraft === null) {
+            return $this->redirectToRoute('app_aircraft_new');
+        }
 
         $dto = $dtoService->getDtoByCategory($aircraftCategory->getName(), $session);
 

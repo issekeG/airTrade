@@ -21,7 +21,7 @@
             <div class="row g-4">
                 {% for aircraft in allAirCrafts %}
                     <div class="col-md-4 col-lg-4">
-                        <div class="aircraft-card" style="border: 2px solid #0d6efd;">
+                        <div class="aircraft-card" >
                             <div class="aircraft-image">
                                 {% if aircraft.airCraftImages|length > 0 %}
                                     <img src="{{ asset('uploads/images/aircraft/' ~ aircraft.airCraftImages[0].image) }}"
@@ -30,20 +30,21 @@
                             </div>
                             <div class="aircraft-details">
                                 <div>
-                                    <span class="aircraft-type">{{ aircraft.aircraftCategory.name }}</span>
+                                    <span class="aircraft-type" style="color:var(--primary-color);">{{ aircraft.aircraftCategory.name }}</span>
                                 </div>
                                 <small class="text-primary bold">
-                                    <span>{{ aircraft.yearOfManufacture }}</span>
-                                    {{ aircraft.aircraftManufacturer.name }} {{ aircraft.model }}
+                                        <span style="color:var(--primary-color);">{{ aircraft.yearOfManufacture }}
+                                            {{ aircraft.aircraftManufacturer.name }} {{ aircraft.model }}</span>
                                 </small>
                                 <p class="aircraft-location">
-                                    {{ 'aircraft.location'|trans }} : {{ aircraft.city }}, {{ aircraft.country }}
+                                    {{ 'location'|trans }} {{ aircraft.city }}, {{ aircraft.country }}
                                 </p>
-                                <div class="aircraft-price">€{{ aircraft.price }}</div>
+                                <div class="aircraft-price" style="font-size: 1.25rem; font-weight: 600; color: var(--primary-color);">{{ 'price'|trans }} {{ aircraft.price|number_format(0, ',', ' ') }} €</div>
                                 <div class="bg-white border-top-0 py-0">
                                     <div class="d-grid">
-                                        <a href="{{ path('app_aircraft_show', {'slug': aircraft.slug}) }}" class="btn btn-outline-primary">
-                                            {{ 'aircraft.show_details'|trans }}
+                                        <a href="{{ path('app_aircraft_show', {'slug': aircraft.slug}) }}"
+                                           class="btn btn-style-outline">
+                                            {{ 'cta.details'|trans }}
                                         </a>
                                     </div>
                                 </div>

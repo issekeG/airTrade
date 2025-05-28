@@ -37,11 +37,9 @@
                                                         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
                                                              style="width: {{ progress }}%"
                                                              aria-valuenow="{{ progress|round(2) }}" aria-valuemin="0" aria-valuemax="100">
-                                                            {{ step }} / {{ totalSteps }}
+                                                            étape {{ step }} / {{ totalSteps }}
                                                         </div>
                                                     </div>
-
-                                                    <h2 class="mb-4">Étape {{ step }} sur {{ totalSteps }}</h2>
 
                                                     {% for child in form.children %}
                                                         {% if child.vars.name != '_token' %}
@@ -82,7 +80,13 @@
                                                                 {% elseif child.vars.choices is defined and not (child.vars.expanded is defined and child.vars.expanded) %}
                                                                     {{ form_widget(child, {'attr': {'class': 'form-select select-element'}}) }}
                                                                 {% else %}
-                                                                    {{ form_widget(child, {'attr': {'class': 'form-control'}}) }}
+                                                                    {% set placeholderText = ('aircraftPropertiesLabels.' ~ (child.vars.label|default(child.vars.name)))|trans({}, 'aircraftPropertiesLabels') %}
+                                                                    {{ form_widget(child, {
+                                                                        'attr': {
+                                                                            'class': 'form-control',
+                                                                            'placeholder': placeholderText
+                                                                        }
+                                                                    }) }}
                                                                 {% endif %}
 
                                                                 {% if child.vars.errors|length > 0 %}
@@ -97,14 +101,18 @@
                                                     {# Navigation entre les étapes #}
                                                     <div class="form-navigation d-flex justify-content-between mt-4">
                                                         {% if step > 1 %}
-                                                            <a href="{{ path('aircraft_wizard_form', {'step': step - 1}) }}" class="btn btn-secondary">
+                                                            <a href="{{ path('aircraft_wizard_form', {'step': step - 1}) }}"
+                                                               class="btn text-white px-4 py-2 shadow-sm d-flex align-items-center" style="background-color : var(--primary-color);">
+                                                                <i class="bi bi-arrow-left-circle-fill me-2"></i>
                                                                 {{ 'form.previous'|trans }}
                                                             </a>
                                                         {% else %}
                                                             <span></span> {# Placeholder pour alignement #}
                                                         {% endif %}
 
-                                                        <button type="submit" class="btn btn-primary">
+
+                                                        <button type="submit" class="btn text-white px-4" style="background-color : var(--primary-color);">
+                                                            <i class="bi {{ step == totalSteps ? 'bi-check-circle-fill' : 'bi-arrow-right-circle-fill' }} me-1"></i>
                                                             {{ step == totalSteps ? 'form.finish'|trans : 'form.next'|trans }}
                                                         </button>
                                                     </div>
@@ -125,6 +133,15 @@
                                 </div>
                             </div>
                         </div>
+                        <div id="formSpinner" class="d-none position-fixed top-0 start-0 w-100 h-100 bg-white bg-opacity-75 d-flex justify-content-center align-items-center" style="z-index: 2000;">
+                            <div class="text-center">
+                                <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                                    <span class="visually-hidden">Chargement...</span>
+                                </div>
+                                <div class="mt-3 fw-semibold text-primary">Veuillez patienter...</div>
+                            </div>
+                        </div>
+
 
                     {% endblock %}
                 </div><!-- End Left side columns -->
@@ -163,6 +180,29 @@
                 }
             });
         </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const form = document.querySelector('form'); // Assure-toi qu'il n'y a qu'un seul formulaire principal
+                const spinner = document.getElementById('formSpinner');
+                const nextButton = document.querySelector('form button[type="submit"]');
+
+                if (form && spinner) {
+                    nextButton.addEventListener('click', function () {
+                        spinner.classList.remove('d-none');
+
+                        // Optionnel : désactive le bouton pour éviter les doubles soumissions
+                        const submitButton = form.querySelector('[type="submit"]');
+                        if (submitButton) {
+                            submitButton.disabled = true;
+                            submitButton.innerHTML = `<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Traitement...`;
+                        }
+
+                    });}
+
+            });
+        </script>
+
+
 
     </main>
 {% endblock %}

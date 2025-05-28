@@ -5,12 +5,11 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
         <div class="d-flex align-items-center justify-content-between">
             <a href="{{ path('app_home') }}" class="logo d-flex align-items-center">
-                <img src="" alt="">
-                <span class="d-none d-lg-block">{{ 'site.logo_text'|trans }}</span>
+                <img src="{{ asset('assets/img/logo/logo-principale.png') }}" alt="dealAircraft logo" class="d-lg-block d-none">
+                <img src="{{ asset('assets/img/logo/logo1.png') }}" alt="dealAircraft logo" class="d-block d-lg-none">
+                <span class="d-none d-lg-block"><span class="text-danger">Deal</span>Aircraft</span>
             </a>
-            {% block sidebarIcon %}
-                <i class="bi bi-list toggle-sidebar-btn d-block d-lg-none"></i>
-            {% endblock sidebarIcon %}
+
         </div>
 
         <nav class="header-nav ms-auto">
@@ -45,8 +44,9 @@
                 </li>
 
                 <li class="nav-item dropdown pe-3">
-                    <a class="nav-link btn py-1" href="{{ path('app_login') }}" style="border: 1px solid #1A0B8C !important; color : #1A0B8C !important;">
-                        <i class="bi bi-box-arrow-in-right me-1"></i> {{ 'login.button'|trans }}
+                    <a class="nav-link btn py-1" href="{{ path('app_login') }}" style="border: 1px solid var(--primary-color) !important; color : var(--primary-color) !important;">
+                        <span class="d-block d-md-none"><i class="bi bi-person-circle fs-4"></i></span>
+                        <span class="d-none d-md-block"> <i class="bi bi-box-arrow-in-right me-1"></i> {{ 'login.button'|trans }}</span>
                     </a>
                 </li>
             </ul>
@@ -65,7 +65,7 @@
                         <div class="col-md-9 d-flex flex-column justify-content-center">
 
                             <div class="py-5">
-                            <span class="p-2 btn" style="background-color : #1A0B8C; color :white">
+                            <span class="p-2 btn" style="background-color : var(--primary-color); color :white">
                                 {{ 'register.welcome_text'|trans }}
                             </span>
                             </div>
@@ -76,8 +76,11 @@
                                         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
                                     {% endfor %}
 
-                                    {{ form_errors(registrationForm) }}
-                                    {{ form_start(registrationForm) }}
+                                    {{ form_errors(registrationForm )}}
+                                    {{ form_start(registrationForm,  {
+                                        'attr': {
+                                            'novalidate': 'novalidate'}
+                                    }) }}
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -153,7 +156,7 @@
                                     </div>
 
                                     <hr>
-                                    <button class="btn flex text-white border-0" type="submit" style="background-color: #1A0B8C;">
+                                    <button class="btn flex text-white border-0" type="submit" style="background-color: var(--primary-color);">
                                         {{ 'register.submit'|trans }}
                                     </button>
 
@@ -166,9 +169,94 @@
                 </div>
             </section>
         </div>
+        <script src="{{ asset('assets/vendor/jquery/jquery-3.7.1.min.js') }}"></script>
+        <script>
+            $(document).ready(function () {
+                const form = $('form[name="registration_form"]');
+
+                // Supprimer les erreurs au moment de la saisie ou changement
+                form.on('input change', '.is-invalid', function () {
+                    $(this).removeClass('is-invalid');
+                    $(this).next('.invalid-feedback').remove();
+                });
+
+                form.on('submit', function (e) {
+                    let isValid = true;
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    const passwordPattern = /^(?=.*[A-Z]).{6,}$/; // 6+ caractères, 1 majuscule
+
+                    // Supprimer les anciens messages d'erreur
+                    form.find('.is-invalid').removeClass('is-invalid');
+                    form.find('.invalid-feedback').remove();
+
+                    function addError(input, message) {
+                        if (!input.hasClass('is-invalid')) {
+                            input.addClass('is-invalid');
+                            input.after(`<div class="invalid-feedback">${message}</div>`);
+                        }
+                    }
+
+                    // Champs requis
+                    const requiredFields = [
+                        { id: '#registration_form_pseudo', message: 'Veuillez entrer un pseudo.' },
+                        { id: '#registration_form_firstname', message: 'Veuillez entrer votre prénom.' },
+                        { id: '#registration_form_telephone', message: 'Veuillez entrer votre téléphone.' },
+                        { id: '#registration_form_email', message: 'Veuillez entrer une adresse email.' },
+                        { id: '#registration_form_country', message: 'Veuillez sélectionner un pays.' },
+                        { id: '#registration_form_plainPassword', message: 'Veuillez entrer un mot de passe.' },
+                    ];
+
+                    requiredFields.forEach(field => {
+                        const input = $(field.id);
+                        if (input.val().trim() === '') {
+                            addError(input, field.message);
+                            isValid = false;
+                        }
+                    });
+
+                    // Format email
+                    const emailInput = $('#registration_form_email');
+                    if (emailInput.val().trim() !== '' && !emailPattern.test(emailInput.val())) {
+                        addError(emailInput, 'Veuillez entrer une adresse email valide.');
+                        isValid = false;
+                    }
+
+                    // Validation du mot de passe
+                    const passwordInput = $('#registration_form_plainPassword');
+                    const passwordVal = passwordInput.val();
+                    if (passwordVal.trim() !== '' && !passwordPattern.test(passwordVal)) {
+                        addError(passwordInput, 'Le mot de passe doit contenir au moins 6 caractères et une lettre majuscule.');
+                        isValid = false;
+                    }
+
+                    // Cases à cocher obligatoires
+                    const checkboxes = [
+                        { id: '#registration_form_acceptTerms', message: 'Vous devez accepter les conditions générales.' },
+                        { id: '#registration_form_acceptBrokerageContact', message: 'Vous devez accepter les conditions générales.' },
+                        { id: '#registration_form_acceptNewsletter', message: 'Vous devez accepter les conditions générales.' }
+                    ];
+
+                    checkboxes.forEach(field => {
+                        const input = $(field.id);
+                        if (!input.is(':checked')) {
+                            addError(input, field.message);
+                            isValid = false;
+                        }
+                    });
+
+                    if (!isValid) {
+                        e.preventDefault();
+                    }
+                });
+            });
+        </script>
+
+
+
     </main>
 {% endblock %}
 
 
 {% block footer %}
 {% endblock %}
+

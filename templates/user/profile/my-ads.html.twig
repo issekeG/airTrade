@@ -1,7 +1,7 @@
 {% extends 'user/profile/users-profile.html.twig' %}
 {% block ads_block %}
     <li class="nav-item bx-border-circle">
-        <a class="nav-link collapsed bg-primary text-white" href="{{ path('user_profile', {'id': app.user.id, 'page': 'ads'}) }}">
+        <a style="background-color : var(--primary-color);" class="nav-link collapsed text-white" href="{{ path('user_profile', {'id': app.user.id, 'page': 'ads'}) }}">
             <i class="bi bi-megaphone text-white"></i>
             <span>{{ 'profile.my_ads_link'|trans }}</span>
         </a>
@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="card-body pt-3">
+    <div class="card-body pt-3 bg-light">
         <!-- Bordered Tabs -->
         <ul class="nav nav-tabs nav-tabs-bordered">
             <li class="nav-item">
@@ -17,20 +17,15 @@
                     {{ 'profile.my_ads_tab'|trans }}
                 </button>
             </li>
-            <li class="nav-item">
-                <a href="{{ path('app_aircraft_new') }}" class="btn nav-link">
-                    {{ 'profile.publish_ad'|trans }}
-                </a>
-            </li>
         </ul>
 
         <div class="tab-content pt-2">
             <div class="row">
                 {% for aircraft in annonces %}
-                    <div class="col-md-4 col-lg-3">
+                    <div class="col-md-4 ">
                         <div class="aircraft-card">
                             <div class="d-flex justify-content-between bg-primary">
-                                <a href="#" class="card-badge bg-primary"><i class="bi bi-pencil-square"></i></a>
+                                <!--<a href="#" class="card-badge bg-primary"><i class="bi bi-pencil-square"></i></a> -->
                                 <a href="#" class="card-delete-badge bg-danger"><i class="bi bi-trash-fill"></i></a>
                             </div>
 
@@ -40,22 +35,23 @@
                                          alt="{{ aircraft.aircraftManufacturer.name }} {{ aircraft.model }}">
                                 {% endif %}
                             </div>
-
                             <div class="aircraft-details">
                                 <div>
-                                    <span class="aircraft-type">{{ aircraft.aircraftCategory.name }}</span>
+                                    <span class="aircraft-type" style="color:var(--primary-color);">{{ aircraft.aircraftCategory.name }}</span>
                                 </div>
                                 <small class="text-primary bold">
-                                    <span>{{ aircraft.yearOfManufacture }}</span> {{ aircraft.aircraftManufacturer.name }} {{ aircraft.model }}
+                                        <span style="color:var(--primary-color);">{{ aircraft.yearOfManufacture }}
+                                            {{ aircraft.aircraftManufacturer.name }} {{ aircraft.model }}</span>
                                 </small>
                                 <p class="aircraft-location">
-                                    {{ 'ads.location'|trans }} : {{ aircraft.city }}, {{ aircraft.country }}
+                                    {{ 'location'|trans }} {{ aircraft.city }}, {{ aircraft.country }}
                                 </p>
-                                <div class="aircraft-price">€{{ aircraft.price }}</div>
+                                <div class="aircraft-price" style="font-size: 1.25rem; font-weight: 600; color: var(--primary-color);">{{ 'price'|trans }} {{ aircraft.price|number_format(0, ',', ' ') }} €</div>
                                 <div class="bg-white border-top-0 py-0">
                                     <div class="d-grid">
-                                        <a href="{{ path('app_aircraft_show', {'slug': aircraft.slug}) }}" class="btn btn-outline-primary">
-                                            {{ 'ads.view_details'|trans }}
+                                        <a href="{{ path('app_aircraft_show', {'slug': aircraft.slug}) }}"
+                                           class="btn btn-style-outline">
+                                            {{ 'cta.details'|trans }}
                                         </a>
                                     </div>
                                 </div>

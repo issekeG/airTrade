@@ -1,20 +1,24 @@
-<div class="modal fade" id="categoryFilterModal" tabindex="-1">
+<div class="modal fade" id="categoryFilterModal" tabindex="-1" aria-labelledby="categoryFilterModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">{{ 'filter_by_category'|trans }}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ 'close'|trans }}"></button>
+        <div class="modal-content border-0 shadow-lg rounded-4">
+
+            <div class="modal-header text-white rounded-top-4 px-4 py-3 text-white" style="background-color: var(--primary-color)">
+                <h5 class="modal-title d-flex align-items-center gap-2" id="categoryFilterModalLabel">
+                    <i class="bi bi-filter-circle"></i> {{ 'filter_by_category'|trans }}
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="{{ 'close'|trans }}"></button>
             </div>
-            <div class="modal-body">
+
+            <div class="modal-body px-4 py-3">
                 <fieldset>
                     <legend class="visually-hidden">{{ 'category_filtering'|trans }}</legend>
 
                     <div class="all-options-container" style="max-height: 70vh; overflow-y: auto;">
-                        <div class="row">
-                            {% for category in categories|batch((categories|length/2)|round(0, 'ceil')) %}
+                        <div class="row g-4">
+                            {% for category in categories|batch((categories|length / 2)|round(0, 'ceil')) %}
                                 <div class="col-md-6">
                                     {% for item in category %}
-                                        <div class="form-check mb-2">
+                                        <div class="form-check mb-3">
                                             <input class="form-check-input category-form-check-input category-filter"
                                                    type="checkbox"
                                                    id="category-{{ item.id }}"
@@ -22,7 +26,7 @@
                                                    value="{{ item.id }}"
                                                    data-bs-auto-close="outside">
                                             <label class="form-check-label" for="category-{{ item.id }}">
-                                                {{ item.name }}
+                                                <small>{{ item.name }}</small>
                                             </label>
                                         </div>
                                     {% endfor %}
@@ -32,10 +36,16 @@
                     </div>
                 </fieldset>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">{{ 'cancel'|trans }}</button>
-                <button type="button" class="btn btn-primary" id="applyCategoryFilters">{{ 'apply'|trans }}</button>
+
+            <div class="modal-footer justify-content-between px-4 py-3 bg-light rounded-bottom-4">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    <i class="bi bi-x-circle me-1"></i> {{ 'cancel'|trans }}
+                </button>
+                <button type="button" class="btn text-white" data-bs-dismiss="modal" style="background-color: var(--primary-color)" id="applyCategoryFilters">
+                    <i class="bi bi-check-circle me-1"></i> Sauvegarder les selections
+                </button>
             </div>
+
         </div>
     </div>
 </div>

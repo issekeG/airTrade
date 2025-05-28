@@ -61,22 +61,7 @@ class Article
     #[ORM\ManyToOne(inversedBy: 'articles')]
     private ?ArticleCategory $category = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $imageAffiche = null;
 
-    #[Vich\UploadableField(mapping: 'article_image_affiche', fileNameProperty: 'imageAffiche')]
-    private ?File $imageAfficheFile = null;
-
-    public function getImageAfficheFile(): ?File
-    {
-        return $this->imageAfficheFile;
-    }
-
-    public function setImageAfficheFile(?File $imageAfficheFile): static
-    {
-        $this->imageAfficheFile = $imageAfficheFile;
-        return $this;
-    }
 
     /**
      * @var Collection<int, ArticleSection>
@@ -92,6 +77,9 @@ class Article
 
     #[ORM\Column]
     private ?\DateTimeImmutable $publishedAt = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $langue = null;
 
     public function __construct()
     {
@@ -213,17 +201,6 @@ class Article
         return $this;
     }
 
-    public function getImageAffiche(): ?string
-    {
-        return $this->imageAffiche;
-    }
-
-    public function setImageAffiche(string $imageAffiche): static
-    {
-        $this->imageAffiche = $imageAffiche;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, ArticleSection>
@@ -305,5 +282,17 @@ class Article
 
             return $slug . '-' . $formattedDate;
 
+    }
+
+    public function getLangue(): ?string
+    {
+        return $this->langue;
+    }
+
+    public function setLangue(string $langue): static
+    {
+        $this->langue = $langue;
+
+        return $this;
     }
 }

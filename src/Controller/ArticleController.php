@@ -19,6 +19,7 @@ final class ArticleController extends AbstractController
     public function index(Request $request,ArticleRepository $articleRepository, PaginatorService $paginatorService): Response
     {
         $queryBuilder = $articleRepository->findAllArticle();
+
         $articles = $paginatorService->paginate($queryBuilder, $request,20);
 
         return $this->render('backend/admin/blog/blog-article-index.html.twig', [
@@ -36,6 +37,7 @@ final class ArticleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $article->setWrittenBy($this->getUser()->getFirstname());
             $article->setSlug($article->generateSlug());
+            $article->setLangue('fr');
             $entityManager->persist($article);
             $entityManager->flush();
 
@@ -74,13 +76,11 @@ final class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_article_delete', methods: ['POST'])]
+    #[Route('article/{id}/delete', name: 'app_article_delete', methods: ['GET','POST'])]
     public function delete(Request $request, Article $article, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($article);
-            $entityManager->flush();
-        }
+        $entityManager->remove($article);
+        $entityManager->flush();
 
         return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
     }

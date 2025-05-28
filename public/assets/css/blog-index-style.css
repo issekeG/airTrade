@@ -1,0 +1,35 @@
+
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+body { background: #f6f7f9; color: #1c1e21; padding: 0; margin: 0; }
+nav a { margin: 0 1rem; color: #333; text-decoration: none; font-weight: 500; }
+.hero { position: relative; }
+.hero img { width: 100%; height: 200px; }
+.hero h1 { position: absolute; bottom: 2rem; left: 2rem; font-size: 3rem; color: white; font-weight: 700; }
+
+main { display: flex; flex-direction: row; gap: 2rem; padding: 2rem; }
+.content { flex: 4; }
+.sidebar { flex: 1; display: flex; flex-direction: column; gap: 2rem; }
+
+.articles-preview { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem; }
+.articles-preview article { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+.articles-preview img { width: 100%; height: 140px; object-fit: cover; }
+.articles-preview h3 { font-size: 1rem; padding: 0.5rem; }
+.articles-preview time { font-size: 0.75rem; padding: 0 0.5rem 1rem; color: #666; }
+
+.tags { display: flex; gap: 1rem; margin: 2rem 0; }
+.tags button { padding: 0.5rem 1rem; border-radius: 8px; background: #fff; border: 1px solid #ccc; cursor: pointer; }
+
+.featured { background: white; padding: 1rem; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+.featured h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+.featured img { width: 100%; border-radius: 8px; margin-bottom: 1rem; }
+
+.newsletter, .categories { background: #002944; color: white; padding: 1rem; border-radius: 12px; }
+.newsletter input { width: 100%; padding: 0.5rem; border: none; border-radius: 8px; margin: 0.5rem 0; }
+.newsletter button { background: #ff6600; color: white; padding: 0.5rem 1rem; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; }
+
+.categories h3 { margin-bottom: 1rem; font-size: 1.2rem; }
+.categories ul { list-style: none; }
+.categories li { margin: 0.5rem 0; }
+.categories a { color: #f1f1f1; text-decoration: none; }
+.categories a:hover { text-decoration: underline; }

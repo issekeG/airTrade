@@ -14,4 +14,14 @@ class LanguageService
             'ru' => ['label' => 'Русский', 'icon' => 'flag-icon-ru'],
         ];
     }
+
+    public function getBlogLanguages(): array
+    {
+        return [
+            'en' => ['label' => 'English', 'icon' => 'flag-icon-gb'],
+            'fr' => ['label' => 'Français', 'icon' => 'flag-icon-fr'],
+            'es' => ['label' => 'Español', 'icon' => 'flag-icon-es'],
+            'de' => ['label' => 'Deutsch', 'icon' => 'flag-icon-de'],
+        ];
+    }
 }

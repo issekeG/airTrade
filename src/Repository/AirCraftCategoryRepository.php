@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Aircraft;
 use App\Entity\AirCraftCategory;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
@@ -16,6 +17,22 @@ class AirCraftCategoryRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, AirCraftCategory::class);
     }
+
+
+
+    public function findCategoriesWithAircraftCount(): array
+    {
+        $categories = $this->findAll();
+
+        foreach ($categories as $category) {
+            $count = $this->_em->getRepository(Aircraft::class)->count(['category' => $category]);
+            // on ajoute dynamiquement une propriété
+            $category->aircraftCount = $count;
+        }
+
+        return $categories;
+    }
+
 
     public function findAllQueryBuilder():QueryBuilder
     {

@@ -1,7 +1,7 @@
 {% extends 'user/profile/users-profile.html.twig' %}
 {% block ads_infos %}
     <li class="nav-item bx-border-circle">
-        <a class="nav-link collapsed bg-primary text-white" href="{{ path('user_profile', {'id': app.user.id, 'page': 'infos'}) }}">
+        <a style="background-color : var(--primary-color);" class="nav-link collapsed text-white" href="{{ path('user_profile', {'id': app.user.id, 'page': 'infos'}) }}">
             <i class="bi bi-pencil-square text-white"></i>
             <span>{{ 'profile.edit_link'|trans }}</span>
         </a>

@@ -1,109 +1,230 @@
-{{ form_start(form) }}
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
 
 <div class="row">
-    <fieldset class="border p-3 mb-3">
-        <legend class="w-auto text-primary"><small>{{ 'aircraftForm.general_information'|trans({}, 'aircraft') }}</small></legend>
-        <div class="row">
-            <div class="my-3 col-md-12">
-                <div class="col-12">
-                    <label for="{{ form.category.vars.id }}" class="form-label"><small>{{ 'aircraftForm.category_label'|trans({}, 'aircraft') }} :</small></label>
-                    {{ form_widget(form.category, {'attr': {'class': 'form-select select-element'}}) }}
-                </div>
-            </div>
-            <div class="my-3 col-md-6">
-                <div class="col-12">
-                    <label for="{{ form.aircraftManufacturer.vars.id }}" class="form-label"><small>{{ 'aircraftForm.manufacturer_label'|trans({}, 'aircraft') }} :</small></label>
-                    {{ form_widget(form.aircraftManufacturer, {'attr': {'class': 'form-select select-element'}}) }}
-                </div>
-            </div>
-            <div class="my-3 col-md-6">
-                <div class="col-12">
-                    <label for="{{ form.registrationCountry.vars.id }}" class="form-label"><small>{{ 'aircraftForm.registration_country_label'|trans({}, 'aircraft') }} :</small></label>
-                    {{ form_widget(form.registrationCountry, {'attr': {'class': 'form-select select-element'}}) }}
-                </div>
-            </div>
-            <div class="my-3 col-md-6">
-                <div class="col-12">
-                    <label for="{{ form.model.vars.id }}" class="form-label"><small>{{ 'aircraftForm.model_label'|trans({}, 'aircraft') }} :</small></label>
-                    {{ form_widget(form.model, {'attr': {'class': 'form-control'}}) }}
-                </div>
-            </div>
-            <div class="my-3 col-md-6">
-                <div class="col-12">
-                    <label for="{{ form.serialNumber.vars.id }}" class="form-label"><small>{{ 'aircraftForm.serial_number_label'|trans({}, 'aircraft') }} :</small></label>
-                    {{ form_widget(form.serialNumber, {'attr': {'class': 'form-control'}}) }}
-                </div>
-            </div>
-            <div class="my-3 col-md-6">
-                <div class="col-12">
-                    <label for="{{ form.totalHours.vars.id }}" class="form-label"><small>{{ 'aircraftForm.total_hours_label'|trans({}, 'aircraft') }} :</small></label>
-                    {{ form_widget(form.totalHours, {'attr': {'class': 'form-control'}}) }}
-                </div>
-            </div>
-            <div class="my-3 col-md-6">
-                <div class="col-12">
-                    <label for="{{ form.price.vars.id }}" class="form-label"><small>{{ 'aircraftForm.price_label'|trans({}, 'aircraft') }} :</small></label>
-                    {{ form_widget(form.price, {'attr': {'class': 'form-control'}}) }}
-                </div>
+    <fieldset class="border rounded-3 p-4 mb-4 shadow-sm" id="aircraftForm">
+        <legend class="float-none w-auto px-3 fs-5 text-primary fw-semibold">
+            <i class="bi bi-airplane-fill me-2"></i>{{ 'aircraftForm.general_information'|trans({}, 'aircraft') }}
+        </legend>
+
+        <div class="row g-4">
+            <!-- Full width field -->
+            <div class="col-12">
+                <label for="{{ form.category.vars.id }}" class="form-label fw-semibold">{{ 'aircraftForm.category_label'|trans({}, 'aircraft') }} <span class="text-danger">*</span></label>
+                {{ form_widget(form.category, {'attr': {
+                    'class': 'form-select form-select-lg select-element',
+                    'style': 'height: 48px;',
+                    'required': 'required'
+                }}) }}
+                <div class="invalid-feedback">Veuillez sélectionner une catégorie.</div>
             </div>
 
-            <div class="my-3 col-md-6">
-                <div class="col-12">
-                    <label for="{{ form.yearOfManufacture.vars.id }}" class="form-label"><small>{{ 'aircraftForm.year_of_manufacture_label'|trans({}, 'aircraft') }} :</small></label>
-                    {{ form_widget(form.yearOfManufacture, {'attr': {'class': 'form-select select-element'}}) }}
-                </div>
+            <!-- Manufacturer and Registration Country -->
+            <div class="col-md-6">
+                <label for="{{ form.aircraftManufacturer.vars.id }}" class="form-label fw-semibold">{{ 'aircraftForm.manufacturer_label'|trans({}, 'aircraft') }} <span class="text-danger">*</span></label>
+                {{ form_widget(form.aircraftManufacturer, {'attr': {
+                    'class': 'form-select form-select-lg select-element',
+                    'style': 'height: 48px;',
+                    'required': 'required'
+                }}) }}
+                <div class="invalid-feedback">Veuillez sélectionner un constructeur.</div>
             </div>
-            <div class="my-3 col-md-6">
-                <div class="col-12">
-                    <label for="{{ form.status.vars.id }}" class="form-label"><small>{{ 'aircraftForm.status_label'|trans({}, 'aircraft') }} :</small></label>
-                    {{ form_widget(form.status, {'attr': {'class': 'form-select select-element'}}) }}
-                </div>
-            </div>
-
-            <div class="my-3 col-md-6">
-                <div class="col-12">
-                    <label for="{{ form.serviceEntryDate.vars.id }}" class="form-label"><small>{{ 'aircraftForm.service_entry_date_label'|trans({}, 'aircraft') }} :</small></label>
-                    {{ form_widget(form.serviceEntryDate, {'attr': {'class': 'form-control'}}) }}
-                </div>
-            </div>
-            <div class="my-3 col-md-6">
-                <div class="col-12">
-                    <label for="{{ form.usageType.vars.id }}" class="form-label"><small>{{ 'aircraftForm.usage_type_label'|trans({}, 'aircraft') }} :</small></label>
-                    {{ form_widget(form.usageType, {'attr': {'class': 'form-control'}}) }}
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="my-3 col-md-6">
-                <div class="col-12">
-                    <label for="{{ form.country.vars.id }}" class="form-label"><small>{{ 'aircraftForm.country_label'|trans({}, 'aircraft') }} :</small></label>
-                    {{ form_widget(form.country, {'attr': {'class': 'form-select select-element'}}) }}
-                </div>
-            </div>
-            <div class="my-3 col-md-6">
-                <div class="col-12">
-                    <label for="{{ form.city.vars.id }}" class="form-label"><small>{{ 'aircraftForm.city_label'|trans({}, 'aircraft') }} :</small></label>
-                    {{ form_widget(form.city, {'attr': {'class': 'form-control'}}) }}
-                </div>
-            </div>
-            <div class="my-3 col-md-12">
-                <div class="col-12">
-                    <label for="{{ form.description.vars.id }}" class="form-label"><small>{{ 'aircraftForm.description_label'|trans({}, 'aircraft') }} :</small></label>
-                    {{ form_widget(form.description, {'attr': {'class': 'form-control ckeditor'}}) }}
-                </div>
+            <div class="col-md-6">
+                <label for="{{ form.registrationCountry.vars.id }}" class="form-label fw-semibold">{{ 'aircraftForm.registration_country_label'|trans({}, 'aircraft') }} <span class="text-danger">*</span></label>
+                {{ form_widget(form.registrationCountry, {'attr': {
+                    'class': 'form-select form-select-lg select-element',
+                    'style': 'height: 48px;',
+                    'required': 'required'
+                }}) }}
+                <div class="invalid-feedback">Veuillez sélectionner un pays d'immatriculation.</div>
             </div>
 
-            <div class="my-3 col-md-12">
-                <div class="col-12">
-                    <div class="mt-3">
-                        {% block button_submit %}
-                            <button type="submit" class="btn btn-primary">{{ 'aircraftForm.submit_button'|trans({}, 'aircraft') }}</button>
-                        {% endblock %}
-                    </div>
+            <!-- Model and Serial Number -->
+            <div class="col-md-6">
+                <div class="form-floating">
+                    {{ form_widget(form.model, {'attr': {
+                        'class': 'form-control',
+                        'required': 'required'
+                    }}) }}
+                    <label for="{{ form.model.vars.id }}">{{ 'aircraftForm.model_label'|trans({}, 'aircraft') }} <span class="text-danger">*</span></label>
                 </div>
+                <div class="invalid-feedback">Le modèle est requis.</div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    {{ form_widget(form.serialNumber, {'attr': {
+                        'class': 'form-control',
+                        'required': 'required'
+                    }}) }}
+                    <label for="{{ form.serialNumber.vars.id }}">{{ 'aircraftForm.serial_number_label'|trans({}, 'aircraft') }} <span class="text-danger">*</span></label>
+                </div>
+                <div class="invalid-feedback">Le numéro de série est requis.</div>
+            </div>
+
+            <!-- Total Hours and City -->
+            <div class="col-md-6">
+                <div class="form-floating">
+                    {{ form_widget(form.totalHours, {'attr': {
+                        'class': 'form-control',
+                        'required': 'required',
+                        'min': '0',
+                        'pattern': '\\d+'
+                    }}) }}
+                    <label for="{{ form.totalHours.vars.id }}">{{ 'aircraftForm.total_hours_label'|trans({}, 'aircraft') }} <span class="text-danger">*</span></label>
+                </div>
+                <div class="invalid-feedback">Veuillez entrer un nombre valide d'heures.</div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    {{ form_widget(form.city, {'attr': {
+                        'class': 'form-control',
+                        'required': 'required'
+                    }}) }}
+                    <label for="{{ form.city.vars.id }}">{{ 'aircraftForm.city_label'|trans({}, 'aircraft') }} <span class="text-danger">*</span></label>
+                </div>
+                <div class="invalid-feedback">La ville est requise.</div>
+            </div>
+
+            <!-- Year and Status -->
+            <div class="col-md-6">
+                <label for="{{ form.yearOfManufacture.vars.id }}" class="form-label fw-semibold">{{ 'aircraftForm.year_of_manufacture_label'|trans({}, 'aircraft') }} <span class="text-danger">*</span></label>
+                {{ form_widget(form.yearOfManufacture, {'attr': {
+                    'class': 'form-select form-select-lg select-element',
+                    'style': 'height: 48px;',
+                    'required': 'required'
+                }}) }}
+                <div class="invalid-feedback">Veuillez sélectionner une année.</div>
+            </div>
+            <div class="col-md-6">
+                <label for="{{ form.status.vars.id }}" class="form-label fw-semibold">{{ 'aircraftForm.status_label'|trans({}, 'aircraft') }} <span class="text-danger">*</span></label>
+                {{ form_widget(form.status, {'attr': {
+                    'class': 'form-select form-select-lg select-element',
+                    'style': 'height: 48px;',
+                    'required': 'required'
+                }}) }}
+                <div class="invalid-feedback">Veuillez sélectionner un statut.</div>
+            </div>
+
+            <!-- Service Date and Usage -->
+            <div class="col-md-6">
+                <div class="form-floating">
+                    {{ form_widget(form.serviceEntryDate, {'attr': {
+                        'class': 'form-control datepicker',
+                        'required': 'required'
+                    }}) }}
+                    <label for="{{ form.serviceEntryDate.vars.id }}">{{ 'aircraftForm.service_entry_date_label'|trans({}, 'aircraft') }} <span class="text-danger">*</span></label>
+                </div>
+                <div class="invalid-feedback">Veuillez sélectionner une date valide.</div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    {{ form_widget(form.usageType, {'attr': {
+                        'class': 'form-control',
+                        'required': 'required'
+                    }}) }}
+                    <label for="{{ form.usageType.vars.id }}">{{ 'aircraftForm.usage_type_label'|trans({}, 'aircraft') }} <span class="text-danger">*</span></label>
+                </div>
+                <div class="invalid-feedback">Veuillez spécifier le type d'usage.</div>
+            </div>
+
+            <!-- Country and Price -->
+            <div class="col-md-6">
+                <label for="{{ form.country.vars.id }}" class="form-label fw-semibold">{{ 'aircraftForm.country_label'|trans({}, 'aircraft') }} <span class="text-danger">*</span></label>
+                {{ form_widget(form.country, {'attr': {
+                    'class': 'form-select form-select-lg select-element',
+                    'style': 'height: 48px;',
+                    'required': 'required'
+                }}) }}
+                <div class="invalid-feedback">Veuillez sélectionner un pays.</div>
+            </div>
+            <div class="col-md-6">
+                <label for="{{ form.price.vars.id }}" class="form-label fw-semibold">{{ 'aircraftForm.price_label'|trans({}, 'aircraft') }} <span class="text-danger">*</span></label>
+                <div class="input-group">
+                    <span class="input-group-text">€</span>
+                    {{ form_widget(form.price, {'attr': {
+                        'class': 'form-control',
+                        'required': 'required',
+                        'min': '0',
+                        'pattern': '\\d+(\\.\\d{1,2})?'
+                    }}) }}
+                </div>
+                <div class="invalid-feedback">Veuillez entrer un prix valide.</div>
+            </div>
+
+            <!-- Description -->
+            <div class="col-12">
+                <label for="{{ form.description.vars.id }}" class="form-label fw-semibold">{{ 'aircraftForm.description_label'|trans({}, 'aircraft') }} <span class="text-danger">*</span></label>
+                {{ form_widget(form.description, {'attr': {
+                    'class': 'form-control ckeditor',
+                    'rows': 5,
+                    'required': 'required'
+                }}) }}
+                <div class="invalid-feedback">Veuillez fournir une description.</div>
+                <div class="form-text">Décrivez en détail les caractéristiques de l'appareil</div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="col-12 mt-4 d-flex justify-content-end" >
+                <button type="submit" class="btn btn-lg px-4 text-white py-2 shadow-sm" id="submitBtn" style="background-color:var(--primary-color);">
+                    <i class="bi bi-send-check-fill me-2"></i>{{ 'aircraftForm.submit_button'|trans({}, 'aircraft') }}
+                </button>
             </div>
         </div>
     </fieldset>
+    <script src="{{ asset('assets/vendor/jquery/jquery-3.7.1.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            const $form = $('#aircraftForm').closest('form');
+
+            $form.on('submit', function (e) {
+                let isValid = true;
+
+                // Réinitialise tous les messages d’erreur
+                $form.find('.form-control, .form-select').removeClass('is-invalid');
+
+                // Vérifie chaque champ requis
+                $form.find('[required]').each(function () {
+                    const $input = $(this);
+                    const value = $input.val();
+                    const type = $input.attr('type');
+                    const pattern = $input.attr('pattern');
+                    const min = $input.attr('min');
+
+                    let valid = true;
+
+                    if (!value || value.trim() === '') {
+                        valid = false;
+                    } else if (pattern && !(new RegExp(pattern).test(value))) {
+                        valid = false;
+                    } else if (min && parseFloat(value) < parseFloat(min)) {
+                        valid = false;
+                    }
+
+                    if (!valid) {
+                        isValid = false;
+                        $input.addClass('is-invalid');
+                    }
+                });
+
+                if (!isValid) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    // Fait défiler jusqu’au premier champ invalide
+                    $('html, body').animate({
+                        scrollTop: $('.is-invalid:first').offset().top - 100
+                    }, 500);
+                }
+            });
+
+            // Supprime l'état d'erreur dès que l'utilisateur saisit quelque chose
+            $form.find('.form-control, .form-select').on('input change', function () {
+                $(this).removeClass('is-invalid');
+            });
+        });
+    </script>
+
+
+
 </div>
 
 {{ form_end(form) }}

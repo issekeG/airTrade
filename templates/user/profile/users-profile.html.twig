@@ -13,14 +13,6 @@
         </li>
       {% endblock %}
 
-      {% block ads_favoris %}
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="{{ path('user_profile', {'id': app.user.id, 'page': 'ads'}) }}">
-            <i class="bi bi-heart"></i><span>{{ 'sidebar.favorites'|trans }}</span>
-          </a>
-        </li>
-      {% endblock %}
-
       {% block ads_details %}
         <li class="nav-item">
           <a class="nav-link collapsed" href="{{ path('user_profile', {'id': app.user.id, 'page': 'details'}) }}">

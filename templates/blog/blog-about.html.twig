@@ -1,0 +1,81 @@
+{% extends 'blog/blog-base.html.twig' %}
+{% block style %}
+{% endblock %}
+
+{% block main_content %}
+
+
+<!-- Hero -->
+<!-- Hero avec image en arrière-plan -->
+<!-- Hero avec image locale en arrière-plan -->
+<div class="text-white text-center py-5" style="background-image: url('{{ asset('uploads/blog/top-hawk.jpg') }}'); background-size: cover; background-position: center;">
+    <div class="container py-5 rounded">
+        <h1 class="display-4 fw-bold">À propos de nous</h1>
+        <p class="lead">Notre mission, notre histoire et nos valeurs dans le monde de l'aviation</p>
+    </div>
+</div>
+
+
+
+    <!-- Notre Histoire -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="mb-4 text-center">Notre Histoire</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>
+                        Aviation Blog est né d'une passion commune pour l'aéronautique et le besoin de partager une information de qualité avec tous les passionnés du secteur. Notre objectif a toujours été de fournir des contenus pertinents et accessibles, adaptés à un public aussi bien novice qu'expert dans le domaine.
+                    </p>
+                    <p>
+                        Depuis 2025, nous nous engageons à publier des contenus pertinents, à la fois techniques et accessibles, couvrant les sujets allant de l’aviation commerciale à l’aéronautique militaire. Nous avons élargi notre champ d’action pour inclure des analyses approfondies sur les tendances technologiques, la réglementation aérienne et l'innovation dans les moteurs et les systèmes embarqués.
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <img src="{{ asset('uploads/blog/websitePromo.jpg') }}" alt="Notre histoire" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notre Mission -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="mb-4 text-center">Notre Mission</h2>
+            <div class="row text-center">
+                <div class="col-md-4 mb-4">
+                    <h5>Informer</h5>
+                    <p>Des articles fiables, des dossiers approfondis et une veille continue sur l’actualité aérienne mondiale. Nous nous efforçons de toujours apporter une information factuelle et bien documentée, afin que nos lecteurs puissent se tenir informés des dernières évolutions dans l'univers de l'aviation.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Inspirer</h5>
+                    <p>Partager des récits captivants, des innovations technologiques et des témoignages inédits. Nous mettons en lumière des projets inspirants et des initiatives qui montrent que l'aviation est un secteur en perpétuelle évolution, source de nombreuses découvertes et d'avancées majeures.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Connecter</h5>
+                    <p>Créer une communauté engagée autour d'une passion commune : le ciel et ses machines. Nous encourageons les échanges, les discussions et les collaborations entre professionnels, amateurs et curieux, en fournissant des espaces où chacun peut partager ses idées et ses découvertes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nos Valeurs -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="mb-4 text-center">Nos Valeurs</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Passion :</strong> L’aéronautique est au cœur de notre engagement. Chaque article, chaque interview, chaque analyse est rédigé avec la conviction que l'aviation est un domaine qui nous passionne tous et mérite d'être compris et exploré sous toutes ses facettes.</li>
+                        <li class="list-group-item"><strong>Qualité :</strong> Des contenus soignés, vérifiés et mis à jour régulièrement. Nous nous engageons à offrir des informations fiables, provenant de sources vérifiées, et à actualiser constamment nos articles pour qu'ils restent pertinents et à jour avec les évolutions du secteur.</li>
+                        <li class="list-group-item"><strong>Indépendance :</strong> Une ligne éditoriale libre de toute influence commerciale. Nous mettons un point d'honneur à garder une distance respectueuse avec les pressions commerciales, afin de garantir à nos lecteurs des analyses et des informations objectives, sans compromis.</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <img src="{{ asset('uploads/blog/learntofly.jpg') }}" alt="Nos valeurs" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}

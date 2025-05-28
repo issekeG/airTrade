@@ -293,54 +293,12 @@
                     font-size: 2rem;
                 }
             }
-             .search-filter .input-group {
-                 box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-                 border-radius: 8px !important;
-             }
 
-            .search-filter .form-select,
-            .search-filter .form-control {
-                border-right: none;
-                border-color: #e0e0e0;
-                transition: all 0.3s ease;
-            }
 
-            .search-filter .form-select:focus,
-            .search-filter .form-control:focus {
-                border-color: #e0e0e0;
-                box-shadow: none;
-                border-right: 1px solid #e0e0e0;
-            }
 
-            .search-filter .input-group > .form-select:not(:first-child),
-            .search-filter .input-group > .form-control:not(:first-child) {
-                border-left: none;
-            }
-
-            .search-filter #search-button {
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
-                padding-left: 1.5rem;
-                padding-right: 1.5rem;
-            }
-
-            /* Responsive */
-            @media (max-width: 992px) {
-                .search-filter .input-group {
-                    flex-wrap: wrap;
-                }
-                .search-filter .input-group > * {
-                    width: 100% !important;
-                    margin-bottom: 5px;
-                    border-radius: 8px !important;
-                }
-                .search-filter #search-button {
-                    margin-top: 5px;
-                }
-            }
             .gallery-container {
                 position: relative;
-                max-height: 350px; /* adapte selon ta mise en page */
+                max-height: 450px; /* adapte selon ta mise en page */
                 background-color: #f8f9fa; /* couleur de fond si l’image ne remplit pas tout */
                 overflow: hidden;
                 display: flex;
@@ -532,12 +490,45 @@
 
 <!-- ======= Footer ======= -->
 {% block footer %}
-    <footer id="footer" class="footer">
-        <div class="copyright">
-            &copy; Copyright <strong><span>Antalasoft</span></strong>. All Rights Reserved
-        </div>
-        <div class="credits">
-            Designed by <a href="https://antalasoft.com/">Antalasoft</a>
+    <footer class="bg-dark text-light pt-5 pb-4">
+        <div class="container">
+            <div class="row">
+                <!-- Logo & Description -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-uppercase fw-bold">DealAircraft</h5>
+                    <small class="">
+                        Plateforme dédiée à l’achat et la vente d’aéronefs neufs et d’occasion, ainsi que de pièces et équipements spécialisés.
+                    </small>
+                </div>
+
+                <!-- Liens rapides -->
+                <div class="col-md-4 mb-4">
+                    <h6 class="text-uppercase fw-bold mb-3">Liens utiles</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-decoration-none text-light"><small>À propos</small></a></li>
+                        <li><a href="#" class="text-decoration-none text-light"><small>Conditions générales</small></a></li>
+                        <li><a href="#" class="text-decoration-none text-light"><small>Blog</small></a></li>
+                        <li><a href="#" class="text-decoration-none text-light"><small>Contact</small></a></li>
+                    </ul>
+                </div>
+
+                <!-- Réseaux sociaux -->
+                <div class="col-md-4 mb-4">
+                    <h6 class="text-uppercase fw-bold mb-3">Suivez-nous</h6>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-light fs-4"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-light fs-4"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" class="text-light fs-4"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-light fs-4"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="text-light fs-4"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bas de page -->
+            <div class="text-center mt-4 border-top pt-3 small">
+                © 2025 DealAircraft. Tous droits réservés.
+            </div>
         </div>
     </footer>
 {% endblock %}

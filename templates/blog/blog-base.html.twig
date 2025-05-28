@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+{% block head %}
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+        <title>AirTrade</title>
+        <meta content="" name="description">
+        <meta content="" name="keywords">
+
+        <!-- Favicons -->
+        <link href="{{ asset('assets/img/antalaschool.png') }}" rel="icon">
+        <link href="{{ asset('assets/img/antalaschool.png') }}" rel="antalaschool">
+        <link rel="stylesheet" href="{{ asset('assets/css/blog-style.css') }}">
+
+
+        {% block style %}
+        {% endblock %}
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.gstatic.com" rel="preconnect">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+        {{ encore_entry_link_tags('vendor') }}
+        {{ encore_entry_link_tags('flag') }}
+
+
+    </head>
+{% endblock %}
+
+<body>
+
+<!-- ======= Header ======= -->
+{% block header %}
+    {% include 'composant/blog-nav-bar.html.twig' %}
+{% endblock %}
+<!-- End Header -->
+
+<!-- ======= Sidebar ======= -->
+{% block sidebar %}
+{% endblock %}
+<!-- End Sidebar-->
+{% block main %}
+    <main id="main" class="main">
+
+        <section class="section dashboard">
+            {% block main_content %}
+                <div class="row">
+
+                    <div class="hero">
+                        <img src="https://images.aircharterservice.com/content/10-things-you-potentially-didnt-know-about-aviation-body.jpg" alt="Aviation Hero" />
+                        <h1>Le monde de l’aviation</h1>
+                    </div>
+
+                    <main>
+                        {% block main_content_main %}
+                        <div class="content">
+                            <h2>Derniers articles</h2>
+                            <div class="articles-preview">
+                                <article>
+                                    <img src="https://images.aircharterservice.com/content/10-things-you-potentially-didnt-know-about-aviation-body.jpg" alt="Cockpit" />
+                                    <h3>Les dernières avancées des cockpits électroniques</h3>
+                                    <time>15 mars 2024</time>
+                                </article>
+                                <article>
+                                    <img src="https://images.aircharterservice.com/content/10-things-you-potentially-didnt-know-about-aviation-body.jpg" alt="Dreamliner" />
+                                    <h3>Le 737-Dreamliner : analyse des performances</h3>
+                                    <time>15 mars 2024</time>
+                                </article>
+                                <article>
+                                    <img src="https://images.aircharterservice.com/content/10-things-you-potentially-didnt-know-about-aviation-body.jpg" alt="Warbird" />
+                                    <h3>Histoire de l’aviation militaire : les warbirds</h3>
+                                    <time>15 mars 2024</time>
+                                </article>
+                            </div>
+
+                            <div class="tags">
+                                <button>📰 Actualité</button>
+                                <button>⚙️ Technologie</button>
+                                <button>🏛️ Histoire</button>
+                            </div>
+
+                            <div class="featured">
+                                <h2>Les jets privés les plus luxueux du marché</h2>
+                                <img src="privatejet.jpg" alt="Jet privé" />
+                                <p><em>Régart Ćupata, Inabiliité, nimau en’aviore apliver, prééiser l’aviation aviance: tuiner notées dés millilates, des inpertoifiés.</em></p>
+                            </div>
+                        </div>
+                        {% endblock %}
+                        <aside class="sidebar">
+                            <div class="categories">
+                                <h3>Catégories</h3>
+                                <ul>
+                                    <li><a href="#">Avions commerciaux</a></li>
+                                    <li><a href="#">Jets privés</a></li>
+                                    <li><a href="#">Avions militaires</a></li>
+                                    <li><a href="#">Technologie</a></li>
+                                    <li><a href="#">Histoire</a></li>
+                                </ul>
+                            </div>
+                            <div class="newsletter">
+                                <h3>Newsletter</h3>
+                                <p>Abonnes enemullo que Imena dlotone no fa commerce.</p>
+                                <input type="email" placeholder="Adresse e-mail" />
+                                <button>S’inscrire</button>
+                            </div>
+                        </aside>
+                    </main>
+
+                </div>
+            {% endblock %}
+        </section>
+
+    </main>
+{% endblock %}
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+{% block footer %}
+    <footer class="bg-dark text-light pt-5 pb-4">
+        <div class="container">
+            <div class="row">
+                <!-- Logo & Description -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-uppercase fw-bold">DealAircraft</h5>
+                    <small class="">
+                        Plateforme dédiée à l’achat et la vente d’aéronefs neufs et d’occasion, ainsi que de pièces et équipements spécialisés.
+                    </small>
+                </div>
+
+                <!-- Liens rapides -->
+                <div class="col-md-4 mb-4">
+                    <h6 class="text-uppercase fw-bold mb-3">Liens utiles</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-decoration-none text-light"><small>À propos</small></a></li>
+                        <li><a href="#" class="text-decoration-none text-light"><small>Conditions générales</small></a></li>
+                        <li><a href="#" class="text-decoration-none text-light"><small>Blog</small></a></li>
+                        <li><a href="#" class="text-decoration-none text-light"><small>Contact</small></a></li>
+                    </ul>
+                </div>
+
+                <!-- Réseaux sociaux -->
+                <div class="col-md-4 mb-4">
+                    <h6 class="text-uppercase fw-bold mb-3">Suivez-nous</h6>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-light fs-4"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-light fs-4"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" class="text-light fs-4"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-light fs-4"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="text-light fs-4"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bas de page -->
+            <div class="text-center mt-4 border-top pt-3 small">
+                © 2025 DealAircraft. Tous droits réservés.
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+<!-- End Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+{% block java_script %}
+    <script src="{{ asset('assets/vendor/jquery/jquery-3.7.1.min.js') }}"></script>
+
+    {{ encore_entry_script_tags('app') }}
+
+    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+
+
+
+
+{% endblock %}
+
+</body>
+
+</html>

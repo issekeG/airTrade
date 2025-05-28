@@ -49,10 +49,6 @@ class ArticleType extends AbstractType
                 'attr' => ['class' => 'ckeditor form-control', 'rows' => 3],
                 'row_attr' => ['class' => 'mb-3 row'],
             ])
-            ->add('imageAfficheFile',FileType::class, [
-                'label' => "Télécharger la photo d'affiche",
-                'attr' => ['class' => 'form-control'],
-            ] )
             ->add('articleSections', CollectionType::class, [
                 'entry_type' => ArticleSectionType::class,
                 'entry_options' => ['label' => false],

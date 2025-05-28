@@ -22,6 +22,7 @@ Encore
      */
     .addEntry('vendor', './assets/vendor.js')
     .addEntry('app', './assets/app.js')
+    .addEntry('flag', './assets/flag.js')
     .addEntry('ckeditor', './assets/js/ckeditor.js')
 
     .addEntry('jquery', './assets/ressources/jquery/jquery-3.7.1.min.js')

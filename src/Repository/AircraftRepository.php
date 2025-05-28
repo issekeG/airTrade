@@ -23,6 +23,7 @@ class AircraftRepository extends ServiceEntityRepository
         public function findByCategory($value): QueryBuilder
         {
             return $this->createQueryBuilder('a')
+                ->where('a.isPublished = true')
                 ->andWhere('a.aircraftCategory = :val')
                 ->setParameter('val', $value)
                 ->orderBy('a.id', 'ASC')
@@ -55,12 +56,12 @@ class AircraftRepository extends ServiceEntityRepository
         }
 
         if (!empty($filters['min_year'])) {
-            $qb->andWhere('a.yearOfManufacturer >= :min_year')
+            $qb->andWhere('a.yearOfManufacture >= :min_year')
                 ->setParameter('min_year', $filters['min_year']);
         }
 
         if (!empty($filters['max_year'])) {
-            $qb->andWhere('a.yearOfManufacturer <= :max_year')
+            $qb->andWhere('a.yearOfManufacture <= :max_year')
                 ->setParameter('max_year', $filters['max_year']);
         }
 
@@ -101,8 +102,10 @@ class AircraftRepository extends ServiceEntityRepository
         }
 
         if (!empty($filters['registration_number'])) {
-            $qb->andWhere('a.registrationNumber LIKE :registration_number')
-                ->setParameter('registration_number', '%'.$filters['registration_number'].'%');
+            $qb->join('a.aircraftSpecs', 's') // jointure avec AircraftSpecs
+            ->andWhere('JSON_UNQUOTE(JSON_EXTRACT(s.dataSpecs, :reg_key)) LIKE :registration_number')
+                ->setParameter('reg_key', '$.registrationNumber')
+                ->setParameter('registration_number', '%' . $filters['registration_number'] . '%');
         }
 
         return $qb->orderBy('a.publishedAt', 'DESC');

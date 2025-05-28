@@ -5,12 +5,11 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
         <div class="d-flex align-items-center justify-content-between">
             <a href="{{ path('app_home') }}" class="logo d-flex align-items-center">
-                <img src="" alt="">
-                <span class="d-none d-lg-block">{{ 'app.logo'|trans }}</span>
+                <img src="{{ asset('assets/img/logo/logo-principale.png') }}" alt="dealAircraft logo" class="d-lg-block d-none">
+                <img src="{{ asset('assets/img/logo/logo1.png') }}" alt="dealAircraft logo" class="d-block d-lg-none">
+                <span class="d-none d-lg-block"><span class="text-danger">Deal</span>Aircraft</span>
             </a>
-            {% block sidebarIcon %}
-                <i class="bi bi-list toggle-sidebar-btn d-block d-lg-none"></i>
-            {% endblock sidebarIcon %}
+
         </div>
 
         <nav class="header-nav ms-auto">
@@ -30,7 +29,6 @@
                                 </option>
                             {% endfor %}
                         </select>
-
                         {% for key, value in app.request.query.all() %}
                             {% if key != '_locale' %}
                                 {% if value is iterable %}
@@ -46,8 +44,9 @@
                 </li>
 
                 <li class="nav-item dropdown pe-3">
-                    <a class="nav-link btn py-1" href="{{ path('app_login') }}" style="border: 1px solid #1A0B8C !important; color : #1A0B8C !important; ">
-                        <i class="bi bi-box-arrow-in-right me-1"></i> {{ 'auth.login'|trans }}
+                    <a class="nav-link btn py-1" href="{{ path('app_login') }}" style="border: 1px solid var(--primary-color) !important; color : var(--primary-color) !important;">
+                        <span class="d-block d-md-none"><i class="bi bi-person-circle fs-4"></i></span>
+                        <span class="d-none d-md-block"> <i class="bi bi-box-arrow-in-right me-1"></i> {{ 'login.button'|trans }}</span>
                     </a>
                 </li>
             </ul>
@@ -63,7 +62,7 @@
                     <div class="row justify-content-center">
                         <div class="col-md-9 d-flex flex-column justify-content-center">
                             <div class="py-5">
-                                <span class="p-2 btn" style="background-color : #1A0B8C; color :white">
+                                <span class="p-2 btn" style="background-color : var(--primary-color); color :white">
                                     {{ 'register.header'|trans }}
                                 </span>
                             </div>
@@ -94,7 +93,7 @@
                                         </p>
 
                                         <hr class="my-4">
-                                        <a href="{{ path('app_logout') }}" class="btn btn-outline-primary">
+                                        <a href="{{ path('app_logout') }}" class="btn btn-style-outline">
                                             ⬅️ {{ 'button.back_home'|trans }}
                                         </a>
                                     </div>

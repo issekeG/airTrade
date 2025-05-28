@@ -2,7 +2,7 @@
 
 {% block ads_details %}
     <li class="nav-item bx-border-circle">
-        <a class="nav-link collapsed bg-primary text-white" href="{{ path('user_profile', {'id': app.user.id, 'page': 'details'}) }}">
+        <a style="background-color : var(--primary-color);" class="nav-link collapsed text-white" href="{{ path('user_profile', {'id': app.user.id, 'page': 'details'}) }}">
             <i class="bi bi-person-circle text-white"></i>
             <span>{{ 'profile.details_link'|trans }}</span>
         </a>

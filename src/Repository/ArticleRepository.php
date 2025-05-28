@@ -27,6 +27,23 @@ class ArticleRepository extends ServiceEntityRepository
 
             ;
         }
+        public function findByLanguage($value): QueryBuilder
+        {
+            return $this->createQueryBuilder('a')
+                ->where('a.langue = :value')
+                ->setParameter('value', $value)
+                ->orderBy('a.publishedAt', 'ASC')
+
+            ;
+        }
+        public function findByCategory($value): QueryBuilder
+        {
+            return $this->createQueryBuilder('a')
+                ->where('a.category = :value')
+                ->setParameter('value', $value)
+                ->orderBy('a.publishedAt', 'ASC')
+                ;
+        }
 
     //    public function findOneBySomeField($value): ?Article
     //    {
